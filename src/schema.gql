@@ -18,7 +18,7 @@ type User {
   isEmailConfirmed: Boolean!
   isRegisteredWithGoogle: Boolean!
   isAdmin: Boolean!
-  address: UserAddress!
+  address: UserAddress
 }
 
 type UserWithTokensDto {

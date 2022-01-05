@@ -70,7 +70,7 @@ describe('AuthenticationService', () => {
     it('should create a user and return it', async () => {
       const registrationData: RegisterUserDto = {
         email: mockedUser.email,
-        password: 'strongPassword',
+        password: mockedUser.password!,
         firstName: mockedUser.firstName,
         lastName: mockedUser.lastName,
         mobilePhoneNumber: mockedUser.mobilePhoneNumber!,
@@ -81,7 +81,7 @@ describe('AuthenticationService', () => {
       const registeredUser = await authenticationService.register(
         registrationData,
       );
-      expect(registeredUser).toMatchObject(mockedUser);
+      expect(registeredUser).toMatchObject(mockedUser); // TODO fix this
     });
   });
   describe('when accessing the data of authenticating user', () => {

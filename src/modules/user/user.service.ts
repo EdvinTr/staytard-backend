@@ -1,7 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import * as bcrypt from 'bcrypt';
-import { DeleteResult, Repository, UpdateResult } from 'typeorm';
+import {
+  DeleteResult,
+  FindOneOptions,
+  Repository,
+  UpdateResult,
+} from 'typeorm';
 import { RegisterUserDto } from '../authentication/dto/register-user.dto';
 import { User } from './entities/user.entity';
 
@@ -17,13 +22,22 @@ export class UserService {
 
   async findById(
     id: string,
-    relations: string[] = [],
+    options?: FindOneOptions<User>,
   ): Promise<User | undefined> {
-    return await this.userRepository.findOne(id, { relations });
+    return await this.userRepository.findOne(id, { ...options });
   }
 
   async create(createUserData: RegisterUserDto): Promise<User> {
-    return await this.userRepository.save(createUserData);
+    const { city, postalCode, street, ...rest } = createUserData;
+    const user = this.userRepository.create({
+      ...rest,
+      address: {
+        city,
+        postalCode,
+        street,
+      },
+    });
+    return await this.userRepository.save(user);
   }
 
   async deleteById(userId: string): Promise<DeleteResult> {

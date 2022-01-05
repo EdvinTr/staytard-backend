@@ -54,7 +54,7 @@ export class User {
   @Exclude()
   public currentHashedRefreshToken?: string;
 
-  @Field(() => UserAddress)
+  @Field(() => UserAddress, { nullable: true })
   @OneToOne(() => UserAddress, {
     cascade: true,
     eager: true,
