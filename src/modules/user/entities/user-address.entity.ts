@@ -1,11 +1,5 @@
 import { Field, ObjectType } from '@nestjs/graphql';
-import {
-  Column,
-  Entity,
-  JoinColumn,
-  OneToOne,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
+import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { User } from './user.entity';
 
 @ObjectType()
@@ -28,7 +22,5 @@ export class UserAddress {
   public postalCode: string;
 
   @OneToOne(() => User, (user) => user.address)
-  @Field(() => User)
-  @JoinColumn()
   public user?: User;
 }

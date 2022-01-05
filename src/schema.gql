@@ -2,6 +2,13 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type UserAddress {
+  id: Float!
+  city: String!
+  street: String!
+  postalCode: String!
+}
+
 type User {
   id: String!
   firstName: String!
@@ -11,6 +18,7 @@ type User {
   isEmailConfirmed: Boolean!
   isRegisteredWithGoogle: Boolean!
   isAdmin: Boolean!
+  address: UserAddress!
 }
 
 type UserWithTokensDto {

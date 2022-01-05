@@ -15,8 +15,11 @@ export class UserService {
     return await this.userRepository.findOne({ where: { email } });
   }
 
-  async findById(id: string): Promise<User | undefined> {
-    return await this.userRepository.findOne(id);
+  async findById(
+    id: string,
+    relations: string[] = [],
+  ): Promise<User | undefined> {
+    return await this.userRepository.findOne(id, { relations });
   }
 
   async create(createUserData: RegisterUserDto): Promise<User> {
