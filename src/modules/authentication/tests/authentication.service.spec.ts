@@ -74,6 +74,9 @@ describe('AuthenticationService', () => {
         firstName: mockedUser.firstName,
         lastName: mockedUser.lastName,
         mobilePhoneNumber: mockedUser.mobilePhoneNumber!,
+        city: mockedUser.address.city,
+        postalCode: mockedUser.address.postalCode,
+        street: mockedUser.address.street,
       };
       const registeredUser = await authenticationService.register(
         registrationData,

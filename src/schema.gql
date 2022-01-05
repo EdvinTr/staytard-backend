@@ -35,6 +35,9 @@ input RegisterUserDto {
   lastName: String!
   mobilePhoneNumber: String!
   password: String!
+  city: String!
+  street: String!
+  postalCode: String!
 }
 
 input LoginUserDto {

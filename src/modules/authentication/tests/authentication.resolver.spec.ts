@@ -16,6 +16,7 @@ describe('AuthenticationResolver', () => {
   let userData: User;
   const mockedAuthenticationService = {
     register: jest.fn((dto: RegisterUserDto) => {
+      delete mockedUser.password;
       return {
         ...mockedUser,
       };
@@ -69,6 +70,9 @@ describe('AuthenticationResolver', () => {
           mobilePhoneNumber: userData.mobilePhoneNumber!,
           email: userData.email,
           password: userData.password!,
+          city: userData.address.city,
+          postalCode: userData.address.postalCode,
+          street: userData.address.street,
         });
         delete expectedUserData.password;
         expect(data?.accessToken).toBeDefined();
@@ -88,6 +92,9 @@ describe('AuthenticationResolver', () => {
             firstName: '',
             lastName: '',
             mobilePhoneNumber: '',
+            city: '',
+            postalCode: '',
+            street: '',
           }),
         ).resolves.toBeNull();
       });

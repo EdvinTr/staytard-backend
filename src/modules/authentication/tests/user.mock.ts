@@ -15,4 +15,6 @@ export const mockedUser: User = {
     postalCode: '75645',
     street: 'Södra Vägen',
   },
+  currentHashedRefreshToken: '',
+  password: '123123123',
 };

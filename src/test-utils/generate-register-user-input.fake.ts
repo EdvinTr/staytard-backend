@@ -7,6 +7,9 @@ export const generateRegisterUserInput = () => {
     mobilePhoneNumber: faker.phone.phoneNumber(),
     email: faker.internet.email(),
     password: faker.internet.password(12),
+    city: faker.address.city(),
+    postalCode: faker.address.zipCode(),
+    street: faker.address.streetName(),
   };
   return user;
 };

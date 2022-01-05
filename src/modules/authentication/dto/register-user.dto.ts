@@ -2,6 +2,8 @@ import { Field, InputType } from '@nestjs/graphql';
 import {
   IsEmail,
   IsMobilePhone,
+  IsNotEmpty,
+  IsPostalCode,
   IsString,
   MaxLength,
   MinLength,
@@ -54,5 +56,20 @@ export class RegisterUserDto {
   @Field()
   password: string;
 
-  // should include postal code and address
+  // address validation
+  @IsString()
+  @IsNotEmpty()
+  @Field()
+  city: string;
+
+  @IsString()
+  @IsNotEmpty()
+  @Field()
+  street: string;
+
+  @IsPostalCode('SE', {
+    message: 'Enter a postal code with 5 digits (e.g., 44233)',
+  })
+  @Field()
+  postalCode: string;
 }
