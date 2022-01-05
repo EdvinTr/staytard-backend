@@ -1,0 +1,43 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type User {
+  id: String!
+  firstName: String!
+  lastName: String!
+  mobilePhoneNumber: String!
+  email: String!
+  isEmailConfirmed: Boolean!
+  isRegisteredWithGoogle: Boolean!
+  isAdmin: Boolean!
+}
+
+type UserWithTokensDto {
+  user: User!
+  accessToken: String!
+  refreshToken: String!
+}
+
+type Query {
+  me: User!
+}
+
+type Mutation {
+  registerUser(input: RegisterUserDto!): UserWithTokensDto!
+  login(input: LoginUserDto!): UserWithTokensDto!
+  logout: Boolean!
+}
+
+input RegisterUserDto {
+  email: String!
+  firstName: String!
+  lastName: String!
+  mobilePhoneNumber: String!
+  password: String!
+}
+
+input LoginUserDto {
+  email: String!
+  password: String!
+}
