@@ -2,7 +2,6 @@ import { Field, InputType } from '@nestjs/graphql';
 import {
   IsEmail,
   IsMobilePhone,
-  IsNotEmpty,
   IsString,
   MaxLength,
   MinLength,
@@ -15,7 +14,6 @@ export class RegisterUserDto {
   email: string;
 
   @IsString()
-  @IsNotEmpty()
   @MinLength(2, {
     message: 'First name must be at least $constraint1 characters long',
   })
@@ -27,7 +25,6 @@ export class RegisterUserDto {
   firstName: string;
 
   @IsString()
-  @IsNotEmpty()
   @MinLength(2, {
     message: 'Last name must be at least $constraint1 characters long',
   })
@@ -48,9 +45,11 @@ export class RegisterUserDto {
   mobilePhoneNumber: string;
 
   @IsString()
-  @IsNotEmpty()
   @MinLength(8, {
     message: `Password must be longer than or equal to $constraint1 characters`,
+  })
+  @MaxLength(20, {
+    message: `Password must be shorter than or equal to $constraint1 characters`,
   })
   @Field()
   password: string;

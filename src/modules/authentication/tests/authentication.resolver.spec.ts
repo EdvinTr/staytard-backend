@@ -14,7 +14,7 @@ describe('AuthenticationResolver', () => {
   let resolver: AuthenticationResolver;
   let userService: UserService;
   let userData: User;
-  let mockedAuthenticationService = {
+  const mockedAuthenticationService = {
     register: jest.fn((dto: RegisterUserDto) => {
       return {
         ...mockedUser,
