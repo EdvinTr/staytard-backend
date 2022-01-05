@@ -1,6 +1,13 @@
 import { Field, ObjectType } from '@nestjs/graphql';
 import { Exclude } from 'class-transformer';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { UserAddress } from './user-address.entity';
 
 @ObjectType()
 @Entity()
@@ -46,4 +53,11 @@ export class User {
   })
   @Exclude()
   public currentHashedRefreshToken?: string;
+
+  @OneToOne(() => UserAddress, {
+    eager: true,
+    cascade: true,
+  })
+  @JoinColumn()
+  public address: UserAddress;
 }

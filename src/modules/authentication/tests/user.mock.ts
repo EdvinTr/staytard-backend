@@ -9,4 +9,10 @@ export const mockedUser: User = {
   mobilePhoneNumber: '+46704253388',
   isEmailConfirmed: false,
   isAdmin: false,
+  address: {
+    city: 'Uppsala',
+    id: 1,
+    postalCode: '75645',
+    street: 'Södra Vägen',
+  },
 };
