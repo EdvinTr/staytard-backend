@@ -1,6 +1,5 @@
 import { ProductCategory } from '../modules/product-category/entities/product-category.entity';
 
-//TODO: add as a child of clothes
 type BasicProductCategory = Pick<
   ProductCategory,
   'name' | 'slug' | 'path' | 'description'
@@ -268,13 +267,6 @@ const shirtsCategories: BasicProductCategory = {
       slug: '/shirts/patterned-shirts',
     },
     {
-      name: 'Overshirt',
-      description:
-        "The overshirt has become a modern fashion item that will soon be in everyone's wardrobe. As a mix between a shirt and a spring jacket, it works indoors as well as outdoors and as a functional layer-on-layer garment. Durable in quality means that it lasts longer and you can wear less on nature.",
-      path: '/clothes/shirts/overshirt',
-      slug: '/shirts/overshirt',
-    },
-    {
       name: 'Dressed shirts',
       description:
         "Costume shirts are a staple in the men's wardrobe. The most common is most likely one in white, but even blue variants in lighter shades are often included. Make sure you look elegant during those solemn occasions and evenings that you will soon forget and leave a stylish impression.",
@@ -391,6 +383,7 @@ export const clothesCategories: BasicProductCategory = {
     jeansCategories,
     pantsCategories,
     tShirtsCategories,
+    shirtsCategories,
     shortsCategories,
     socksAndUnderwearCategories,
     jacketAndSuitCategories,
