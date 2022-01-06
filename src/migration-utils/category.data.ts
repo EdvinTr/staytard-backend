@@ -1,57 +1,102 @@
-export const clothesCategories = {
-  jackets: {
-    description:
-      'A jacket is an important investment that can represent your style for several seasons. The right jacket is a basic prerequisite for your particular style and attire to be highlighted. Here at Stayhard you will find a wide range of affordable quality jackets. As a rule, you should invest in at least one more dressed-up jacket, such as a parka, which can suit both work and leisure. Our range of coats and trench coats has several different lengths and cuts, from straight wool coats to shorter variants with double buttoning. Combine with an oversized scarf for a nice rounding. Or use dressing in a hoodie and sneakers for a more casual feeling. It may also be worth investing in another jacket that can be used for more casual occasions. The denim jacket is the classic spring and summer jacket that fits almost everything. A fashion favorite is also the versatile bomber jacket that comes in a variety of materials and thicknesses. This short jacket variant works perfectly with a pair of skinny denim trousers and a pair of cloth shoes.',
-    'Bomber & baseball jackets': {
+// is a child of clothes
+const jackets = {
+  name: 'Jackets',
+  description:
+    'A jacket is an important investment that can represent your style for several seasons. The right jacket is a basic prerequisite for your particular style and attire to be highlighted. Here at Stayhard you will find a wide range of affordable quality jackets. As a rule, you should invest in at least one more dressed-up jacket, such as a parka, which can suit both work and leisure. Our range of coats and trench coats has several different lengths and cuts, from straight wool coats to shorter variants with double buttoning. Combine with an oversized scarf for a nice rounding. Or use dressing in a hoodie and sneakers for a more casual feeling. It may also be worth investing in another jacket that can be used for more casual occasions. The denim jacket is the classic spring and summer jacket that fits almost everything. A fashion favorite is also the versatile bomber jacket that comes in a variety of materials and thicknesses. This short jacket variant works perfectly with a pair of skinny denim trousers and a pair of cloth shoes.',
+  children: [
+    {
+      name: 'Bomber & baseball jackets',
       description:
         'Bomber jackets and baseball jackets are tough jackets that are often of a shorter model and are available in many different colors and designs. The sporty look of the jacket is easy to match with most things and fits both jeans and chinos. A baseball or bomber jacket is perfect for the chilly summer evening but also works well during autumn and spring. At Stayhard you will find really nice baseball and bomber jackets.',
     },
-
-    'Jeans jackets': {
+    {
+      name: 'Jeans jackets',
       description:
         "Men's denim jacket is a garment that is used in many different styles. If you want a jacket that breathes rock'n'roll, you should choose a shorter box model in dark or black denim. If you get your style from street style and skate culture, an oversized denim jacket in a light, worn wash is just the right choice. Wear your oversized jacket with your favorite hoodie and you will have found a comfortable and cool style. Matching jeans and jeans is also a super trend. If you want to go all in, choose a jacket and jeans in the same wash. Dark blue denim gives a dressy feeling while driving all black is suitable in all contexts. Choosing a pair of black jeans and a denim jacket in light laundry is also just right for many occasions. With us, you will find several different models and washes to choose from, which makes it easy to find one that suits your style.",
     },
-
-    Overshirt: {
+    {
+      name: 'Overshirt',
       description:
         "The overshirt is a modern fashion item that has found its way into almost every man's wardrobe. As a cross between a shirt and a lighter jacket, the overshirt works indoors as well as outdoors and as a functional layer-on-layer garment. Durable in quality means that it lasts longer and you can wear less on nature.",
     },
-    Parka: {
+    {
+      name: 'Parka',
       description:
         "With inspiration from hunting and fishing clothes in Greenland, the modern parka jacket came to life. A parka is generally a longer jacket, especially at the back, and received a fashion boost in the 60's after being used as a military garment. Extra comfortable during the winter and just as fashionable as today.",
     },
-    Pile: {
+    {
+      name: 'Pile',
       description: '',
     },
-    Puffers: {
+    {
+      name: 'Puffers',
       description:
         'For a barren and northern climate, warm clothes are required to trust. A down jacket or a padded jacket can be your salvation on those extra chilly days. But at the same time as you have to keep warm, you have to keep the style, so of course we recommend matching with your other outfit',
     },
-    'Rain & function jackets': {
+    {
+      name: 'Rain & function jackets',
       description:
         'Cold winds, rain and other nuisances are things that can not be avoided in Sweden. Then it is important that you wear good clothes and among the most important is a functional jacket that withstands the worst moisture and cold. Stayhard has lots of functional jackets to choose from. You should not have to choose between function and style, here you can find nice function jackets that also create trend. When you get your new functional jacket from us, in addition to a good price, you can also count on a fast and free delivery.',
     },
-    'Rocks & trench coats': {
+    {
+      name: 'Rocks & trench coats',
       description:
         "When choosing a rock, you should start with your own style and then think practically. The coat you choose should keep warm and be fairly functional even in bad weather. A coat in coarser wool material gives both warmth and a well-dressed and casual impression. Choosing black, navy blue or brown makes it easy to match the rest of your clothes. You can also choose to wear the trench coat open or closed depending on the weather and what you are wearing. Vary by either wearing the collar raised or lowered. The jacket's classic color is beige, but you can also find dark red and navy blue and of course black. Both the coat and the trench coat are easily complemented with a scarf, hat and gloves where you can choose freely from colors to the jackets' more neutral shades.",
     },
-    'Leather & suede jackets': {
+    {
+      name: 'Leather & suede jackets',
       description:
         'Choose a jacket that suits your style. One tip is the pilot model, which is always a safe bet. With details such as rivets and oblique zippers, you collect extra style points. The classic leather jacket is the motorcycle jacket. You can match and wear this jacket in so many different ways, which makes it a favorite with many. Wear it with a simple T-shirt and skinny jeans or with a figure-hugging shirt. The traditional short leather jacket is a perfect alternative all year round. Wear it with a pair of light chinos in the summer, or with a pair of black jeans and a hoodie for a more rocking look during the colder months. If you want a leather jacket for more well-dressed occasions, you should choose a jacket model. The leather jacket gives the perfect feeling of balance between the cocky and luxurious.',
     },
-    'Winter jackets': {
+    {
+      name: 'Winter jackets',
       description:
         'As you know, summer is short, and the months when you have to wear a jacket are many. The choice of autumn jacket and winter jacket is therefore an important one, so make sure you spend some time and energy finding the jackets that suit you and your style. A bomber jacket is the perfect autumn jacket, and a stylish down jacket is warm and comfortable in winter. Find your favorites at Stayhard, always at good prices.',
     },
-    Vests: {
+    {
+      name: 'Vests',
       description:
         "Vests are available in many different designs and in our range you can find a stylish vest for all occasions, whether you are looking for one for colder days, a vest for outdoor training or an elegant model for the party. The vest is perfect when it gets colder outside, but not cold enough to bring out the winter jacket. But a thinner model also works well in the spring, summer evenings and early autumn. A vest can give an extra cool and at the same time elegant touch to your outfit. The garment has been around for several years and fashion turns and regardless of style, there is a vest that suits you. Do you choose a long, short, tight or loose fit? Regardless, you can polish both your party and everyday outfit with a stylish men's vest.",
     },
-    'Spring & autumn jackets': {
+    {
+      name: 'Spring & autumn jackets',
       description:
         "In the spring, it's time to hang the winter jacket in the closet and put on something a little lighter. Stayhard has lots of stylish spring jackets, autumn jackets and summer jackets to choose from. A stylish jacket is an invaluable part of your outfit, and here you will find several men's spring and autumn jackets that fit many different styles. Find your new autumn and spring jacket for the year at Stayhard and get fast and free delivery, with free returns.",
     },
-  },
+  ],
+};
+
+const clothes = {
+  name: 'Clothes',
+  description:
+    "Among the more than 250 brands we offer, you will find giants such as GANT, Morris, Calvin Klein, Peak Performance and many, many more. Our men's clothes are carefully selected to follow the latest trends and at the same time be both high quality and affordable. A good wardrobe, just like a web shop, needs to have both width and depth to be ready for everything. Nothing consciously says anything as well as a perfect shirt or pair of really nice jeans bras. Choose and wreck among pants, shorts, jackets, suits, sweaters, underwear and everything else that a modern man's wardrobe needs to be equipped with. Order your clothes for men from Stayhard - we help you take your style to a whole new level",
+  children: [
+    {
+      name: 'Sweaters',
+      description:
+        "Sweaters say a lot about a man's style as it is a garment that has the potential to both capture attention and give the wearer a neutral style. Some shirts are used to spread messages with prints and texts, others are solid color and without any major details. Your style and taste determine what is right for you, but a rule of thumb is that the more stylish the model is, the easier it is to match. Solid-colored sweaters in simple cuts are therefore also best suited for work and for more formal occasions, even if they also work at home. In your free time and at the gym, you just have to go all out with colors and prints - here you set the limits yourself. For spring and summer, cool, light sweaters are needed that keep you warm on cold evenings. For winter and autumn, you should invest in warm, knitted models - preferably with a slightly looser fit so that you can hold a few layers underneath.",
+    },
+    {
+      name: 'T-shirts & polo shirts',
+      description:
+        "Not only is a men's T-shirt stylish in its simplicity, it can come with both patterns, prints, different cuts and with attributes such as a polo collar or different curves in the neck. In the range at Stayhard, you can scroll through several different models of stylish T-shirts. Finding something that suits your taste among all the varieties we offer will not be difficult. If you like to be seen, there are prints and patterns that can be seen from miles away. If you want to get a nice look on the date, we would suggest a T-shirt with a cool print and if it is a meeting in a work context, a solid color T-shirt is an excellent choice. T-shirt is the garment that looks as good under a jacket as under a jacket. It works just as well with worn jeans, suit trousers and shorts - you can not go wrong when you have a T-shirt with a nice fit. Get a T-shirt men will envy you for or pick on you a whole bunch of our cheap T-shirts. This is the garment that works in all situations and for all occasions - there is no such thing as too many when it comes to T-shirts",
+      children: [
+        {
+          name: 'Solid color T-Shirts',
+          description:
+            'How does this sound; a pair of worn jeans, your favorite boots and then a black T-shirt with a slightly wider cut at the neck? Or a pair of dark jeans with a perfect fit, a white slightly looser T-shirt and a black jacket? In both cases, the T-shirt really only plays a supporting role, but it is the combination that makes the outfit. With a single-colored T-shirt, it is difficult to make a mistake as in many cases it is the key garment that ties together an entire outfit. As obvious as this garment is on a hot summer day, it is as a base under a hoodie or sweatshirt, or as part of a layer on layer look when the temperature has crept down. If you want to be properly dressed at all times, take a look at the range we offer and pick up a basic wardrobe of solid-colored T-shirts.',
+        },
+        {
+          name: 'T-shirts',
+          description:
+            'How does this sound; a pair of worn jeans, your favorite boots and then a black T-shirt with a slightly wider cut at the neck? Or a pair of dark jeans with a perfect fit, a white slightly looser T-shirt and a black jacket? In both cases, the T-shirt really only plays a supporting role, but it is the combination that makes the outfit. With a single-colored T-shirt, it is difficult to make a mistake as in many cases it is the key garment that ties together an entire outfit. As obvious as this garment is on a hot summer day, it is as a base under a hoodie or sweatshirt, or as part of a layer on layer look when the temperature has crept down. If you want to be properly dressed at all times, take a look at the range we offer and pick up a basic wardrobe of solid-colored T-shirts.',
+        },
+      ],
+    },
+  ],
+};
+
+export const clothesCategories = {
   Sweaters: {
     description:
       "Sweaters say a lot about a man's style as it is a garment that has the potential to both capture attention and give the wearer a neutral style. Some shirts are used to spread messages with prints and texts, others are solid color and without any major details. Your style and taste determine what is right for you, but a rule of thumb is that the more stylish the model is, the easier it is to match. Solid-colored sweaters in simple cuts are therefore also best suited for work and for more formal occasions, even if they also work at home. In your free time and at the gym, you just have to go all out with colors and prints - here you set the limits yourself. For spring and summer, cool, light sweaters are needed that keep you warm on cold evenings. For winter and autumn, you should invest in warm, knitted models - preferably with a slightly looser fit so that you can hold a few layers underneath.",
@@ -199,7 +244,7 @@ export const clothesCategories = {
         'Suit trousers are traditionally fine trousers, but modern suit trousers are available in several variants. Choose between the classic straight suit pants or suit pants men slim fit. Combined with a polo shirt or knitted V-neck, you are soon ready for dinner. With shorter trouser legs, you can experiment with sock choices and highlight the shoes, we also recommend sometimes mixing styles and, for example, trying on a sneaker with the suit trousers. A real trendsetter might even try on the bomber jacket for the suit pants. You can also try one of our modern models with button fly and angled pockets. For a more exclusive feel, choose wool or tweed trousers with a press crease and longer leg length. If you want to get a classic look, the suit trousers will of course fit perfectly with a matching jacket. Try a real British cricket classic by styling tweed trousers with a shirt and a cable-knit slipover and get a tailor-made finish in the office. Do not let your imagination limit you.',
     },
   },
-};
+}; // clothes categories end
 
 export const shoesCategories = {
   description:

@@ -25,6 +25,14 @@ export class ProductCategory extends BaseEntity {
   @Field()
   public description: string;
 
+  @Column()
+  @Field()
+  public path: string;
+
+  @Column()
+  @Field()
+  public slug: string;
+
   @Field(() => ProductCategory, { nullable: true })
   @ManyToOne(() => ProductCategory, (category) => category.children)
   parent: ProductCategory;
@@ -33,13 +41,13 @@ export class ProductCategory extends BaseEntity {
   @OneToMany(() => ProductCategory, (category) => category.parent, {
     cascade: true,
   })
-  children: ProductCategory[];
+  public children: ProductCategory[];
 
   @Field()
   @UpdateDateColumn()
-  updatedAt: Date;
+  public updatedAt: Date;
 
   @Field()
   @CreateDateColumn()
-  createdAt: Date;
+  public createdAt: Date;
 }
