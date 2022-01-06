@@ -59,7 +59,7 @@ export type MyContext = {
     }),
     ThrottlerModule.forRoot({
       ttl: 60, // 60 seconds
-      limit: 60, // 100 requests
+      limit: 300, // 300 requests
     }),
   ],
   providers: [
