@@ -8,6 +8,7 @@ import { Request, Response } from 'express';
 import { join } from 'path';
 import { AuthenticationModule } from '../modules/authentication/authentication.module';
 import { DatabaseModule } from '../modules/database/database.module';
+import { ProductCategoryModule } from '../modules/product-category/product-category.module';
 import { UserModule } from '../modules/user/user.module';
 import { GqlThrottlerGuard } from './graphl-throttler.guard';
 
@@ -23,6 +24,7 @@ export type MyContext = {
   imports: [
     UserModule,
     DatabaseModule,
+    ProductCategoryModule,
     AuthenticationModule,
     ConfigModule.forRoot({
       validationSchema: Joi.object({
