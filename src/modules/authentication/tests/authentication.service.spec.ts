@@ -17,6 +17,7 @@ describe('AuthenticationService', () => {
   let bcryptCompare: jest.Mock;
   const mockUserRepository = {
     save: jest.fn().mockResolvedValue(mockedUser),
+    create: jest.fn().mockResolvedValue(mockedUser),
     findOne: jest.fn().mockResolvedValue(mockedUser),
   };
   beforeEach(async () => {
