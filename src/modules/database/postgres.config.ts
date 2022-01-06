@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+
 import * as dotenv from 'dotenv';
 import { ConnectionOptions } from 'typeorm';
 import { __isProduction__ } from '../../constants';

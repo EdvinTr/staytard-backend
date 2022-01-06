@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import { Test, TestingModule } from '@nestjs/testing';
@@ -7,24 +9,22 @@ import { User } from '../../user/entities/user.entity';
 import { UserService } from '../../user/user.service';
 import { AuthenticationResolver } from '../authentication.resolver';
 import { AuthenticationService } from '../authentication.service';
-import { RegisterUserDto } from '../dto/register-user.dto';
 import { mockedUser } from './user.mock';
 
 describe('AuthenticationResolver', () => {
   let resolver: AuthenticationResolver;
-  let userService: UserService;
   let userData: User;
   const mockedAuthenticationService = {
-    register: jest.fn((dto: RegisterUserDto) => {
+    register: jest.fn(() => {
       delete mockedUser.password;
       return {
         ...mockedUser,
       };
     }),
-    getJwtAccessToken: jest.fn((userId: string) => {
+    getJwtAccessToken: jest.fn(() => {
       return 'accessToken';
     }),
-    getJwtRefreshToken: jest.fn((userId: string) => {
+    getJwtRefreshToken: jest.fn(() => {
       return 'refreshToken';
     }),
   };
@@ -54,7 +54,6 @@ describe('AuthenticationResolver', () => {
       ],
     }).compile();
 
-    userService = module.get<UserService>(UserService);
     resolver = module.get<AuthenticationResolver>(AuthenticationResolver);
   });
 

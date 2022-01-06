@@ -7,6 +7,7 @@ import {
 } from '../migration-utils/category.data';
 import { ProductCategory } from '../modules/product-category/entities/product-category.entity';
 export class ProductCategoryData1641467927798 implements MigrationInterface {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   public async up(queryRunner: QueryRunner): Promise<void> {
     await ProductCategory.create(clothesCategories).save();
     await ProductCategory.create(lifestyleCategories).save();

@@ -53,6 +53,7 @@ export class UserService {
       firstName,
       lastName,
       email,
+      mobilePhoneNumber,
       isRegisteredWithGoogle: true,
     });
     await this.userRepository.save(newUser);
