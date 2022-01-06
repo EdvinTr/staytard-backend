@@ -7,7 +7,7 @@ export class ProductCategoryData1641467927798 implements MigrationInterface {
     jackets.description = 'The description here';
 
     const child1 = ProductCategory.create({
-      name: 'Jackets',
+      name: 'Bomber & baseball jackets',
       description: 'The description here',
     });
     const child2 = ProductCategory.create({
@@ -19,6 +19,6 @@ export class ProductCategoryData1641467927798 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await ProductCategory.delete({});
+    await queryRunner.query(`DELETE FROM product_category`);
   }
 }

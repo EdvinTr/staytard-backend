@@ -30,7 +30,9 @@ export class ProductCategory extends BaseEntity {
   parent: ProductCategory;
 
   @Field(() => [ProductCategory], { nullable: true })
-  @OneToMany(() => ProductCategory, (category) => category.parent)
+  @OneToMany(() => ProductCategory, (category) => category.parent, {
+    cascade: true,
+  })
   children: ProductCategory[];
 
   @Field()
