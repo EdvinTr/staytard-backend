@@ -31,7 +31,6 @@ type ProductCategory {
   id: Float!
   name: String!
   description: String!
-  parentId: Float!
   parent: ProductCategory
   children: [ProductCategory!]
   updatedAt: DateTime!

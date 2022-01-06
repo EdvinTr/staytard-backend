@@ -3,7 +3,7 @@ import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 import * as helmet from 'helmet';
 import { AppModule } from './app/app.module';
-import { isProduction } from './utils/is-production.util';
+import { __isProduction__ } from './constants';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -11,7 +11,7 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe());
   app.use(
     helmet({
-      contentSecurityPolicy: isProduction() ? undefined : false,
+      contentSecurityPolicy: __isProduction__ ? undefined : false,
     }),
   );
   app.enableCors({

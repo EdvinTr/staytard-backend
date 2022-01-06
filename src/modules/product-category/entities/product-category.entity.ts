@@ -1,5 +1,6 @@
 import { Field, ObjectType } from '@nestjs/graphql';
 import {
+  BaseEntity,
   Column,
   CreateDateColumn,
   Entity,
@@ -11,7 +12,7 @@ import {
 
 @ObjectType()
 @Entity()
-export class ProductCategory {
+export class ProductCategory extends BaseEntity {
   @PrimaryGeneratedColumn()
   @Field()
   public id: number;
@@ -23,10 +24,6 @@ export class ProductCategory {
   @Column()
   @Field()
   public description: string;
-
-  @Field()
-  @Column({ nullable: true })
-  parentId: number;
 
   @Field(() => ProductCategory, { nullable: true })
   @ManyToOne(() => ProductCategory, (category) => category.children)
