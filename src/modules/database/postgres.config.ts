@@ -1,4 +1,4 @@
-import dotenv from 'dotenv';
+import * as dotenv from 'dotenv';
 import { ConnectionOptions } from 'typeorm';
 import { __isProduction__ } from '../../constants';
 dotenv.config();
@@ -28,4 +28,4 @@ const postgresConfig: ConnectionOptions = {
   logging: __isProduction__ ? false : true,
 };
 
-export = postgresConfig;
+export default postgresConfig;
