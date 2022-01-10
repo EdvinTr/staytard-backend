@@ -24,7 +24,6 @@ export class GoogleAuthenticationService {
     if (!email) {
       throw new UnauthorizedException();
     }
-
     try {
       const user = await this.usersService.findByEmail(email);
       if (!user) {
@@ -72,10 +71,9 @@ export class GoogleAuthenticationService {
   }
 
   async handleRegisteredUser(user: User) {
-    // TODO: in the case that the user signed up through registration form, then wants to use log in with google this crashes
-    // TODO: should probably not throw this error, but instead update the user.isRegisteredWithGoogle: true
     if (!user.isRegisteredWithGoogle) {
-      throw new UnauthorizedException();
+      user.isRegisteredWithGoogle = true;
+      await this.usersService.save(user);
     }
     const accessToken = this.authenticationService.getJwtAccessToken(user.id);
     const refreshToken = this.authenticationService.getJwtRefreshToken(user.id);
