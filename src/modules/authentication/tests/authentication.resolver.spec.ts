@@ -1,8 +1,10 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 
+import { createMock } from '@golevelup/ts-jest';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import { Test, TestingModule } from '@nestjs/testing';
+import { MyContext } from '../../../app/app.module';
 import mockedConfigService from '../../../utils/mocks/config.service';
 import mockedJwtService from '../../../utils/mocks/jwt.service';
 import { User } from '../../user/entities/user.entity';
@@ -10,7 +12,6 @@ import { UserService } from '../../user/user.service';
 import { AuthenticationResolver } from '../authentication.resolver';
 import { AuthenticationService } from '../authentication.service';
 import { mockedUser } from './user.mock';
-
 describe('AuthenticationResolver', () => {
   let resolver: AuthenticationResolver;
   let userData: User;
@@ -28,6 +29,12 @@ describe('AuthenticationResolver', () => {
       return 'refreshToken';
     }),
   };
+  const response = {
+    cookie() {
+      return;
+    },
+  };
+  const mockExecutionContext = createMock<MyContext>({ res: response });
   beforeEach(async () => {
     userData = {
       ...mockedUser,
@@ -63,16 +70,20 @@ describe('AuthenticationResolver', () => {
         const expectedUserData = {
           ...userData,
         };
-        const data = await resolver.registerUser({
-          firstName: userData.firstName,
-          lastName: userData.lastName,
-          mobilePhoneNumber: userData.mobilePhoneNumber!,
-          email: userData.email,
-          password: userData.password!,
-          city: userData.address.city,
-          postalCode: userData.address.postalCode,
-          street: userData.address.street,
-        });
+
+        const data = await resolver.registerUser(
+          {
+            firstName: userData.firstName,
+            lastName: userData.lastName,
+            mobilePhoneNumber: userData.mobilePhoneNumber!,
+            email: userData.email,
+            password: userData.password!,
+            city: userData.address.city,
+            postalCode: userData.address.postalCode,
+            street: userData.address.street,
+          },
+          mockExecutionContext,
+        );
         delete expectedUserData.password;
         expect(data?.accessToken).toBeDefined();
         expect(data?.refreshToken).toBeDefined();
@@ -85,16 +96,19 @@ describe('AuthenticationResolver', () => {
       });
       it('should return null', async () => {
         await expect(
-          resolver.registerUser({
-            email: '',
-            password: '',
-            firstName: '',
-            lastName: '',
-            mobilePhoneNumber: '',
-            city: '',
-            postalCode: '',
-            street: '',
-          }),
+          resolver.registerUser(
+            {
+              email: '',
+              password: '',
+              firstName: '',
+              lastName: '',
+              mobilePhoneNumber: '',
+              city: '',
+              postalCode: '',
+              street: '',
+            },
+            mockExecutionContext,
+          ),
         ).resolves.toBeNull();
       });
     });
