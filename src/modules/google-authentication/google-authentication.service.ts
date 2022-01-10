@@ -29,7 +29,6 @@ export class GoogleAuthenticationService {
       if (!user) {
         return this.registerUser(token);
       }
-
       return this.handleRegisteredUser(user);
     } catch (error: any) {
       if (error.status !== 404) {
