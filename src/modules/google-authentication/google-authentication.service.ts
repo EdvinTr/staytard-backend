@@ -1,4 +1,5 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { Auth, google } from 'googleapis';
 import { AuthenticationService } from '../authentication/authentication.service';
 import { User } from '../user/entities/user.entity';
@@ -9,10 +10,11 @@ export class GoogleAuthenticationService {
   oauthClient: Auth.OAuth2Client;
   constructor(
     private readonly usersService: UserService,
+    private readonly configService: ConfigService,
     private readonly authenticationService: AuthenticationService,
   ) {
-    const clientID = process.env.GOOGLE_AUTH_CLIENT_ID;
-    const clientSecret = process.env.GOOGLE_AUTH_CLIENT_SECRET;
+    const clientID = configService.get('GOOGLE_AUTH_CLIENT_ID');
+    const clientSecret = configService.get('GOOGLE_AUTH_CLIENT_SECRET');
     this.oauthClient = new google.auth.OAuth2(clientID, clientSecret);
   }
 
@@ -70,6 +72,8 @@ export class GoogleAuthenticationService {
   }
 
   async handleRegisteredUser(user: User) {
+    // TODO: in the case that the user signed up through registration form, then wants to use log in with google this crashes
+    // TODO: should probably not throw this error, but instead update the user.isRegisteredWithGoogle: true
     if (!user.isRegisteredWithGoogle) {
       throw new UnauthorizedException();
     }
