@@ -52,6 +52,7 @@ type Mutation {
   registerUser(input: RegisterUserDto!): UserWithTokensDto!
   login(input: LoginUserDto!): UserWithTokensDto!
   logout: Boolean!
+  authenticateWithGoogle(googleAuthToken: String!): UserWithTokensDto!
 }
 
 input RegisterUserDto {

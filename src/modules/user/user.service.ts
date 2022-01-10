@@ -8,6 +8,7 @@ import {
   UpdateResult,
 } from 'typeorm';
 import { RegisterUserDto } from '../authentication/dto/register-user.dto';
+import { RegisterWithGoogleDto } from '../google-authentication/dto/register-with-google-dto';
 import { User } from './entities/user.entity';
 
 @Injectable()
@@ -47,13 +48,15 @@ export class UserService {
     return await this.userRepository.find({ relations: relations || [] });
   }
 
-  async createWithGoogle(registerUserDto: RegisterUserDto): Promise<User> {
-    const { firstName, lastName, email, mobilePhoneNumber } = registerUserDto;
+  async createWithGoogle(
+    registerWithGoogleDto: RegisterWithGoogleDto,
+  ): Promise<User> {
+    const { email, firstName, lastName } = registerWithGoogleDto;
     const newUser = this.userRepository.create({
       firstName,
       lastName,
       email,
-      mobilePhoneNumber,
+      isEmailConfirmed: true,
       isRegisteredWithGoogle: true,
     });
     await this.userRepository.save(newUser);

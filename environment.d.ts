@@ -12,5 +12,7 @@ namespace NodeJS {
     JWT_REFRESH_TOKEN_SECRET: string;
     JWT_REFRESH_TOKEN_EXPIRATION_TIME: string;
     JWT_REFRESH_TOKEN_COOKIE_NAME: string;
+    GOOGLE_AUTH_CLIENT_ID: string;
+    GOOGLE_AUTH_CLIENT_SECRET: string;
   }
 }
