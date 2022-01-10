@@ -1,5 +1,7 @@
 import { UseGuards } from '@nestjs/common';
 import { Args, Context, Mutation, Resolver } from '@nestjs/graphql';
+import { Response } from 'express';
+import { MyContext } from '../../app/app.module';
 import { UserService } from '../user/user.service';
 import { AuthenticationService } from './authentication.service';
 import { LoginUserDto } from './dto/login-user.dto';
@@ -34,6 +36,7 @@ export class AuthenticationResolver {
   @Mutation(() => UserWithTokensDto)
   async login(
     @Args('input') { email, password }: LoginUserDto,
+    @Context() { res }: MyContext,
   ): Promise<UserWithTokensDto> {
     const user = await this.authenticationService.getAuthenticatedUser(
       email,
@@ -41,6 +44,14 @@ export class AuthenticationResolver {
     );
     const accessToken = this.authenticationService.getJwtAccessToken(user.id);
     const refreshToken = this.authenticationService.getJwtRefreshToken(user.id);
+    res.cookie(process.env.JWT_ACCESS_TOKEN_COOKIE_NAME, accessToken, {
+      sameSite: 'lax',
+      maxAge: +process.env.JWT_ACCESS_TOKEN_EXPIRATION_TIME,
+    });
+    res.cookie(process.env.JWT_REFRESH_TOKEN_COOKIE_NAME, refreshToken, {
+      sameSite: 'lax',
+      maxAge: +process.env.JWT_REFRESH_TOKEN_EXPIRATION_TIME,
+    });
     return {
       user,
       accessToken,
@@ -50,8 +61,12 @@ export class AuthenticationResolver {
 
   @UseGuards(GraphqlJwtAuthGuard)
   @Mutation(() => Boolean)
-  async logout(@Context() { req }: { req: RequestWithUser }): Promise<boolean> {
+  async logout(
+    @Context() { req, res }: { req: RequestWithUser; res: Response },
+  ): Promise<boolean> {
     await this.userService.removeRefreshToken(req.user.id);
+    res.clearCookie(process.env.JWT_ACCESS_TOKEN_COOKIE_NAME);
+    res.clearCookie(process.env.JWT_REFRESH_TOKEN_COOKIE_NAME);
     return true;
   }
 }
