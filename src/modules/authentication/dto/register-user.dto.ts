@@ -1,5 +1,6 @@
 import { Field, InputType } from '@nestjs/graphql';
 import {
+  IsAlpha,
   IsEmail,
   IsMobilePhone,
   IsNotEmpty,
@@ -15,18 +16,22 @@ export class RegisterUserDto {
   @Field()
   email: string;
 
-  @IsString()
+  @IsAlpha('sv-SE', {
+    message: 'First name must only contain letters (a-öA-Ö)',
+  })
   @MinLength(2, {
     message: 'First name must be at least $constraint1 characters long',
   })
-  @MaxLength(50, {
+  @MaxLength(100, {
     message:
       'First name must be less than or equal to $constraint1 characters long',
   })
   @Field()
   firstName: string;
 
-  @IsString()
+  @IsAlpha('sv-SE', {
+    message: 'Last name must only contain letters (a-öA-Ö)',
+  })
   @MinLength(2, {
     message: 'Last name must be at least $constraint1 characters long',
   })
@@ -37,7 +42,6 @@ export class RegisterUserDto {
   @Field()
   lastName: string;
 
-  @IsString()
   @IsMobilePhone(
     'sv-SE',
     {},
@@ -46,7 +50,6 @@ export class RegisterUserDto {
   @Field()
   mobilePhoneNumber: string;
 
-  @IsString()
   @MinLength(8, {
     message: `Password must be longer than or equal to $constraint1 characters`,
   })
@@ -62,9 +65,10 @@ export class RegisterUserDto {
   @Field()
   city: string;
 
-  @IsString()
   @IsNotEmpty()
   @Field()
+  @MinLength(1)
+  @MaxLength(36)
   street: string;
 
   @IsPostalCode('SE', {
