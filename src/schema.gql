@@ -37,6 +37,7 @@ type ProductCategory {
   children: [ProductCategory!]
   updatedAt: DateTime!
   createdAt: DateTime!
+  getFullDescription: String!
 }
 
 """
@@ -46,6 +47,8 @@ scalar DateTime
 
 type Query {
   me: User!
+  getCategories: [ProductCategory!]!
+  getOneCategory(slug: String!): ProductCategory!
 }
 
 type Mutation {
