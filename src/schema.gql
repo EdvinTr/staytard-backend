@@ -46,6 +46,12 @@ type ProductCategory {
   createdAt: DateTime!
 }
 
+type ProductBrand {
+  id: Float!
+  name: String!
+  path: String!
+}
+
 type Query {
   me: User!
   getCategories: [ProductCategory!]!

@@ -3,9 +3,11 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { ProductBrand } from './product-brand.entity';
 
 @ObjectType()
 @Entity()
@@ -33,6 +35,10 @@ export class Product {
   @Field()
   @Column()
   originalPrice: number;
+
+  @Field(() => ProductBrand)
+  @ManyToOne(() => ProductBrand, (productBrand) => productBrand.products)
+  brand: ProductBrand;
 
   @CreateDateColumn()
   @Field()

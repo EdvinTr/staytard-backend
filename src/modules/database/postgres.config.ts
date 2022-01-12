@@ -2,6 +2,7 @@
 
 import * as dotenv from 'dotenv';
 import { ConnectionOptions } from 'typeorm';
+import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
 import { __isProduction__ } from '../../constants';
 dotenv.config();
 
@@ -28,6 +29,7 @@ const postgresConfig: ConnectionOptions = {
   migrationsRun: true,
   cli: { migrationsDir: 'src/migrations' },
   logging: __isProduction__ ? false : true,
+  namingStrategy: new SnakeNamingStrategy(),
 };
 
 export default postgresConfig;
