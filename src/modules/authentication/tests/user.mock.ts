@@ -17,4 +17,6 @@ export const mockedUser: User = {
   },
   currentHashedRefreshToken: '',
   password: '123123123',
+  createdAt: new Date(),
+  updatedAt: new Date(),
 };
