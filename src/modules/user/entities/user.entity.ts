@@ -2,10 +2,12 @@ import { Field, ObjectType } from '@nestjs/graphql';
 import { Exclude } from 'class-transformer';
 import {
   Column,
+  CreateDateColumn,
   Entity,
   JoinColumn,
   OneToOne,
   PrimaryGeneratedColumn,
+  UpdateDateColumn,
 } from 'typeorm';
 import { UserAddress } from './user-address.entity';
 
@@ -61,4 +63,12 @@ export class User {
   })
   @JoinColumn()
   public address: UserAddress;
+
+  @CreateDateColumn()
+  @Field()
+  public createdAt: Date;
+
+  @UpdateDateColumn()
+  @Field()
+  public updatedAt: Date;
 }
