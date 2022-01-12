@@ -22,11 +22,23 @@ export class Product {
   @Column()
   description: string;
 
+  @Field()
+  @Column()
+  color: string;
+
+  @Field()
+  @Column()
+  currentPrice: number;
+
+  @Field()
+  @Column()
+  originalPrice: number;
+
   @CreateDateColumn()
   @Field()
-  public createdAt: Date;
+  createdAt: Date;
 
   @UpdateDateColumn()
   @Field()
-  public updatedAt: Date;
+  updatedAt: Date;
 }
