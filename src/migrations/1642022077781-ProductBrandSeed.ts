@@ -9,6 +9,7 @@ export class ProductBrandSeed1642022077781 implements MigrationInterface {
         .replace(/['`\.]/gm, '')
         .replace('&', '')
         .split(' ')
+        .map((w) => w.trim())
         .join('-');
       return ProductBrand.create({
         name: productBrand,
