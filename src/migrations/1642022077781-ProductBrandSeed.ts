@@ -4,10 +4,15 @@ import { ProductBrand } from '../modules/product/entities/product-brand.entity';
 export class ProductBrandSeed1642022077781 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     const productBrands = productBrandsData.map((productBrand) => {
-      const path = productBrand.toLowerCase().split(' ').join('-');
+      const path = productBrand
+        .toLowerCase()
+        .replace(/['`\.]/gm, '')
+        .replace('&', '')
+        .split(' ')
+        .join('-');
       return ProductBrand.create({
         name: productBrand,
-        path,
+        path: `/${path}`,
       });
     });
     await ProductBrand.save(productBrands);
