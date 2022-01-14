@@ -9,7 +9,9 @@ import { join } from 'path';
 import { AuthenticationModule } from '../modules/authentication/authentication.module';
 import { DatabaseModule } from '../modules/database/database.module';
 import { GoogleAuthenticationModule } from '../modules/google-authentication/google-authentication.module';
+import { ProductBrandModule } from '../modules/product-brand/product-brand.module';
 import { ProductCategoryModule } from '../modules/product-category/product-category.module';
+import { ProductModule } from '../modules/product/product.module';
 import { UserModule } from '../modules/user/user.module';
 import { GqlThrottlerGuard } from './graphl-throttler.guard';
 
@@ -26,6 +28,8 @@ export type MyContext = {
     UserModule,
     DatabaseModule,
     ProductCategoryModule,
+    ProductModule,
+    ProductBrandModule,
     AuthenticationModule,
     GoogleAuthenticationModule,
     ConfigModule.forRoot({

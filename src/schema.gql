@@ -34,6 +34,12 @@ type UserWithTokensDto {
   refreshToken: String!
 }
 
+type ProductBrand {
+  id: Float!
+  name: String!
+  path: String!
+}
+
 type ProductCategory {
   id: Float!
   name: String!
@@ -46,16 +52,11 @@ type ProductCategory {
   createdAt: DateTime!
 }
 
-type ProductBrand {
-  id: Float!
-  name: String!
-  path: String!
-}
-
 type Query {
   me: User!
   getCategories: [ProductCategory!]!
   getOneCategory(slug: String!): ProductCategory!
+  productBrands: [ProductBrand!]!
 }
 
 type Mutation {

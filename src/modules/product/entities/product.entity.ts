@@ -7,7 +7,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { ProductBrand } from './product-brand.entity';
+import { ProductBrand } from '../../product-brand/entities/product-brand.entity';
 
 @ObjectType()
 @Entity()
