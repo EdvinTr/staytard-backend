@@ -56,7 +56,24 @@ type Query {
   me: User!
   getCategories: [ProductCategory!]!
   getOneCategory(slug: String!): ProductCategory!
-  productBrands: [ProductBrand!]!
+  productBrands(input: GetProductBrandsInput!): [ProductBrand!]!
+}
+
+input GetProductBrandsInput {
+  sortBy: SortBy
+  sortDirection: SortDirection
+}
+
+"""Field to sort the result by"""
+enum SortBy {
+  ID
+  NAME
+}
+
+"""The basic directions"""
+enum SortDirection {
+  DESC
+  ASC
 }
 
 type Mutation {
