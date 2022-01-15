@@ -34,12 +34,6 @@ type UserWithTokensDto {
   refreshToken: String!
 }
 
-type ProductBrand {
-  id: Float!
-  name: String!
-  path: String!
-}
-
 type ProductCategory {
   id: Float!
   name: String!
@@ -52,10 +46,35 @@ type ProductCategory {
   createdAt: DateTime!
 }
 
+type ProductImage {
+  id: Float!
+  imageUrl: String!
+}
+
+type Product {
+  id: Float!
+  name: String!
+  description: String!
+  color: String!
+  currentPrice: Float!
+  originalPrice: Float!
+  brand: ProductBrand!
+  images: [ProductImage!]
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type ProductBrand {
+  id: Float!
+  name: String!
+  path: String!
+}
+
 type Query {
   me: User!
   getCategories: [ProductCategory!]!
   getOneCategory(slug: String!): ProductCategory!
+  products: [Product!]!
   productBrands(input: GetProductBrandsInput!): [ProductBrand!]!
 }
 
@@ -77,10 +96,22 @@ enum SortDirection {
 }
 
 type Mutation {
+  createProduct(input: CreateProductInput!): Product!
   registerUser(input: RegisterUserDto!): UserWithTokensDto!
   login(input: LoginUserDto!): UserWithTokensDto!
   logout: Boolean!
   authenticateWithGoogle(googleAuthToken: String!): UserWithTokensDto!
+}
+
+input CreateProductInput {
+  name: String!
+  description: String!
+  originalPrice: Float!
+  currentPrice: Float!
+  imageUrls: [String!]!
+  categoryId: Float!
+  brandId: Float!
+  color: String!
 }
 
 input RegisterUserDto {
