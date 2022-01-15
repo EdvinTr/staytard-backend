@@ -23,7 +23,4 @@ export class CreateProductInput {
 
   @Field()
   brandId: number;
-
-  @Field()
-  color: string;
 }

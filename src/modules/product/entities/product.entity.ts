@@ -13,6 +13,7 @@ import {
 import { ProductBrand } from '../../product-brand/entities/product-brand.entity';
 import { ProductCategory } from '../../product-category/entities/product-category.entity';
 import { ProductImage } from './product-image.entity';
+import { ProductOption } from './product-option.entity';
 
 // TODO: add some unique constraints
 @ObjectType()
@@ -24,16 +25,12 @@ export class Product {
   id: number;
 
   @Field()
-  @Column()
+  @Column({ unique: true })
   name: string;
 
   @Field()
   @Column()
   description: string;
-
-  @Field()
-  @Column()
-  color: string;
 
   @Field()
   @Column()
@@ -53,6 +50,13 @@ export class Product {
     eager: true,
   })
   images: ProductImage[];
+
+  @Field(() => ProductOption)
+  @OneToMany(() => ProductOption, (productOption) => productOption.product, {
+    cascade: true,
+    eager: true,
+  })
+  options: ProductOption[];
 
   @ManyToOne(() => ProductCategory, (category) => category)
   @JoinColumn()

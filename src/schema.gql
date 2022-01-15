@@ -51,15 +51,21 @@ type ProductImage {
   imageUrl: String!
 }
 
+type ProductOption {
+  productId: Float!
+  optionId: Float!
+  optionName: String!
+}
+
 type Product {
   id: Float!
   name: String!
   description: String!
-  color: String!
   currentPrice: Float!
   originalPrice: Float!
   brand: ProductBrand!
   images: [ProductImage!]
+  options: ProductOption!
   createdAt: DateTime!
   updatedAt: DateTime!
 }
@@ -111,7 +117,6 @@ input CreateProductInput {
   imageUrls: [String!]!
   categoryId: Float!
   brandId: Float!
-  color: String!
 }
 
 input RegisterUserDto {
