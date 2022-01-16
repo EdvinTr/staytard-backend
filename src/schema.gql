@@ -51,10 +51,16 @@ type ProductImage {
   imageUrl: String!
 }
 
+type ProductOptionValue {
+  id: Float!
+  name: String!
+}
+
 type ProductOption {
   productId: Float!
-  optionId: Float!
-  optionName: String!
+  id: Float!
+  name: String!
+  values: [ProductOptionValue!]!
 }
 
 type Product {
@@ -63,9 +69,11 @@ type Product {
   description: String!
   currentPrice: Float!
   originalPrice: Float!
+  brandId: Float!
   brand: ProductBrand!
   images: [ProductImage!]
-  options: ProductOption!
+  options: [ProductOption!]!
+  categoryId: Float!
   createdAt: DateTime!
   updatedAt: DateTime!
 }
@@ -117,6 +125,18 @@ input CreateProductInput {
   imageUrls: [String!]!
   categoryId: Float!
   brandId: Float!
+  options: [CreateProductOptionInput!]!
+}
+
+input CreateProductOptionInput {
+  optionName: OptionType!
+  optionValues: [String!]!
+}
+
+"""The basic types of products"""
+enum OptionType {
+  SIZE
+  COLOR
 }
 
 input RegisterUserDto {

@@ -40,6 +40,10 @@ export class Product {
   @Column()
   originalPrice: number;
 
+  @Field()
+  @Column()
+  brandId: number;
+
   @Field(() => ProductBrand)
   @ManyToOne(() => ProductBrand, (productBrand) => productBrand.products)
   brand: ProductBrand;
@@ -51,12 +55,16 @@ export class Product {
   })
   images: ProductImage[];
 
-  @Field(() => ProductOption)
+  @Field(() => [ProductOption])
   @OneToMany(() => ProductOption, (productOption) => productOption.product, {
     cascade: true,
     eager: true,
   })
   options: ProductOption[];
+
+  @Field()
+  @Column()
+  categoryId: number;
 
   @ManyToOne(() => ProductCategory, (category) => category)
   @JoinColumn()
