@@ -7,6 +7,7 @@ const PermissionGuard = (permission: Permission): Type<CanActivate> => {
   class PermissionGuardMixin extends GraphqlJwtAuthGuard {
     async canActivate(context: ExecutionContext) {
       await super.canActivate(context);
+
       const ctx = GqlExecutionContext.create(context);
       const request = ctx.getContext().req;
       const user = request.user;
@@ -14,7 +15,6 @@ const PermissionGuard = (permission: Permission): Type<CanActivate> => {
       return user?.permissions.includes(permission);
     }
   }
-
   return mixin(PermissionGuardMixin);
 };
 

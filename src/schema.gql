@@ -17,9 +17,17 @@ type User {
   email: String!
   isEmailConfirmed: Boolean!
   isRegisteredWithGoogle: Boolean!
+  permissions: [Permission!]!
   address: UserAddress
   createdAt: DateTime!
   updatedAt: DateTime!
+}
+
+"""The permissions of the user"""
+enum Permission {
+  CREATE_PRODUCT
+  UPDATE_PRODUCT
+  DELETE_PRODUCT
 }
 
 """

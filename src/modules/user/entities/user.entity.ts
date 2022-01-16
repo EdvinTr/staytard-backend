@@ -59,6 +59,7 @@ export class User {
     array: true,
     default: [],
   })
+  @Field(() => [Permission])
   public permissions: Permission[];
 
   @Field(() => UserAddress, { nullable: true })
