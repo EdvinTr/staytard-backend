@@ -137,7 +137,6 @@ input CreateProductAttributeInput {
   size: AttributeValueType!
   color: AttributeValueType!
   quantity: Float!
-  sku: String!
 }
 
 input AttributeValueType {

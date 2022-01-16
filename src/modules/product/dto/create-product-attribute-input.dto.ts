@@ -9,13 +9,6 @@ registerEnumType(ATTRIBUTE_TYPE, {
   description: 'The basic attributes of products',
 }); */
 
-/* export class  ProductAttributeInput {
-  size: {value: string};
-  color: {value: string};
-  quantity: number;
-  sku: string;
-} */
-
 @InputType()
 class AttributeValueType {
   @Field()
@@ -32,7 +25,4 @@ export class CreateProductAttributeInput {
 
   @Field()
   quantity: number;
-
-  @Field()
-  sku: string;
 }
