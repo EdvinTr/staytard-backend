@@ -12,14 +12,6 @@ import { ProductAttribute } from './product-attribute.entity';
 @Entity()
 @Unique(['id', 'attribute'])
 export class ProductAttributeValue {
-  /*   @PrimaryColumn()
-  @Field()
-  optionProductId: number;
-
-  @PrimaryColumn()
-  @Field()
-  optionOptionId: number; */
-
   @PrimaryGeneratedColumn()
   @Field()
   id: number;
