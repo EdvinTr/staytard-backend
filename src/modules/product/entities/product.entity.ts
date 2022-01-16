@@ -34,11 +34,11 @@ export class Product {
 
   @Field()
   @Column()
-  currentPrice: number;
+  unitPrice: number;
 
   @Field()
-  @Column()
-  originalPrice: number;
+  @Column({ default: false })
+  isDiscontinued: boolean;
 
   @Field()
   @Column()

@@ -1,4 +1,5 @@
 import { Field, InputType } from '@nestjs/graphql';
+import { ArrayNotEmpty } from 'class-validator';
 import { CreateProductAttributeInput } from './create-product-attribute-input.dto';
 
 // TODO: add validation to all fields
@@ -11,11 +12,9 @@ export class CreateProductInput {
   description: string;
 
   @Field()
-  originalPrice: number;
+  unitPrice: number;
 
-  @Field()
-  currentPrice: number;
-
+  @ArrayNotEmpty()
   @Field(() => [String])
   imageUrls: string[];
 

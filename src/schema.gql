@@ -72,8 +72,8 @@ type Product {
   id: Float!
   name: String!
   description: String!
-  currentPrice: Float!
-  originalPrice: Float!
+  unitPrice: Float!
+  isDiscontinued: Boolean!
   brandId: Float!
   brand: ProductBrand!
   images: [ProductImage!]
@@ -125,8 +125,7 @@ type Mutation {
 input CreateProductInput {
   name: String!
   description: String!
-  originalPrice: Float!
-  currentPrice: Float!
+  unitPrice: Float!
   imageUrls: [String!]!
   categoryId: Float!
   brandId: Float!

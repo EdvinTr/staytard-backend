@@ -20,38 +20,40 @@ export class ProductService {
     });
   }
   async create(input: CreateProductInput) {
-    const { attributes, ...rest } = input;
-    const product = this.productRepository.create({
-      ...rest,
-      images: [
-        ...input.imageUrls.map((url) => {
-          return {
-            imageUrl: url,
-          };
-        }),
-      ],
-      category: {
-        id: input.categoryId,
-      },
-      brand: {
-        id: input.brandId,
-      },
-    });
-    const attrs: ProductAttribute[] = attributes.map((attribute) => {
-      const color = new ProductColor();
-      const size = new ProductSize();
-      color.value = attribute.color.value;
-      size.value = attribute.size.value;
-      return {
-        color: color,
-        quantity: attribute.quantity,
-        size: size,
-        sku: this.generateSku(product.name, color.value, size.value),
-        product: product,
-      };
-    });
-    product.attributes = attrs;
-    return this.productRepository.save(product);
+    try {
+      const { attributes, ...rest } = input;
+      const product = this.productRepository.create({
+        ...rest,
+        images: [
+          ...input.imageUrls.map((url) => {
+            return {
+              imageUrl: url,
+            };
+          }),
+        ],
+        category: {
+          id: input.categoryId,
+        },
+        brand: {
+          id: input.brandId,
+        },
+      });
+      const attrs: ProductAttribute[] = attributes.map((attribute) => {
+        const color = new ProductColor();
+        const size = new ProductSize();
+        color.value = attribute.color.value;
+        size.value = attribute.size.value;
+        return {
+          color: color,
+          quantity: attribute.quantity,
+          size: size,
+          sku: this.generateSku(product.name, color.value, size.value),
+          product: product,
+        };
+      });
+      product.attributes = attrs;
+      return this.productRepository.save(product);
+    } catch (err) {}
   }
 
   private generateSku(productName: string, color: string, size: string) {
