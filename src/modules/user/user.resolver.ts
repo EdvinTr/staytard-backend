@@ -12,6 +12,13 @@ export class UserResolver {
   @UseGuards(GraphqlJwtAuthGuard)
   @Query(() => User)
   async me(@Context() context: { req: RequestWithUser }): Promise<User> {
+    /* const user = context.req.user;
+    user.permissions = [
+      ...user.permissions,
+      ProductPermission.CREATE_PRODUCT,
+      ProductPermission.DELETE_PRODUCT,
+    ];
+    await this.userService.save(user); */
     return context.req.user;
   }
 }
