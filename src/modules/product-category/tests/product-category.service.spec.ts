@@ -5,7 +5,7 @@ import { ProductCategoryService } from '../product-category.service';
 
 describe('ProductCategoryService', () => {
   let service: ProductCategoryService;
-  let mockProductCategoryRepository = {};
+  const mockProductCategoryRepository = {};
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [

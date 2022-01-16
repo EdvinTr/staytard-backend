@@ -24,7 +24,7 @@ const mockTokenInfo: Auth.TokenInfo = {
 describe('Google Authentication', () => {
   let googleAuthenticationService: GoogleAuthenticationService;
   let userService: UserService;
-  let getTokenInfo = jest.fn().mockResolvedValue(mockTokenInfo)(
+  const getTokenInfo = jest.fn().mockResolvedValue(mockTokenInfo)(
     new Auth.OAuth2Client().getTokenInfo as jest.Mock,
   );
 
