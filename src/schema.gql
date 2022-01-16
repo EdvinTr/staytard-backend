@@ -17,7 +17,6 @@ type User {
   email: String!
   isEmailConfirmed: Boolean!
   isRegisteredWithGoogle: Boolean!
-  isAdmin: Boolean!
   address: UserAddress
   createdAt: DateTime!
   updatedAt: DateTime!

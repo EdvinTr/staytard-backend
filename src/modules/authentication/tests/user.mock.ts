@@ -8,12 +8,11 @@ export const mockedUser: User = {
   lastName: 'The Last',
   mobilePhoneNumber: '+46704253388',
   isEmailConfirmed: false,
-  isAdmin: false,
   permissions: [],
   address: {
     city: 'Uppsala',
     id: 1,
-    postalCode: '75645',
+    postalCode: '12345',
     street: 'Södra Vägen',
   },
   currentHashedRefreshToken: '',

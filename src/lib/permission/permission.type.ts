@@ -4,6 +4,6 @@ const Permission = {
   ...ProductPermission,
 };
 
-type Permission = ProductPermission;
+type Permission = ProductPermission; // | AnotherPermissionEnumGoesHere;
 
 export default Permission;

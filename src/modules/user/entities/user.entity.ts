@@ -47,10 +47,6 @@ export class User {
   @Field()
   public isRegisteredWithGoogle: boolean;
 
-  @Column({ default: false })
-  @Field()
-  public isAdmin: boolean;
-
   @Column({
     nullable: true,
   })
