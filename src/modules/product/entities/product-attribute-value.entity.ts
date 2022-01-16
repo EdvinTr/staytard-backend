@@ -10,7 +10,7 @@ import { ProductAttribute } from './product-attribute.entity';
 
 @ObjectType()
 @Entity()
-@Unique(['id', 'attribute'])
+@Unique(['id', 'attribute', 'name'])
 export class ProductAttributeValue {
   @PrimaryGeneratedColumn()
   @Field()
