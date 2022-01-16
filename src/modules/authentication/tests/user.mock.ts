@@ -9,6 +9,7 @@ export const mockedUser: User = {
   mobilePhoneNumber: '+46704253388',
   isEmailConfirmed: false,
   isAdmin: false,
+  permissions: [],
   address: {
     city: 'Uppsala',
     id: 1,

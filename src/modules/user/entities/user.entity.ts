@@ -9,6 +9,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import Permission from '../../../lib/permission/permission.type';
 import { UserAddress } from './user-address.entity';
 
 @ObjectType()
@@ -55,6 +56,14 @@ export class User {
   })
   @Exclude()
   public currentHashedRefreshToken?: string;
+
+  @Column({
+    type: 'enum',
+    enum: Permission,
+    array: true,
+    default: [],
+  })
+  public permissions: Permission[];
 
   @Field(() => UserAddress, { nullable: true })
   @OneToOne(() => UserAddress, {
