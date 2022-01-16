@@ -46,16 +46,21 @@ type ProductCategory {
   createdAt: DateTime!
 }
 
-type ProductAttributeValue {
+type ProductColor {
   id: Float!
-  name: String!
+  value: String!
+}
+
+type ProductSize {
+  id: Float!
+  value: String!
 }
 
 type ProductAttribute {
-  id: Float!
-  productId: Float!
-  name: String!
-  values: [ProductAttributeValue!]!
+  sku: String!
+  quantity: Float!
+  size: ProductSize!
+  color: ProductColor!
 }
 
 type ProductImage {
@@ -129,14 +134,14 @@ input CreateProductInput {
 }
 
 input CreateProductAttributeInput {
-  name: AttributeType!
-  values: [String!]!
+  size: AttributeValueType!
+  color: AttributeValueType!
+  quantity: Float!
+  sku: String!
 }
 
-"""The basic attributes of products"""
-enum AttributeType {
-  SIZE
-  COLOR
+input AttributeValueType {
+  value: String!
 }
 
 input RegisterUserDto {

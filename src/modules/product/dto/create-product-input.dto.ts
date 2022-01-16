@@ -1,5 +1,5 @@
 import { Field, InputType } from '@nestjs/graphql';
-import { CreateProductAttributeInput } from './create-product-option-input.dto';
+import { CreateProductAttributeInput } from './create-product-attribute-input.dto';
 
 // TODO: add validation to all fields
 @InputType()
