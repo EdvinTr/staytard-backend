@@ -1,5 +1,11 @@
 import { Field, ObjectType } from '@nestjs/graphql';
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  BeforeInsert,
+  Column,
+  Entity,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { ProductAttribute } from './product-attribute.entity';
 
 @ObjectType()
@@ -12,6 +18,13 @@ export class ProductColor {
   @Field()
   @Column()
   value: string;
+
+  @BeforeInsert()
+  private capitalize() {
+    this.value =
+      this.value.substring(0, 1).toUpperCase() +
+      this.value.substring(1).toLowerCase();
+  }
 
   @OneToMany(() => ProductAttribute, (attribute) => attribute.size)
   attributes: ProductAttribute[];

@@ -1,5 +1,4 @@
 import { Field, InputType } from '@nestjs/graphql';
-
 /* export enum ATTRIBUTE_TYPE {
   SIZE = 'Size',
   COLOR = 'Color',

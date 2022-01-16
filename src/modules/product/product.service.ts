@@ -56,7 +56,8 @@ export class ProductService {
         }, */
       ],
     });
-
+    // TODO: this should iterate through each attribute
+    // TODO: should be able to save products without colors as well
     const color = new ProductColor();
     color.value = attributes[0].color.value;
 
