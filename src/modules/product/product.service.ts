@@ -14,13 +14,13 @@ export class ProductService {
     private readonly productRepository: Repository<Product>,
   ) {}
 
-  async findAll(options?: FindManyOptions<Product>): Promise<Product[]> {
+  public async findAll(options?: FindManyOptions<Product>): Promise<Product[]> {
     return this.productRepository.find({
       ...options,
     });
   }
 
-  async create(input: CreateProductInput) {
+  public async create(input: CreateProductInput) {
     // create product entry
     const product = new Product();
     product.name = input.name;
