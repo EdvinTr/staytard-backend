@@ -8,32 +8,32 @@ import {
   PrimaryGeneratedColumn,
   Unique,
 } from 'typeorm';
-import { ProductOptionValue } from './product-option-value.entity';
+import { ProductAttributeValue } from './product-attribute-value.entity';
 import { Product } from './product.entity';
 
 @ObjectType()
 @Entity()
 @Unique(['productId', 'name'])
-export class ProductOption {
-  @PrimaryColumn()
-  @Field()
-  productId: number;
-
+export class ProductAttribute {
   @PrimaryGeneratedColumn()
   @Field()
   id: number;
+
+  @PrimaryColumn()
+  @Field()
+  productId: number;
 
   @Field()
   @Column()
   name: string;
 
-  @ManyToOne(() => Product, (product) => product.options)
+  @ManyToOne(() => Product, (product) => product.attributes)
   product: Product;
 
-  @Field(() => [ProductOptionValue])
-  @OneToMany(() => ProductOptionValue, (optionValue) => optionValue.option, {
+  @Field(() => [ProductAttributeValue])
+  @OneToMany(() => ProductAttributeValue, (values) => values.attribute, {
     cascade: true,
     eager: true,
   })
-  values: ProductOptionValue[];
+  values: ProductAttributeValue[];
 }

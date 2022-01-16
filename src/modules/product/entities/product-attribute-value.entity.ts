@@ -6,12 +6,12 @@ import {
   PrimaryGeneratedColumn,
   Unique,
 } from 'typeorm';
-import { ProductOption } from './product-option.entity';
+import { ProductAttribute } from './product-attribute.entity';
 
 @ObjectType()
 @Entity()
-@Unique(['id', 'option'])
-export class ProductOptionValue {
+@Unique(['id', 'attribute'])
+export class ProductAttributeValue {
   /*   @PrimaryColumn()
   @Field()
   optionProductId: number;
@@ -28,8 +28,8 @@ export class ProductOptionValue {
   @Column()
   name: string;
 
-  @ManyToOne(() => ProductOption, (option) => option.values, {
+  @ManyToOne(() => ProductAttribute, (attribute) => attribute.values, {
     primary: true,
   })
-  option: ProductOption;
+  attribute: ProductAttribute;
 }

@@ -2,9 +2,9 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { FindManyOptions, Repository } from 'typeorm';
 import { CreateProductInput } from './dto/create-product-input.dto';
+import { ProductAttributeValue } from './entities/product-attribute-value.entity';
+import { ProductAttribute } from './entities/product-attribute.entity';
 import { ProductImage } from './entities/product-image.entity';
-import { ProductOptionValue } from './entities/product-option-value.entity';
-import { ProductOption } from './entities/product-option.entity';
 import { Product } from './entities/product.entity';
 
 @Injectable()
@@ -29,6 +29,7 @@ export class ProductService {
     product.currentPrice = input.currentPrice;
     product.categoryId = input.categoryId;
     product.brandId = input.brandId;
+
     const savedProduct = await this.productRepository.save(product);
 
     // set images
@@ -38,26 +39,30 @@ export class ProductService {
       return productImage;
     });
     savedProduct.images = productImages;
-    const savedProductTwo = await this.productRepository.save(savedProduct);
 
     // set options
-    const productOptions = input.options.map((option) => {
-      const productOption = new ProductOption();
-      productOption.name = option.optionName;
-      productOption.values = option.optionValues.map((value) => {
-        const productOptionValue = new ProductOptionValue();
-        productOptionValue.name = value;
-        return productOptionValue;
+    const productOptions = input.attributes.map((option) => {
+      const attribute = new ProductAttribute();
+      attribute.name = option.name;
+      // set option values for this option
+      const attributeValues = option.values.map((value) => {
+        const attributeValue = new ProductAttributeValue();
+        attributeValue.name = value;
+        return attributeValue;
       });
-      return productOption;
+      attribute.values = attributeValues;
+      return attribute;
     });
-    savedProductTwo.options = productOptions;
-    return await this.productRepository.save(savedProductTwo);
+    savedProduct.attributes = productOptions;
+
+    // resave with to update relations
+    return this.productRepository.save(savedProduct);
   }
 
-  /*   async create(input: CreateProductInput) {
+  /* async create(input: CreateProductInput) {
+    const { options, ...rest } = input;
     const product = this.productRepository.create({
-      ...input,
+      ...rest,
       images: [
         ...input.imageUrls.map((url) => {
           return {
@@ -72,13 +77,14 @@ export class ProductService {
         id: input.brandId,
       },
       options: [
-        ...input.options.map((option: CreateProductOptionInput) => {
+        ...options.map((option:CreateProductOptionInput) => {
           return {
-            optionName: option.optionName,
-            optionValues: [
-              ...option.optionValues.map((value: string) => {
+            name: option.optionName,
+            values: [
+              ...option.optionValues.map((value:string) => {
                 return {
-                  valueName: value,
+                  name: value,
+
                 };
               }),
             ],

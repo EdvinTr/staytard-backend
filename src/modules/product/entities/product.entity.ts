@@ -12,8 +12,8 @@ import {
 } from 'typeorm';
 import { ProductBrand } from '../../product-brand/entities/product-brand.entity';
 import { ProductCategory } from '../../product-category/entities/product-category.entity';
+import { ProductAttribute } from './product-attribute.entity';
 import { ProductImage } from './product-image.entity';
-import { ProductOption } from './product-option.entity';
 
 // TODO: add some unique constraints
 @ObjectType()
@@ -55,12 +55,12 @@ export class Product {
   })
   images: ProductImage[];
 
-  @Field(() => [ProductOption])
-  @OneToMany(() => ProductOption, (productOption) => productOption.product, {
+  @Field(() => [ProductAttribute])
+  @OneToMany(() => ProductAttribute, (attributes) => attributes.product, {
     cascade: true,
     eager: true,
   })
-  options: ProductOption[];
+  attributes: ProductAttribute[];
 
   @Field()
   @Column()

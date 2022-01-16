@@ -46,21 +46,21 @@ type ProductCategory {
   createdAt: DateTime!
 }
 
+type ProductAttributeValue {
+  id: Float!
+  name: String!
+}
+
+type ProductAttribute {
+  id: Float!
+  productId: Float!
+  name: String!
+  values: [ProductAttributeValue!]!
+}
+
 type ProductImage {
   id: Float!
   imageUrl: String!
-}
-
-type ProductOptionValue {
-  id: Float!
-  name: String!
-}
-
-type ProductOption {
-  productId: Float!
-  id: Float!
-  name: String!
-  values: [ProductOptionValue!]!
 }
 
 type Product {
@@ -72,7 +72,7 @@ type Product {
   brandId: Float!
   brand: ProductBrand!
   images: [ProductImage!]
-  options: [ProductOption!]!
+  attributes: [ProductAttribute!]!
   categoryId: Float!
   createdAt: DateTime!
   updatedAt: DateTime!
@@ -125,16 +125,16 @@ input CreateProductInput {
   imageUrls: [String!]!
   categoryId: Float!
   brandId: Float!
-  options: [CreateProductOptionInput!]!
+  attributes: [CreateProductAttributeInput!]!
 }
 
-input CreateProductOptionInput {
-  optionName: OptionType!
-  optionValues: [String!]!
+input CreateProductAttributeInput {
+  name: AttributeType!
+  values: [String!]!
 }
 
-"""The basic types of products"""
-enum OptionType {
+"""The basic attributes of products"""
+enum AttributeType {
   SIZE
   COLOR
 }

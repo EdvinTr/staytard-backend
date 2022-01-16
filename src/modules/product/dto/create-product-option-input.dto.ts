@@ -1,19 +1,19 @@
 import { Field, InputType, registerEnumType } from '@nestjs/graphql';
 
-export enum OPTION_TYPE {
+export enum ATTRIBUTE_TYPE {
   SIZE = 'Size',
   COLOR = 'Color',
 }
-registerEnumType(OPTION_TYPE, {
-  name: 'OptionType',
-  description: 'The basic types of products',
+registerEnumType(ATTRIBUTE_TYPE, {
+  name: 'AttributeType',
+  description: 'The basic attributes of products',
 });
 
 @InputType()
-export class CreateProductOptionInput {
-  @Field(() => OPTION_TYPE)
-  optionName: OPTION_TYPE;
+export class CreateProductAttributeInput {
+  @Field(() => ATTRIBUTE_TYPE)
+  name: ATTRIBUTE_TYPE;
 
   @Field(() => [String])
-  optionValues: string[];
+  values: string[];
 }
