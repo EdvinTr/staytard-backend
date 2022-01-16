@@ -15,10 +15,9 @@ import { ProductCategory } from '../../product-category/entities/product-categor
 import { ProductAttribute } from './product-attribute.entity';
 import { ProductImage } from './product-image.entity';
 
-// TODO: add some unique constraints
 @ObjectType()
 @Entity()
-@Unique(['name', 'brand', 'category'])
+@Unique(['name', 'brand', 'category']) //? redundant?
 export class Product {
   @Field()
   @PrimaryGeneratedColumn()
