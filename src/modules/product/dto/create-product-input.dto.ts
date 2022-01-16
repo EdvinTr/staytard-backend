@@ -1,29 +1,47 @@
 import { Field, InputType } from '@nestjs/graphql';
-import { ArrayNotEmpty } from 'class-validator';
+import { Type } from 'class-transformer';
+import {
+  ArrayNotEmpty,
+  IsNumber,
+  IsPositive,
+  IsString,
+  Length,
+  ValidateNested,
+} from 'class-validator';
 import { CreateProductAttributeInput } from './create-product-attribute-input.dto';
 
-// TODO: add validation to all fields
 @InputType()
 export class CreateProductInput {
   @Field()
+  @Length(1, 100)
   name: string;
 
   @Field()
+  @Length(1, 1000)
   description: string;
 
   @Field()
+  @IsNumber()
+  @IsPositive()
   unitPrice: number;
 
-  @ArrayNotEmpty()
+  @IsString({ each: true })
   @Field(() => [String])
   imageUrls: string[];
 
   @Field()
+  @IsNumber()
+  @IsPositive()
   categoryId: number;
 
   @Field()
+  @IsNumber()
+  @IsPositive()
   brandId: number;
 
   @Field(() => [CreateProductAttributeInput])
+  @ValidateNested()
+  @ArrayNotEmpty()
+  @Type(() => CreateProductAttributeInput)
   attributes: CreateProductAttributeInput[];
 }

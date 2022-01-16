@@ -19,7 +19,7 @@ export class ProductService {
       ...options,
     });
   }
-  async create(input: CreateProductInput) {
+  public async create(input: CreateProductInput) {
     try {
       const { attributes, ...rest } = input;
       const product = this.productRepository.create({
