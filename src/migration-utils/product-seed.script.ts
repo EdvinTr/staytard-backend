@@ -3,6 +3,10 @@ import axios from 'axios';
 import * as casual from 'casual';
 import { appendFile } from 'fs/promises';
 import * as path from 'path';
+import { ProductAttribute } from '../modules/product/entities/product-attribute.entity';
+import { ProductColor } from '../modules/product/entities/product-color.entity';
+import { ProductSize } from '../modules/product/entities/product-size.entity';
+import { Product } from '../modules/product/entities/product.entity';
 import { generateSku } from '../utils/generate-sku.util';
 
 export interface StayhardResponse {
@@ -243,17 +247,45 @@ const clothesCategories = [
   'tröjor',
   't-shirts-pikéer',
 ];
-const generate = async (nextPage?: string) => {
+
+const x = {};
+
+export enum StayhardCategory {
+  BYXOR = 'pants',
+  JACKOR = 'jackor',
+  JEANS = 'jeans',
+  KAVAJ_KOSTYM = 'kavaj-kostym',
+  OVERSHIRTS = 'overshirts',
+  SHORTS = 'shorts',
+  TROJOR = 'tröjor',
+  T_SHIRTS_PIKEER = 't-shirts-pikéer',
+}
+
+type AttributeWithoutProduct = Pick<
+  ProductAttribute,
+  'color' | 'quantity' | 'size' | 'sku'
+>;
+export type GeneratedProduct = Pick<
+  Product,
+  'name' | 'description' | 'unitPrice'
+> & {
+  images: string[];
+  brandName: string;
+  attributes: AttributeWithoutProduct[];
+};
+
+const generateProducts = async (pageNumber: number) => {
   try {
-    // TODO: should use recursion of some sort and pass the next page number
     const response = await axios.get<StayhardResponse>(
-      'https://www.stayhard.se/api/articles/?path=%2Fklader%2Fbyxor&page=1',
+      `https://www.stayhard.se/api/articles/?path=%2Fklader%2Fbyxor&page=${pageNumber}`,
     );
     const { data } = response;
+    if (data.articles.length === 0) {
+      console.log('DONE');
+      return; // should call with the new URL (e.g, jackor -> jeans etc) and new page number
+    }
 
-    const products = data.articles?.map((article) => {
-      const color = colors[casual.integer(0, colors.length - 1)];
-      const size = sizes[casual.integer(0, sizes.length - 1)];
+    const products: GeneratedProduct[] = data.articles?.map((article) => {
       return {
         name: article.name,
         unitPrice: article.originalPrice,
@@ -264,15 +296,12 @@ const generate = async (nextPage?: string) => {
             (relatedArticle) => relatedArticle.image.detail,
           ),
         ],
+
+        brandName: article.subBrand,
+        // brandId: someId
+        // categoryId: someCategoryId;
         description: casual.sentences(8),
-        attributes: [
-          {
-            size: { value: size },
-            color: { value: color },
-            quantity: { value: casual.integer(1, 100) },
-            sku: { value: generateSku(article.name, color, size) },
-          },
-        ],
+        attributes: [...generateAttributes(casual.integer(1, 4), article.name)],
       };
     });
 
@@ -283,16 +312,32 @@ const generate = async (nextPage?: string) => {
       'migration-utils',
       'products.json',
     );
-    await appendFile(filePath, JSON.stringify(products));
-    console.log('DONE');
-    const nextUrl = response.data.pagination.next;
-    if (!nextUrl || nextUrl === '') {
-      return;
-    }
-
-    return 0;
+    await appendFile(
+      filePath,
+      JSON.stringify({ categoryName: clothesCategories[0], products }),
+    ); // TODO: replace with real category name
+    return;
+    // await generateProducts(pageNumber + 1); // recursion
   } catch (err) {
     console.error(err);
   }
 };
-generate('https://www.stayhard.se/api/articles/?path=%2Fklader%2Fbyxor');
+
+const generateAttributes = (length: number, productName: string) => {
+  const attributes = [];
+  for (let i = 0; i < length; i++) {
+    const color = new ProductColor();
+    color.value = colors[casual.integer(0, colors.length - 1)];
+
+    const size = new ProductSize();
+    size.value = sizes[casual.integer(0, sizes.length - 1)];
+    attributes.push({
+      size,
+      color,
+      quantity: casual.integer(1, 100),
+      sku: generateSku(productName, color.value, size.value),
+    });
+  }
+  return attributes;
+};
+generateProducts(1);

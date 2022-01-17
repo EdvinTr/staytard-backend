@@ -1,5 +1,6 @@
 import { Field, ObjectType } from '@nestjs/graphql';
 import {
+  BaseEntity,
   Column,
   CreateDateColumn,
   Entity,
@@ -18,7 +19,7 @@ import { ProductImage } from './product-image.entity';
 @ObjectType()
 @Entity()
 @Unique(['name', 'brand', 'category']) //? redundant?
-export class Product {
+export class Product extends BaseEntity {
   @Field()
   @PrimaryGeneratedColumn()
   id: number;
