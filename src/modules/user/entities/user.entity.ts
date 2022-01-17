@@ -12,10 +12,26 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import Permission from '../../../lib/permission/permission.type';
-import { UserAddress } from './user-address.entity';
+import { UserAddress, UserAddressInterface } from './user-address.entity';
+
+export interface UserInterface {
+  id: string;
+  email: string;
+  isRegisteredWithGoogle: boolean;
+  firstName: string;
+  lastName: string;
+  mobilePhoneNumber?: string;
+  isEmailConfirmed: boolean;
+  permissions: Permission[];
+  address: UserAddressInterface;
+  currentHashedRefreshToken?: string;
+  password?: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
 @ObjectType()
 @Entity()
-export class User {
+export class User implements UserInterface {
   @PrimaryGeneratedColumn('uuid')
   @Field()
   public id: string;

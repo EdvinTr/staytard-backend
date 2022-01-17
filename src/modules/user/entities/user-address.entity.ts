@@ -1,10 +1,24 @@
 import { Field, ObjectType } from '@nestjs/graphql';
-import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { capitalize } from 'lodash';
+import {
+  BeforeInsert,
+  Column,
+  Entity,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { User } from './user.entity';
+
+export interface UserAddressInterface {
+  id: number;
+  street: string;
+  city: string;
+  postalCode: string;
+}
 
 @ObjectType()
 @Entity()
-export class UserAddress {
+export class UserAddress implements UserAddressInterface {
   @PrimaryGeneratedColumn()
   @Field()
   public id: number;
@@ -21,11 +35,11 @@ export class UserAddress {
   @Field()
   public postalCode: string;
 
-  /*  @BeforeInsert()
+  @BeforeInsert()
   private capitalizeBeforeInsert() {
     this.city = capitalize(this.city);
     this.street = capitalize(this.street);
-  } */
+  }
 
   @OneToOne(() => User, (user) => user.address)
   public user?: User;

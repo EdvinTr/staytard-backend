@@ -7,13 +7,14 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { MyContext } from '../../../app/app.module';
 import mockedConfigService from '../../../utils/mocks/config.service';
 import mockedJwtService from '../../../utils/mocks/jwt.service';
+import { UserInterface } from '../../user/entities/user.entity';
 import { UserService } from '../../user/user.service';
 import { AuthenticationResolver } from '../authentication.resolver';
 import { AuthenticationService } from '../authentication.service';
-import { mockedUser, UserWithOutFunctions } from './user.mock';
+import { mockedUser } from './user.mock';
 describe('AuthenticationResolver', () => {
   let resolver: AuthenticationResolver;
-  let userData: UserWithOutFunctions;
+  let userData: UserInterface;
   const mockedAuthenticationService = {
     register: jest.fn(() => {
       delete mockedUser.password;
