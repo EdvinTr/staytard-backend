@@ -1,6 +1,8 @@
 import { Field, ObjectType } from '@nestjs/graphql';
 import { Exclude } from 'class-transformer';
+import { capitalize } from 'lodash';
 import {
+  BeforeInsert,
   Column,
   CreateDateColumn,
   Entity,
@@ -11,7 +13,6 @@ import {
 } from 'typeorm';
 import Permission from '../../../lib/permission/permission.type';
 import { UserAddress } from './user-address.entity';
-
 @ObjectType()
 @Entity()
 export class User {
@@ -69,6 +70,13 @@ export class User {
   })
   @JoinColumn()
   public address: UserAddress;
+
+  // TODO: should use @BeforeUpdate as well, test that it works as well
+  @BeforeInsert()
+  private capitalizeBeforeInsert() {
+    this.firstName = capitalize(this.firstName);
+    this.lastName = capitalize(this.lastName);
+  }
 
   @CreateDateColumn()
   @Field()

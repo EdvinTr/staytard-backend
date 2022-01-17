@@ -1,4 +1,5 @@
 import { Field, InputType } from '@nestjs/graphql';
+import { Transform } from 'class-transformer';
 import {
   IsAlpha,
   IsEmail,
@@ -69,6 +70,10 @@ export class RegisterUserDto {
   @Field()
   @MinLength(1)
   @MaxLength(36)
+  @Transform(
+    ({ value }) =>
+      value.substring(0, 1).toUpperCase() + value.substring(1).toLowerCase(),
+  )
   street: string;
 
   @IsPostalCode('SE', {

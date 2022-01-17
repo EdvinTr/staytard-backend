@@ -21,6 +21,12 @@ export class UserAddress {
   @Field()
   public postalCode: string;
 
+  /*  @BeforeInsert()
+  private capitalizeBeforeInsert() {
+    this.city = capitalize(this.city);
+    this.street = capitalize(this.street);
+  } */
+
   @OneToOne(() => User, (user) => user.address)
   public user?: User;
 }

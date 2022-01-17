@@ -1,6 +1,8 @@
 import { User } from '../../user/entities/user.entity';
 
-export const mockedUser: User = {
+export type UserWithOutFunctions = Omit<User, 'capitalizeBeforeInsert'>;
+
+export const mockedUser: UserWithOutFunctions = {
   id: 'someRandomUUID',
   email: 'some-guy@gmail.com',
   isRegisteredWithGoogle: false,
@@ -15,6 +17,7 @@ export const mockedUser: User = {
     postalCode: '12345',
     street: 'Södra Vägen',
   },
+
   currentHashedRefreshToken: '',
   password: '123123123',
   createdAt: new Date(),
