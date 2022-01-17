@@ -2,7 +2,7 @@
   "categoryName": "byxor",
   "products": [
     {
-      "name": "Byxor Regular Cord Trousers",
+      "name": "Trousers Regular Cord Trousers",
       "unitPrice": 499,
       "images": [
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_7014040-02_Fm_M0054491&mw={size}",
@@ -12,24 +12,18 @@
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_7014040-01_Fm&mw={size}"
       ],
       "brandName": "Studio Total",
-      "description": "Sint iste deserunt tempora suscipit cupiditate dolore. Est est omnis labore inventore fugiat sapiente. Doloribus hic sed cum occaecati eligendi. Perferendis in unde occaecati doloremque labore ipsam ut. Sed eius ut. Aut quia natus a et beatae quasi eos sit. Ea qui eum ut. Velit totam optio et voluptates recusandae laudantium recusandae nisi.",
+      "description": "Quasi eligendi minus minima. Autem sit animi culpa quidem explicabo eos doloribus inventore. Pariatur aut nam numquam molestiae unde aut quo in. Facilis ipsum iure numquam eum dolor nulla. Tempora numquam at est mollitia animi est ipsam quia. Rerum aut earum corrupti facere vel. Aspernatur quia iure iusto magnam reprehenderit. Alias quas aliquid velit placeat maxime enim.",
       "attributes": [
         {
-          "size": { "value": "S" },
-          "color": { "value": "Cream" },
-          "quantity": 87,
-          "sku": "BRCT-CRE-S"
-        },
-        {
           "size": { "value": "XL" },
-          "color": { "value": "Cream" },
-          "quantity": 33,
-          "sku": "BRCT-CRE-XL"
+          "color": { "value": "Silver" },
+          "quantity": 84,
+          "sku": "BRCT-SIL-XL"
         }
       ]
     },
     {
-      "name": "Byxor Everyday Trousers",
+      "name": "Pants everyday trousers",
       "unitPrice": 599,
       "images": [
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_7010043-03_Fm_M0036250&mw={size}",
@@ -38,24 +32,18 @@
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_7010043-04_Fm&mw={size}"
       ],
       "brandName": "William Baxter",
-      "description": "Vel ut quo laborum accusamus nesciunt ducimus molestias cum iste. Optio debitis dignissimos officiis velit aut aliquam ut aspernatur. Officiis voluptatem dolore expedita aut non quam non dolorem. Voluptas maiores sed cupiditate dolorem non omnis. Qui veritatis fugiat ut sint non ut temporibus. Deleniti iusto adipisci et beatae ea maiores ut. Possimus voluptatem recusandae tenetur tempore aut ea occaecati sunt. Libero sint error optio.",
+      "description": "Et illum rerum voluptas et eos. Consequatur in inventore quae est voluptatem expedita commodi et. Minus quos fuga labore ullam rerum quia ut. Eos aliquam dicta nihil aut molestias. Repellendus ut natus. Ex excepturi excepturi consequatur qui tempora ut facilis inventore. Facere et vero numquam ut velit laudantium id libero. Est ut aliquam autem molestiae tenetur rerum tempore sit.",
       "attributes": [
         {
-          "size": { "value": "S" },
-          "color": { "value": "Pink" },
-          "quantity": 18,
-          "sku": "BET-PIN-S"
-        },
-        {
-          "size": { "value": "S" },
-          "color": { "value": "Mauve" },
-          "quantity": 8,
-          "sku": "BET-MAU-S"
+          "size": { "value": "XS" },
+          "color": { "value": "Olive" },
+          "quantity": 1,
+          "sku": "BET-OLI-XS"
         }
       ]
     },
     {
-      "name": "Byxor Regular Cord Trousers",
+      "name": "Trousers Regular Cord Trousers",
       "unitPrice": 499,
       "images": [
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_7014040-03_Fm_M0059751&mw={size}",
@@ -65,24 +53,24 @@
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_7014040-01_Fm&mw={size}"
       ],
       "brandName": "Studio Total",
-      "description": "Ratione nulla quod qui. Provident officia adipisci sed labore eum odit ut porro. Deserunt tempora et aut sint atque omnis recusandae. Explicabo nihil qui ut odio vero architecto consectetur quidem. Non non iusto animi. Et nostrum sed ut. A velit ut consequuntur velit saepe nostrum molestiae est. Voluptas sit consequatur eaque accusantium quaerat.",
+      "description": "Labore quis est tempora. Optio odio est ratione ut. Corrupti est odit pariatur. Rerum quis non eum et reprehenderit enim dicta. Qui quas dolores assumenda nihil. Harum eum veniam non aliquid praesentium odit. Laudantium corrupti eveniet reiciendis. Quia tenetur voluptates exercitationem eligendi et facere sed.",
       "attributes": [
         {
-          "size": { "value": "S" },
-          "color": { "value": "Silver" },
-          "quantity": 44,
-          "sku": "BRCT-SIL-S"
+          "size": { "value": "XL" },
+          "color": { "value": "Yellow" },
+          "quantity": 97,
+          "sku": "BRCT-YEL-XL"
         },
         {
           "size": { "value": "M" },
-          "color": { "value": "Red" },
-          "quantity": 81,
-          "sku": "BRCT-RED-M"
+          "color": { "value": "Cream" },
+          "quantity": 29,
+          "sku": "BRCT-CRE-M"
         }
       ]
     },
     {
-      "name": "Byxor Regular Tapered Cord",
+      "name": "Trousers Regular Tapered Cord",
       "unitPrice": 499,
       "images": [
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_7015463-01_Fm_M0059736&mw={size}",
@@ -91,30 +79,30 @@
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_7015463-02_Fm&mw={size}"
       ],
       "brandName": "Studio Total",
-      "description": "Veniam nesciunt et eveniet numquam earum molestias temporibus sed. Eos ut nisi iusto. Ducimus saepe quibusdam eaque dolorem rem placeat numquam est. Aut est ipsa earum. Minima ex enim quis. Praesentium voluptatem ea quisquam occaecati doloribus accusamus in. Aut consequatur est facilis repellat aut aliquid dolore. Voluptas totam quis id enim.",
+      "description": "Culpa aut quaerat sed similique soluta voluptatem. Error qui sed. Totam aspernatur nihil ullam a culpa placeat. Praesentium eum ad sequi nam est optio amet explicabo. Ipsum ab et dolores praesentium quibusdam. Nam velit deleniti iure ullam. Laborum sit et iure ut nihil. Dicta aut hic aut non omnis ullam mollitia consequuntur.",
       "attributes": [
         {
-          "size": { "value": "S" },
-          "color": { "value": "Silver" },
-          "quantity": 14,
-          "sku": "BRTC-SIL-S"
-        },
-        {
-          "size": { "value": "M" },
-          "color": { "value": "Teal" },
-          "quantity": 58,
-          "sku": "BRTC-TEA-M"
+          "size": { "value": "L" },
+          "color": { "value": "Yellow" },
+          "quantity": 57,
+          "sku": "BRTC-YEL-L"
         },
         {
           "size": { "value": "L" },
-          "color": { "value": "Olive Green" },
-          "quantity": 23,
-          "sku": "BRTC-OLI-L"
+          "color": { "value": "Copper" },
+          "quantity": 40,
+          "sku": "BRTC-COP-L"
+        },
+        {
+          "size": { "value": "S" },
+          "color": { "value": "Silver" },
+          "quantity": 22,
+          "sku": "BRTC-SIL-S"
         }
       ]
     },
     {
-      "name": "Byxor Soft Straight Chino",
+      "name": "Pants Soft Straight Chino",
       "unitPrice": 499,
       "images": [
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_7015153-02_Fm_M0059746&mw={size}",
@@ -125,24 +113,30 @@
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_7015153-01_Fm&mw={size}"
       ],
       "brandName": "Studio Total",
-      "description": "Qui ut dolorum magni neque voluptatibus accusamus amet. Accusantium autem eaque quibusdam esse et occaecati. Qui dolore omnis rerum est qui ab. Totam enim est sunt. Ea est tempora tempore qui. Veniam optio eaque beatae qui. Aperiam quibusdam modi autem iusto doloribus error totam. Ut iure accusantium et itaque doloribus ut omnis.",
+      "description": "Quam voluptatum id doloremque aut et eum dicta consequatur. Debitis mollitia dignissimos vitae quia nam quia magnam reiciendis. Recusandae cumque facere ipsam corporis quam iure consequatur. Explicabo dolores est debitis quo quasi aut cum. Odio vel architecto veniam ducimus error ea iusto et. Sed aut rem. Ut excepturi aut et et exercitationem tempora. Unde illum vel unde aut maiores.",
       "attributes": [
         {
           "size": { "value": "XS" },
-          "color": { "value": "Lime" },
-          "quantity": 7,
-          "sku": "BSSC-LIM-XS"
+          "color": { "value": "Pink" },
+          "quantity": 27,
+          "sku": "BSSC-PIN-XS"
         },
         {
-          "size": { "value": "XL" },
-          "color": { "value": "Violet" },
-          "quantity": 83,
-          "sku": "BSSC-VIO-XL"
+          "size": { "value": "XXL" },
+          "color": { "value": "Navy" },
+          "quantity": 57,
+          "sku": "BSSC-NAV-XXL"
+        },
+        {
+          "size": { "value": "L" },
+          "color": { "value": "Orange" },
+          "quantity": 53,
+          "sku": "BSSC-ORA-L"
         }
       ]
     },
     {
-      "name": "Byxor Soft Chino",
+      "name": "Pants Soft Chino",
       "unitPrice": 499,
       "images": [
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_7013125-05_Fm_M0065991&mw={size}",
@@ -154,24 +148,24 @@
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_7013125-04_Fm&mw={size}"
       ],
       "brandName": "Studio Total",
-      "description": "Asperiores asperiores eaque ab tempora culpa. Eaque ducimus delectus qui aut laudantium. Aut quos accusantium possimus ut voluptates. Qui earum aut quidem iusto enim. Non fugiat nihil rem id ut voluptatem ut fugit dolores. Praesentium ipsam voluptatem dicta itaque harum. Quaerat labore reprehenderit commodi voluptates eos sint dicta. Accusantium accusantium officiis.",
+      "description": "Illum et optio quia atque dolores eum. Molestiae consectetur quasi aut. Vel dolores debitis accusantium aut et amet aut totam. Repellat omnis magni nisi aut pariatur. Qui id et adipisci ea laboriosam provident optio. Possimus voluptatem beatae voluptatem laborum sint. Quia impedit dicta quaerat vitae voluptate assumenda in eius. Provident esse sunt nobis et.",
       "attributes": [
         {
           "size": { "value": "M" },
-          "color": { "value": "Purple" },
-          "quantity": 42,
-          "sku": "BSC-PUR-M"
+          "color": { "value": "Emerald" },
+          "quantity": 98,
+          "sku": "BSC-EME-M"
         },
         {
-          "size": { "value": "M" },
-          "color": { "value": "Orange" },
-          "quantity": 5,
-          "sku": "BSC-ORA-M"
+          "size": { "value": "L" },
+          "color": { "value": "Pink" },
+          "quantity": 41,
+          "sku": "BSC-PIN-L"
         }
       ]
     },
     {
-      "name": "Byxor Regular Tapered Cord",
+      "name": "Trousers Regular Tapered Cord",
       "unitPrice": 499,
       "images": [
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_7015463-02_Fm_M0059750&mw={size}",
@@ -180,24 +174,36 @@
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_7015463-01_Fm&mw={size}"
       ],
       "brandName": "Studio Total",
-      "description": "Nihil doloremque cupiditate facere. Asperiores voluptas doloremque maiores molestiae aut aut fugit. Voluptatem omnis accusamus aliquid in ut. Esse earum eius. Aliquam nihil totam accusantium et in consequatur officia ex. Quas ut ducimus nobis. Non velit cum quia est. Quis quae quod ex.",
+      "description": "Modi praesentium qui repudiandae soluta laboriosam asperiores possimus. Voluptates illum eos illum quos similique est. Sit nihil deleniti dignissimos sit nihil enim ut voluptas. Eum ut quas natus voluptatem non. Iure sit assumenda autem sunt. Ab animi asperiores ab quod est in. Error nulla voluptatibus eos pariatur incidunt est. Sequi perspiciatis quis est dolorem modi voluptas esse libero et.",
       "attributes": [
         {
-          "size": { "value": "L" },
-          "color": { "value": "Navy" },
-          "quantity": 2,
-          "sku": "BRTC-NAV-L"
+          "size": { "value": "XL" },
+          "color": { "value": "Emerald" },
+          "quantity": 45,
+          "sku": "BRTC-EME-XL"
         },
         {
           "size": { "value": "XL" },
-          "color": { "value": "Yellow" },
-          "quantity": 26,
-          "sku": "BRTC-YEL-XL"
+          "color": { "value": "Teal" },
+          "quantity": 17,
+          "sku": "BRTC-TEA-XL"
+        },
+        {
+          "size": { "value": "S" },
+          "color": { "value": "Crimson" },
+          "quantity": 99,
+          "sku": "BRTC-CRI-S"
+        },
+        {
+          "size": { "value": "S" },
+          "color": { "value": "Copper" },
+          "quantity": 37,
+          "sku": "BRTC-COP-S"
         }
       ]
     },
     {
-      "name": "Sweatpants Icon Sweatpants",
+      "name": "Sweatpants icon sweatpants",
       "unitPrice": 299,
       "images": [
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_7015550-03_Fm_M0066003&mw={size}",
@@ -208,25 +214,19 @@
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_7015550-01_Fm&mw={size}"
       ],
       "brandName": "Studio Total",
-      "description": "Consequuntur dolor rerum id aliquid fugit. Sint quam delectus voluptas omnis quia non aut itaque tenetur. Nesciunt at ut velit. Voluptatem a ad eveniet. Deleniti architecto voluptatem. Sint voluptatem modi consectetur rerum consequuntur asperiores corporis dolore. Molestias non occaecati aperiam maxime ea aliquid. Voluptates est qui qui nisi blanditiis sint numquam magnam.",
+      "description": "Dolores porro nesciunt totam sit distinctio sit. Dolores reiciendis est vel molestiae culpa praesentium. Sunt et et nemo nobis pariatur ut blanditiis omnis. Debitis et nemo praesentium eius laborum vitae. Aperiam doloremque reprehenderit error sed. Voluptas sit nam autem voluptatem ab perspiciatis sunt. Autem quia fugiat eos. Eos ut voluptas necessitatibus aut eligendi amet.",
       "attributes": [
         {
-          "size": { "value": "S" },
-          "color": { "value": "Gold" },
-          "quantity": 31,
-          "sku": "SIS-GOL-S"
+          "size": { "value": "XL" },
+          "color": { "value": "Cream" },
+          "quantity": 30,
+          "sku": "SIS-CRE-XL"
         },
         {
           "size": { "value": "S" },
           "color": { "value": "Purple" },
-          "quantity": 67,
+          "quantity": 9,
           "sku": "SIS-PUR-S"
-        },
-        {
-          "size": { "value": "XL" },
-          "color": { "value": "Indigo" },
-          "quantity": 38,
-          "sku": "SIS-IND-XL"
         }
       ]
     },
@@ -239,30 +239,30 @@
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_1607245-01_Fm&mw={size}"
       ],
       "brandName": "GABBA",
-      "description": "Enim nihil beatae ducimus a iure est. Ut impedit animi suscipit amet quia autem. Est qui maiores sunt et minima ut. Sed sunt iusto soluta rerum. Maiores libero est consectetur. Eos nihil consequuntur sit libero voluptatem. Quis animi quo qui est consequatur est eum. Aut quaerat nihil debitis.",
+      "description": "Nemo ex fuga excepturi odio distinctio qui. Consequatur magnam porro ipsam totam et voluptas dicta aspernatur. Eum dicta iusto assumenda maiores fugit quo laudantium. Dignissimos quam autem odio ea sint hic rem odio. Molestiae et qui consequatur tenetur corporis. Aut nostrum dolor numquam eaque. Consequatur beatae aliquam laborum vero rerum est harum. Officia rem voluptatum vel blanditiis quo sapiente nisi dolor.",
       "attributes": [
         {
+          "size": { "value": "M" },
+          "color": { "value": "Gray" },
+          "quantity": 19,
+          "sku": "CPCC-GRA-M"
+        },
+        {
+          "size": { "value": "XS" },
+          "color": { "value": "Pink" },
+          "quantity": 60,
+          "sku": "CPCC-PIN-XS"
+        },
+        {
           "size": { "value": "XL" },
-          "color": { "value": "Cyan" },
-          "quantity": 16,
-          "sku": "CPCC-CYA-XL"
-        },
-        {
-          "size": { "value": "S" },
-          "color": { "value": "Olive Green" },
-          "quantity": 11,
-          "sku": "CPCC-OLI-S"
-        },
-        {
-          "size": { "value": "L" },
-          "color": { "value": "Silver" },
-          "quantity": 52,
-          "sku": "CPCC-SIL-L"
+          "color": { "value": "Lime" },
+          "quantity": 62,
+          "sku": "CPCC-LIM-XL"
         }
       ]
     },
     {
-      "name": "Byxor Regular Tapered Twill",
+      "name": "Trousers Regular Tapered Twill",
       "unitPrice": 499,
       "images": [
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_7013029-03_Fm_M0052110&mw={size}",
@@ -274,18 +274,36 @@
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_7013029-01_Fm&mw={size}"
       ],
       "brandName": "Studio Total",
-      "description": "Facere numquam placeat quia est nihil et in qui culpa. Occaecati quis rerum quisquam est illo nihil repudiandae itaque. Est sunt quibusdam. Voluptatem ducimus facere consequatur quia voluptatibus odio vitae. Nesciunt itaque veritatis maiores neque ipsum placeat. Quidem similique incidunt veniam optio. Ea earum voluptas ut quo et enim eveniet unde. Dolores consequatur quas et totam ad rerum quo animi.",
+      "description": "Quidem non sit ducimus incidunt et aspernatur. Tenetur rem pariatur id dolores fugit rerum neque. Nobis placeat sint voluptas quia. Error ab ullam ea inventore est pariatur. Quisquam velit sit cupiditate dicta et vel optio voluptas. Asperiores sit non quidem est non dolorum provident qui dolorem. Est necessitatibus qui eius totam. Nobis repudiandae delectus consequatur.",
       "attributes": [
         {
+          "size": { "value": "XS" },
+          "color": { "value": "Green" },
+          "quantity": 13,
+          "sku": "BRTT-GRE-XS"
+        },
+        {
+          "size": { "value": "M" },
+          "color": { "value": "Turquoise" },
+          "quantity": 33,
+          "sku": "BRTT-TUR-M"
+        },
+        {
+          "size": { "value": "S" },
+          "color": { "value": "Crimson" },
+          "quantity": 29,
+          "sku": "BRTT-CRI-S"
+        },
+        {
           "size": { "value": "XL" },
-          "color": { "value": "Orange" },
-          "quantity": 62,
-          "sku": "BRTT-ORA-XL"
+          "color": { "value": "Magenta" },
+          "quantity": 14,
+          "sku": "BRTT-MAG-XL"
         }
       ]
     },
     {
-      "name": "Byxor Pisa Small Dot",
+      "name": "Pants Pisa Small Dot",
       "unitPrice": 1199,
       "images": [
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_1592801-01_Fm_M0041162&mw={size}",
@@ -293,30 +311,18 @@
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_1592801-01_Fm&mw={size}"
       ],
       "brandName": "GABBA",
-      "description": "Quia odit quis fuga veniam accusantium rerum asperiores deserunt aliquam. Dolor minima repudiandae rem corporis. Tempore dolorem eligendi et minima quasi non. Et animi iusto aut inventore at ut. Enim rerum maxime est porro fugiat necessitatibus. Fugiat a sunt repellendus doloribus quia fugiat. Aut dolor eligendi fugiat. Perferendis asperiores dolores sed minus voluptatem tempora aspernatur.",
+      "description": "Aut culpa et sit. Aliquam aspernatur nulla ut nesciunt sed. Occaecati facere voluptatum dolor est quo incidunt sapiente. Sed consequatur ut nihil veniam aut. Architecto est beatae tempora in. Sed quis minima. Nihil nisi aut provident reiciendis aut consequatur. Nostrum ullam recusandae cum.",
       "attributes": [
         {
-          "size": { "value": "XS" },
+          "size": { "value": "S" },
           "color": { "value": "Black" },
-          "quantity": 28,
-          "sku": "BPSD-BLA-XS"
-        },
-        {
-          "size": { "value": "M" },
-          "color": { "value": "Navy" },
-          "quantity": 78,
-          "sku": "BPSD-NAV-M"
-        },
-        {
-          "size": { "value": "L" },
-          "color": { "value": "Olive Green" },
-          "quantity": 48,
-          "sku": "BPSD-OLI-L"
+          "quantity": 5,
+          "sku": "BPSD-BLA-S"
         }
       ]
     },
     {
-      "name": "Chinos Zack Slim Chinos",
+      "name": "Chinos zack slim chinos",
       "unitPrice": 499,
       "images": [
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_7008526-11_Fm_M0065998&mw={size}",
@@ -328,30 +334,24 @@
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_7008526-04_Fm&mw={size}"
       ],
       "brandName": "William Baxter",
-      "description": "Quae vel sunt eaque quaerat numquam aut voluptatem mollitia rerum. Sint assumenda quidem eos provident quasi in delectus. Porro est porro. Deleniti qui omnis sed consequatur fuga. Quibusdam cum impedit laudantium fugiat non. Distinctio deleniti id molestiae exercitationem velit voluptatem ipsa qui. Corrupti illo distinctio reprehenderit esse. Modi sit placeat a sed.",
+      "description": "Quae quia quo alias nesciunt provident. Ratione sit dicta aperiam maxime. Est nihil culpa libero sunt vero ut. Sed voluptatem sunt sit quis veniam. Alias sit impedit aut eius numquam. Qui aliquid aspernatur. In id consequatur expedita perspiciatis quaerat inventore repellendus. Aut molestiae maxime et accusantium quaerat omnis et temporibus voluptatem.",
       "attributes": [
         {
-          "size": { "value": "XS" },
-          "color": { "value": "Copper" },
-          "quantity": 22,
-          "sku": "CZSC-COP-XS"
-        },
-        {
           "size": { "value": "M" },
-          "color": { "value": "Orange" },
-          "quantity": 75,
-          "sku": "CZSC-ORA-M"
+          "color": { "value": "Violet" },
+          "quantity": 21,
+          "sku": "CZSC-VIO-M"
         },
         {
-          "size": { "value": "XS" },
-          "color": { "value": "Copper" },
-          "quantity": 13,
-          "sku": "CZSC-COP-XS"
+          "size": { "value": "XXL" },
+          "color": { "value": "Beige" },
+          "quantity": 81,
+          "sku": "CZSC-BEI-XXL"
         }
       ]
     },
     {
-      "name": "Byxor Urban Tapered Pants",
+      "name": "Pants Urban Tapered Pants",
       "unitPrice": 499,
       "images": [
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_7014026-01_Fm_M0056559&mw={size}",
@@ -360,36 +360,36 @@
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_7014026-02_Fm&mw={size}"
       ],
       "brandName": "Studio Total",
-      "description": "Magni in doloribus voluptatibus. Laborum ut voluptate laborum consequatur. Aut corrupti dolores accusamus dolorem voluptatum qui. Quis corrupti ut quia voluptas aut. Autem qui vero. Est debitis fugiat ipsam quis enim voluptatem. Provident illum quidem architecto et perspiciatis molestias. Repellat eos sint sit quis quia quo ea qui.",
+      "description": "Quam blanditiis eius iure veniam saepe eveniet sunt. Perspiciatis voluptates eius iusto at voluptas dolores facere. Nemo voluptatem nisi eos est est numquam rerum. Amet ducimus fuga non sint illum sint et voluptatibus molestiae. Provident autem eveniet voluptatum cumque necessitatibus mollitia. Quia adipisci error et et enim eum dolor. Sit cumque aliquid quasi in odio molestiae. Aperiam sed perspiciatis repellat perferendis sint corporis voluptas qui natus.",
       "attributes": [
         {
-          "size": { "value": "M" },
-          "color": { "value": "Black" },
-          "quantity": 37,
-          "sku": "BUTP-BLA-M"
-        },
-        {
-          "size": { "value": "S" },
-          "color": { "value": "Maroon" },
-          "quantity": 91,
-          "sku": "BUTP-MAR-S"
+          "size": { "value": "XXL" },
+          "color": { "value": "Brown" },
+          "quantity": 89,
+          "sku": "BUTP-BRO-XXL"
         },
         {
           "size": { "value": "L" },
-          "color": { "value": "Pink" },
-          "quantity": 18,
-          "sku": "BUTP-PIN-L"
+          "color": { "value": "Navy" },
+          "quantity": 56,
+          "sku": "BUTP-NAV-L"
         },
         {
-          "size": { "value": "S" },
-          "color": { "value": "Green" },
-          "quantity": 71,
-          "sku": "BUTP-GRE-S"
+          "size": { "value": "XS" },
+          "color": { "value": "Red" },
+          "quantity": 6,
+          "sku": "BUTP-RED-XS"
+        },
+        {
+          "size": { "value": "XL" },
+          "color": { "value": "Mauve" },
+          "quantity": 21,
+          "sku": "BUTP-MAU-XL"
         }
       ]
     },
     {
-      "name": "Cargobyxor Slim Cargo",
+      "name": "Cargo pants Slim Cargo",
       "unitPrice": 499,
       "images": [
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_7012752-01_Fm_M0052484&mw={size}",
@@ -399,30 +399,30 @@
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_7012752-03_Fm&mw={size}"
       ],
       "brandName": "Studio Total",
-      "description": "Delectus laboriosam quibusdam voluptas optio et quo facere. Minus incidunt aut reprehenderit. Laudantium corporis officia accusantium corporis saepe. Quis sed molestias qui et consectetur. Voluptatem optio deleniti sit natus repudiandae. Et reprehenderit quos reiciendis nihil iure sit. Voluptas et ut dolore possimus occaecati. Veritatis esse veritatis debitis enim qui sint.",
+      "description": "Est ea veritatis illo tempora ut qui nihil ullam occaecati. Corporis voluptas nisi. Sunt sapiente voluptatibus aut velit voluptates et hic. Enim consequatur consectetur eius consequatur. Dolores aut et sit est numquam. Et sunt cum eaque ipsam omnis consectetur eveniet. Qui possimus impedit quia. Distinctio et molestiae earum deleniti voluptas quam.",
       "attributes": [
         {
-          "size": { "value": "L" },
-          "color": { "value": "Cyan" },
-          "quantity": 93,
-          "sku": "CSC-CYA-L"
+          "size": { "value": "S" },
+          "color": { "value": "Green" },
+          "quantity": 97,
+          "sku": "CSC-GRE-S"
         },
         {
           "size": { "value": "L" },
-          "color": { "value": "Red" },
-          "quantity": 11,
-          "sku": "CSC-RED-L"
+          "color": { "value": "Navy" },
+          "quantity": 49,
+          "sku": "CSC-NAV-L"
         },
         {
           "size": { "value": "S" },
-          "color": { "value": "Indigo" },
-          "quantity": 44,
-          "sku": "CSC-IND-S"
+          "color": { "value": "Coral" },
+          "quantity": 13,
+          "sku": "CSC-COR-S"
         }
       ]
     },
     {
-      "name": "Byxor Soft Chino",
+      "name": "Pants Soft Chino",
       "unitPrice": 499,
       "images": [
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_7013125-04_Fm_M0066008&mw={size}",
@@ -434,18 +434,30 @@
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_7013125-03_Fm&mw={size}"
       ],
       "brandName": "Studio Total",
-      "description": "Et natus tempore similique. Recusandae cum perferendis non amet et repellendus aut mollitia tempore. Quis voluptatem debitis repellendus in id quod beatae. Sit dolor quia magnam. Qui sequi ratione non magnam incidunt optio aut. Quisquam nostrum possimus alias. Et aliquam fugiat qui sapiente eum id natus. Et officia accusantium atque dolor laborum aut.",
+      "description": "Placeat impedit natus ipsum et distinctio laboriosam dolor porro. Est voluptas consequatur. Ab eum nihil aspernatur harum officia ut quia et. In quia laborum labore omnis amet. Culpa quaerat dolor sapiente. Non impedit sunt est occaecati. In quod quis assumenda. Qui quo et sit dolores voluptate.",
       "attributes": [
         {
-          "size": { "value": "S" },
-          "color": { "value": "Navy" },
-          "quantity": 53,
-          "sku": "BSC-NAV-S"
+          "size": { "value": "L" },
+          "color": { "value": "Purple" },
+          "quantity": 39,
+          "sku": "BSC-PUR-L"
+        },
+        {
+          "size": { "value": "L" },
+          "color": { "value": "Green" },
+          "quantity": 89,
+          "sku": "BSC-GRE-L"
+        },
+        {
+          "size": { "value": "XL" },
+          "color": { "value": "Copper" },
+          "quantity": 4,
+          "sku": "BSC-COP-XL"
         }
       ]
     },
     {
-      "name": "Sweatpants Icon Sweatpants",
+      "name": "Sweatpants icon sweatpants",
       "unitPrice": 299,
       "images": [
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_7015550-04_Fm_M0066001&mw={size}",
@@ -456,24 +468,36 @@
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_7015550-01_Fm&mw={size}"
       ],
       "brandName": "Studio Total",
-      "description": "Totam quam cumque cumque. Veritatis culpa quae sint. Quod nulla id ut eligendi placeat veritatis ex voluptas. Facere amet labore animi dolor aut voluptate sed est. Excepturi rerum ut magnam delectus dicta. Quia quidem cupiditate rerum. Velit minus et cupiditate ipsa. Sapiente inventore eius voluptas laborum voluptas.",
+      "description": "Dolor iste eum et dolorem deleniti. Aut nihil qui aut. Blanditiis voluptas inventore totam nobis accusamus mollitia ipsum. Nesciunt praesentium esse ratione maiores atque deserunt ea ut. Accusantium qui quisquam eos ut molestiae vero et. Voluptatem accusamus sunt beatae. Et eos quis at doloribus eum illum et. Molestiae at dolorem quis.",
       "attributes": [
         {
-          "size": { "value": "XXL" },
-          "color": { "value": "Brown" },
-          "quantity": 29,
-          "sku": "SIS-BRO-XXL"
+          "size": { "value": "XL" },
+          "color": { "value": "Cyan" },
+          "quantity": 77,
+          "sku": "SIS-CYA-XL"
         },
         {
-          "size": { "value": "XXL" },
+          "size": { "value": "M" },
           "color": { "value": "Silver" },
-          "quantity": 92,
-          "sku": "SIS-SIL-XXL"
+          "quantity": 41,
+          "sku": "SIS-SIL-M"
+        },
+        {
+          "size": { "value": "M" },
+          "color": { "value": "Lime" },
+          "quantity": 80,
+          "sku": "SIS-LIM-M"
+        },
+        {
+          "size": { "value": "XL" },
+          "color": { "value": "Brown" },
+          "quantity": 52,
+          "sku": "SIS-BRO-XL"
         }
       ]
     },
     {
-      "name": "Chinos Zack Slim Chinos",
+      "name": "Chinos zack slim chinos",
       "unitPrice": 499,
       "images": [
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_7008526-10_Fm_M0066000&mw={size}",
@@ -485,18 +509,30 @@
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_7008526-04_Fm&mw={size}"
       ],
       "brandName": "William Baxter",
-      "description": "Rerum tempora numquam ea harum rem. Aut est at. Qui tempora sed ea. Ipsa at omnis asperiores qui consequatur aut harum dolores. Qui et et sapiente voluptate. Temporibus quos voluptatem ducimus qui quia et molestias consequatur. Aut veniam totam quod veniam itaque enim. Deleniti reiciendis consectetur in.",
+      "description": "Dolores rem repellendus suscipit minus temporibus aliquid. Atque et itaque. Pariatur dolore recusandae delectus dolores provident voluptatum modi eum sed. Et sed animi. Expedita ab perspiciatis totam rerum sunt. Tempora fugiat quis reiciendis. Beatae et quae ut aliquam beatae quia sint ea. Perspiciatis temporibus commodi expedita totam iusto quia magni.",
       "attributes": [
         {
+          "size": { "value": "XS" },
+          "color": { "value": "Indigo" },
+          "quantity": 25,
+          "sku": "CZSC-IND-XS"
+        },
+        {
+          "size": { "value": "M" },
+          "color": { "value": "Orange" },
+          "quantity": 49,
+          "sku": "CZSC-ORA-M"
+        },
+        {
           "size": { "value": "S" },
-          "color": { "value": "Pink" },
-          "quantity": 60,
-          "sku": "CZSC-PIN-S"
+          "color": { "value": "Cream" },
+          "quantity": 35,
+          "sku": "CZSC-CRE-S"
         }
       ]
     },
     {
-      "name": "Chinos Zack Slim Chinos",
+      "name": "Chinos zack slim chinos",
       "unitPrice": 499,
       "images": [
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_7008526-04_Fm_M0028262&mw={size}",
@@ -508,24 +544,30 @@
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_7008526-09_Fm&mw={size}"
       ],
       "brandName": "William Baxter",
-      "description": "Dolores reprehenderit omnis rerum magnam accusantium veniam. Voluptas sint corrupti vero et eius. Ea eos minima. Quisquam voluptatem voluptas voluptatem reprehenderit consequatur aspernatur. Repellendus ut et id at nihil similique voluptatum. Et vitae nam rerum temporibus dicta delectus soluta. Neque rerum voluptates. Magnam debitis cumque deleniti quos.",
+      "description": "Ab officiis nobis. Voluptatem maiores cum. In magnam saepe qui tempore et et. Soluta nihil minima ut quia amet sed natus. Est laborum asperiores eveniet explicabo. Ut rerum ducimus qui aut ut esse. Quasi dolores maxime omnis. Vel unde ipsam perferendis modi.",
       "attributes": [
         {
           "size": { "value": "XXL" },
-          "color": { "value": "Orange" },
-          "quantity": 73,
-          "sku": "CZSC-ORA-XXL"
+          "color": { "value": "Pink" },
+          "quantity": 54,
+          "sku": "CZSC-PIN-XXL"
         },
         {
-          "size": { "value": "S" },
-          "color": { "value": "Orange" },
-          "quantity": 58,
-          "sku": "CZSC-ORA-S"
+          "size": { "value": "L" },
+          "color": { "value": "Yellow" },
+          "quantity": 29,
+          "sku": "CZSC-YEL-L"
+        },
+        {
+          "size": { "value": "XXL" },
+          "color": { "value": "Violet" },
+          "quantity": 40,
+          "sku": "CZSC-VIO-XXL"
         }
       ]
     },
     {
-      "name": "Byxor Cortes",
+      "name": "Trousers Cortes",
       "unitPrice": 1599,
       "images": [
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_1661443-01_Fm_M0064352&mw={size}",
@@ -533,30 +575,36 @@
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_1661443-01_Fm&mw={size}"
       ],
       "brandName": "Tiger of Sweden",
-      "description": "Quaerat natus magnam veritatis quia quas quo. Sit necessitatibus minus dignissimos magni. Et beatae sequi iure nisi provident. Beatae quia hic eligendi temporibus ea. Est expedita nemo. Quo necessitatibus dolorem perspiciatis qui animi velit. Dolor id eius et iusto aut ea temporibus explicabo. Reiciendis corporis ut.",
+      "description": "Dolores fugiat iste sit possimus qui vel. Distinctio modi iure et quod. Nulla non voluptatem quibusdam quis ut quis natus sunt. Necessitatibus aut excepturi. Voluptatum soluta in odit commodi officiis. Quas provident voluptas tempore saepe aspernatur similique et quisquam et. Dicta sapiente animi voluptatem quae est. Dicta aut similique.",
       "attributes": [
         {
           "size": { "value": "XL" },
-          "color": { "value": "Yellow" },
-          "quantity": 87,
-          "sku": "BC-YEL-XL"
-        },
-        {
-          "size": { "value": "L" },
-          "color": { "value": "Yellow" },
-          "quantity": 24,
-          "sku": "BC-YEL-L"
+          "color": { "value": "Orange" },
+          "quantity": 19,
+          "sku": "BC-ORA-XL"
         },
         {
           "size": { "value": "M" },
-          "color": { "value": "Teal" },
-          "quantity": 97,
-          "sku": "BC-TEA-M"
+          "color": { "value": "Yellow" },
+          "quantity": 15,
+          "sku": "BC-YEL-M"
+        },
+        {
+          "size": { "value": "S" },
+          "color": { "value": "Indigo" },
+          "quantity": 65,
+          "sku": "BC-IND-S"
+        },
+        {
+          "size": { "value": "L" },
+          "color": { "value": "Blue" },
+          "quantity": 3,
+          "sku": "BC-BLU-L"
         }
       ]
     },
     {
-      "name": "Byxor Nylon Trousers",
+      "name": "Pants nylon trousers",
       "unitPrice": 499,
       "images": [
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_7014639-01_Fm_M0061610&mw={size}",
@@ -564,25 +612,19 @@
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_7014639-01_Fm&mw={size}"
       ],
       "brandName": "A7S",
-      "description": "Sequi qui natus. Tempora qui modi similique sint deleniti inventore. Omnis autem aut quod non enim cumque aspernatur in. Velit veniam est et et asperiores incidunt animi. Repellendus quos dolor ad omnis vero est provident. Vitae qui fuga et itaque. Aut illum aut eius ipsa porro. Occaecati ducimus dicta.",
+      "description": "Dicta nemo aperiam omnis. Aliquam quae in ad est amet dolores. Et et deleniti voluptate odit libero qui occaecati. Laboriosam explicabo blanditiis dolorem asperiores. Architecto ex quidem error voluptas laboriosam dicta laboriosam nisi. Nisi repudiandae perferendis aut similique ut aspernatur. Iure et odio reprehenderit et quo et omnis sapiente. Temporibus rerum eius omnis tenetur.",
       "attributes": [
         {
-          "size": { "value": "XS" },
-          "color": { "value": "Orange" },
+          "size": { "value": "M" },
+          "color": { "value": "Teal" },
           "quantity": 40,
-          "sku": "BNT-ORA-XS"
+          "sku": "BNT-TEA-M"
         },
         {
           "size": { "value": "XXL" },
           "color": { "value": "Olive" },
-          "quantity": 55,
+          "quantity": 77,
           "sku": "BNT-OLI-XXL"
-        },
-        {
-          "size": { "value": "XL" },
-          "color": { "value": "Lime" },
-          "quantity": 21,
-          "sku": "BNT-LIM-XL"
         }
       ]
     },
@@ -602,18 +644,24 @@
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_7013652-06_Fm&mw={size}"
       ],
       "brandName": "Studio Total",
-      "description": "Minus laboriosam est voluptatem ea illo. Quaerat hic velit cumque incidunt perferendis. Et exercitationem temporibus et laboriosam. Eligendi exercitationem aut fugiat incidunt consequatur molestiae eius sit. Reiciendis minima reprehenderit delectus quo. Soluta laudantium voluptas ullam quo inventore minus. Deserunt sequi porro illum quia quis dolores recusandae est ut. Commodi iusto aut blanditiis blanditiis.",
+      "description": "Possimus quaerat et. Molestiae dolores ut magni facilis nobis blanditiis aspernatur. Suscipit qui autem quaerat ut. Optio debitis tempora qui quidem voluptatem consequatur recusandae ut. Ut fugit suscipit labore iusto dolorem. Nobis esse nemo sit aut porro. Reprehenderit aut eum commodi aut ut enim laborum non. Sint ratione ut eius nisi omnis saepe temporibus non repellat.",
       "attributes": [
         {
-          "size": { "value": "L" },
-          "color": { "value": "Turquoise" },
-          "quantity": 3,
-          "sku": "SPS-TUR-L"
+          "size": { "value": "M" },
+          "color": { "value": "Yellow" },
+          "quantity": 45,
+          "sku": "SPS-YEL-M"
+        },
+        {
+          "size": { "value": "XXL" },
+          "color": { "value": "Olive Green" },
+          "quantity": 25,
+          "sku": "SPS-OLI-XXL"
         }
       ]
     },
     {
-      "name": "Byxor Regular Straight Cord",
+      "name": "Trousers Regular Straight Cord",
       "unitPrice": 499,
       "images": [
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_7014972-01_Fm_M0059743&mw={size}",
@@ -622,25 +670,19 @@
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_7014972-02_Fm&mw={size}"
       ],
       "brandName": "Studio Total",
-      "description": "Autem repudiandae corrupti maxime magnam sunt aliquam. Qui et vitae ullam iure quisquam repellat totam recusandae. Sit consequatur nesciunt reiciendis consequatur cupiditate cumque error dicta. Velit aspernatur placeat voluptatem. Quia nobis natus optio laboriosam dolorum iure. Est veniam deleniti porro. Quae voluptates doloremque totam eos expedita corrupti nihil. Quibusdam libero id qui est dignissimos iste.",
+      "description": "Expedita fugit aliquid aut placeat. Ab ipsam et labore. Ut eum optio animi qui et aut est. Voluptatem commodi voluptatem aut suscipit quis voluptatibus et saepe enim. Architecto hic ea eligendi harum rem et qui. Voluptas enim et facilis quisquam vitae. Sed eaque reprehenderit mollitia minima corporis sunt fuga corrupti at. Tenetur et et eaque dolorem.",
       "attributes": [
         {
-          "size": { "value": "L" },
-          "color": { "value": "Purple" },
-          "quantity": 14,
-          "sku": "BRSC-PUR-L"
+          "size": { "value": "S" },
+          "color": { "value": "Yellow" },
+          "quantity": 36,
+          "sku": "BRSC-YEL-S"
         },
         {
-          "size": { "value": "M" },
-          "color": { "value": "Brown" },
-          "quantity": 78,
-          "sku": "BRSC-BRO-M"
-        },
-        {
-          "size": { "value": "XXL" },
-          "color": { "value": "Orange" },
-          "quantity": 89,
-          "sku": "BRSC-ORA-XXL"
+          "size": { "value": "S" },
+          "color": { "value": "Green" },
+          "quantity": 8,
+          "sku": "BRSC-GRE-S"
         }
       ]
     },
@@ -657,24 +699,30 @@
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_7014582-04_Fm&mw={size}"
       ],
       "brandName": "Studio Total",
-      "description": "Sunt laudantium earum eos ut eum. Accusamus officiis molestias doloremque minima maiores ducimus et provident. Ad illum eius ratione corporis. Porro quis ducimus explicabo. Et non sed eveniet. Quas corporis tempora quia deserunt sequi delectus rerum quia. Odio enim aut similique. Vel natus natus magnam molestias eligendi est molestiae.",
+      "description": "Ea ex aut. Quia ut quam nobis et minima rem voluptate. A deserunt eveniet vero. Similique ab esse nisi quam. Aliquid in est ea doloribus. Est consectetur voluptatem eos. Minus doloribus nam nam. Et eum sint inventore et repellendus expedita corrupti ea.",
       "attributes": [
         {
-          "size": { "value": "XL" },
-          "color": { "value": "Copper" },
-          "quantity": 29,
-          "sku": "SSTS-COP-XL"
+          "size": { "value": "S" },
+          "color": { "value": "Olive Green" },
+          "quantity": 77,
+          "sku": "SSTS-OLI-S"
         },
         {
-          "size": { "value": "S" },
-          "color": { "value": "Brown" },
-          "quantity": 29,
-          "sku": "SSTS-BRO-S"
+          "size": { "value": "XL" },
+          "color": { "value": "Red" },
+          "quantity": 19,
+          "sku": "SSTS-RED-XL"
+        },
+        {
+          "size": { "value": "L" },
+          "color": { "value": "Mauve" },
+          "quantity": 3,
+          "sku": "SSTS-MAU-L"
         }
       ]
     },
     {
-      "name": "Byxor Regular Tapered Twill",
+      "name": "Trousers Regular Tapered Twill",
       "unitPrice": 499,
       "images": [
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_7013029-05_Fm_M0065505&mw={size}",
@@ -686,30 +734,36 @@
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_7013029-04_Fm&mw={size}"
       ],
       "brandName": "Studio Total",
-      "description": "Doloribus consequatur at culpa iure amet. Distinctio iste quis aut. Eveniet asperiores minus omnis quidem inventore itaque necessitatibus ipsa. Aperiam error sed aut omnis et illo. Ducimus maiores molestiae mollitia. Sint repellat voluptate dolorem adipisci eum temporibus. Est atque pariatur blanditiis consectetur consequatur. Tempora rem odit maiores pariatur.",
+      "description": "Officiis laudantium sapiente consequatur commodi quia ut laudantium. Corrupti nisi voluptatem et. Minima harum optio aut. Corporis quo quibusdam consequuntur sed soluta quo aut in. Dolores tempore architecto sapiente impedit odio qui aut non. Accusantium temporibus recusandae quis. Ut explicabo aut dolor incidunt. Ab qui expedita omnis qui.",
       "attributes": [
         {
-          "size": { "value": "M" },
-          "color": { "value": "Purple" },
-          "quantity": 39,
-          "sku": "BRTT-PUR-M"
+          "size": { "value": "XXL" },
+          "color": { "value": "Olive" },
+          "quantity": 74,
+          "sku": "BRTT-OLI-XXL"
+        },
+        {
+          "size": { "value": "XXL" },
+          "color": { "value": "Violet" },
+          "quantity": 45,
+          "sku": "BRTT-VIO-XXL"
+        },
+        {
+          "size": { "value": "S" },
+          "color": { "value": "Turquoise" },
+          "quantity": 97,
+          "sku": "BRTT-TUR-S"
         },
         {
           "size": { "value": "XL" },
-          "color": { "value": "Pink" },
-          "quantity": 85,
-          "sku": "BRTT-PIN-XL"
-        },
-        {
-          "size": { "value": "L" },
-          "color": { "value": "Copper" },
-          "quantity": 29,
-          "sku": "BRTT-COP-L"
+          "color": { "value": "Olive" },
+          "quantity": 6,
+          "sku": "BRTT-OLI-XL"
         }
       ]
     },
     {
-      "name": "Byxor Soft Chino",
+      "name": "Pants Soft Chino",
       "unitPrice": 499,
       "images": [
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_7013125-01_Fm_M0065996&mw={size}",
@@ -721,30 +775,30 @@
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_7013125-03_Fm&mw={size}"
       ],
       "brandName": "Studio Total",
-      "description": "Sapiente quidem vero totam. Eos quibusdam est quis eius vel beatae perspiciatis nam nemo. Eius impedit quisquam excepturi nihil. Sed doloremque modi odio ipsa et impedit. Accusamus quia sed error a commodi. Totam et sed sapiente et qui quod. Omnis tempora magnam quam ut ex qui. Consequatur dicta deserunt eaque sunt minus reiciendis ea.",
+      "description": "Id non excepturi dicta officia nostrum dignissimos architecto. Soluta et ut itaque eligendi. Consequuntur rem sit sit tenetur sunt nostrum. Alias illum laboriosam eligendi qui sed magnam. Ducimus est corporis ratione. Laboriosam eaque voluptatibus. Quia sit sunt ratione id voluptas. Provident vitae et excepturi eum error eveniet qui sit.",
       "attributes": [
         {
-          "size": { "value": "M" },
-          "color": { "value": "Gray" },
-          "quantity": 88,
-          "sku": "BSC-GRA-M"
-        },
-        {
-          "size": { "value": "M" },
-          "color": { "value": "Red" },
-          "quantity": 67,
-          "sku": "BSC-RED-M"
-        },
-        {
           "size": { "value": "XS" },
-          "color": { "value": "Teal" },
-          "quantity": 45,
-          "sku": "BSC-TEA-XS"
+          "color": { "value": "Coral" },
+          "quantity": 41,
+          "sku": "BSC-COR-XS"
+        },
+        {
+          "size": { "value": "M" },
+          "color": { "value": "Olive" },
+          "quantity": 63,
+          "sku": "BSC-OLI-M"
+        },
+        {
+          "size": { "value": "L" },
+          "color": { "value": "Gold" },
+          "quantity": 39,
+          "sku": "BSC-GOL-L"
         }
       ]
     },
     {
-      "name": "Byxor Como Suit Pants",
+      "name": "Trousers Como Suit Pants",
       "unitPrice": 999,
       "images": [
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_1106877-02_Fm_M0031384&mw={size}",
@@ -754,24 +808,36 @@
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_1106877-03_Fm&mw={size}"
       ],
       "brandName": "Les Deux",
-      "description": "Inventore voluptas et aut praesentium eum ea ut in. Omnis consectetur cumque. Et deserunt repellendus mollitia aut autem. Soluta dolore consectetur aut ducimus soluta reprehenderit. Quaerat sunt est at quos quas. Provident blanditiis quasi. Rem nesciunt et. Quo ipsa alias velit cupiditate eveniet fuga sapiente ex.",
+      "description": "Sit dignissimos qui sed ad nesciunt. Sit ab voluptas. Facere possimus doloribus non. Libero velit corrupti. Assumenda consequatur dolorum sit itaque et. Sed illum id eum mollitia aut. Incidunt et repellendus. Veritatis quis eius magni cupiditate dolores sequi et.",
       "attributes": [
         {
-          "size": { "value": "XL" },
-          "color": { "value": "Red" },
-          "quantity": 40,
-          "sku": "BCSP-RED-XL"
+          "size": { "value": "XXL" },
+          "color": { "value": "Crimson" },
+          "quantity": 64,
+          "sku": "BCSP-CRI-XXL"
         },
         {
-          "size": { "value": "S" },
+          "size": { "value": "XL" },
+          "color": { "value": "Mauve" },
+          "quantity": 64,
+          "sku": "BCSP-MAU-XL"
+        },
+        {
+          "size": { "value": "XS" },
           "color": { "value": "Blue" },
-          "quantity": 72,
-          "sku": "BCSP-BLU-S"
+          "quantity": 99,
+          "sku": "BCSP-BLU-XS"
+        },
+        {
+          "size": { "value": "M" },
+          "color": { "value": "Maroon" },
+          "quantity": 46,
+          "sku": "BCSP-MAR-M"
         }
       ]
     },
     {
-      "name": "Cargobyxor Soft Cargo",
+      "name": "Cargo pants Soft Cargo",
       "unitPrice": 599,
       "images": [
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_7013131-01_Fm_M0050467&mw={size}",
@@ -782,31 +848,25 @@
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_7013131-02_Fm&mw={size}"
       ],
       "brandName": "Studio Total",
-      "description": "Id quod voluptas sint aut. Eius nam dolorum voluptas vel maiores excepturi cum. Non quos odio est vero culpa. Fugiat et ex. Recusandae porro aut. Delectus et deserunt a eos et quidem tempora. Ut earum soluta alias. Commodi fuga qui quia modi.",
+      "description": "Ut et maiores atque magni quisquam. Sit sed dignissimos placeat omnis nihil voluptatem non. Magnam sed dolorem et quo et voluptatem culpa rerum. Exercitationem modi ut. Ad sapiente vel. Doloremque veritatis recusandae maxime et dolor et dignissimos. Ut explicabo illum fugiat cumque quia in quibusdam. Qui illo rerum officia molestiae dolorem eius et qui quae.",
       "attributes": [
         {
-          "size": { "value": "M" },
-          "color": { "value": "Pink" },
-          "quantity": 1,
-          "sku": "CSC-PIN-M"
+          "size": { "value": "XL" },
+          "color": { "value": "Cyan" },
+          "quantity": 52,
+          "sku": "CSC-CYA-XL"
         },
         {
-          "size": { "value": "XXL" },
-          "color": { "value": "Lime" },
-          "quantity": 93,
-          "sku": "CSC-LIM-XXL"
-        },
-        {
-          "size": { "value": "S" },
-          "color": { "value": "Magenta" },
+          "size": { "value": "XL" },
+          "color": { "value": "Silver" },
           "quantity": 28,
-          "sku": "CSC-MAG-S"
+          "sku": "CSC-SIL-XL"
         },
         {
-          "size": { "value": "S" },
-          "color": { "value": "Coral" },
-          "quantity": 97,
-          "sku": "CSC-COR-S"
+          "size": { "value": "L" },
+          "color": { "value": "Crimson" },
+          "quantity": 93,
+          "sku": "CSC-CRI-L"
         }
       ]
     },
@@ -820,30 +880,30 @@
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_7013956-02_Fm&mw={size}"
       ],
       "brandName": "Studio Total",
-      "description": "Earum quaerat sint rem. Assumenda est nesciunt quam. Amet consectetur veritatis consequuntur. Quas tempora sit molestias consectetur sit soluta architecto ipsum voluptates. Error quaerat aut molestiae beatae fugiat quibusdam. Eos voluptates ex nihil inventore illum iusto ipsum. Accusamus aut voluptatum quos et. Sequi suscipit ab quidem qui repellat et laudantium dolorem quo.",
+      "description": "Nemo molestiae ea quia. Placeat minima quisquam itaque cupiditate quos rem omnis vel. Nesciunt amet et. Doloremque impedit provident explicabo neque quisquam nihil. Dolor dolorum vel labore aut ut et. Illo repellendus numquam aut. Placeat voluptatum dolor aliquid accusantium facere molestiae sed excepturi voluptatibus. A vel ipsam et quis qui optio eos veritatis.",
       "attributes": [
         {
-          "size": { "value": "S" },
-          "color": { "value": "Coral" },
-          "quantity": 90,
-          "sku": "CUSC-COR-S"
+          "size": { "value": "M" },
+          "color": { "value": "Yellow" },
+          "quantity": 28,
+          "sku": "CUSC-YEL-M"
         },
         {
           "size": { "value": "L" },
-          "color": { "value": "Gray" },
-          "quantity": 3,
-          "sku": "CUSC-GRA-L"
+          "color": { "value": "Gold" },
+          "quantity": 4,
+          "sku": "CUSC-GOL-L"
         },
         {
-          "size": { "value": "XXL" },
-          "color": { "value": "Olive Green" },
-          "quantity": 23,
-          "sku": "CUSC-OLI-XXL"
+          "size": { "value": "M" },
+          "color": { "value": "Orange" },
+          "quantity": 82,
+          "sku": "CUSC-ORA-M"
         }
       ]
     },
     {
-      "name": "Byxor Soft Straight Chino",
+      "name": "Pants Soft Straight Chino",
       "unitPrice": 499,
       "images": [
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_7015153-03_Fm_M0066013&mw={size}",
@@ -854,24 +914,24 @@
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_7015153-02_Fm&mw={size}"
       ],
       "brandName": "Studio Total",
-      "description": "Autem cupiditate quidem atque molestiae. Cupiditate rerum alias iure aliquid sed. Repudiandae optio corrupti itaque adipisci itaque at. Consequatur consequatur dolor eveniet temporibus qui suscipit. Libero nisi nihil. Omnis sunt nam ullam sed fugiat explicabo illo. Sint dicta nemo voluptas eius. Facere quos voluptatum incidunt non harum culpa voluptas enim.",
+      "description": "Nulla odio blanditiis in tempora reprehenderit voluptas. In ullam dolorem. Nihil facilis nobis. Explicabo et neque. Facere aut voluptatum ut sapiente. Incidunt quam est laudantium omnis non maxime. Est facilis adipisci necessitatibus dolorem aut ratione. Iste labore ea tempora.",
       "attributes": [
         {
-          "size": { "value": "XS" },
-          "color": { "value": "Gold" },
-          "quantity": 58,
-          "sku": "BSSC-GOL-XS"
+          "size": { "value": "S" },
+          "color": { "value": "Silver" },
+          "quantity": 60,
+          "sku": "BSSC-SIL-S"
         },
         {
-          "size": { "value": "XS" },
-          "color": { "value": "Mauve" },
-          "quantity": 80,
-          "sku": "BSSC-MAU-XS"
+          "size": { "value": "L" },
+          "color": { "value": "Cyan" },
+          "quantity": 16,
+          "sku": "BSSC-CYA-L"
         }
       ]
     },
     {
-      "name": "Byxor Soft Chino",
+      "name": "Pants Soft Chino",
       "unitPrice": 499,
       "images": [
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_7013125-03_Fm_M0065997&mw={size}",
@@ -883,30 +943,30 @@
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_7013125-04_Fm&mw={size}"
       ],
       "brandName": "Studio Total",
-      "description": "Deleniti ratione voluptatem quia. Quia nam quam fugiat cupiditate recusandae facere nostrum in ut. Optio quae est ea repellat quasi laudantium. Id dolorum non voluptatem modi blanditiis est repellendus. Maiores magnam dignissimos provident autem dolor. Ut ea architecto recusandae esse qui optio veniam molestias repellendus. Unde et dolorem quia neque ea debitis est. Corrupti eum corporis eveniet nulla.",
+      "description": "Voluptas inventore esse et vitae nobis quia voluptas iste. Similique voluptas ea officiis aut. Qui illum incidunt rerum non voluptatem nemo. Et quia sed rerum ad. Molestiae dolor adipisci deleniti. Non ipsa est cumque quos fuga. Sit magnam et est molestiae. Consequatur esse sit autem.",
       "attributes": [
         {
-          "size": { "value": "M" },
-          "color": { "value": "Turquoise" },
-          "quantity": 55,
-          "sku": "BSC-TUR-M"
+          "size": { "value": "XS" },
+          "color": { "value": "Red" },
+          "quantity": 54,
+          "sku": "BSC-RED-XS"
         },
         {
-          "size": { "value": "S" },
-          "color": { "value": "Gray" },
-          "quantity": 53,
-          "sku": "BSC-GRA-S"
+          "size": { "value": "XS" },
+          "color": { "value": "Blue" },
+          "quantity": 59,
+          "sku": "BSC-BLU-XS"
         },
         {
-          "size": { "value": "L" },
-          "color": { "value": "Teal" },
-          "quantity": 69,
-          "sku": "BSC-TEA-L"
+          "size": { "value": "XXL" },
+          "color": { "value": "Gold" },
+          "quantity": 43,
+          "sku": "BSC-GOL-XXL"
         }
       ]
     },
     {
-      "name": "Byxor Urban Tapered Pants",
+      "name": "Pants Urban Tapered Pants",
       "unitPrice": 499,
       "images": [
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_7014026-02_Fm_M0055379&mw={size}",
@@ -915,25 +975,19 @@
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_7014026-01_Fm&mw={size}"
       ],
       "brandName": "Studio Total",
-      "description": "Vel doloremque labore vero. Dolorem optio autem veniam eligendi. Facilis ut et id eos ratione aliquam sint. Quo quas quasi eveniet officiis voluptas laborum consequatur rerum voluptatibus. Nam error dolor provident est. Molestiae sapiente facilis. Quia explicabo autem sunt ut. Architecto consequatur ad laborum.",
+      "description": "Asperiores et voluptatem assumenda et corrupti. Non officiis dolor aut perspiciatis dolores sit voluptas qui. Nobis provident officiis aliquid. Debitis alias earum itaque fugiat voluptas eos deserunt laboriosam. Excepturi quia excepturi perspiciatis non dolor neque est laudantium. Occaecati voluptas voluptas minus deserunt quibusdam repellendus aut cum. Recusandae et repellendus est. Sint eligendi ut consequatur nisi et aut.",
       "attributes": [
         {
-          "size": { "value": "M" },
-          "color": { "value": "Mauve" },
-          "quantity": 56,
-          "sku": "BUTP-MAU-M"
+          "size": { "value": "S" },
+          "color": { "value": "Orange" },
+          "quantity": 44,
+          "sku": "BUTP-ORA-S"
         },
         {
-          "size": { "value": "L" },
-          "color": { "value": "Purple" },
-          "quantity": 56,
-          "sku": "BUTP-PUR-L"
-        },
-        {
-          "size": { "value": "L" },
-          "color": { "value": "Green" },
-          "quantity": 40,
-          "sku": "BUTP-GRE-L"
+          "size": { "value": "XS" },
+          "color": { "value": "Red" },
+          "quantity": 29,
+          "sku": "BUTP-RED-XS"
         }
       ]
     },
@@ -948,30 +1002,36 @@
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_7014528-03_Fm&mw={size}"
       ],
       "brandName": "Studio Total",
-      "description": "Voluptatem sunt rerum quia quos fugit maxime. Excepturi sunt unde fuga nostrum expedita aliquid voluptatem adipisci et. Dignissimos possimus molestiae enim voluptatem tenetur. Repellendus exercitationem similique quam et optio consequuntur sequi. Eligendi aliquam voluptatem officiis et dolor. Officia facilis tempore molestiae et fugiat vel sunt. Expedita qui ut quia ut earum aut id tenetur. Dignissimos vel eum quia cupiditate eos mollitia exercitationem.",
+      "description": "Veritatis enim aut sequi architecto nemo. Sed recusandae neque nulla ut laborum non. Temporibus eligendi facilis necessitatibus. Aut ab iusto repellendus. Atque porro laborum. Beatae et in beatae. Ipsa ducimus sunt. Dolores voluptatem ut explicabo aut et aliquid ipsam.",
       "attributes": [
         {
-          "size": { "value": "M" },
-          "color": { "value": "Cream" },
-          "quantity": 60,
-          "sku": "SSS-CRE-M"
+          "size": { "value": "XL" },
+          "color": { "value": "Copper" },
+          "quantity": 31,
+          "sku": "SSS-COP-XL"
         },
         {
-          "size": { "value": "XS" },
+          "size": { "value": "XL" },
           "color": { "value": "Indigo" },
-          "quantity": 89,
-          "sku": "SSS-IND-XS"
+          "quantity": 74,
+          "sku": "SSS-IND-XL"
         },
         {
-          "size": { "value": "XXL" },
-          "color": { "value": "Lime" },
-          "quantity": 10,
-          "sku": "SSS-LIM-XXL"
+          "size": { "value": "L" },
+          "color": { "value": "Beige" },
+          "quantity": 54,
+          "sku": "SSS-BEI-L"
+        },
+        {
+          "size": { "value": "L" },
+          "color": { "value": "Indigo" },
+          "quantity": 2,
+          "sku": "SSS-IND-L"
         }
       ]
     },
     {
-      "name": "Joggers Favourite Sweatpants",
+      "name": "Joggers Favorite Sweatpants",
       "unitPrice": 299,
       "images": [
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_7012449-01_Fm_M0063696&mw={size}",
@@ -983,25 +1043,19 @@
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_7012449-05_Fm&mw={size}"
       ],
       "brandName": "Studio Total",
-      "description": "Quis et quas vel consequatur suscipit. Excepturi quasi amet. Dignissimos ea ipsa ratione ea enim voluptate quo quia. Enim ut eos in eum. Maiores sit numquam placeat molestias possimus veritatis eligendi qui sit. Voluptas eaque tenetur. Quasi quia dolorum quia officia. Reprehenderit pariatur omnis nemo ut culpa hic et consectetur.",
+      "description": "Est possimus architecto totam omnis tempora. Ut corporis quae et voluptatem in sit. Nesciunt sed ut at id voluptas magni blanditiis illum. Dignissimos ipsam voluptate velit autem ut. Natus sint commodi perspiciatis quia natus repudiandae. Harum dolorem autem enim molestiae facere enim totam aut. Aliquam nam voluptatem et et beatae porro. Libero quam aut saepe quasi et deserunt qui.",
       "attributes": [
         {
-          "size": { "value": "S" },
-          "color": { "value": "Teal" },
-          "quantity": 5,
-          "sku": "JFS-TEA-S"
+          "size": { "value": "XXL" },
+          "color": { "value": "Olive Green" },
+          "quantity": 31,
+          "sku": "JFS-OLI-XXL"
         },
         {
-          "size": { "value": "M" },
-          "color": { "value": "Crimson" },
-          "quantity": 100,
-          "sku": "JFS-CRI-M"
-        },
-        {
-          "size": { "value": "S" },
-          "color": { "value": "Green" },
-          "quantity": 38,
-          "sku": "JFS-GRE-S"
+          "size": { "value": "XL" },
+          "color": { "value": "Blue" },
+          "quantity": 15,
+          "sku": "JFS-BLU-XL"
         }
       ]
     },
@@ -1017,30 +1071,30 @@
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_7010994-04_Fm&mw={size}"
       ],
       "brandName": "William Baxter",
-      "description": "Adipisci aut cum maxime. Officiis animi voluptate et aliquid voluptatibus saepe consectetur laboriosam tempora. Est consequuntur qui recusandae et dolorem. Non id dolorum deleniti ex nostrum qui nulla. Est quo odio iste sed culpa aliquid velit expedita. Quod expedita quia eos sapiente asperiores quod maxime ab et. Pariatur velit distinctio atque maxime similique et et est. Aperiam officiis tenetur nihil dolores at necessitatibus.",
+      "description": "Sunt voluptas ut consequatur at eius qui est. Quaerat debitis et aut rem magnam quia consequuntur. Nulla eos enim vitae ex ipsa dolor quam. Veniam quisquam eum veritatis et in eum. Expedita quis nemo voluptas. Nulla architecto aut in maiores consectetur rerum ipsa. Fuga numquam commodi consequatur reiciendis qui saepe omnis repellat nemo. Velit facilis et culpa et molestias.",
       "attributes": [
         {
-          "size": { "value": "L" },
-          "color": { "value": "Yellow" },
-          "quantity": 18,
-          "sku": "JSCS-YEL-L"
-        },
-        {
-          "size": { "value": "M" },
-          "color": { "value": "Coral" },
-          "quantity": 81,
-          "sku": "JSCS-COR-M"
-        },
-        {
           "size": { "value": "XL" },
-          "color": { "value": "Pink" },
-          "quantity": 4,
-          "sku": "JSCS-PIN-XL"
+          "color": { "value": "Yellow" },
+          "quantity": 52,
+          "sku": "JSCS-YEL-XL"
+        },
+        {
+          "size": { "value": "XXL" },
+          "color": { "value": "Navy" },
+          "quantity": 78,
+          "sku": "JSCS-NAV-XXL"
+        },
+        {
+          "size": { "value": "L" },
+          "color": { "value": "White" },
+          "quantity": 52,
+          "sku": "JSCS-WHI-L"
         }
       ]
     },
     {
-      "name": "Byxor Regular Tapered Twill",
+      "name": "Trousers Regular Tapered Twill",
       "unitPrice": 499,
       "images": [
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_7013029-01_Fm_M0065523&mw={size}",
@@ -1052,30 +1106,30 @@
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_7013029-02_Fm&mw={size}"
       ],
       "brandName": "Studio Total",
-      "description": "Ut dolores aliquam ut qui architecto inventore aperiam aspernatur. Sit tempora voluptate. Eos sapiente vitae placeat qui id nulla et quia. Ut molestiae consequatur ducimus tempore vero cupiditate minus nesciunt. Reprehenderit nemo perspiciatis voluptas enim quaerat expedita ut. Eaque voluptatem deserunt blanditiis earum. Quis dolores rem repudiandae eum repellendus aut unde sequi. Soluta qui quia esse natus.",
+      "description": "Dolor eius quia at. At rerum animi illum pariatur. Consectetur velit enim corrupti. Illum reprehenderit omnis natus ullam. Hic cum et voluptate nulla fuga consequuntur occaecati assumenda in. Ab neque exercitationem consequatur sint quos. Quo neque ut hic eos. Delectus ea sint repellendus ut placeat aut velit.",
       "attributes": [
         {
-          "size": { "value": "S" },
-          "color": { "value": "Cyan" },
-          "quantity": 10,
-          "sku": "BRTT-CYA-S"
+          "size": { "value": "M" },
+          "color": { "value": "White" },
+          "quantity": 64,
+          "sku": "BRTT-WHI-M"
+        },
+        {
+          "size": { "value": "M" },
+          "color": { "value": "Orange" },
+          "quantity": 55,
+          "sku": "BRTT-ORA-M"
         },
         {
           "size": { "value": "XS" },
-          "color": { "value": "Coral" },
-          "quantity": 80,
-          "sku": "BRTT-COR-XS"
-        },
-        {
-          "size": { "value": "XXL" },
-          "color": { "value": "Cream" },
-          "quantity": 99,
-          "sku": "BRTT-CRE-XXL"
+          "color": { "value": "Maroon" },
+          "quantity": 55,
+          "sku": "BRTT-MAR-XS"
         }
       ]
     },
     {
-      "name": "Byxor L.I.M Pant Men",
+      "name": "Pants li.m pledge but",
       "unitPrice": 2199,
       "images": [
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_1665656-01_Fm_M0061859&mw={size}",
@@ -1083,24 +1137,30 @@
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_1665656-01_Fm&mw={size}"
       ],
       "brandName": "Haglöfs",
-      "description": "Blanditiis sit dolorem sit. Delectus amet dignissimos qui fugit possimus. Magni nulla rerum qui. Numquam quasi voluptatem enim eaque. Ipsum ab et possimus nihil sequi. Sit earum voluptate deleniti amet. Cum quod saepe cum sequi consectetur assumenda quia. Adipisci et exercitationem esse et ab illo ea.",
+      "description": "Ut tempore ab et et nam recusandae. Quia quisquam consequatur voluptatem vitae deleniti eos non quia. Nostrum reprehenderit cupiditate quo quidem ipsam. Consequatur reprehenderit esse in. Optio nihil placeat quod doloremque velit vel ad. Quos iure voluptate mollitia excepturi delectus voluptatem fugiat. Numquam fugiat officiis et ad similique voluptatem consectetur quod. Praesentium consectetur cumque enim enim.",
       "attributes": [
         {
-          "size": { "value": "XS" },
-          "color": { "value": "Blue" },
-          "quantity": 21,
-          "sku": "BLPM-BLU-XS"
+          "size": { "value": "S" },
+          "color": { "value": "Teal" },
+          "quantity": 64,
+          "sku": "BLPM-TEA-S"
         },
         {
           "size": { "value": "M" },
-          "color": { "value": "Turquoise" },
-          "quantity": 5,
-          "sku": "BLPM-TUR-M"
+          "color": { "value": "Yellow" },
+          "quantity": 34,
+          "sku": "BLPM-YEL-M"
+        },
+        {
+          "size": { "value": "XXL" },
+          "color": { "value": "Yellow" },
+          "quantity": 20,
+          "sku": "BLPM-YEL-XXL"
         }
       ]
     },
     {
-      "name": "Cargobyxor Cargo Trousers",
+      "name": "Cargo pants cargo trousers",
       "unitPrice": 499,
       "images": [
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_7008200-02_Fm_M0063683&mw={size}",
@@ -1111,31 +1171,31 @@
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_7008200-07_Fm&mw={size}"
       ],
       "brandName": "William Baxter",
-      "description": "Voluptatem ut suscipit consequatur sed ullam incidunt numquam. Quibusdam mollitia inventore ipsam iure perspiciatis iure. Tempora dolorum non ab repellendus amet numquam similique quia. Aut animi assumenda earum saepe veritatis excepturi nostrum. Similique quas est voluptas ratione vitae. Saepe itaque aspernatur quos dolores. Et enim consequatur autem ut voluptate maiores. At quis et.",
+      "description": "Ipsum quibusdam et autem officiis. Aut et iusto quia. Iste explicabo in dignissimos recusandae. Rerum reiciendis qui saepe et fugit ut consequatur impedit. Tempora perspiciatis velit. Sint qui ullam quo aliquid omnis. Assumenda esse distinctio deserunt. Unde eum rerum.",
       "attributes": [
         {
-          "size": { "value": "L" },
+          "size": { "value": "XS" },
+          "color": { "value": "Olive Green" },
+          "quantity": 4,
+          "sku": "CCT-OLI-XS"
+        },
+        {
+          "size": { "value": "S" },
           "color": { "value": "Maroon" },
-          "quantity": 73,
-          "sku": "CCT-MAR-L"
+          "quantity": 87,
+          "sku": "CCT-MAR-S"
+        },
+        {
+          "size": { "value": "XS" },
+          "color": { "value": "Turquoise" },
+          "quantity": 43,
+          "sku": "CCT-TUR-XS"
         },
         {
           "size": { "value": "S" },
-          "color": { "value": "Olive" },
-          "quantity": 35,
-          "sku": "CCT-OLI-S"
-        },
-        {
-          "size": { "value": "S" },
-          "color": { "value": "Olive" },
-          "quantity": 11,
-          "sku": "CCT-OLI-S"
-        },
-        {
-          "size": { "value": "M" },
-          "color": { "value": "Teal" },
-          "quantity": 9,
-          "sku": "CCT-TEA-M"
+          "color": { "value": "Beige" },
+          "quantity": 47,
+          "sku": "CCT-BEI-S"
         }
       ]
     },
@@ -1152,19 +1212,31 @@
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_7014582-05_Fm&mw={size}"
       ],
       "brandName": "Studio Total",
-      "description": "Magni error quibusdam dolor tenetur voluptas ipsa. Ipsam molestiae voluptatem repellendus nihil quos ea cumque enim inventore. Mollitia porro consequatur commodi velit tenetur explicabo possimus qui sint. Rerum esse ratione sit est et in accusamus quo nobis. Dicta est aut autem magni eos tempora modi dolorem sed. Est officia laborum sit quod. Id voluptatem neque voluptas est. Quia eveniet nemo rerum.",
+      "description": "Minus ex fuga. Quia ullam consequatur consequatur exercitationem. Dolores minima aperiam. Harum aut qui non. Facilis eos ipsa consectetur assumenda voluptas. Deleniti porro velit et esse. Nihil iure quos voluptas eos aut sed. Ut eum minima.",
       "attributes": [
         {
-          "size": { "value": "S" },
-          "color": { "value": "Green" },
-          "quantity": 29,
-          "sku": "SSTS-GRE-S"
+          "size": { "value": "M" },
+          "color": { "value": "Maroon" },
+          "quantity": 48,
+          "sku": "SSTS-MAR-M"
         },
         {
           "size": { "value": "S" },
-          "color": { "value": "Mauve" },
-          "quantity": 54,
-          "sku": "SSTS-MAU-S"
+          "color": { "value": "Orange" },
+          "quantity": 21,
+          "sku": "SSTS-ORA-S"
+        },
+        {
+          "size": { "value": "XL" },
+          "color": { "value": "Orange" },
+          "quantity": 35,
+          "sku": "SSTS-ORA-XL"
+        },
+        {
+          "size": { "value": "M" },
+          "color": { "value": "Purple" },
+          "quantity": 77,
+          "sku": "SSTS-PUR-M"
         }
       ]
     },
@@ -1178,13 +1250,25 @@
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_7010992-02_Fm&mw={size}"
       ],
       "brandName": "William Baxter",
-      "description": "Ullam minus rerum doloribus deserunt. Quasi et et eos voluptas quis. Aut facilis atque tempora rem ipsam iure magni praesentium. Dolor saepe ut quod et cumque et nam. Voluptas voluptates suscipit odit fuga molestias. Expedita dolores architecto eligendi omnis omnis recusandae porro ex suscipit. Commodi aut exercitationem voluptate sed voluptatem itaque ut placeat asperiores. Recusandae consectetur ut consequatur nobis ipsam ab tempora.",
+      "description": "Sed voluptas a culpa eos dolores. Quis quo laboriosam qui rerum labore doloremque culpa. Illo tempora beatae impedit quos quia. Commodi accusamus voluptas rem nulla. Voluptas quia laborum optio quia. Pariatur rerum quod in modi quas quia quaerat aut. Sit labore aut et. Consequatur possimus magni neque consequatur.",
       "attributes": [
         {
-          "size": { "value": "M" },
-          "color": { "value": "Purple" },
-          "quantity": 90,
-          "sku": "JSS-PUR-M"
+          "size": { "value": "L" },
+          "color": { "value": "Navy" },
+          "quantity": 27,
+          "sku": "JSS-NAV-L"
+        },
+        {
+          "size": { "value": "XL" },
+          "color": { "value": "Violet" },
+          "quantity": 50,
+          "sku": "JSS-VIO-XL"
+        },
+        {
+          "size": { "value": "XXL" },
+          "color": { "value": "Olive Green" },
+          "quantity": 22,
+          "sku": "JSS-OLI-XXL"
         }
       ]
     },
@@ -1204,18 +1288,18 @@
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_7013652-06_Fm&mw={size}"
       ],
       "brandName": "Studio Total",
-      "description": "Vero officiis et a mollitia dolor ipsam. Et voluptatem est et accusamus dicta. Tempora sit ut sint voluptate dolorem odit. Aliquam deleniti fuga asperiores magnam aut voluptatem dolorem. Ex enim vitae sed totam aliquam harum rem dicta. Porro ut necessitatibus necessitatibus. Cupiditate omnis rerum autem. Dolor repellendus quod adipisci.",
+      "description": "Ut qui et et. Ex nesciunt sequi molestias id dicta ab. Aut quisquam sit fuga et tenetur. Quis distinctio qui perspiciatis itaque. Accusantium rem ut non est. Molestias et voluptates aut. Sed enim quos nobis deserunt sequi deleniti. Et qui minus quos veniam pariatur quis totam animi aliquid.",
       "attributes": [
         {
-          "size": { "value": "XXL" },
-          "color": { "value": "White" },
-          "quantity": 17,
-          "sku": "SPS-WHI-XXL"
+          "size": { "value": "M" },
+          "color": { "value": "Purple" },
+          "quantity": 4,
+          "sku": "SPS-PUR-M"
         }
       ]
     },
     {
-      "name": "Cargobyxor Falcon Cargo K1895",
+      "name": "Cargo Pants Falcon Cargo K1895",
       "unitPrice": 999,
       "images": [
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_1553278-01_Fm_M0045342&mw={size}",
@@ -1224,36 +1308,18 @@
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_1553278-02_Fm&mw={size}"
       ],
       "brandName": "GABBA",
-      "description": "Aliquam maiores est veniam et velit earum iure voluptatem. Tempore voluptas distinctio aliquam sunt quidem ea earum. Voluptates velit quaerat molestias id earum. Blanditiis iste delectus maiores nisi a cumque a neque sed. Eveniet sed fugit optio nostrum autem nihil. Reprehenderit ullam est. Incidunt quasi laborum adipisci ut quos sapiente nobis. Omnis dolore qui optio.",
+      "description": "Deleniti nobis cum ipsum officiis nulla harum. Eveniet et deserunt qui non laboriosam. Ut harum omnis et cupiditate. Quae at et ut sit quod laborum modi officiis rem. Eum error quo qui aut praesentium unde sapiente numquam aut. Recusandae doloribus pariatur dolores enim blanditiis. Excepturi enim ab nihil qui numquam exercitationem nobis. Qui praesentium ea doloribus aut omnis soluta adipisci omnis.",
       "attributes": [
         {
-          "size": { "value": "XS" },
-          "color": { "value": "Navy" },
-          "quantity": 88,
-          "sku": "CFCK-NAV-XS"
-        },
-        {
-          "size": { "value": "XL" },
-          "color": { "value": "Copper" },
-          "quantity": 68,
-          "sku": "CFCK-COP-XL"
-        },
-        {
-          "size": { "value": "XS" },
-          "color": { "value": "Silver" },
-          "quantity": 94,
-          "sku": "CFCK-SIL-XS"
-        },
-        {
           "size": { "value": "XXL" },
-          "color": { "value": "Cream" },
-          "quantity": 9,
-          "sku": "CFCK-CRE-XXL"
+          "color": { "value": "Lime" },
+          "quantity": 34,
+          "sku": "CFCK-LIM-XXL"
         }
       ]
     },
     {
-      "name": "Byxor Soft Straight Chino",
+      "name": "Pants Soft Straight Chino",
       "unitPrice": 499,
       "images": [
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_7015153-01_Fm_M0066026&mw={size}",
@@ -1264,31 +1330,19 @@
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_7015153-02_Fm&mw={size}"
       ],
       "brandName": "Studio Total",
-      "description": "Dolor quia non eveniet et. Quod molestiae repellendus. Molestias et quaerat eos itaque. Quis beatae enim expedita sunt sint consequatur mollitia quia. Vel perferendis illum illo autem hic. Sit consectetur rerum eum incidunt repudiandae ad tenetur illo assumenda. Debitis harum aut dolorem error possimus qui. Sed tenetur fugiat.",
+      "description": "Error corrupti necessitatibus rem harum et. Facere et qui. In assumenda consequatur minus nulla explicabo voluptate qui nulla id. Vitae quia laboriosam sit. Veritatis inventore tenetur. Fuga voluptatem deserunt et enim perferendis impedit aliquam iste. Consequatur aut voluptatem illo eum assumenda veniam. Autem et debitis hic assumenda.",
       "attributes": [
         {
-          "size": { "value": "S" },
-          "color": { "value": "Blue" },
-          "quantity": 64,
-          "sku": "BSSC-BLU-S"
-        },
-        {
           "size": { "value": "XL" },
-          "color": { "value": "Purple" },
-          "quantity": 71,
-          "sku": "BSSC-PUR-XL"
+          "color": { "value": "Indigo" },
+          "quantity": 57,
+          "sku": "BSSC-IND-XL"
         },
         {
           "size": { "value": "S" },
-          "color": { "value": "Yellow" },
-          "quantity": 50,
-          "sku": "BSSC-YEL-S"
-        },
-        {
-          "size": { "value": "L" },
-          "color": { "value": "Teal" },
-          "quantity": 59,
-          "sku": "BSSC-TEA-L"
+          "color": { "value": "Black" },
+          "quantity": 95,
+          "sku": "BSSC-BLA-S"
         }
       ]
     },
@@ -1302,30 +1356,36 @@
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_7013956-01_Fm&mw={size}"
       ],
       "brandName": "Studio Total",
-      "description": "Eveniet ratione minus omnis quia est quae tenetur consequuntur quibusdam. Eos eum nihil est non debitis. Qui quo dolore voluptatem ut recusandae id minima deleniti. Numquam qui atque a. Atque minima ut reiciendis eius sed. Aut praesentium perferendis ex. Non asperiores quam quos rerum saepe tempora vero. Et quia autem eum provident qui sunt incidunt.",
+      "description": "Ut voluptatem autem dolorum iste delectus nesciunt. Fugit rerum sunt et explicabo. Repudiandae qui ipsa laboriosam est. Doloremque optio quasi voluptatibus ut molestiae. Ex aut quidem aliquid dolor illo reiciendis. Blanditiis tempore corrupti a voluptates sint quisquam praesentium. Ab ullam eligendi placeat. Error accusamus aspernatur at quam illum.",
       "attributes": [
         {
-          "size": { "value": "L" },
+          "size": { "value": "S" },
           "color": { "value": "Purple" },
-          "quantity": 63,
-          "sku": "CUSC-PUR-L"
+          "quantity": 17,
+          "sku": "CUSC-PUR-S"
         },
         {
-          "size": { "value": "L" },
-          "color": { "value": "Magenta" },
-          "quantity": 95,
-          "sku": "CUSC-MAG-L"
+          "size": { "value": "XL" },
+          "color": { "value": "Teal" },
+          "quantity": 97,
+          "sku": "CUSC-TEA-XL"
         },
         {
-          "size": { "value": "M" },
-          "color": { "value": "Magenta" },
-          "quantity": 88,
-          "sku": "CUSC-MAG-M"
+          "size": { "value": "XL" },
+          "color": { "value": "Pink" },
+          "quantity": 10,
+          "sku": "CUSC-PIN-XL"
+        },
+        {
+          "size": { "value": "XL" },
+          "color": { "value": "Blue" },
+          "quantity": 87,
+          "sku": "CUSC-BLU-XL"
         }
       ]
     },
     {
-      "name": "Byxor Alder Pant",
+      "name": "Trousers Alder Pant",
       "unitPrice": 1199,
       "images": [
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_1632634-01_Fm_M0053624&mw={size}",
@@ -1333,24 +1393,24 @@
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_1632634-01_Fm&mw={size}"
       ],
       "brandName": "Carhartt WIP",
-      "description": "Deserunt perferendis harum tenetur quaerat id. Velit qui eius ut vel et aut blanditiis. Ipsa aut eos ab fugiat optio unde officiis autem ipsa. Aut quia sunt. Voluptate officiis accusantium perferendis modi assumenda fuga. Ad cupiditate a reprehenderit ut consectetur. Quaerat eius similique suscipit voluptatem dolores est ut sit. Doloremque laudantium rerum molestiae voluptate odio est aliquam voluptatem.",
+      "description": "Exercitationem commodi asperiores harum. Eum sit consequuntur qui. Ut autem officia provident voluptates ullam est. Itaque aspernatur aut quis eligendi magnam pariatur odit voluptatum error. Praesentium pariatur perferendis voluptatibus culpa. At nostrum ut qui debitis. Sunt nulla debitis qui et dolores voluptatem. Libero vel harum non omnis sed similique.",
       "attributes": [
         {
-          "size": { "value": "M" },
-          "color": { "value": "Emerald" },
-          "quantity": 16,
-          "sku": "BAP-EME-M"
+          "size": { "value": "S" },
+          "color": { "value": "Mauve" },
+          "quantity": 71,
+          "sku": "BAP-MAU-S"
         },
         {
-          "size": { "value": "L" },
-          "color": { "value": "Coral" },
-          "quantity": 2,
-          "sku": "BAP-COR-L"
+          "size": { "value": "XXL" },
+          "color": { "value": "Copper" },
+          "quantity": 69,
+          "sku": "BAP-COP-XXL"
         }
       ]
     },
     {
-      "name": "Cargobyxor Cargo Trousers",
+      "name": "Cargo pants cargo trousers",
       "unitPrice": 499,
       "images": [
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_7008200-03_Fm_M0064331&mw={size}",
@@ -1361,24 +1421,18 @@
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_7008200-07_Fm&mw={size}"
       ],
       "brandName": "William Baxter",
-      "description": "Eaque numquam minima est voluptas hic libero. Nihil quis sapiente deserunt nesciunt a. Voluptatem quia sit fugit eligendi. Rerum qui quia esse quidem. Optio eveniet molestias sunt amet iusto rerum. At architecto iusto vel dolorum. Corrupti aut ipsum cumque rerum blanditiis. Doloribus exercitationem sapiente ab veritatis.",
+      "description": "Qui quia voluptatem quo et. Provident id natus. Rerum et omnis quae commodi ut et modi quibusdam. Dolores fugiat qui sit reiciendis consequatur. Cupiditate in perspiciatis qui. Voluptas nisi impedit nam. Doloremque iusto porro sunt libero repellendus illo et. Quidem animi dolores qui.",
       "attributes": [
         {
-          "size": { "value": "S" },
-          "color": { "value": "White" },
-          "quantity": 60,
-          "sku": "CCT-WHI-S"
-        },
-        {
-          "size": { "value": "XXL" },
-          "color": { "value": "Red" },
-          "quantity": 5,
-          "sku": "CCT-RED-XXL"
+          "size": { "value": "L" },
+          "color": { "value": "Silver" },
+          "quantity": 7,
+          "sku": "CCT-SIL-L"
         }
       ]
     },
     {
-      "name": "Cargobyxor Slim Cargo",
+      "name": "Cargo pants Slim Cargo",
       "unitPrice": 499,
       "images": [
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_7012752-02_Fm_M0052482&mw={size}",
@@ -1388,24 +1442,30 @@
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_7012752-01_Fm&mw={size}"
       ],
       "brandName": "Studio Total",
-      "description": "Ut nihil quis ut consequatur. Qui cumque id impedit corporis. Quia deserunt molestias. Aliquid pariatur corporis quisquam ratione odio sunt itaque ut. Natus nisi ut illo qui fuga dolor sit velit. Sit aperiam voluptas enim et iure laudantium facere rerum adipisci. Animi id ab rerum amet. Maxime sit asperiores nisi.",
+      "description": "Qui consequuntur dolores. Consequatur quod dicta et. Eveniet et provident quaerat aut optio. Omnis earum ut nihil aut exercitationem et. Itaque voluptatem aut voluptate modi. Et quia quam aperiam dolore labore praesentium ut tempora. Dolor eos voluptas at explicabo. Labore quidem inventore illo et.",
       "attributes": [
         {
-          "size": { "value": "XS" },
-          "color": { "value": "Gold" },
-          "quantity": 44,
-          "sku": "CSC-GOL-XS"
+          "size": { "value": "S" },
+          "color": { "value": "Emerald" },
+          "quantity": 12,
+          "sku": "CSC-EME-S"
         },
         {
-          "size": { "value": "M" },
-          "color": { "value": "Coral" },
-          "quantity": 60,
-          "sku": "CSC-COR-M"
+          "size": { "value": "L" },
+          "color": { "value": "Pink" },
+          "quantity": 5,
+          "sku": "CSC-PIN-L"
+        },
+        {
+          "size": { "value": "XS" },
+          "color": { "value": "Copper" },
+          "quantity": 11,
+          "sku": "CSC-COP-XS"
         }
       ]
     },
     {
-      "name": "Byxor Regular Cord Trousers",
+      "name": "Trousers Regular Cord Trousers",
       "unitPrice": 499,
       "images": [
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_7014040-01_Fm_M0065595&mw={size}",
@@ -1415,25 +1475,13 @@
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_7014040-02_Fm&mw={size}"
       ],
       "brandName": "Studio Total",
-      "description": "Voluptatem quia consequatur tempore ut aut consequatur. Optio at consequatur reiciendis recusandae. Temporibus maiores temporibus voluptatum ullam. Autem ut eum necessitatibus quia quibusdam. Consequatur est quaerat. Incidunt sunt eaque eum minima dolor dolorem consequatur modi. Ut saepe accusamus. Recusandae aliquam nihil ipsa alias.",
+      "description": "Ipsa quis omnis. Repellat sed enim saepe. Culpa nesciunt nobis aut labore pariatur sed hic. Incidunt temporibus totam ab rerum ab similique. Dolorem consequatur voluptatem ea reprehenderit quasi aperiam sed perspiciatis. Fugit et corporis. In aut omnis a nesciunt magnam temporibus incidunt rerum. Aliquid autem facilis minima hic optio quisquam.",
       "attributes": [
         {
           "size": { "value": "L" },
-          "color": { "value": "Maroon" },
-          "quantity": 81,
-          "sku": "BRCT-MAR-L"
-        },
-        {
-          "size": { "value": "S" },
-          "color": { "value": "Navy" },
-          "quantity": 70,
-          "sku": "BRCT-NAV-S"
-        },
-        {
-          "size": { "value": "XL" },
-          "color": { "value": "Coral" },
-          "quantity": 15,
-          "sku": "BRCT-COR-XL"
+          "color": { "value": "Silver" },
+          "quantity": 98,
+          "sku": "BRCT-SIL-L"
         }
       ]
     },
@@ -1450,19 +1498,19 @@
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_7014582-05_Fm&mw={size}"
       ],
       "brandName": "Studio Total",
-      "description": "Qui occaecati ut in iste modi in quidem incidunt adipisci. Sapiente doloremque facilis explicabo ad dolores eveniet natus. Ipsam dolorem illum culpa exercitationem sed. Sit deserunt esse sit magni omnis beatae non ad. Ipsum est aspernatur officia quisquam hic est. Occaecati veritatis molestias repudiandae laborum. Magnam non aut qui quisquam cupiditate. Numquam labore quia quaerat vero et aut quia corporis.",
+      "description": "Asperiores beatae omnis occaecati et voluptas explicabo non. Sit autem quasi dolorum in dolores ea. Voluptatem hic excepturi. Nulla commodi placeat doloremque in doloremque itaque ut numquam. Doloribus qui ut asperiores error id voluptatem. Assumenda assumenda eaque labore quos aut omnis. Enim ut rerum ipsum architecto esse dolor odit qui sint. Eius voluptatem odit ex officia ut.",
       "attributes": [
         {
-          "size": { "value": "L" },
-          "color": { "value": "Yellow" },
-          "quantity": 71,
-          "sku": "SSTS-YEL-L"
+          "size": { "value": "XXL" },
+          "color": { "value": "Pink" },
+          "quantity": 27,
+          "sku": "SSTS-PIN-XXL"
         },
         {
           "size": { "value": "S" },
-          "color": { "value": "Crimson" },
-          "quantity": 24,
-          "sku": "SSTS-CRI-S"
+          "color": { "value": "Red" },
+          "quantity": 84,
+          "sku": "SSTS-RED-S"
         }
       ]
     },
@@ -1476,18 +1524,36 @@
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_7015217-02_Fm&mw={size}"
       ],
       "brandName": "A7S",
-      "description": "Quo saepe nobis magnam doloremque accusantium eligendi ut. Officiis accusantium numquam. Itaque et quo et et aut pariatur quia atque sequi. Et perferendis autem dolorum commodi iure aspernatur. Eos enim sunt id at magnam. Modi fugiat veritatis rerum dolores. Quia sunt magni recusandae. Explicabo facilis error voluptatem.",
+      "description": "Saepe consequatur sunt veniam voluptatem natus et nihil. Suscipit ut laudantium laborum qui laboriosam sed. Repellendus a eaque fugiat itaque optio doloremque. Aut numquam porro tempora et et dolor et. Nihil ipsum qui omnis. Maiores cupiditate consequatur. Ut aut et quasi. Qui atque nemo quo et eaque cupiditate repellendus.",
       "attributes": [
         {
-          "size": { "value": "XL" },
-          "color": { "value": "Olive Green" },
-          "quantity": 68,
-          "sku": "PSTP-OLI-XL"
+          "size": { "value": "S" },
+          "color": { "value": "Emerald" },
+          "quantity": 56,
+          "sku": "PSTP-EME-S"
+        },
+        {
+          "size": { "value": "M" },
+          "color": { "value": "Cyan" },
+          "quantity": 38,
+          "sku": "PSTP-CYA-M"
+        },
+        {
+          "size": { "value": "M" },
+          "color": { "value": "Olive" },
+          "quantity": 32,
+          "sku": "PSTP-OLI-M"
+        },
+        {
+          "size": { "value": "XS" },
+          "color": { "value": "Yellow" },
+          "quantity": 29,
+          "sku": "PSTP-YEL-XS"
         }
       ]
     },
     {
-      "name": "Mjukisbyxor Velour Pants",
+      "name": "Soft pants velor pants",
       "unitPrice": 899,
       "images": [
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_1673521-01_Fm_M0066224&mw={size}",
@@ -1495,18 +1561,24 @@
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_1673521-01_Fm&mw={size}"
       ],
       "brandName": "BOSS",
-      "description": "Placeat mollitia vel sit. Dolores voluptatem occaecati. Est similique aut ut. Labore libero veniam quia quam id. Non deleniti quo velit dolorum ex quo aut est similique. Eligendi magnam voluptas doloribus aliquid inventore laborum omnis et. Odit qui magnam error sit consequatur rerum. Ratione accusamus tempora dolorum quibusdam impedit culpa ipsa.",
+      "description": "Voluptatem molestiae rerum est quis facilis in placeat. Dolor ut odio facilis sit temporibus recusandae labore. Blanditiis modi nihil animi. Distinctio ut est aut quas voluptatem dolores nostrum. Voluptates temporibus eveniet officia optio repellat necessitatibus et veritatis. Eligendi ab error officiis amet provident voluptas et id fuga. Ut mollitia quas et. Rerum soluta neque sit nostrum vel enim odio.",
       "attributes": [
         {
-          "size": { "value": "XL" },
-          "color": { "value": "Copper" },
-          "quantity": 11,
-          "sku": "MVP-COP-XL"
+          "size": { "value": "M" },
+          "color": { "value": "Red" },
+          "quantity": 30,
+          "sku": "MVP-RED-M"
+        },
+        {
+          "size": { "value": "XS" },
+          "color": { "value": "Olive" },
+          "quantity": 43,
+          "sku": "MVP-OLI-XS"
         }
       ]
     },
     {
-      "name": "Byxor Lazy Leo Slouchy Twill Army",
+      "name": "Pants Lazy Leo Slouchy Twill Army",
       "unitPrice": 1499,
       "images": [
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_1636527-01_Fm_M0056556&mw={size}",
@@ -1514,30 +1586,30 @@
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_1636527-01_Fm&mw={size}"
       ],
       "brandName": "Nudie Jeans",
-      "description": "Et minus eaque voluptatem. Incidunt eos rerum neque consequatur maiores dolorem sint sequi. Quasi suscipit maiores illum sapiente qui illo. Ipsum quibusdam autem facilis quos eum modi. Libero praesentium distinctio quia reiciendis et fugiat temporibus. Id doloribus ut eaque dolor id et. Enim cumque autem. Officiis veritatis asperiores placeat laborum saepe molestiae quia.",
+      "description": "Ut beatae nihil accusamus. Dolor neque sit vitae voluptates repudiandae minima et sequi. Ducimus aut ea nobis. In quos dolores voluptatem consequatur pariatur tempore officiis. Consequatur qui ea optio perferendis quibusdam. Dolores soluta id consequatur praesentium harum. Qui exercitationem perspiciatis soluta tempora autem aut. Voluptates sint corrupti deserunt sunt doloribus sint aut.",
       "attributes": [
         {
-          "size": { "value": "L" },
-          "color": { "value": "Emerald" },
-          "quantity": 48,
-          "sku": "BLLSTA-EME-L"
+          "size": { "value": "S" },
+          "color": { "value": "Purple" },
+          "quantity": 90,
+          "sku": "BLLSTA-PUR-S"
         },
         {
-          "size": { "value": "S" },
-          "color": { "value": "Red" },
-          "quantity": 36,
-          "sku": "BLLSTA-RED-S"
+          "size": { "value": "XXL" },
+          "color": { "value": "Yellow" },
+          "quantity": 72,
+          "sku": "BLLSTA-YEL-XXL"
         },
         {
           "size": { "value": "M" },
-          "color": { "value": "Pink" },
-          "quantity": 84,
-          "sku": "BLLSTA-PIN-M"
+          "color": { "value": "Cream" },
+          "quantity": 66,
+          "sku": "BLLSTA-CRE-M"
         }
       ]
     },
     {
-      "name": "Byxor Monza Fin Pant",
+      "name": "Trousers Monza Fine Pawn",
       "unitPrice": 899,
       "images": [
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_1655226-01_Fm_M0061709&mw={size}",
@@ -1545,18 +1617,24 @@
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_1655226-01_Fm&mw={size}"
       ],
       "brandName": "GABBA",
-      "description": "Sint earum et dignissimos. Temporibus voluptatem et ad maiores quis dolore vel illum. Nesciunt praesentium in architecto nihil sit pariatur harum sit non. Nemo aut hic necessitatibus quisquam reprehenderit vero. Aut sed eum non enim. Minus nihil et voluptates iusto sequi. Eos dolorum quia quam sequi dolor iure ad. Aut modi debitis laboriosam laudantium voluptatem et.",
+      "description": "Atque rerum voluptatum molestias repellendus quod necessitatibus molestias. Delectus maxime minus iusto harum est. Velit modi possimus autem quo. Optio laborum nihil asperiores cum consequuntur. Aspernatur fuga voluptatem excepturi error quaerat voluptatibus. Aliquam velit quia officia fuga doloremque id molestiae voluptas. Veritatis magnam laboriosam velit doloremque. Quis aut autem commodi sapiente.",
       "attributes": [
         {
+          "size": { "value": "S" },
+          "color": { "value": "Violet" },
+          "quantity": 18,
+          "sku": "BMFP-VIO-S"
+        },
+        {
           "size": { "value": "XL" },
-          "color": { "value": "Magenta" },
-          "quantity": 75,
-          "sku": "BMFP-MAG-XL"
+          "color": { "value": "White" },
+          "quantity": 23,
+          "sku": "BMFP-WHI-XL"
         }
       ]
     },
     {
-      "name": "Cargobyxor Army Cargo Trousers",
+      "name": "Cargo Pants Army Cargo Trousers",
       "unitPrice": 499,
       "images": [
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_7011006-03_Fm_M0064332&mw={size}",
@@ -1566,18 +1644,18 @@
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_7011006-01_Fm&mw={size}"
       ],
       "brandName": "William Baxter",
-      "description": "Aspernatur et est dolorum reprehenderit inventore qui ducimus. Sunt nemo dolorum sit voluptas in doloribus enim. Odit recusandae ipsam qui rerum vero cupiditate aperiam nobis. Amet distinctio dolore aspernatur est nam. Doloribus eos repudiandae delectus est voluptatem neque quis quo. Voluptates dolores dolorem eveniet laudantium non quam quia qui. Rem dicta occaecati reprehenderit autem quis. Sunt cum quia blanditiis nostrum sit pariatur.",
+      "description": "Similique cupiditate reiciendis nemo recusandae eum asperiores ullam vel. In consequatur voluptatibus temporibus unde ipsum. Odit eum voluptatem. Fugiat odio officiis quasi. Dolore aut consequuntur aut explicabo et saepe repudiandae. Et laudantium veritatis soluta autem id. Error minima tempore perferendis. Illo doloribus minus et accusamus velit tenetur.",
       "attributes": [
         {
           "size": { "value": "L" },
-          "color": { "value": "Orange" },
-          "quantity": 22,
-          "sku": "CACT-ORA-L"
+          "color": { "value": "Purple" },
+          "quantity": 15,
+          "sku": "CACT-PUR-L"
         }
       ]
     },
     {
-      "name": "Joggingbyxor KSC25 RL Fleece Sweatpants",
+      "name": "Jogging Pants KSC25 RL Fleece Sweatpants",
       "unitPrice": 1199,
       "images": [
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_1632434-02_Fm_M0050498&mw={size}",
@@ -1587,36 +1665,30 @@
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_1632434-01_Fm&mw={size}"
       ],
       "brandName": "Polo Ralph Lauren",
-      "description": "Ea similique quasi rem doloremque saepe et. Sunt totam voluptates quia distinctio dolor error accusantium corporis rerum. Eos nisi omnis eum nihil nisi. Asperiores ratione sequi eveniet consequatur. Iste corporis velit aut nihil minus. Nam autem accusantium vel. Provident inventore suscipit exercitationem. Ea eius consequatur adipisci aut enim et.",
+      "description": "Amet et autem perferendis ut perferendis occaecati ab quidem vel. Labore mollitia et saepe ex quis. Sed molestias sed vel cum. Dignissimos et magni esse natus omnis molestias voluptates recusandae. Est magni ad impedit est assumenda magnam sed vitae. Nisi ratione pariatur aspernatur cum quae. Accusantium dolore expedita esse. Illo ut et molestias ducimus non non nisi omnis odio.",
       "attributes": [
         {
-          "size": { "value": "XXL" },
-          "color": { "value": "Red" },
-          "quantity": 13,
-          "sku": "JKRFS-RED-XXL"
-        },
-        {
-          "size": { "value": "XS" },
-          "color": { "value": "Gray" },
-          "quantity": 43,
-          "sku": "JKRFS-GRA-XS"
-        },
-        {
           "size": { "value": "L" },
-          "color": { "value": "Orange" },
-          "quantity": 83,
-          "sku": "JKRFS-ORA-L"
+          "color": { "value": "Navy" },
+          "quantity": 19,
+          "sku": "JKRFS-NAV-L"
+        },
+        {
+          "size": { "value": "M" },
+          "color": { "value": "Green" },
+          "quantity": 54,
+          "sku": "JKRFS-GRE-M"
         },
         {
           "size": { "value": "XXL" },
-          "color": { "value": "Blue" },
-          "quantity": 15,
-          "sku": "JKRFS-BLU-XXL"
+          "color": { "value": "Maroon" },
+          "quantity": 68,
+          "sku": "JKRFS-MAR-XXL"
         }
       ]
     },
     {
-      "name": "Chinos MN Authentic Chino Loose Pant",
+      "name": "Chinos Mn Authentic Chino Loose Pant",
       "unitPrice": 749,
       "images": [
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_1640326-01_Fm_M0059369&mw={size}",
@@ -1624,19 +1696,19 @@
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_1640326-01_Fm&mw={size}"
       ],
       "brandName": "Vans",
-      "description": "Sed distinctio et et. Non rerum dignissimos officia eius non qui eaque est repellat. Quod ipsam quaerat consequatur architecto suscipit corporis est reprehenderit. Officiis quibusdam ut laudantium sequi expedita. Suscipit et natus illo natus sapiente. Illo dolore omnis sunt esse excepturi nihil. Et omnis esse iusto ut velit cum. Dolor ut voluptatem laboriosam voluptas velit.",
+      "description": "Excepturi maxime occaecati. Sit molestiae sunt. Voluptas vel delectus unde quia enim enim nostrum voluptatum ut. Ipsam optio sit ad incidunt consequatur nesciunt. Qui dolorum sed ratione blanditiis. Numquam temporibus fugiat rem qui. Eligendi eum eum et fuga recusandae enim et enim est. Sequi fugiat molestiae ut neque deleniti eum.",
       "attributes": [
         {
-          "size": { "value": "S" },
-          "color": { "value": "Brown" },
-          "quantity": 61,
-          "sku": "CMACLP-BRO-S"
+          "size": { "value": "XL" },
+          "color": { "value": "Turquoise" },
+          "quantity": 37,
+          "sku": "CMACLP-TUR-XL"
         },
         {
           "size": { "value": "M" },
-          "color": { "value": "Yellow" },
-          "quantity": 61,
-          "sku": "CMACLP-YEL-M"
+          "color": { "value": "Red" },
+          "quantity": 72,
+          "sku": "CMACLP-RED-M"
         }
       ]
     },
@@ -1653,18 +1725,18 @@
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_7014582-04_Fm&mw={size}"
       ],
       "brandName": "Studio Total",
-      "description": "Quis enim nulla aut accusantium sunt omnis sequi at. Modi doloribus non maiores quis eos repellat assumenda. Et sunt modi et officiis explicabo. Reprehenderit ratione commodi suscipit labore. Harum hic non eius corporis doloribus laudantium molestias inventore. Quaerat qui repudiandae dolores. Est est cum ipsam ad. Officia accusamus ut necessitatibus dolores quam sequi atque laudantium.",
+      "description": "Blanditiis voluptatibus qui rerum vel commodi repellat reiciendis officia. Ipsum ex voluptatem voluptas eum excepturi voluptate. Qui similique corrupti maiores mollitia accusamus ut quaerat magnam. Eius praesentium impedit et porro nobis. Dolor eius esse maxime sed illum dolore. Tempore nobis id saepe ea suscipit dignissimos a necessitatibus. Necessitatibus ut aut voluptatum illo reprehenderit. In sit iusto in eum.",
       "attributes": [
         {
-          "size": { "value": "XL" },
-          "color": { "value": "Purple" },
-          "quantity": 19,
-          "sku": "SSTS-PUR-XL"
+          "size": { "value": "S" },
+          "color": { "value": "Pink" },
+          "quantity": 65,
+          "sku": "SSTS-PIN-S"
         }
       ]
     },
     {
-      "name": "Cargobyxor Favourite Cargo Trousers",
+      "name": "Cargo pants Favorite Cargo Trousers",
       "unitPrice": 499,
       "images": [
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_7008923-04_Fm_M0037523&mw={size}",
@@ -1673,19 +1745,31 @@
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_7008923-05_Fm&mw={size}"
       ],
       "brandName": "Studio Total",
-      "description": "Quia tenetur et qui praesentium. Facere ex eius deserunt alias qui iure vel. Eos occaecati quam itaque molestias consectetur. Consequuntur iure dignissimos fuga ducimus autem eos et. Quia magnam consequatur voluptatum optio. Sint laboriosam sapiente voluptatibus ipsam dolor laborum est quae autem. Necessitatibus culpa sunt exercitationem aut mollitia aperiam recusandae sit. Est est illum voluptatibus temporibus labore quia ipsa.",
+      "description": "Quia modi facilis. Et nulla nemo ullam enim. Amet nemo et eum saepe consequatur quidem praesentium corrupti. Et vel aut neque asperiores. Omnis qui odio. Laudantium odit voluptatem praesentium eos sed doloremque incidunt. Sapiente ullam voluptatem id inventore. Eos ut et sint qui libero rerum.",
       "attributes": [
         {
-          "size": { "value": "M" },
-          "color": { "value": "Gold" },
+          "size": { "value": "L" },
+          "color": { "value": "Olive" },
           "quantity": 27,
-          "sku": "CFCT-GOL-M"
+          "sku": "CFCT-OLI-L"
         },
         {
-          "size": { "value": "XXL" },
-          "color": { "value": "Gold" },
-          "quantity": 81,
-          "sku": "CFCT-GOL-XXL"
+          "size": { "value": "XS" },
+          "color": { "value": "Pink" },
+          "quantity": 31,
+          "sku": "CFCT-PIN-XS"
+        },
+        {
+          "size": { "value": "M" },
+          "color": { "value": "Pink" },
+          "quantity": 100,
+          "sku": "CFCT-PIN-M"
+        },
+        {
+          "size": { "value": "S" },
+          "color": { "value": "Teal" },
+          "quantity": 62,
+          "sku": "CFCT-TEA-S"
         }
       ]
     },
@@ -1701,31 +1785,19 @@
         "https://assets.ellosgroup.com/i/ellos/b?$sg$&$sm$&$sp$&$sd$&n=sth_7013649-04_Fm&mw={size}"
       ],
       "brandName": "William Baxter",
-      "description": "Quisquam odit et et iste. Dolorum quo aperiam consequatur dolor ducimus accusantium dolor voluptatibus iure. Ea perferendis quidem nulla. Explicabo nulla optio cupiditate officiis vitae eum architecto et. Consequatur explicabo perspiciatis tempora ad velit non et et. Minus aut quisquam autem ut dolore quod ut. Totam expedita voluptatem itaque aut maxime est. Nisi ratione sit velit id id pariatur.",
+      "description": "Eos consequatur quisquam nesciunt. Vitae aut omnis molestias. Mollitia exercitationem eaque iste rerum sapiente ex deserunt. Ratione similique voluptatibus fugiat eaque. Doloribus et minus maxime ut voluptas. Doloribus sint reiciendis. Molestiae minima placeat blanditiis nihil ut. Earum atque sunt aliquid eius ab aspernatur.",
       "attributes": [
         {
+          "size": { "value": "S" },
+          "color": { "value": "Lime" },
+          "quantity": 97,
+          "sku": "SBS-LIM-S"
+        },
+        {
           "size": { "value": "XL" },
-          "color": { "value": "Red" },
-          "quantity": 64,
-          "sku": "SBS-RED-XL"
-        },
-        {
-          "size": { "value": "XXL" },
-          "color": { "value": "Violet" },
-          "quantity": 25,
-          "sku": "SBS-VIO-XXL"
-        },
-        {
-          "size": { "value": "XS" },
-          "color": { "value": "White" },
-          "quantity": 51,
-          "sku": "SBS-WHI-XS"
-        },
-        {
-          "size": { "value": "L" },
-          "color": { "value": "Cyan" },
-          "quantity": 54,
-          "sku": "SBS-CYA-L"
+          "color": { "value": "Green" },
+          "quantity": 15,
+          "sku": "SBS-GRE-XL"
         }
       ]
     }

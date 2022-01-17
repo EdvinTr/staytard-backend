@@ -8,6 +8,7 @@ import { ProductColor } from '../modules/product/entities/product-color.entity';
 import { ProductSize } from '../modules/product/entities/product-size.entity';
 import { Product } from '../modules/product/entities/product.entity';
 import { generateSku } from '../utils/generate-sku.util';
+import { translateFromSvToEn } from '../utils/translate-from-sv-to-en';
 
 export interface StayhardResponse {
   category: PurpleCategory;
@@ -284,10 +285,15 @@ const generateProducts = async (pageNumber: number) => {
       console.log('DONE');
       return; // should call with the new URL (e.g, jackor -> jeans etc) and new page number
     }
+    const products: GeneratedProduct[] = [];
+    for (const article of data.articles) {
+      console.log('Translating name');
+      const translatedName = await translateFromSvToEn(article.name);
+      console.log('Translating name DONE');
+      // TODO: capitalize each word in the name, or do this with @BeforeInsert on Product entity
 
-    const products: GeneratedProduct[] = data.articles?.map((article) => {
-      return {
-        name: article.name,
+      const prod = {
+        name: translatedName,
         unitPrice: article.originalPrice,
         images: [
           article.imageFront.detail,
@@ -303,9 +309,8 @@ const generateProducts = async (pageNumber: number) => {
         description: casual.sentences(8),
         attributes: [...generateAttributes(casual.integer(1, 4), article.name)],
       };
-    });
-
-    // append products to JSON file
+      products.push(prod);
+    }
     const filePath = path.join(
       process.cwd(),
       'src',
