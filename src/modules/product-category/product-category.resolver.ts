@@ -8,15 +8,8 @@ export class ProductCategoryResolver {
     private readonly productCategoryService: ProductCategoryService,
   ) {}
 
-  /*   @ResolveField(() => String)
-  async getFullDescription(@Parent() { id }: ProductCategory) {
-    const category = await this.productCategoryService.findOne({
-      where: { id },
-    });
-    return category?.description;
-  } */
   @Query(() => [ProductCategory])
-  async getCategories() {
+  async categories() {
     return this.productCategoryService.findCategories({
       relations: ['children'],
       where: {

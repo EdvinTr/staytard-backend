@@ -98,7 +98,7 @@ type ProductBrand {
 
 type Query {
   me: User!
-  getCategories: [ProductCategory!]!
+  categories: [ProductCategory!]!
   getOneCategory(slug: String!): ProductCategory!
   products: [Product!]!
   productBrands(input: GetProductBrandsInput!): [ProductBrand!]!
