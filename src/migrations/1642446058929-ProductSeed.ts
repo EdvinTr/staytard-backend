@@ -43,21 +43,22 @@ export class ProductSeed1642446058929 implements MigrationInterface {
           if (!brand) {
             brand = allBrands[casual.integer(0, allBrands.length - 1)];
           }
-          // TODO: why random category, just use the category????
-          /*  let randomCategory =
-            category.children[
-              Math.floor(Math.random() * category.children.length)
-            ];
-          if (!randomCategory || category.children.length === 0) {
-            randomCategory = category;
-          } */
 
+          let actualCategory = category;
+          if (Math.random() > 0.4 && category.children.length !== 0) {
+            // randomly add the product to a child category with 40% chance, makes sense right?
+            const randomCategory =
+              category.children[
+                Math.floor(Math.random() * category.children.length)
+              ];
+            actualCategory = randomCategory;
+          }
           const product = Product.create({
             name: item.name,
             description: item.description,
             unitPrice: item.unitPrice,
             brand,
-            category: category,
+            category: actualCategory,
             images: [
               ...item.images.map((url) => {
                 const image = new ProductImage();

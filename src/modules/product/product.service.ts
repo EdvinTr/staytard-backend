@@ -8,7 +8,6 @@ import { ProductAttribute } from './entities/product-attribute.entity';
 import { ProductColor } from './entities/product-color.entity';
 import { ProductSize } from './entities/product-size.entity';
 import { Product } from './entities/product.entity';
-
 @Injectable()
 export class ProductService {
   constructor(
@@ -16,12 +15,33 @@ export class ProductService {
     private readonly productRepository: Repository<Product>,
   ) {}
 
-  public async findAll({ limit, offset }: GetProductsInput) {
+  public async findAll({ limit, offset, categorySlug }: GetProductsInput) {
     const realLimit = limit > 50 ? 50 : limit;
-    const [products, count] = await this.productRepository.findAndCount({
+
+    // need category with categorySlug, then get all the children of that category as well
+    const [products, count] = await this.productRepository
+      .createQueryBuilder('product')
+      .innerJoinAndSelect('product.category', 'category')
+      .innerJoinAndSelect('category.children', 'children')
+      .innerJoinAndSelect('product.brand', 'brand')
+      .innerJoinAndSelect('product.images', 'images')
+      .innerJoinAndSelect('product.attributes', 'attributes')
+      .innerJoinAndSelect('attributes.color', 'color')
+      .innerJoinAndSelect('attributes.size', 'size')
+      .skip(offset)
+      .take(realLimit)
+      .where('category.slug = :categorySlug', { categorySlug })
+      .getManyAndCount();
+
+    /* const [products, count] = await this.productRepository.findAndCount({
       take: realLimit,
       skip: offset,
-    });
+      where: {
+        category: {
+          slug: categorySlug,
+        },
+      },
+    }); */
 
     return {
       products,

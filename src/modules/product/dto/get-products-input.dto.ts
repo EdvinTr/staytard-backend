@@ -7,4 +7,7 @@ export class GetProductsInput {
 
   @Field()
   limit: number;
+
+  @Field()
+  categorySlug: string;
 }
