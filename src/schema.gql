@@ -113,7 +113,7 @@ type Query {
 input GetProductsInput {
   offset: Float!
   limit: Float!
-  categorySlug: String!
+  categoryPath: String!
 }
 
 input GetProductBrandsInput {

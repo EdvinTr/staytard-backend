@@ -15,17 +15,20 @@ export class ProductService {
     private readonly productRepository: Repository<Product>,
   ) {}
 
-  public async findAll({ limit, offset, categorySlug }: GetProductsInput) {
-    const realLimit = limit > 50 ? 50 : limit;
+  public async findAll({ limit, offset, categoryPath }: GetProductsInput) {
     const [products, count] = await this.productRepository.findAndCount({
-      take: realLimit,
+      take: limit,
       skip: offset,
       where: {
         category: {
-          slug: Like(`%${categorySlug}%`),
+          path: Like(`%${categoryPath}%`),
         },
       },
       relations: ['category'],
+      cache: {
+        id: `${categoryPath}-${limit}-${offset}`,
+        milliseconds: 60000, // 60 seconds
+      },
     });
     return {
       products,
