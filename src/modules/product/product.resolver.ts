@@ -20,12 +20,12 @@ export class ProductResolver {
   constructor(private readonly productService: ProductService) {}
 
   @ResolveField(() => String)
-  async priceLabel(@Parent() product: Product) {
+  public async priceLabel(@Parent() product: Product) {
     return `${product.unitPrice} EUR`;
   }
 
   @Query(() => QueryProductsOutput)
-  async products(
+  public async products(
     @Args('input') input: GetProductsInput,
   ): Promise<QueryProductsOutput> {
     const { products, count } = await this.productService.findAll(input);
@@ -38,7 +38,7 @@ export class ProductResolver {
 
   @UseGuards(PermissionGuard(ProductPermission.CREATE_PRODUCT))
   @Mutation(() => Product)
-  async createProduct(@Args('input') input: CreateProductInput) {
+  public async createProduct(@Args('input') input: CreateProductInput) {
     return this.productService.create(input);
   }
 }

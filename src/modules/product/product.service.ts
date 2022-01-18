@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Like, Repository } from 'typeorm';
 import { generateSku } from '../../utils/generate-sku.util';
 import { CreateProductInput } from './dto/create-product-input.dto';
 import { GetProductsInput } from './dto/get-products-input.dto';
@@ -17,32 +17,16 @@ export class ProductService {
 
   public async findAll({ limit, offset, categorySlug }: GetProductsInput) {
     const realLimit = limit > 50 ? 50 : limit;
-
-    // need category with categorySlug, then get all the children of that category as well
-    const [products, count] = await this.productRepository
-      .createQueryBuilder('product')
-      .innerJoinAndSelect('product.category', 'category')
-      .innerJoinAndSelect('category.children', 'children')
-      .innerJoinAndSelect('product.brand', 'brand')
-      .innerJoinAndSelect('product.images', 'images')
-      .innerJoinAndSelect('product.attributes', 'attributes')
-      .innerJoinAndSelect('attributes.color', 'color')
-      .innerJoinAndSelect('attributes.size', 'size')
-      .skip(offset)
-      .take(realLimit)
-      .where('category.slug = :categorySlug', { categorySlug })
-      .getManyAndCount();
-
-    /* const [products, count] = await this.productRepository.findAndCount({
+    const [products, count] = await this.productRepository.findAndCount({
       take: realLimit,
       skip: offset,
       where: {
         category: {
-          slug: categorySlug,
+          slug: Like(`%${categorySlug}%`),
         },
       },
-    }); */
-
+      relations: ['category'],
+    });
     return {
       products,
       count,
