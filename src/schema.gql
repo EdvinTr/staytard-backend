@@ -88,6 +88,7 @@ type Product {
   categoryId: Float!
   createdAt: DateTime!
   updatedAt: DateTime!
+  priceLabel: String!
 }
 
 type ProductBrand {
@@ -96,12 +97,22 @@ type ProductBrand {
   path: String!
 }
 
+type QueryProductsOutput {
+  products: [Product!]!
+  totalCount: Float!
+}
+
 type Query {
   me: User!
   categories: [ProductCategory!]!
   getOneCategory(slug: String!): ProductCategory!
-  products: [Product!]!
+  products(input: GetProductsInput!): QueryProductsOutput!
   productBrands(input: GetProductBrandsInput!): [ProductBrand!]!
+}
+
+input GetProductsInput {
+  offset: Float!
+  limit: Float!
 }
 
 input GetProductBrandsInput {

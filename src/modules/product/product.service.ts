@@ -1,8 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { FindManyOptions, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 import { generateSku } from '../../utils/generate-sku.util';
 import { CreateProductInput } from './dto/create-product-input.dto';
+import { GetProductsInput } from './dto/get-products-input.dto';
 import { ProductAttribute } from './entities/product-attribute.entity';
 import { ProductColor } from './entities/product-color.entity';
 import { ProductSize } from './entities/product-size.entity';
@@ -15,10 +16,17 @@ export class ProductService {
     private readonly productRepository: Repository<Product>,
   ) {}
 
-  public async findAll(options?: FindManyOptions<Product>): Promise<Product[]> {
-    return this.productRepository.find({
-      ...options,
+  public async findAll({ limit, offset }: GetProductsInput) {
+    const realLimit = limit > 50 ? 50 : limit;
+    const [products, count] = await this.productRepository.findAndCount({
+      take: realLimit,
+      skip: offset,
     });
+
+    return {
+      products,
+      count,
+    };
   }
   public async create(input: CreateProductInput) {
     try {

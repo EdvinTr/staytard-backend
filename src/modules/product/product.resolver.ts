@@ -1,8 +1,17 @@
 import { UseGuards } from '@nestjs/common';
-import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
+import {
+  Args,
+  Mutation,
+  Parent,
+  Query,
+  ResolveField,
+  Resolver,
+} from '@nestjs/graphql';
 import { ProductPermission } from '../../lib/permission/enums/product-permission.enum';
 import PermissionGuard from '../authentication/guards/permission.guard';
 import { CreateProductInput } from './dto/create-product-input.dto';
+import { GetProductsInput } from './dto/get-products-input.dto';
+import { QueryProductsOutput } from './dto/query-products-output.dto';
 import { Product } from './entities/product.entity';
 import { ProductService } from './product.service';
 
@@ -10,9 +19,21 @@ import { ProductService } from './product.service';
 export class ProductResolver {
   constructor(private readonly productService: ProductService) {}
 
-  @Query(() => [Product])
-  async products(): Promise<Product[]> {
-    return this.productService.findAll();
+  @ResolveField(() => String)
+  async priceLabel(@Parent() product: Product) {
+    return `${product.unitPrice} EUR`;
+  }
+
+  @Query(() => QueryProductsOutput)
+  async products(
+    @Args('input') input: GetProductsInput,
+  ): Promise<QueryProductsOutput> {
+    const { products, count } = await this.productService.findAll(input);
+
+    return {
+      products,
+      totalCount: count,
+    };
   }
 
   @UseGuards(PermissionGuard(ProductPermission.CREATE_PRODUCT))
