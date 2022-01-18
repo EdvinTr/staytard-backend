@@ -8,6 +8,7 @@ import { ProductColor } from '../modules/product/entities/product-color.entity';
 import { ProductSize } from '../modules/product/entities/product-size.entity';
 import { Product } from '../modules/product/entities/product.entity';
 import { generateSku } from '../utils/generate-sku.util';
+import { translateFromSvToEn } from '../utils/translate-from-sv-to-en';
 
 export interface StayhardResponse {
   category: PurpleCategory;
@@ -232,22 +233,48 @@ const colors = [
 ];
 const sizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
 
-const baseUrls = {
-  klader: 'klader',
-  skor: 'skor',
-  accessoarer: 'accessoarer',
-};
-
 const clothesSubCategories = {
-  byxor: 'Pants',
+  /*   byxor: 'Pants',
   jackor: 'Jackets',
-  jeans: 'Jeans',
   'kavaj-kostym': 'Jacket & suit',
   shorts: 'Shorts',
   trojor: 'Sweaters',
-  't-shirts-pikeer': 'T-shirts',
+  't-shirts-pikeer': 'T-shirts', */
+  jeans: 'Jeans',
   'strumpor-underklader': 'Socks & underwear',
   skjortor: 'Shirts',
+};
+
+const shoesSubCategories = {
+  'sneakers-textilskor': 'Sneakers & fabric shoes',
+  'boots-kangor': 'Boots',
+  'flip-flops-sandaler': 'Flip flops & sandals',
+};
+
+const accessoriesSubCategories = {
+  'mossor-kepsar-hattar': 'Hats & Caps',
+  solglasogon: 'Sunglasses',
+  'vaskor-planbocker': 'Bags & wallets',
+  klockor: 'Watches',
+};
+
+const lifestyleSubCategories = {
+  'face-body': 'Face & Body',
+};
+
+const combinedMapOfCategories = {
+  klader: {
+    ...clothesSubCategories,
+  },
+  skor: {
+    ...shoesSubCategories,
+  },
+  accessoarer: {
+    ...accessoriesSubCategories,
+  },
+  lifestyle: {
+    ...lifestyleSubCategories,
+  },
 };
 
 type AttributeWithoutProduct = Pick<
@@ -264,6 +291,7 @@ export type GeneratedProduct = Pick<
 };
 
 interface GenerateProductsInput {
+  baseCategory: string;
   pageNumber: number;
   category: string;
   categoryInEnglish: string;
@@ -272,10 +300,10 @@ interface GenerateProductsInput {
 const generateProducts = async (input: GenerateProductsInput) => {
   try {
     console.log(
-      `Calling StayHard API with page number ${input.pageNumber} and category: ${input.category}`,
+      `Calling StayHard API with page number ${input.pageNumber}. Base category is ${input.baseCategory} and sub category: ${input.category}`,
     );
     const response = await axios.get<StayhardResponse>(
-      `https://www.stayhard.se/api/articles/?path=%2Fklader%2F${input.category}&page=${input.pageNumber}`,
+      `https://www.stayhard.se/api/articles/?path=%2F${input.baseCategory}%2F${input.category}&page=${input.pageNumber}`,
     );
     const { data } = response;
     if (data.articles.length === 0) {
@@ -284,7 +312,7 @@ const generateProducts = async (input: GenerateProductsInput) => {
     }
     const products: GeneratedProduct[] = [];
     for (const article of data.articles) {
-      // const translatedName = await translateFromSvToEn(article.name); // TODO: uncomment me
+      const translatedName = await translateFromSvToEn(article.name);
       const imageUrls = [
         article.imageFront.detail,
         article.imageAlternative.detail,
@@ -293,12 +321,12 @@ const generateProducts = async (input: GenerateProductsInput) => {
         ),
       ];
       const prod = {
-        name: article.name,
+        name: translatedName,
         unitPrice: Math.floor(article.originalPrice / 10),
         images: imageUrls,
         brandName: article.subBrand,
         description: casual.sentences(casual.integer(3, 8)),
-        attributes: [...generateAttributes(imageUrls.length, article.name)],
+        attributes: [...generateAttributes(imageUrls.length, translatedName)],
       };
       products.push(prod);
     }
@@ -317,7 +345,7 @@ const generateProducts = async (input: GenerateProductsInput) => {
     ];
     await writeFile(filePath, JSON.stringify(mergedData));
 
-    await generateProducts({ ...input, pageNumber: input.pageNumber + 1 }); //! ----> recursive
+    await generateProducts({ ...input, pageNumber: input.pageNumber + 1 }); //! recursive
   } catch (err) {
     console.error(err);
   }
@@ -344,14 +372,18 @@ const generateAttributes = (length: number, productName: string) => {
 
 const main = async () => {
   console.log('Generating products....');
-  for (const [swedishCategory, englishCategory] of Object.entries(
-    clothesSubCategories,
+  for (const [baseCategory, subCategories] of Object.entries(
+    combinedMapOfCategories,
   )) {
-    await generateProducts({
-      pageNumber: 1,
-      category: swedishCategory,
-      categoryInEnglish: englishCategory,
-    });
+    for (const [swedishCategoryName, englishCategoryName] of Object.entries(
+      subCategories,
+    ))
+      await generateProducts({
+        pageNumber: 1,
+        baseCategory,
+        category: swedishCategoryName,
+        categoryInEnglish: englishCategoryName,
+      });
   }
 };
 main();

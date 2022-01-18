@@ -43,21 +43,21 @@ export class ProductSeed1642446058929 implements MigrationInterface {
           if (!brand) {
             brand = allBrands[casual.integer(0, allBrands.length - 1)];
           }
-
-          let randomCategory =
+          // TODO: why random category, just use the category????
+          /*  let randomCategory =
             category.children[
               Math.floor(Math.random() * category.children.length)
             ];
           if (!randomCategory || category.children.length === 0) {
             randomCategory = category;
-          }
+          } */
 
           const product = Product.create({
             name: item.name,
             description: item.description,
             unitPrice: item.unitPrice,
             brand,
-            category: randomCategory,
+            category: category,
             images: [
               ...item.images.map((url) => {
                 const image = new ProductImage();
