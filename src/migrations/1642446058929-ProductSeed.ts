@@ -1,3 +1,4 @@
+import * as casual from 'casual';
 import { readFile } from 'fs/promises';
 import * as path from 'path';
 import { MigrationInterface, QueryRunner } from 'typeorm';
@@ -6,9 +7,14 @@ import { ProductBrand } from '../modules/product-brand/entities/product-brand.en
 import { ProductCategory } from '../modules/product-category/entities/product-category.entity';
 import { ProductImage } from '../modules/product/entities/product-image.entity';
 import { Product } from '../modules/product/entities/product.entity';
+
 export class ProductSeed1642446058929 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     try {
+      const categoryRepository =
+        queryRunner.manager.getRepository(ProductCategory);
+      const brandRepository = queryRunner.manager.getRepository(ProductBrand);
+
       const filePath = path.join(
         process.cwd(),
         'src',
@@ -16,71 +22,61 @@ export class ProductSeed1642446058929 implements MigrationInterface {
         'products.json',
       );
       const data = await readFile(filePath);
-      const {
-        products,
-        categoryName,
-      }: { products: GeneratedProduct[]; categoryName: string } = JSON.parse(
-        data.toString(),
-      );
-      const brandRepository = queryRunner.manager.getRepository(ProductBrand);
-      const categoryRepository =
-        queryRunner.manager.getRepository(ProductCategory);
+      const jsonData: { products: GeneratedProduct[]; categoryName: string }[] =
+        JSON.parse(data.toString());
 
-      const category = await categoryRepository.findOne({
-        relations: ['children'],
-        where: {
-          name: 'Pants', // TODO: replace with categoryName
-        },
-      });
-      if (!category) {
-        throw new Error();
-      }
-      const usedProductNames: string[] = [];
-      const productsToSave: Product[] = [];
-      for (const item of products) {
-        const brand = await brandRepository.findOne({
-          where: { name: item.brandName },
+      const allBrands = await brandRepository.find({});
+      for (const { categoryName, products: generatedProducts } of jsonData) {
+        const category = await categoryRepository.findOne({
+          relations: ['children'],
+          where: {
+            name: categoryName,
+          },
         });
-        if (!brand) {
+        if (!category) {
           continue;
         }
-        const randomCategory =
-          category.children[
-            Math.floor(Math.random() * category.children.length)
-          ]; // get random child category
+        for (const item of generatedProducts) {
+          let brand = await brandRepository.findOne({
+            where: { name: item.brandName },
+          });
+          if (!brand) {
+            brand = allBrands[casual.integer(0, allBrands.length - 1)];
+          }
 
-        if (usedProductNames.includes(item.name)) {
-          // product name has to be unique, skip if we already have it
-          continue;
-        }
-        const product = Product.create({
-          name: item.name,
-          description: item.description,
-          unitPrice: item.unitPrice,
-          brand,
-          category: randomCategory,
-          images: [
-            ...item.images.map((url) => {
-              const image = new ProductImage();
-              image.imageUrl = url;
-              return image;
+          let randomCategory =
+            category.children[
+              Math.floor(Math.random() * category.children.length)
+            ];
+          if (!randomCategory || category.children.length === 0) {
+            randomCategory = category;
+          }
+
+          const product = Product.create({
+            name: item.name,
+            description: item.description,
+            unitPrice: item.unitPrice,
+            brand,
+            category: randomCategory,
+            images: [
+              ...item.images.map((url) => {
+                const image = new ProductImage();
+                image.imageUrl = url;
+                return image;
+              }),
+            ],
+          });
+          product.attributes = [
+            ...item.attributes.map((attr) => {
+              return {
+                ...attr,
+                product: product,
+              };
             }),
-          ],
-        });
-        product.attributes = [
-          ...item.attributes.map((attr) => {
-            return {
-              ...attr,
-              product: product,
-            };
-          }),
-        ];
-        usedProductNames.push(item.name);
-        productsToSave.push(product);
+          ];
+          await Product.save(product).catch((err) => console.log(err)); // catching error here to avoid crash on unique constraint failure
+        }
       }
-      console.log('saving products');
-
-      await Product.save(productsToSave);
     } catch (err) {
       console.log(err);
     }
