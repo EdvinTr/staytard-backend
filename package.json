@@ -10,7 +10,7 @@
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js --config src/modules/database/postgres.config.ts",
-    "db:migrate": "npm run typeorm migration:run",
+    "db:migrate": "yarn typeorm migration:run",
     "migration:revert": "yarn typeorm migration:revert",
     "start": "nest start",
     "start:dev": "nest start --watch",

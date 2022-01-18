@@ -78,6 +78,7 @@ export class ProductSeed1642446058929 implements MigrationInterface {
         usedProductNames.push(item.name);
         productsToSave.push(product);
       }
+      console.log('saving products');
 
       await Product.save(productsToSave);
     } catch (err) {

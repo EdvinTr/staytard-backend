@@ -290,24 +290,20 @@ const generateProducts = async (pageNumber: number) => {
       console.log('Translating name');
       const translatedName = await translateFromSvToEn(article.name);
       console.log('Translating name DONE');
-      // TODO: capitalize each word in the name, or do this with @BeforeInsert on Product entity
-
+      const imageUrls = [
+        article.imageFront.detail,
+        article.imageAlternative.detail,
+        ...article?.relatedArticles?.map(
+          (relatedArticle) => relatedArticle.image.detail,
+        ),
+      ];
       const prod = {
         name: translatedName,
-        unitPrice: article.originalPrice,
-        images: [
-          article.imageFront.detail,
-          article.imageAlternative.detail,
-          ...article?.relatedArticles?.map(
-            (relatedArticle) => relatedArticle.image.detail,
-          ),
-        ],
-
+        unitPrice: Math.floor(article.originalPrice / 10),
+        images: imageUrls,
         brandName: article.subBrand,
-        // brandId: someId
-        // categoryId: someCategoryId;
         description: casual.sentences(8),
-        attributes: [...generateAttributes(casual.integer(1, 4), article.name)],
+        attributes: [...generateAttributes(imageUrls.length, article.name)],
       };
       products.push(prod);
     }

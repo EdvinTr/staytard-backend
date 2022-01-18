@@ -1,6 +1,8 @@
 import { Field, ObjectType } from '@nestjs/graphql';
+import * as _ from 'lodash';
 import {
   BaseEntity,
+  BeforeInsert,
   Column,
   CreateDateColumn,
   Entity,
@@ -43,6 +45,14 @@ export class Product extends BaseEntity {
   @Field()
   @Column()
   brandId: number;
+
+  @BeforeInsert()
+  private capitalizeName() {
+    this.name = this.name
+      .split(' ')
+      .map((w) => _.capitalize(w))
+      .join(' ');
+  }
 
   // TODO: should have two @Field (NOT columns) for originalPrice & currentPrice. CurrentPrice is calculated on the fly using the discount table for the product.
 
