@@ -28,12 +28,7 @@ export class ProductResolver {
   public async products(
     @Args('input') input: GetProductsInput,
   ): Promise<QueryProductsOutput> {
-    const { products, count } = await this.productService.findAll(input);
-    return {
-      items: products,
-      totalCount: count,
-      hasMore: count - input.offset > input.limit,
-    };
+    return this.productService.findAll(input);
   }
 
   @UseGuards(PermissionGuard(Permission.CREATE_PRODUCT))

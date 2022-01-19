@@ -23,4 +23,5 @@ describe('ProductService', () => {
   it('should be defined', () => {
     expect(1).toBe(1);
   });
+  // TODO: test that hasMore returns correct value depending on the offset & limit & count variable calculation
 });

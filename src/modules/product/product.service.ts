@@ -4,6 +4,7 @@ import { Like, Repository } from 'typeorm';
 import { generateSku } from '../../utils/generate-sku.util';
 import { CreateProductInput } from './dto/create-product-input.dto';
 import { GetProductsInput } from './dto/get-products-input.dto';
+import { QueryProductsOutput } from './dto/query-products-output.dto';
 import { ProductAttribute } from './entities/product-attribute.entity';
 import { ProductColor } from './entities/product-color.entity';
 import { ProductSize } from './entities/product-size.entity';
@@ -15,8 +16,12 @@ export class ProductService {
     private readonly productRepository: Repository<Product>,
   ) {}
 
-  public async findAll({ limit, offset, categoryPath }: GetProductsInput) {
-    const [products, count] = await this.productRepository.findAndCount({
+  public async findAll({
+    limit,
+    offset,
+    categoryPath,
+  }: GetProductsInput): Promise<QueryProductsOutput> {
+    const [products, totalCount] = await this.productRepository.findAndCount({
       take: limit,
       skip: offset,
       where: {
@@ -31,8 +36,9 @@ export class ProductService {
       },
     });
     return {
-      products,
-      count,
+      items: products,
+      totalCount,
+      hasMore: totalCount - offset > limit,
     };
   }
   public async create(input: CreateProductInput) {
