@@ -7,7 +7,7 @@ import {
   ResolveField,
   Resolver,
 } from '@nestjs/graphql';
-import { ProductPermission } from '../../lib/permission/enums/product-permission.enum';
+import Permission from '../../lib/permission/permission.type';
 import PermissionGuard from '../authentication/guards/permission.guard';
 import { CreateProductInput } from './dto/create-product-input.dto';
 import { GetProductsInput } from './dto/get-products-input.dto';
@@ -29,14 +29,14 @@ export class ProductResolver {
     @Args('input') input: GetProductsInput,
   ): Promise<QueryProductsOutput> {
     const { products, count } = await this.productService.findAll(input);
-
     return {
-      products,
+      items: products,
       totalCount: count,
+      hasMore: count - input.offset > input.limit,
     };
   }
 
-  @UseGuards(PermissionGuard(ProductPermission.CREATE_PRODUCT))
+  @UseGuards(PermissionGuard(Permission.CREATE_PRODUCT))
   @Mutation(() => Product)
   public async createProduct(@Args('input') input: CreateProductInput) {
     return this.productService.create(input);

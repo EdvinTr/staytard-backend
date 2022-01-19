@@ -2,8 +2,6 @@ import { Field, InputType } from '@nestjs/graphql';
 import { Transform } from 'class-transformer';
 import { Matches, Max, Min } from 'class-validator';
 
-// create regex that checks for slash sign
-const SLASH_REGEX = /\//;
 @InputType()
 export class GetProductsInput {
   @Field()

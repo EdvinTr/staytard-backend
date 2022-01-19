@@ -98,8 +98,9 @@ type ProductBrand {
 }
 
 type QueryProductsOutput {
-  products: [Product!]!
+  items: [Product!]!
   totalCount: Float!
+  hasMore: Boolean!
 }
 
 type Query {
