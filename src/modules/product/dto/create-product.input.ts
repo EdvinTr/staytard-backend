@@ -8,7 +8,7 @@ import {
   Length,
   ValidateNested,
 } from 'class-validator';
-import { CreateProductAttributeInput } from './create-product-attribute-input.dto';
+import { CreateProductAttributeInput } from './create-product-attribute.input';
 
 @InputType()
 export class CreateProductInput {

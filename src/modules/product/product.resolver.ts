@@ -9,9 +9,9 @@ import {
 } from '@nestjs/graphql';
 import Permission from '../../lib/permission/permission.type';
 import PermissionGuard from '../authentication/guards/permission.guard';
-import { CreateProductInput } from './dto/create-product-input.dto';
-import { FindProductsInput } from './dto/find-products-input.dto';
-import { QueryProductsOutput } from './dto/query-products-output.dto';
+import { CreateProductInput } from './dto/create-product.input';
+import { FindProductsInput } from './dto/find-products.input';
+import { QueryProductsOutput } from './dto/query-products.output';
 import { Product } from './entities/product.entity';
 import { ProductService } from './product.service';
 
