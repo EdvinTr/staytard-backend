@@ -3,7 +3,7 @@ import { Transform } from 'class-transformer';
 import { Matches, Max, Min } from 'class-validator';
 
 @InputType()
-export class GetProductsInput {
+export class FindProductsInput {
   @Field()
   @Min(0)
   offset: number;

@@ -83,7 +83,7 @@ type Product {
   isDiscontinued: Boolean!
   brandId: Float!
   brand: ProductBrand!
-  images: [ProductImage!]
+  images: [ProductImage!]!
   attributes: [ProductAttribute!]!
   categoryId: Float!
   createdAt: DateTime!
@@ -107,11 +107,11 @@ type Query {
   me: User!
   categories: [ProductCategory!]!
   getOneCategory(slug: String!): ProductCategory!
-  products(input: GetProductsInput!): QueryProductsOutput!
+  products(input: FindProductsInput!): QueryProductsOutput!
   productBrands(input: GetProductBrandsInput!): [ProductBrand!]!
 }
 
-input GetProductsInput {
+input FindProductsInput {
   offset: Float!
   limit: Float!
   categoryPath: String!

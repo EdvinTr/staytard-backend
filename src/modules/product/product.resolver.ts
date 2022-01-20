@@ -10,7 +10,7 @@ import {
 import Permission from '../../lib/permission/permission.type';
 import PermissionGuard from '../authentication/guards/permission.guard';
 import { CreateProductInput } from './dto/create-product-input.dto';
-import { GetProductsInput } from './dto/get-products-input.dto';
+import { FindProductsInput } from './dto/find-products-input.dto';
 import { QueryProductsOutput } from './dto/query-products-output.dto';
 import { Product } from './entities/product.entity';
 import { ProductService } from './product.service';
@@ -26,7 +26,7 @@ export class ProductResolver {
 
   @Query(() => QueryProductsOutput)
   public async products(
-    @Args('input') input: GetProductsInput,
+    @Args('input') input: FindProductsInput,
   ): Promise<QueryProductsOutput> {
     return this.productService.findAll(input);
   }

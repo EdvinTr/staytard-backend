@@ -60,7 +60,7 @@ export class Product extends BaseEntity {
   @ManyToOne(() => ProductBrand, (productBrand) => productBrand.products)
   brand: ProductBrand;
 
-  @Field(() => [ProductImage], { nullable: true })
+  @Field(() => [ProductImage])
   @OneToMany(() => ProductImage, (productImage) => productImage.product, {
     cascade: true,
     eager: true,

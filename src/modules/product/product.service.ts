@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Like, Repository } from 'typeorm';
 import { generateSku } from '../../utils/generate-sku.util';
 import { CreateProductInput } from './dto/create-product-input.dto';
-import { GetProductsInput } from './dto/get-products-input.dto';
+import { FindProductsInput } from './dto/find-products-input.dto';
 import { QueryProductsOutput } from './dto/query-products-output.dto';
 import { ProductAttribute } from './entities/product-attribute.entity';
 import { ProductColor } from './entities/product-color.entity';
@@ -20,7 +20,7 @@ export class ProductService {
     limit,
     offset,
     categoryPath,
-  }: GetProductsInput): Promise<QueryProductsOutput> {
+  }: FindProductsInput): Promise<QueryProductsOutput> {
     const [products, totalCount] = await this.productRepository.findAndCount({
       take: limit,
       skip: offset,
@@ -29,7 +29,7 @@ export class ProductService {
           path: Like(`%${categoryPath}%`),
         },
       },
-      relations: ['category'],
+      relations: ['category', 'brand'],
       cache: {
         id: `${categoryPath}-${limit}-${offset}`,
         milliseconds: 60000, // 60 seconds
