@@ -1,13 +1,19 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { ProductReviewResolver } from './product-review.resolver';
-import { ProductReviewService } from './product-review.service';
+import { ProductReviewResolver } from '../product-review.resolver';
+import { ProductReviewService } from '../product-review.service';
 
 describe('ProductReviewResolver', () => {
   let resolver: ProductReviewResolver;
-
+  let mockProductReviewService = {};
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [ProductReviewResolver, ProductReviewService],
+      providers: [
+        ProductReviewResolver,
+        {
+          provide: ProductReviewService,
+          useValue: mockProductReviewService,
+        },
+      ],
     }).compile();
 
     resolver = module.get<ProductReviewResolver>(ProductReviewResolver);
