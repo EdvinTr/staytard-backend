@@ -97,6 +97,10 @@ type ProductBrand {
   path: String!
 }
 
+type ProductReview {
+  id: Float!
+}
+
 type QueryProductsOutput {
   items: [Product!]!
   totalCount: Float!
@@ -136,6 +140,7 @@ enum SortDirection {
 
 type Mutation {
   createProduct(input: CreateProductInput!): Product!
+  createProductReview(input: CreateProductReviewInput!): ProductReview!
   registerUser(input: RegisterUserDto!): UserWithTokensDto!
   login(input: LoginUserDto!): UserWithTokensDto!
   logout: Boolean!
@@ -160,6 +165,10 @@ input CreateProductAttributeInput {
 
 input AttributeValueType {
   value: String!
+}
+
+input CreateProductReviewInput {
+  title: String!
 }
 
 input RegisterUserDto {
