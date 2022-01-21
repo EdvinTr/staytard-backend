@@ -106,7 +106,7 @@ type QueryProductsOutput {
 type Query {
   me: User!
   categories: [ProductCategory!]!
-  getOneCategory(slug: String!): ProductCategory!
+  getOneCategory(path: String!): ProductCategory!
   products(input: FindProductsInput!): QueryProductsOutput!
   productBrands(input: GetProductBrandsInput!): [ProductBrand!]!
 }
@@ -115,23 +115,29 @@ input FindProductsInput {
   offset: Float!
   limit: Float!
   categoryPath: String!
+  sortBy: PRODUCT_SORT_BY
+  sortDirection: SORT_DIRECTION
+}
+
+enum PRODUCT_SORT_BY {
+  ID
+  NAME
+  UNIT_PRICE
+}
+
+enum SORT_DIRECTION {
+  DESC
+  ASC
 }
 
 input GetProductBrandsInput {
-  sortBy: SortBy
-  sortDirection: SortDirection
+  sortBy: BRAND_SORT_BY
+  sortDirection: SORT_DIRECTION
 }
 
-"""Field to sort the result by"""
-enum SortBy {
+enum BRAND_SORT_BY {
   ID
   NAME
-}
-
-"""The basic directions"""
-enum SortDirection {
-  DESC
-  ASC
 }
 
 type Mutation {

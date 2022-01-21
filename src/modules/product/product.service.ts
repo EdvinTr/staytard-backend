@@ -20,7 +20,13 @@ export class ProductService {
     limit,
     offset,
     categoryPath,
+    sortBy,
+    sortDirection,
   }: FindProductsInput): Promise<QueryProductsOutput> {
+    const orderBy: Record<string, string> = {};
+    if (sortBy && sortDirection) {
+      orderBy[sortBy] = sortDirection;
+    }
     const [products, totalCount] = await this.productRepository.findAndCount({
       take: limit,
       skip: offset,
@@ -33,6 +39,9 @@ export class ProductService {
       cache: {
         id: `${categoryPath}-${limit}-${offset}`,
         milliseconds: 60000, // 60 seconds
+      },
+      order: {
+        ...orderBy,
       },
     });
     return {

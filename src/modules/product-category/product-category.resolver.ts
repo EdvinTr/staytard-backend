@@ -1,4 +1,5 @@
 import { Args, Query, Resolver } from '@nestjs/graphql';
+import { Like } from 'typeorm';
 import { ProductCategory } from './entities/product-category.entity';
 import { ProductCategoryService } from './product-category.service';
 
@@ -18,11 +19,11 @@ export class ProductCategoryResolver {
     });
   }
   @Query(() => ProductCategory)
-  async getOneCategory(@Args('slug') slug: string) {
+  async getOneCategory(@Args('path') path: string) {
     return this.productCategoryService.findOne({
       relations: ['children', 'children.children'],
       where: {
-        slug,
+        path: Like(`%${path}%`),
       },
     });
   }
