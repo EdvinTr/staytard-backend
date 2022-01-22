@@ -28,7 +28,7 @@ export class ProductResolver {
   public async products(
     @Args('input') input: FindProductsInput,
   ): Promise<QueryProductsOutput> {
-    return this.productService.findAll(input);
+    return this.productService.gqlFindAll(input);
   }
 
   @Query(() => Product)

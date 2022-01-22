@@ -29,7 +29,7 @@ describe('ProductService', () => {
         .mockReturnValue([[], totalProductCount]);
     });
     it('should indicate there are more products if limit is less than total product count', async () => {
-      const { hasMore, totalCount } = await service.findAll({
+      const { hasMore, totalCount } = await service.gqlFindAll({
         categoryPath: '/clothes',
         limit: 5,
         offset: 0,
@@ -38,7 +38,7 @@ describe('ProductService', () => {
       expect(totalCount).toEqual(totalProductCount);
     });
     it('should indicate there are no more products if limit is equal to total product count', async () => {
-      const { hasMore } = await service.findAll({
+      const { hasMore } = await service.gqlFindAll({
         categoryPath: '/clothes',
         limit: totalProductCount,
         offset: 0,

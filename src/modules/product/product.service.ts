@@ -1,8 +1,10 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { FindOneOptions, Like, Repository } from 'typeorm';
 import { generateSku } from '../../utils/generate-sku.util';
+import { getOffset, paginate } from '../../utils/paginate.util';
 import { CreateProductInput } from './dto/create-product.input';
+import { FindProductsDto } from './dto/find-products.dto';
 import { FindProductsInput } from './dto/find-products.input';
 import { QueryProductsOutput } from './dto/query-products.output';
 import { ProductAttribute } from './entities/product-attribute.entity';
@@ -21,7 +23,34 @@ export class ProductService {
     return prod;
   }
 
-  public async findAll({
+  public async restFindAll({ page, limit, categoryPath }: FindProductsDto) {
+    try {
+      const realPage = page ? page : 1;
+      const realLimit = limit > 50 ? 50 : limit;
+      const offset = getOffset(realPage, realLimit); // get offset for pagination
+      const [products, totalCount] = await this.productRepository.findAndCount({
+        take: realLimit,
+        skip: offset,
+        relations: ['category', 'brand'],
+        where: {
+          category: {
+            path: Like(`%${categoryPath}%`),
+          },
+        },
+      });
+      const pagination = paginate(realPage, totalCount, realLimit); // create pagination
+      return {
+        pagination,
+        products,
+      };
+    } catch (err) {
+      throw new InternalServerErrorException(
+        'Something went wrong when loading products',
+      );
+    }
+  }
+
+  public async gqlFindAll({
     limit,
     offset,
     categoryPath,

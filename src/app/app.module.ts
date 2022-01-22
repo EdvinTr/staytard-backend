@@ -1,9 +1,7 @@
 import * as Joi from '@hapi/joi';
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { APP_GUARD } from '@nestjs/core';
 import { GraphQLModule } from '@nestjs/graphql';
-import { ThrottlerModule } from '@nestjs/throttler';
 import { Request, Response } from 'express';
 import { join } from 'path';
 import { AuthenticationModule } from '../modules/authentication/authentication.module';
@@ -13,7 +11,6 @@ import { ProductBrandModule } from '../modules/product-brand/product-brand.modul
 import { ProductCategoryModule } from '../modules/product-category/product-category.module';
 import { ProductModule } from '../modules/product/product.module';
 import { UserModule } from '../modules/user/user.module';
-import { GqlThrottlerGuard } from './graphl-throttler.guard';
 
 export type JwtPayload = {
   sub: string;
@@ -67,16 +64,16 @@ export type MyContext = {
         }),
       }),
     }),
-    ThrottlerModule.forRoot({
+    /*     ThrottlerModule.forRoot({
       ttl: 60, // 60 seconds
       limit: 300, // 300 requests
-    }),
+    }), */
   ],
-  providers: [
+  /* providers: [
     {
       provide: APP_GUARD,
       useClass: GqlThrottlerGuard,
     },
-  ],
+  ], */
 })
 export class AppModule {}
