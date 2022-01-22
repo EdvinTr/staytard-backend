@@ -20,24 +20,31 @@ export class ProductReview {
   id: number;
 
   @Field()
+  @Column()
   title: string;
 
   @Field()
+  @Column()
   content: string;
 
   @Field()
+  @Column()
   wouldRecommend: boolean;
 
   @Field()
+  @Column()
   rating: number;
 
   @Field()
+  @Column()
   submittedByAlias: string;
 
   @Field()
+  @Column()
   email: string;
 
   @Field()
+  @Column()
   isPublished: boolean;
 
   @Column('timestamp', { nullable: true })
