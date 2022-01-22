@@ -44,6 +44,5 @@ export class ProductReview {
 
   @Column("timestamp")
   update_at:Text;
-
-
+  
 }
