@@ -9,11 +9,6 @@ import {
 } from 'typeorm';
 import { Product } from '../../product/entities/product.entity';
 
-// TODO:
-// 1. Should reference products, (FK should be in this ProductReview entity)
-// 2. The referenced product should not have a @Field
-
-// number / string / boolean
 @ObjectType()
 @Entity()
 export class ProductReview {
@@ -46,7 +41,7 @@ export class ProductReview {
   email: string;
 
   @Field()
-  @Column({default: false})
+  @Column({ default: false })
   isPublished: boolean;
 
   @Field()

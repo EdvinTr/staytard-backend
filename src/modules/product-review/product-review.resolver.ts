@@ -1,10 +1,10 @@
+import { UseGuards } from '@nestjs/common';
 import { Args, Mutation, Resolver } from '@nestjs/graphql';
+import Permission from '../../lib/permission/permission.type';
+import PermissionGuard from '../authentication/guards/permission.guard';
 import { CreateProductReviewInput } from './dto/create-product-review.input';
 import { ProductReview } from './entities/product-review.entity';
 import { ProductReviewService } from './product-review.service';
-import {UseGuards} from "@nestjs/common";
-import PermissionGuard from "../authentication/guards/permission.guard";
-import Permission from '../../lib/permission/permission.type';
 
 @Resolver(() => ProductReview)
 export class ProductReviewResolver {
