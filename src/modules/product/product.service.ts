@@ -23,21 +23,38 @@ export class ProductService {
     return prod;
   }
 
-  public async restFindAll({ page, limit, categoryPath }: FindProductsDto) {
+  public async restFindAll({
+    page,
+    limit,
+    categoryPath,
+    sortBy,
+    sortDirection,
+  }: FindProductsDto) {
+    const queryBuilder = this.productRepository.createQueryBuilder('product');
     try {
       const realPage = page ? page : 1;
       const realLimit = limit > 50 ? 50 : limit;
       const offset = getOffset(realPage, realLimit); // get offset for pagination
-      const [products, totalCount] = await this.productRepository.findAndCount({
-        take: realLimit,
-        skip: offset,
-        relations: ['category', 'brand'],
-        where: {
-          category: {
-            path: Like(`%${categoryPath}%`),
-          },
-        },
-      });
+      const [products, totalCount] = await queryBuilder
+        .innerJoin('product.category', 'category')
+        .innerJoinAndSelect('product.brand', 'brand')
+        .innerJoinAndSelect('product.images', 'images')
+        .innerJoinAndSelect('product.attributes', 'attributes')
+        .take(realLimit)
+        .skip(offset)
+        .where('category.path like :path', { path: `%${categoryPath}%` })
+        .select([
+          'product.id',
+          'product.name',
+          'product.isDiscontinued',
+          'product.unitPrice',
+          'images',
+          'brand',
+          'attributes',
+        ])
+        .orderBy(`${sortBy ? `product.${sortBy}` : ''}`, sortDirection)
+        .cache(60000)
+        .getManyAndCount();
       const pagination = paginate(realPage, totalCount, realLimit); // create pagination
       return {
         pagination,
