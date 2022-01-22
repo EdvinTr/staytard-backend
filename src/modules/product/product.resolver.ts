@@ -31,6 +31,13 @@ export class ProductResolver {
     return this.productService.findAll(input);
   }
 
+  @Query(() => Product)
+  public async product(@Args('id') id: number) {
+    return this.productService.findOne(id, {
+      relations: ['category', 'brand'],
+    });
+  }
+
   @UseGuards(PermissionGuard(Permission.CREATE_PRODUCT))
   @Mutation(() => Product)
   public async createProduct(@Args('input') input: CreateProductInput) {

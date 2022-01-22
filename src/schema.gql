@@ -108,6 +108,7 @@ type Query {
   categories: [ProductCategory!]!
   getOneCategory(path: String!): ProductCategory!
   products(input: FindProductsInput!): QueryProductsOutput!
+  product(id: Float!): Product!
   productBrands(input: GetProductBrandsInput!): [ProductBrand!]!
 }
 

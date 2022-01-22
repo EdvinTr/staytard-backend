@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Like, Repository } from 'typeorm';
+import { FindOneOptions, Like, Repository } from 'typeorm';
 import { generateSku } from '../../utils/generate-sku.util';
 import { CreateProductInput } from './dto/create-product.input';
 import { FindProductsInput } from './dto/find-products.input';
@@ -15,6 +15,11 @@ export class ProductService {
     @InjectRepository(Product)
     private readonly productRepository: Repository<Product>,
   ) {}
+
+  public async findOne(id: number, options?: FindOneOptions<Product>) {
+    const prod = await this.productRepository.findOne(id, options);
+    return prod;
+  }
 
   public async findAll({
     limit,
