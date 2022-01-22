@@ -3,6 +3,3 @@ export enum ProductPermission {
   UPDATE_PRODUCT = 'UPDATE_PRODUCT',
   DELETE_PRODUCT = 'DELETE_PRODUCT',
 }
-export enum ProductReviewPermission {
-  PUBLISH_REVIEW = 'PUBLISH_REVIEW',
-}

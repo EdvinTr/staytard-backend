@@ -21,7 +21,7 @@ export class ProductCategoryResolver {
   @Query(() => ProductCategory)
   async getOneCategory(@Args('path') path: string) {
     return this.productCategoryService.findOne({
-      relations: ['children', 'children.children', 'parent'],
+      relations: [],
       where: {
         path: capitalize(path),
       },
