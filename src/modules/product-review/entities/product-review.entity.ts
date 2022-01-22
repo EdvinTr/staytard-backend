@@ -3,9 +3,11 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { Product } from '../../product/entities/product.entity';
 
 // TODO:
 // 1. Should reference products, (FK should be in this ProductReview entity)
@@ -46,6 +48,9 @@ export class ProductReview {
   @Field()
   @Column()
   isPublished: boolean;
+
+  @ManyToOne((type) => Product, (product) => product.reviews)
+  product: Product;
 
   @Column('timestamp', { nullable: true })
   published: Date;
