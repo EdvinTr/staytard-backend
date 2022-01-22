@@ -1,10 +1,17 @@
 import { Field, ObjectType } from '@nestjs/graphql';
-import {Column, Entity, PrimaryGeneratedColumn} from 'typeorm';
-import {time, timezone, unix_time} from "casual";
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 // TODO:
 // 1. Should reference products, (FK should be in this ProductReview entity)
 // 2. The referenced product should not have a @Field
+
+// number / string / boolean
 @ObjectType()
 @Entity()
 export class ProductReview {
@@ -13,36 +20,34 @@ export class ProductReview {
   id: number;
 
   @Field()
-  title:Text;
+  title: string;
 
   @Field()
-  content:Text;
+  content: string;
 
   @Field()
-  would_recommend:boolean;
+  wouldRecommend: boolean;
 
   @Field()
-  rating:number;
+  rating: number;
 
   @Field()
-  submitted_by_alias:Text;
+  submittedByAlias: string;
 
   @Field()
-  email:Text;
+  email: string;
 
   @Field()
-  is_published:boolean;
+  isPublished: boolean;
 
+  @Column('timestamp', { nullable: true })
+  published: Date;
 
-  @Column("timestamp")
-  published:Text;
+  @CreateDateColumn()
+  @Field()
+  createdAt: Date;
 
-
-  @Column("timestamp")
-  created_at:Text;
-
-
-  @Column("timestamp")
-  update_at:Text;
-  
+  @UpdateDateColumn()
+  @Field()
+  updatedAt: Date;
 }

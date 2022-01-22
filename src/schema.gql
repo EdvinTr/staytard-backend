@@ -99,6 +99,15 @@ type ProductBrand {
 
 type ProductReview {
   id: Float!
+  title: String!
+  content: String!
+  wouldRecommend: Boolean!
+  rating: Float!
+  submittedByAlias: String!
+  email: String!
+  isPublished: Boolean!
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }
 
 type QueryProductsOutput {
