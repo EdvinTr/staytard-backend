@@ -15,6 +15,7 @@ import {
 } from 'typeorm';
 import { ProductBrand } from '../../product-brand/entities/product-brand.entity';
 import { ProductCategory } from '../../product-category/entities/product-category.entity';
+import { ProductReview } from '../../product-review/entities/product-review.entity';
 import { ProductAttribute } from './product-attribute.entity';
 import { ProductImage } from './product-image.entity';
 
@@ -66,6 +67,12 @@ export class Product extends BaseEntity {
     eager: true,
   })
   images: ProductImage[];
+
+  @Field(() => [ProductReview])
+  @OneToMany(() => ProductReview, (reviews) => reviews.product, {
+    cascade: true,
+  })
+  reviews: ProductReview[];
 
   @Field(() => [ProductAttribute])
   @OneToMany(() => ProductAttribute, (attributes) => attributes.product, {
