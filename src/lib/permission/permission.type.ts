@@ -1,8 +1,9 @@
 import { registerEnumType } from '@nestjs/graphql';
-import { ProductPermission } from './enums/product-permission.enum';
+import { ProductPermission,ProductReviewPermission } from './enums/product-permission.enum';
 
 const Permission = {
   ...ProductPermission,
+  ...ProductReviewPermission
 };
 
 registerEnumType(Permission, {
@@ -10,6 +11,6 @@ registerEnumType(Permission, {
   description: 'The permissions of the user',
 });
 
-type Permission = ProductPermission; // | AnotherPermissionEnumGoesHere;
+type Permission = ProductPermission| ProductReviewPermission;
 
 export default Permission;

@@ -46,7 +46,7 @@ export class ProductReview {
   email: string;
 
   @Field()
-  @Column()
+  @Column({default: false})
   isPublished: boolean;
 
   @Field()

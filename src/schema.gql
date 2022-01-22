@@ -28,6 +28,7 @@ enum Permission {
   CREATE_PRODUCT
   UPDATE_PRODUCT
   DELETE_PRODUCT
+  PUBLISH_REVIEW
 }
 
 """
@@ -152,6 +153,7 @@ enum SortDirection {
 type Mutation {
   createProduct(input: CreateProductInput!): Product!
   createProductReview(input: CreateProductReviewInput!): ProductReview!
+  publishReview(id: Float!): ProductReview!
   registerUser(input: RegisterUserDto!): UserWithTokensDto!
   login(input: LoginUserDto!): UserWithTokensDto!
   logout: Boolean!
@@ -180,6 +182,12 @@ input AttributeValueType {
 
 input CreateProductReviewInput {
   title: String!
+  content: String!
+  wouldRecommend: Boolean!
+  rating: Float!
+  submittedByAlias: String!
+  email: String!
+  productId: Float!
 }
 
 input RegisterUserDto {
