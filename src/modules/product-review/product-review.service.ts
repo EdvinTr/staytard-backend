@@ -11,10 +11,11 @@ export class ProductReviewService {
     private readonly productReviewRepository: Repository<ProductReview>,
   ) {}
   create(input: CreateProductReviewInput) {
+    const review = this.productReviewRepository.create({});
     // TODO:
     // 1. Should create product review
     // 2. Should save it to the database
     // 3. Should return the saved product review
-    return 'This action adds a new productReview';
+    return this.productReviewRepository.save(review);
   }
 }

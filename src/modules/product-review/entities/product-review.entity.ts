@@ -49,6 +49,10 @@ export class ProductReview {
   @Column()
   isPublished: boolean;
 
+  @Field()
+  @Column()
+  productId: number;
+
   @ManyToOne((type) => Product, (product) => product.reviews)
   product: Product;
 

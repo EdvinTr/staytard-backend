@@ -62,6 +62,7 @@ type ProductReview {
   submittedByAlias: String!
   email: String!
   isPublished: Boolean!
+  productId: Float!
   createdAt: DateTime!
   updatedAt: DateTime!
 }
