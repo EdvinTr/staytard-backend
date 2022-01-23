@@ -40,6 +40,8 @@ export class ProductService {
         .innerJoinAndSelect('product.brand', 'brand')
         .innerJoinAndSelect('product.images', 'images')
         .innerJoinAndSelect('product.attributes', 'attributes')
+        .innerJoinAndSelect('attributes.color', 'color')
+        .innerJoinAndSelect('attributes.size', 'size')
         .take(realLimit)
         .skip(offset)
         .where('category.path like :path', { path: `%${categoryPath}%` })
@@ -51,6 +53,8 @@ export class ProductService {
           'images',
           'brand',
           'attributes',
+          'color',
+          'size',
         ])
         .orderBy(`${sortBy ? `product.${sortBy}` : ''}`, sortDirection)
         .cache(60000)
