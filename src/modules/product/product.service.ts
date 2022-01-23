@@ -32,9 +32,7 @@ export class ProductService {
   }: FindProductsDto) {
     const queryBuilder = this.productRepository.createQueryBuilder('product');
     try {
-      const realPage = page ? page : 1;
-      const realLimit = limit > 50 ? 50 : limit;
-      const offset = getOffset(realPage, realLimit); // get offset for pagination
+      const offset = getOffset(page, limit); // get offset for pagination
       const [products, totalCount] = await queryBuilder
         .innerJoin('product.category', 'category')
         .innerJoinAndSelect('product.brand', 'brand')
@@ -42,7 +40,7 @@ export class ProductService {
         .innerJoinAndSelect('product.attributes', 'attributes')
         .innerJoinAndSelect('attributes.color', 'color')
         .innerJoinAndSelect('attributes.size', 'size')
-        .take(realLimit)
+        .take(limit)
         .skip(offset)
         .where('category.path like :path', { path: `%${categoryPath}%` })
         .select([
@@ -59,7 +57,7 @@ export class ProductService {
         .orderBy(`${sortBy ? `product.${sortBy}` : ''}`, sortDirection)
         .cache(60000)
         .getManyAndCount();
-      const pagination = paginate(realPage, totalCount, realLimit); // create pagination
+      const pagination = paginate(page, totalCount, limit); // create pagination
       return {
         pagination,
         products,
