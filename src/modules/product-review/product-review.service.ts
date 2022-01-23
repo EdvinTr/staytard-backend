@@ -21,7 +21,7 @@ export class ProductReviewService {
         where: { id },
       });
       if (!review) {
-        return new NotFoundException(`Review with id ${id} was not found`);
+        throw new NotFoundException(`Review with id ${id} was not found`);
       }
       return this.productReviewRepository.save({
         ...review, // existing fields
@@ -29,7 +29,7 @@ export class ProductReviewService {
         published: new Date(),
       });
     } catch (error) {
-      console.log(error);
+      throw error;
     }
   }
 }

@@ -9,9 +9,24 @@ import {
 } from 'typeorm';
 import { Product } from '../../product/entities/product.entity';
 
+export interface ProductReviewInterface {
+  id: number;
+  title: string;
+  content: string;
+  wouldRecommend: boolean;
+  rating: number;
+  submittedByAlias: string;
+  email: string;
+  isPublished: boolean;
+  productId: number;
+  product: Product;
+  published: Date;
+  createdAt: Date;
+  updatedAt: Date;
+}
 @ObjectType()
 @Entity()
-export class ProductReview {
+export class ProductReview implements ProductReviewInterface {
   @Field()
   @PrimaryGeneratedColumn()
   id: number;
