@@ -53,7 +53,7 @@ export class CustomerOrder extends BaseEntity {
   @ManyToOne(() => CustomerOrderStatus, (status) => status.orders)
   orderStatus: CustomerOrderStatus;
 
-  @OneToMany(() => CustomerOrderItem, (item) => item.order)
+  @OneToMany(() => CustomerOrderItem, (item) => item.order, { cascade: true })
   orderItems: CustomerOrderItem[];
 
   @Field()
