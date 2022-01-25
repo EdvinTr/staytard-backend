@@ -1,26 +1,38 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
+import { Product } from '../../product/entities/product.entity';
+import { ProductService } from '../../product/product.service';
 import { CustomerOrderService } from '../customer-order.service';
 import { CustomerOrder } from '../entities/customer-order.entity';
 
 describe('CustomerOrderService', () => {
-  let service: CustomerOrderService;
+  let customerOrderService: CustomerOrderService;
+  let productService: ProductService;
+
+  const mockProductRepository = {};
   const mockOrderRepository = {};
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
         CustomerOrderService,
+        ProductService,
         {
           provide: getRepositoryToken(CustomerOrder),
           useValue: mockOrderRepository,
         },
+        {
+          provide: getRepositoryToken(Product),
+          useValue: mockProductRepository,
+        },
       ],
     }).compile();
 
-    service = module.get<CustomerOrderService>(CustomerOrderService);
+    customerOrderService =
+      module.get<CustomerOrderService>(CustomerOrderService);
+    productService = module.get<ProductService>(ProductService);
   });
 
   it('should be defined', () => {
-    expect(service).toBeDefined();
+    expect(customerOrderService).toBeDefined();
   });
 });

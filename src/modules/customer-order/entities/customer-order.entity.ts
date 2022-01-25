@@ -47,8 +47,16 @@ export class CustomerOrder extends BaseEntity {
   })
   grandTotal: number;
 
+  @Field()
+  @Column({ nullable: false })
+  userId: string;
+
   @ManyToOne(() => User, (user) => user.orders)
   user: User;
+
+  @Field()
+  @Column({ nullable: false })
+  orderStatusId: number;
 
   @ManyToOne(() => CustomerOrderStatus, (status) => status.orders)
   orderStatus: CustomerOrderStatus;

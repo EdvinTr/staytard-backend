@@ -17,8 +17,7 @@ export class CustomerOrderResolver {
     @Args('input')
     input: CreateCustomerOrderInput,
   ) {
-    console.log(req.user);
-
-    return this.customerOrderService.create(input);
+    const userId = req.user.id;
+    return this.customerOrderService.create(input, userId);
   }
 }

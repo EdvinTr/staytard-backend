@@ -86,6 +86,8 @@ type CustomerOrder {
   totalAmount: Float!
   shippingCost: Float!
   grandTotal: Float!
+  userId: String!
+  orderStatusId: Float!
   createdAt: DateTime!
   updatedAt: DateTime!
 }
