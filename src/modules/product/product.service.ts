@@ -23,6 +23,10 @@ export class ProductService {
     return prod;
   }
 
+  public async findByIds(ids: number[]) {
+    return this.productRepository.findByIds(ids);
+  }
+
   public async restFindAll({
     page,
     limit,

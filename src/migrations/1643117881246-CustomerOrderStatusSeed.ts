@@ -1,19 +1,13 @@
 import { MigrationInterface, QueryRunner } from 'typeorm';
 import { CustomerOrderStatus } from '../modules/customer-order/entities/customer-order-status.entity';
+import { ORDER_STATUS } from '../modules/customer-order/typings/order-status.enum';
 
 export class CustomerOrderStatusSeed1643117881246
   implements MigrationInterface
 {
   public async up(): Promise<void> {
     const statuses = CustomerOrderStatus.create([
-      { status: 'Pending' },
-      { status: 'Processing' },
-      { status: 'Shipped' },
-      { status: 'Completed' },
-      { status: 'Cancelled' },
-      { status: 'Refunded' },
-      { status: 'Failed' },
-      { status: 'On-Hold' },
+      ...Object.values(ORDER_STATUS).map((v) => ({ status: v })),
     ]);
     await CustomerOrderStatus.save(statuses);
   }
