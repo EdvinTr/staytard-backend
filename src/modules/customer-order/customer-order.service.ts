@@ -24,8 +24,8 @@ export class CustomerOrderService {
     try {
       // find all the associated products
       const products = await this.productService.findByIds(inputProductIds);
-      const dbProductIds = products.map((product) => product.id);
       if (products.length !== inputProductIds.length) {
+        const dbProductIds = products.map((product) => product.id);
         const idsNotFound = inputProductIds.filter(
           (inputProductId) => !dbProductIds.includes(inputProductId),
         );
@@ -40,9 +40,12 @@ export class CustomerOrderService {
 
       // calculate the total amount based upon products and their quantity
       const totalAmount = orderItems.reduce((acc, item) => {
-        acc +=
-          item.quantity *
-          products.find((p) => p.id === item.productId)!.unitPrice;
+        const product = products.find(
+          (product) => product.id === item.productId,
+        );
+
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        acc += item.quantity * product!.unitPrice;
         return acc;
       }, 0);
 
