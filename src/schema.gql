@@ -113,6 +113,18 @@ type ProductBrand {
   path: String!
 }
 
+type ProductOrder {
+  id: Float!
+  deliveryAddress: String!
+  city: String!
+  postalCode: String!
+  totalAmount: Float!
+  shippingCost: Float!
+  grandTotal: Float!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
 type QueryProductsOutput {
   items: [Product!]!
   totalCount: Float!
@@ -159,6 +171,7 @@ enum BRAND_SORT_BY {
 
 type Mutation {
   createProduct(input: CreateProductInput!): Product!
+  createProductOrder(createProductOrderInput: CreateProductOrderInput!): ProductOrder!
   createProductReview(input: CreateProductReviewInput!): ProductReview!
   publishReview(id: Float!): ProductReview!
   registerUser(input: RegisterUserDto!): UserWithTokensDto!
@@ -185,6 +198,11 @@ input CreateProductAttributeInput {
 
 input AttributeValueType {
   value: String!
+}
+
+input CreateProductOrderInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
 }
 
 input CreateProductReviewInput {
