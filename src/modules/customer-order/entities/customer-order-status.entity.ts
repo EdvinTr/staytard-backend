@@ -6,11 +6,11 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { ProductOrder } from './product-order.entity';
+import { CustomerOrder } from './customer-order.entity';
 
 @ObjectType()
 @Entity()
-export class ProductOrderStatus extends BaseEntity {
+export class CustomerOrderStatus extends BaseEntity {
   @PrimaryGeneratedColumn()
   @Field()
   id: number;
@@ -19,6 +19,6 @@ export class ProductOrderStatus extends BaseEntity {
   @Column({ unique: true, length: 40 })
   status: string;
 
-  @OneToMany(() => ProductOrder, (productOrder) => productOrder.orderStatus)
-  orders: ProductOrder[];
+  @OneToMany(() => CustomerOrder, (customerOrder) => customerOrder.orderStatus)
+  orders: CustomerOrder[];
 }

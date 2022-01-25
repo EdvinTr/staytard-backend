@@ -5,11 +5,11 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { Request, Response } from 'express';
 import { join } from 'path';
 import { AuthenticationModule } from '../modules/authentication/authentication.module';
+import { CustomerOrderModule } from '../modules/customer-order/customer-order.module';
 import { DatabaseModule } from '../modules/database/database.module';
 import { GoogleAuthenticationModule } from '../modules/google-authentication/google-authentication.module';
 import { ProductBrandModule } from '../modules/product-brand/product-brand.module';
 import { ProductCategoryModule } from '../modules/product-category/product-category.module';
-import { ProductOrderModule } from '../modules/product-order/product-order.module';
 import { ProductReviewModule } from '../modules/product-review/product-review.module';
 import { ProductModule } from '../modules/product/product.module';
 import { UserModule } from '../modules/user/user.module';
@@ -28,7 +28,7 @@ export type MyContext = {
     DatabaseModule,
     ProductCategoryModule,
     ProductModule,
-    ProductOrderModule,
+    CustomerOrderModule,
     ProductBrandModule,
     ProductReviewModule,
     AuthenticationModule,

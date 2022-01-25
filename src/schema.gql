@@ -2,7 +2,7 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type ProductOrder {
+type CustomerOrder {
   id: Float!
   deliveryAddress: String!
   city: String!
@@ -171,7 +171,7 @@ enum BRAND_SORT_BY {
 
 type Mutation {
   createProduct(input: CreateProductInput!): Product!
-  createProductOrder(createProductOrderInput: CreateProductOrderInput!): ProductOrder!
+  createCustomerOrder(createCustomerOrderInput: CreateCustomerOrderInput!): CustomerOrder!
   createProductReview(input: CreateProductReviewInput!): ProductReview!
   publishReview(id: Float!): ProductReview!
   registerUser(input: RegisterUserDto!): UserWithTokensDto!
@@ -200,7 +200,7 @@ input AttributeValueType {
   value: String!
 }
 
-input CreateProductOrderInput {
+input CreateCustomerOrderInput {
   """Example field (placeholder)"""
   exampleField: Int!
 }
