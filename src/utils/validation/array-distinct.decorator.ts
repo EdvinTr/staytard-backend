@@ -7,8 +7,8 @@ import {
 export default function ArrayDistinct(
   property: string,
   validationOptions?: ValidationOptions,
-): Function {
-  return (object: Object, propertyName: string): void => {
+) {
+  return (object: Record<any, any>, propertyName: string): void => {
     registerDecorator({
       name: 'ArrayDistinct',
       target: object.constructor,
@@ -19,7 +19,7 @@ export default function ArrayDistinct(
         validate(value: any): boolean {
           if (Array.isArray(value)) {
             const distinct = [
-              ...new Set(value.map((v): Object => v[property])),
+              ...new Set(value.map((v): Record<any, any> => v[property])),
             ];
             return distinct.length === value.length;
           }

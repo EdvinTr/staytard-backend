@@ -20,18 +20,20 @@ export class CustomerOrderService {
     { orderItems, ...rest }: CreateCustomerOrderInput,
     userId: string,
   ) {
-    const productIds = orderItems.map((item) => item.productId);
+    const inputProductIds = orderItems.map((item) => item.productId);
     try {
       // find all the associated products
-      const products = await this.productService.findByIds(productIds);
-      if (products.length !== productIds.length) {
-        const idsNotFound = productIds.filter(
-          (id) => !products.map((p) => p.id).includes(id),
+      const products = await this.productService.findByIds(inputProductIds);
+      const dbProductIds = products.map((product) => product.id);
+      if (products.length !== inputProductIds.length) {
+        const idsNotFound = inputProductIds.filter(
+          (inputProductId) => !dbProductIds.includes(inputProductId),
         );
         throw new NotFoundException(
           `Product(s) with id(s): [${idsNotFound}] was not found`,
         );
       }
+
       const pendingOrderStatus = await this.orderStatusRepository.findOne({
         where: { status: ORDER_STATUS.PENDING },
       });
