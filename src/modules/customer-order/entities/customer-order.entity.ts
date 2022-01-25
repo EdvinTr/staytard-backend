@@ -20,6 +20,8 @@ export class CustomerOrder extends BaseEntity {
   @Field()
   id: number;
 
+  // TODO: should have order_number column
+
   @Field()
   @Column()
   deliveryAddress: string;
