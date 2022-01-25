@@ -204,6 +204,12 @@ input CreateCustomerOrderInput {
   deliveryAddress: String!
   city: String!
   postalCode: String!
+  orderItems: [OrderItemInput!]!
+}
+
+input OrderItemInput {
+  productId: Float!
+  quantity: Float!
 }
 
 input CreateProductReviewInput {
