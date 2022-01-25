@@ -38,18 +38,17 @@ export class CustomerOrderService {
         where: { status: ORDER_STATUS.PENDING },
       });
 
-      // calculate the total amount based upon products and their quantity
+      // TODO: should also calculate the discount for each product
+      // calculate the total price of products
       const totalAmount = orderItems.reduce((acc, item) => {
         const product = products.find(
           (product) => product.id === item.productId,
         );
-
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         acc += item.quantity * product!.unitPrice;
         return acc;
       }, 0);
 
-      // TODO: should also calculate the discount for each product
       const customerOrder = this.customerOrderRepository.create({
         ...rest,
         userId,
