@@ -9,6 +9,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { User } from '../../user/entities/user.entity';
+import { ProductOrderStatus } from './product-order-status.entity';
 
 @ObjectType()
 @Entity()
@@ -46,6 +47,9 @@ export class ProductOrder extends BaseEntity {
 
   @ManyToOne(() => User, (user) => user.orders)
   user: User;
+
+  @ManyToOne(() => ProductOrderStatus, (status) => status.orders)
+  orderStatus: ProductOrderStatus;
 
   @Field()
   @CreateDateColumn()
