@@ -4,7 +4,7 @@ import { ProductReviewService } from '../product-review.service';
 
 describe('ProductReviewResolver', () => {
   let resolver: ProductReviewResolver;
-  let mockProductReviewService = {};
+  const mockProductReviewService = {};
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [

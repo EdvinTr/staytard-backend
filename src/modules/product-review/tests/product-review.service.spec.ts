@@ -5,7 +5,7 @@ import { ProductReviewService } from '../product-review.service';
 import { mockProductReview } from './mock-product-review';
 describe('ProductReviewService', () => {
   let service: ProductReviewService;
-  let mockProductReviewRepository = {
+  const mockProductReviewRepository = {
     create: jest.fn().mockImplementation((args) => args),
     save: jest.fn().mockImplementation((args) => ({
       id: Math.random(),

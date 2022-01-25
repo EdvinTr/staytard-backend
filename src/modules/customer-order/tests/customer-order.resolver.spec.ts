@@ -5,7 +5,7 @@ import { CustomerOrderService } from '../customer-order.service';
 describe('CustomerOrderResolver', () => {
   let resolver: CustomerOrderResolver;
 
-  let mockOrderService = {};
+  const mockOrderService = {};
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [

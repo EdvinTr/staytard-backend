@@ -5,7 +5,7 @@ import { CustomerOrder } from '../entities/customer-order.entity';
 
 describe('CustomerOrderService', () => {
   let service: CustomerOrderService;
-  let mockOrderRepository = {};
+  const mockOrderRepository = {};
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
