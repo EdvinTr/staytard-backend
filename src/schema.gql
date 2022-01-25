@@ -133,6 +133,23 @@ type QueryProductsOutput {
   hasMore: Boolean!
 }
 
+type AssetUrl {
+  descriptive: String!
+  standard: String!
+}
+
+type PaymentMethodCategory {
+  identifier: String!
+  name: String!
+  asset_urls: AssetUrl!
+}
+
+type KlarnaSessionResponse {
+  session_id: String!
+  client_token: String!
+  payment_method_categories: [PaymentMethodCategory!]!
+}
+
 type Query {
   me: User!
   categories: [ProductCategory!]!
@@ -174,6 +191,7 @@ enum BRAND_SORT_BY {
 type Mutation {
   createProduct(input: CreateProductInput!): Product!
   createCustomerOrder(input: CreateCustomerOrderInput!): CustomerOrder!
+  initializeKlarnaSession: KlarnaSessionResponse!
   createProductReview(input: CreateProductReviewInput!): ProductReview!
   publishReview(id: Float!): ProductReview!
   registerUser(input: RegisterUserDto!): UserWithTokensDto!

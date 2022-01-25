@@ -5,6 +5,7 @@ import RequestWithUser from '../authentication/interfaces/request-with-user.inte
 import { CustomerOrderService } from './customer-order.service';
 import { CreateCustomerOrderInput } from './dto/create-customer-order.input';
 import { CustomerOrder } from './entities/customer-order.entity';
+import { KlarnaSessionResponse } from './typings/klarna-session-response';
 
 @Resolver(() => CustomerOrder)
 export class CustomerOrderResolver {
@@ -19,5 +20,11 @@ export class CustomerOrderResolver {
   ) {
     const userId = req.user.id;
     return this.customerOrderService.create(input, userId);
+  }
+
+  @UseGuards(GraphqlJwtAuthGuard)
+  @Mutation(() => KlarnaSessionResponse)
+  initializeKlarnaSession() {
+    return this.customerOrderService.initializeKlarnaSession();
   }
 }
