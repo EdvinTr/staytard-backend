@@ -3,6 +3,7 @@ import { getRepositoryToken } from '@nestjs/typeorm';
 import { Product } from '../../product/entities/product.entity';
 import { ProductService } from '../../product/product.service';
 import { CustomerOrderService } from '../customer-order.service';
+import { CustomerOrderStatus } from '../entities/customer-order-status.entity';
 import { CustomerOrder } from '../entities/customer-order.entity';
 
 describe('CustomerOrderService', () => {
@@ -23,6 +24,10 @@ describe('CustomerOrderService', () => {
         {
           provide: getRepositoryToken(Product),
           useValue: mockProductRepository,
+        },
+        {
+          provide: getRepositoryToken(CustomerOrderStatus),
+          useValue: {},
         },
       ],
     }).compile();

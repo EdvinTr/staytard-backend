@@ -19,35 +19,35 @@ export class OrderItemInput {
   @Field()
   @IsNumber()
   @IsPositive()
-  productId: number;
+  public readonly productId: number;
 
   @Field()
   @IsNumber()
   @IsPositive()
-  quantity: number;
+  public readonly quantity: number;
 }
 @InputType()
 export class CreateCustomerOrderInput {
   @IsNotEmpty()
-  @Field()
   @MinLength(1)
   @MaxLength(36)
   @Transform(({ value }) => capitalize(value))
-  deliveryAddress: string;
+  @Field()
+  public readonly deliveryAddress: string;
 
   @IsString()
   @IsNotEmpty()
-  @Field()
   @Transform(({ value }) => capitalize(value))
-  city: string;
+  @Field()
+  public readonly city: string;
 
   @IsPostalCode('any')
   @Field()
-  postalCode: string;
+  public readonly postalCode: string;
 
   @ValidateNested()
   @ArrayDistinct('productId')
   @Type(() => OrderItemInput)
   @Field(() => [OrderItemInput])
-  orderItems: OrderItemInput[];
+  public readonly orderItems: OrderItemInput[];
 }
