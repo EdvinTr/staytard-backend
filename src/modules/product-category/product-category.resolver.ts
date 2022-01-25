@@ -1,5 +1,4 @@
 import { Args, Query, Resolver } from '@nestjs/graphql';
-import { capitalize } from 'lodash';
 import { ProductCategory } from './entities/product-category.entity';
 import { ProductCategoryService } from './product-category.service';
 
@@ -18,12 +17,13 @@ export class ProductCategoryResolver {
       },
     });
   }
+
   @Query(() => ProductCategory)
   async getOneCategory(@Args('path') path: string) {
     return this.productCategoryService.findOne({
-      relations: [],
+      relations: ['children'],
       where: {
-        path: capitalize(path),
+        path,
       },
     });
   }
