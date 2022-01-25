@@ -7,6 +7,12 @@ import { CustomerOrderStatus } from './entities/customer-order-status.entity';
 import { CustomerOrder } from './entities/customer-order.entity';
 import { ORDER_STATUS } from './typings/order-status.enum';
 
+export enum REGION {
+  EU = '',
+  US = '-na',
+  OCEANIA = '-oc',
+}
+
 @Injectable()
 export class CustomerOrderService {
   constructor(
