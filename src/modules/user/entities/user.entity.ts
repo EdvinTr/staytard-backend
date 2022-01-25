@@ -7,11 +7,13 @@ import {
   CreateDateColumn,
   Entity,
   JoinColumn,
+  OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import Permission from '../../../lib/permission/permission.type';
+import { ProductOrder } from '../../product-order/entities/product-order.entity';
 import { UserAddress, UserAddressInterface } from './user-address.entity';
 
 export interface UserInterface {
@@ -69,6 +71,9 @@ export class User implements UserInterface {
   })
   @Exclude()
   public currentHashedRefreshToken?: string;
+
+  @OneToMany(() => ProductOrder, (orders) => orders.user)
+  orders: ProductOrder[];
 
   @Column({
     type: 'enum',

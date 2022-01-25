@@ -4,9 +4,11 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { User } from '../../user/entities/user.entity';
 
 @ObjectType()
 @Entity()
@@ -41,6 +43,9 @@ export class ProductOrder extends BaseEntity {
     asExpression: `total_amount + shipping_cost`,
   })
   grandTotal: number;
+
+  @ManyToOne(() => User, (user) => user.orders)
+  user: User;
 
   @Field()
   @CreateDateColumn()
