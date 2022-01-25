@@ -1,4 +1,7 @@
-import { Args, Mutation, Resolver } from '@nestjs/graphql';
+import { UseGuards } from '@nestjs/common';
+import { Args, Context, Mutation, Resolver } from '@nestjs/graphql';
+import { GraphqlJwtAuthGuard } from '../authentication/guards/graphql-jwt-auth.guard';
+import RequestWithUser from '../authentication/interfaces/request-with-user.interface';
 import { CustomerOrderService } from './customer-order.service';
 import { CreateCustomerOrderInput } from './dto/create-customer-order.input';
 import { CustomerOrder } from './entities/customer-order.entity';
@@ -7,11 +10,15 @@ import { CustomerOrder } from './entities/customer-order.entity';
 export class CustomerOrderResolver {
   constructor(private readonly customerOrderService: CustomerOrderService) {}
 
+  @UseGuards(GraphqlJwtAuthGuard)
   @Mutation(() => CustomerOrder)
   createCustomerOrder(
-    @Args('createCustomerOrderInput')
-    createCustomerOrderInput: CreateCustomerOrderInput,
+    @Context() { req }: { req: RequestWithUser },
+    @Args('input')
+    input: CreateCustomerOrderInput,
   ) {
-    return this.customerOrderService.create(createCustomerOrderInput);
+    console.log(req.user);
+
+    return this.customerOrderService.create(input);
   }
 }

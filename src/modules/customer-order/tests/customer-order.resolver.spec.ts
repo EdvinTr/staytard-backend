@@ -5,9 +5,13 @@ import { CustomerOrderService } from '../customer-order.service';
 describe('CustomerOrderResolver', () => {
   let resolver: CustomerOrderResolver;
 
+  let mockOrderService = {};
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [CustomerOrderResolver, CustomerOrderService],
+      providers: [
+        CustomerOrderResolver,
+        { provide: CustomerOrderService, useValue: mockOrderService },
+      ],
     }).compile();
 
     resolver = module.get<CustomerOrderResolver>(CustomerOrderResolver);
