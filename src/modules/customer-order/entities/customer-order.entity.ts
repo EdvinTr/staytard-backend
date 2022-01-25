@@ -5,10 +5,12 @@ import {
   CreateDateColumn,
   Entity,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import { User } from '../../user/entities/user.entity';
+import { CustomerOrderItem } from './customer-order-item.entity';
 import { CustomerOrderStatus } from './customer-order-status.entity';
 
 @ObjectType()
@@ -50,6 +52,9 @@ export class CustomerOrder extends BaseEntity {
 
   @ManyToOne(() => CustomerOrderStatus, (status) => status.orders)
   orderStatus: CustomerOrderStatus;
+
+  @OneToMany(() => CustomerOrderItem, (item) => item.order)
+  orderItems: CustomerOrderItem[];
 
   @Field()
   @CreateDateColumn()

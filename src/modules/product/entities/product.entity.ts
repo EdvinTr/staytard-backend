@@ -13,6 +13,7 @@ import {
   Unique,
   UpdateDateColumn,
 } from 'typeorm';
+import { CustomerOrderItem } from '../../customer-order/entities/customer-order-item.entity';
 import { ProductBrand } from '../../product-brand/entities/product-brand.entity';
 import { ProductCategory } from '../../product-category/entities/product-category.entity';
 import { ProductReview } from '../../product-review/entities/product-review.entity';
@@ -88,6 +89,9 @@ export class Product extends BaseEntity {
   @ManyToOne(() => ProductCategory, (category) => category)
   @JoinColumn()
   category: ProductCategory;
+
+  @OneToMany(() => CustomerOrderItem, (orderItem) => orderItem.product)
+  orderItems: CustomerOrderItem[];
 
   @CreateDateColumn()
   @Field()
