@@ -133,6 +133,17 @@ type QueryProductsOutput {
   hasMore: Boolean!
 }
 
+type AuthorizedPaymentMethod {
+  type: String!
+}
+
+type AuthorizeKlarnaResponse {
+  order_id: String!
+  redirect_url: String!
+  fraud_status: String!
+  authorized_payment_method: AuthorizedPaymentMethod!
+}
+
 type AssetUrl {
   descriptive: String!
   standard: String!
@@ -194,6 +205,7 @@ type Mutation {
   createProductReview(input: CreateProductReviewInput!): ProductReview!
   publishReview(id: Float!): ProductReview!
   initializeKlarnaSession(input: InitKlarnaSessionInput!): KlarnaSessionResponse!
+  authorizeKlarnaToken(authorizationToken: String!, input: InitKlarnaSessionInput!): AuthorizeKlarnaResponse!
   registerUser(input: RegisterUserDto!): UserWithTokensDto!
   login(input: LoginUserDto!): UserWithTokensDto!
   logout: Boolean!
