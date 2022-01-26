@@ -16,7 +16,6 @@ describe('CustomerOrderService', () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
         CustomerOrderService,
-        HttpService,
         ProductService,
         {
           provide: getRepositoryToken(CustomerOrder),
@@ -30,9 +29,10 @@ describe('CustomerOrderService', () => {
           provide: getRepositoryToken(CustomerOrderStatus),
           useValue: {},
         },
+        { provide: HttpService, useValue: {} },
       ],
     }).compile();
-    httpService = module.get<HttpService>(HttpService);
+    /*     httpService = module.get<HttpService>(HttpService); */
     customerOrderService =
       module.get<CustomerOrderService>(CustomerOrderService);
     productService = module.get<ProductService>(ProductService);

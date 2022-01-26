@@ -27,5 +27,8 @@ export class OrderLineInput {
   product_url: string;
 
   @Field()
+  productId: number;
+
+  @Field()
   image_url: string;
 }

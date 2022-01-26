@@ -20,7 +20,9 @@ export class CustomerOrder extends BaseEntity {
   @Field()
   id: number;
 
-  // TODO: should have order_number column
+  @Field()
+  @Column()
+  orderNumber: string;
 
   @Field()
   @Column()
@@ -48,6 +50,14 @@ export class CustomerOrder extends BaseEntity {
     asExpression: `total_amount + shipping_cost`,
   })
   grandTotal: number;
+
+  @Field()
+  @Column({ length: 20 })
+  purchaseCurrency: string;
+
+  @Field()
+  @Column()
+  paymentType: string;
 
   @Field()
   @Column({ nullable: false })

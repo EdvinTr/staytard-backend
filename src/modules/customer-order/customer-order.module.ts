@@ -7,7 +7,7 @@ import { CustomerOrderStatus } from './entities/customer-order-status.entity';
 import { CustomerOrder } from './entities/customer-order.entity';
 
 @Module({
-  providers: [CustomerOrderResolver, CustomerOrderService],
+  providers: [CustomerOrderService, CustomerOrderResolver],
   imports: [
     TypeOrmModule.forFeature([CustomerOrder]),
     TypeOrmModule.forFeature([CustomerOrderStatus]),

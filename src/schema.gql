@@ -80,12 +80,15 @@ type Product {
 
 type CustomerOrder {
   id: Float!
+  orderNumber: String!
   deliveryAddress: String!
   city: String!
   postalCode: String!
   totalAmount: Float!
   shippingCost: Float!
   grandTotal: Float!
+  purchaseCurrency: String!
+  paymentType: String!
   userId: String!
   orderStatusId: Float!
   createdAt: DateTime!
@@ -133,17 +136,6 @@ type QueryProductsOutput {
   hasMore: Boolean!
 }
 
-type AuthorizedPaymentMethod {
-  type: String!
-}
-
-type AuthorizeKlarnaResponse {
-  order_id: String!
-  redirect_url: String!
-  fraud_status: String!
-  authorized_payment_method: AuthorizedPaymentMethod!
-}
-
 type AssetUrl {
   descriptive: String!
   standard: String!
@@ -167,6 +159,7 @@ type Query {
   getOneCategory(path: String!): ProductCategory!
   products(input: FindProductsInput!): QueryProductsOutput!
   product(id: Float!): Product!
+  customerOrders: [CustomerOrder!]!
   productBrands(input: GetProductBrandsInput!): [ProductBrand!]!
 }
 
@@ -201,11 +194,10 @@ enum BRAND_SORT_BY {
 
 type Mutation {
   createProduct(input: CreateProductInput!): Product!
-  createCustomerOrder(input: CreateCustomerOrderInput!): CustomerOrder!
   createProductReview(input: CreateProductReviewInput!): ProductReview!
   publishReview(id: Float!): ProductReview!
   initializeKlarnaSession(input: InitKlarnaSessionInput!): KlarnaSessionResponse!
-  createOrderWithKlarna(authorizationToken: String!, input: InitKlarnaSessionInput!): AuthorizeKlarnaResponse!
+  createOrderWithKlarna(authorizationToken: String!, input: InitKlarnaSessionInput!): CustomerOrder!
   registerUser(input: RegisterUserDto!): UserWithTokensDto!
   login(input: LoginUserDto!): UserWithTokensDto!
   logout: Boolean!
@@ -230,18 +222,6 @@ input CreateProductAttributeInput {
 
 input AttributeValueType {
   value: String!
-}
-
-input CreateCustomerOrderInput {
-  deliveryAddress: String!
-  city: String!
-  postalCode: String!
-  orderItems: [OrderItemInput!]!
-}
-
-input OrderItemInput {
-  productId: Float!
-  quantity: Float!
 }
 
 input CreateProductReviewInput {
@@ -273,6 +253,7 @@ input OrderLineInput {
   total_discount_amount: Float!
   total_tax_amount: Float!
   product_url: String!
+  productId: Float!
   image_url: String!
 }
 

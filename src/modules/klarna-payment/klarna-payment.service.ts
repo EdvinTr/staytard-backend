@@ -4,26 +4,32 @@ import {
   Injectable,
   InternalServerErrorException,
 } from '@nestjs/common';
+import { CustomerOrderService } from '../customer-order/customer-order.service';
 import { InitKlarnaSessionInput } from './dto/init-klarna-session.input';
 import { AuthorizeKlarnaResponse } from './typings/authorize-klarna-response';
 import { KlarnaSessionResponse } from './typings/klarna-session-response';
 
 @Injectable()
 export class KlarnaPaymentService {
-  constructor(private readonly httpService: HttpService) {}
+  constructor(
+    private readonly httpService: HttpService,
+    private readonly customerOrderService: CustomerOrderService,
+  ) {}
 
   public async createCustomerOrder(
     input: InitKlarnaSessionInput,
     authorizationToken: string,
+    userId: string,
   ) {
     try {
+      // TODO: before even attempting this, check if the productIds are available, check stock on them as well
       const response = await this.httpService
         .post<AuthorizeKlarnaResponse>(
           `https://api.playground.klarna.com/payments/v1/authorizations/${authorizationToken}/order`,
           {
             ...input,
             merchant_urls: {
-              confirmation: `${process.env.FRONTEND_URL}/confirmation/${authorizationToken}`,
+              confirmation: `${process.env.FRONTEND_URL}/confirmation/${authorizationToken}`, // TODO: should probably not place this token in URL
             },
           },
           {
@@ -42,9 +48,35 @@ export class KlarnaPaymentService {
       ) {
         throw new Error();
       }
-      // TODO: should create an actual order in the database if everything is all good
-      // rename this mutation to createOrderWithKlarna?
-      return response.data;
+      const paymentType = response.data.authorized_payment_method.type;
+      const {
+        billing_address,
+        order_amount,
+        order_lines,
+        order_tax_amount,
+        purchase_currency,
+      } = input;
+
+      const customerOrder = await this.customerOrderService.create(
+        {
+          city: billing_address.city,
+          deliveryAddress: billing_address.street_address,
+          postalCode: billing_address.postal_code,
+          orderNumber: response.data.order_id,
+          orderItems: [
+            ...order_lines.map((line) => ({
+              productId: line.productId,
+              quantity: line.quantity,
+            })),
+          ],
+          totalAmount: order_amount + order_tax_amount, // Klarna calculates the total amount correctly based on the order lines
+          paymentType,
+          purchaseCurrency: purchase_currency,
+        },
+        userId,
+      );
+
+      return customerOrder;
     } catch (err: any) {
       console.log(err);
       if (err?.response?.status === 400) {

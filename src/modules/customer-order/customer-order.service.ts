@@ -17,6 +17,12 @@ export class CustomerOrderService {
     private readonly productService: ProductService,
   ) {}
 
+  public async findAll(userId: string) {
+    return this.customerOrderRepository.find({
+      where: { userId },
+    });
+  }
+
   public async create(
     { orderItems, ...rest }: CreateCustomerOrderInput,
     userId: string,
@@ -28,8 +34,9 @@ export class CustomerOrderService {
       if (products.length !== inputProductIds.length) {
         const dbProductIds = products.map((product) => product.id);
         const idsNotFound = inputProductIds.filter(
-          (inputProductId) => !dbProductIds.includes(inputProductId),
+          (productId) => !dbProductIds.includes(productId),
         );
+        // send back error response with the product ids that were not found
         throw new NotFoundException(
           `Product(s) with id(s): [${idsNotFound}] was not found`,
         );
@@ -38,23 +45,11 @@ export class CustomerOrderService {
       const pendingOrderStatus = await this.orderStatusRepository.findOne({
         where: { status: ORDER_STATUS.PENDING },
       });
-
-      // TODO: should also calculate the discount for each product
-      // calculate the total price of products
-      const totalAmount = orderItems.reduce((acc, item) => {
-        const product = products.find(
-          (product) => product.id === item.productId,
-        );
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        acc += item.quantity * product!.unitPrice;
-        return acc;
-      }, 0);
-
+      // TODO: fix actual shippingCost
       const customerOrder = this.customerOrderRepository.create({
         ...rest,
         userId,
         shippingCost: 5,
-        totalAmount: totalAmount, // total price based upon products and their quantity,
         orderStatus: pendingOrderStatus,
         orderItems: orderItems.map((item) => ({ ...item })),
       });

@@ -1,20 +1,4 @@
-import { Field, InputType } from '@nestjs/graphql';
-import { Transform, Type } from 'class-transformer';
-import {
-  IsNotEmpty,
-  IsNumber,
-  IsPositive,
-  IsPostalCode,
-  IsString,
-  MaxLength,
-  MinLength,
-  ValidateNested,
-} from 'class-validator';
-import { capitalize } from 'lodash';
-import ArrayDistinct from '../../../utils/validation/array-distinct.decorator';
-
-//TODO : should also probably receive a token or something from Klarna/PayPal to confirm from the backend that the payment ACTUALLY occurred.
-@InputType()
+/* @InputType()
 export class OrderItemInput {
   @Field()
   @IsNumber()
@@ -50,4 +34,19 @@ export class CreateCustomerOrderInput {
   @Type(() => OrderItemInput)
   @Field(() => [OrderItemInput])
   public readonly orderItems: OrderItemInput[];
+} */
+
+export class OrderItemInput {
+  productId: number;
+  quantity: number;
+}
+export class CreateCustomerOrderInput {
+  deliveryAddress: string;
+  city: string;
+  postalCode: string;
+  orderItems: OrderItemInput[];
+  totalAmount: number;
+  paymentType: string;
+  orderNumber: string;
+  purchaseCurrency: string;
 }
