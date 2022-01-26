@@ -1,3 +1,4 @@
+import { HttpService } from '@nestjs/axios';
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { Product } from '../../product/entities/product.entity';
@@ -5,17 +6,17 @@ import { ProductService } from '../../product/product.service';
 import { CustomerOrderService } from '../customer-order.service';
 import { CustomerOrderStatus } from '../entities/customer-order-status.entity';
 import { CustomerOrder } from '../entities/customer-order.entity';
-
 describe('CustomerOrderService', () => {
   let customerOrderService: CustomerOrderService;
   let productService: ProductService;
-
+  let httpService: HttpService;
   const mockProductRepository = {};
   const mockOrderRepository = {};
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
         CustomerOrderService,
+        HttpService,
         ProductService,
         {
           provide: getRepositoryToken(CustomerOrder),
@@ -31,7 +32,7 @@ describe('CustomerOrderService', () => {
         },
       ],
     }).compile();
-
+    httpService = module.get<HttpService>(HttpService);
     customerOrderService =
       module.get<CustomerOrderService>(CustomerOrderService);
     productService = module.get<ProductService>(ProductService);

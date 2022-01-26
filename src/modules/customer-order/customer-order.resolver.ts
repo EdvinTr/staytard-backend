@@ -22,6 +22,7 @@ export class CustomerOrderResolver {
     return this.customerOrderService.create(input, userId);
   }
 
+  // TODO: doesn't need auth guard?
   @UseGuards(GraphqlJwtAuthGuard)
   @Mutation(() => KlarnaSessionResponse)
   initializeKlarnaSession() {

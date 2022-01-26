@@ -30,13 +30,25 @@ export class CustomerOrderService {
     private readonly httpService: HttpService,
   ) {}
 
+  public async placeOrderWithKlarna(authorizationToken: string) {
+    try {
+      // cart, billing and shipping information must be the same as in the authorization call made in the frontend
+      const response = this.httpService.post(
+        `https://api-na.playground.klarna.com/payments/v1/authorizations/${authorizationToken}/order`,
+      );
+    } catch (err) {}
+  }
+
   public async initializeKlarnaSession() {
+    // TODO:
+    // 1. refactor to Klarna module
+    // 2. Should receive this body as argument
     try {
       const body = {
-        purchase_country: 'SE',
-        purchase_currency: 'SEK',
-        locale: 'sv-SE',
-        order_amount: 10000,
+        purchase_country: 'US',
+        purchase_currency: 'USD',
+        locale: 'en-US',
+        order_amount: 20000,
         order_tax_amount: 0,
         order_lines: [
           {
@@ -50,26 +62,33 @@ export class CustomerOrderService {
             product_url: 'https://www.estore.com/products/f2a8d7e34',
             image_url: 'https://www.estore.com/product_image.png',
           },
+          {
+            name: 'red trousers',
+            quantity: 1,
+            unit_price: 10000,
+            tax_rate: 0,
+            total_amount: 10000,
+            total_discount_amount: 0,
+            total_tax_amount: 0,
+            product_url: 'https://www.estore.com/products/f2a8d7e34',
+            image_url: 'https://www.estore.com/product_image.png',
+          },
         ],
         billing_address: {
           given_name: 'Jane',
           family_name: 'Doe',
           email: 'jane@doe.com',
           title: 'Ms',
-          street_address: 'Tuvängsvägen 15',
-          postal_code: '75645',
-          city: 'Uppsala',
-          phone: '0704191897',
-          country: 'SE',
-        },
-
-        merchant_urls: {
-          confirmation:
-            'https://webhook.site/f1a9bf70-ace8-4935-ba9b-f3578e5d4402',
+          street_address: '512 City Park Ave',
+          postal_code: '43215',
+          city: 'Columbus',
+          region: 'oh',
+          phone: '6142607295',
+          country: 'US',
         },
       };
       const sessionEndpoint =
-        'https://api.playground.klarna.com/payments/v1/sessions';
+        'https://api-na.playground.klarna.com/payments/v1/sessions';
       const response = await this.httpService
         .post<KlarnaSessionResponse>(
           sessionEndpoint,
