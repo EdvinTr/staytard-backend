@@ -103,7 +103,7 @@ type User {
   id: String!
   firstName: String!
   lastName: String!
-  mobilePhoneNumber: String!
+  mobilePhoneNumber: String
   email: String!
   isEmailConfirmed: Boolean!
   isRegisteredWithGoogle: Boolean!
@@ -191,9 +191,9 @@ enum BRAND_SORT_BY {
 type Mutation {
   createProduct(input: CreateProductInput!): Product!
   createCustomerOrder(input: CreateCustomerOrderInput!): CustomerOrder!
-  initializeKlarnaSession: KlarnaSessionResponse!
   createProductReview(input: CreateProductReviewInput!): ProductReview!
   publishReview(id: Float!): ProductReview!
+  initializeKlarnaSession(input: InitKlarnaSessionInput!): KlarnaSessionResponse!
   registerUser(input: RegisterUserDto!): UserWithTokensDto!
   login(input: LoginUserDto!): UserWithTokensDto!
   logout: Boolean!
@@ -240,6 +240,41 @@ input CreateProductReviewInput {
   submittedByAlias: String!
   email: String!
   productId: Float!
+}
+
+input InitKlarnaSessionInput {
+  purchase_country: String!
+  purchase_currency: String!
+  locale: String!
+  order_amount: Float!
+  order_tax_amount: Float!
+  order_lines: [OrderLineInput!]!
+  billing_address: BillingAddressInput!
+}
+
+input OrderLineInput {
+  name: String!
+  quantity: Float!
+  unit_price: Float!
+  tax_rate: Float!
+  total_amount: Float!
+  total_discount_amount: Float!
+  total_tax_amount: Float!
+  product_url: String!
+  image_url: String!
+}
+
+input BillingAddressInput {
+  given_name: String!
+  family_name: String!
+  email: String!
+  title: String
+  street_address: String!
+  postal_code: String!
+  city: String!
+  region: String
+  phone: String!
+  country: String
 }
 
 input RegisterUserDto {

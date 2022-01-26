@@ -8,6 +8,7 @@ import { AuthenticationModule } from '../modules/authentication/authentication.m
 import { CustomerOrderModule } from '../modules/customer-order/customer-order.module';
 import { DatabaseModule } from '../modules/database/database.module';
 import { GoogleAuthenticationModule } from '../modules/google-authentication/google-authentication.module';
+import { KlarnaPaymentModule } from '../modules/klarna-payment/klarna-payment.module';
 import { ProductBrandModule } from '../modules/product-brand/product-brand.module';
 import { ProductCategoryModule } from '../modules/product-category/product-category.module';
 import { ProductReviewModule } from '../modules/product-review/product-review.module';
@@ -31,6 +32,7 @@ export type MyContext = {
     CustomerOrderModule,
     ProductBrandModule,
     ProductReviewModule,
+    KlarnaPaymentModule,
     AuthenticationModule,
     GoogleAuthenticationModule,
     ConfigModule.forRoot({

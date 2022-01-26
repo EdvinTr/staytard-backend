@@ -1,4 +1,3 @@
-import { HttpModule } from '@nestjs/axios';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ProductModule } from '../product/product.module';
@@ -13,7 +12,6 @@ import { CustomerOrder } from './entities/customer-order.entity';
     TypeOrmModule.forFeature([CustomerOrder]),
     TypeOrmModule.forFeature([CustomerOrderStatus]),
     ProductModule,
-    HttpModule,
   ],
   exports: [CustomerOrderService],
 })

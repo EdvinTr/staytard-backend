@@ -47,7 +47,7 @@ export class User implements UserInterface {
   public lastName: string;
 
   @Column({ nullable: true })
-  @Field()
+  @Field({ nullable: true })
   public mobilePhoneNumber?: string;
 
   @Column({ nullable: true })
