@@ -205,7 +205,7 @@ type Mutation {
   createProductReview(input: CreateProductReviewInput!): ProductReview!
   publishReview(id: Float!): ProductReview!
   initializeKlarnaSession(input: InitKlarnaSessionInput!): KlarnaSessionResponse!
-  authorizeKlarnaToken(authorizationToken: String!, input: InitKlarnaSessionInput!): AuthorizeKlarnaResponse!
+  createOrderWithKlarna(authorizationToken: String!, input: InitKlarnaSessionInput!): AuthorizeKlarnaResponse!
   registerUser(input: RegisterUserDto!): UserWithTokensDto!
   login(input: LoginUserDto!): UserWithTokensDto!
   logout: Boolean!

@@ -14,10 +14,13 @@ export class KlarnaPaymentResolver {
   }
 
   @Mutation(() => AuthorizeKlarnaResponse)
-  authorizeKlarnaToken(
+  createOrderWithKlarna(
     @Args('input') input: InitKlarnaSessionInput,
     @Args('authorizationToken') authorizationToken: string,
   ) {
-    return this.klarnaPaymentService.authorize(input, authorizationToken);
+    return this.klarnaPaymentService.createCustomerOrder(
+      input,
+      authorizationToken,
+    );
   }
 }

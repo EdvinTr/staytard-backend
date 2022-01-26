@@ -12,7 +12,7 @@ import { KlarnaSessionResponse } from './typings/klarna-session-response';
 export class KlarnaPaymentService {
   constructor(private readonly httpService: HttpService) {}
 
-  public async authorize(
+  public async createCustomerOrder(
     input: InitKlarnaSessionInput,
     authorizationToken: string,
   ) {
@@ -35,9 +35,15 @@ export class KlarnaPaymentService {
         )
         .toPromise();
 
-      if (!response || !response.data) {
+      if (
+        !response ||
+        !response.data ||
+        response.data.fraud_status !== 'ACCEPTED'
+      ) {
         throw new Error();
       }
+      // TODO: should create an actual order in the database if everything is all good
+      // rename this mutation to createOrderWithKlarna?
       return response.data;
     } catch (err: any) {
       console.log(err);
