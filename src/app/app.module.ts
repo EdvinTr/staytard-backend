@@ -7,6 +7,7 @@ import { join } from 'path';
 import { AuthenticationModule } from '../modules/authentication/authentication.module';
 import { CustomerOrderModule } from '../modules/customer-order/customer-order.module';
 import { DatabaseModule } from '../modules/database/database.module';
+import { EmailModule } from '../modules/email/email.module';
 import { GoogleAuthenticationModule } from '../modules/google-authentication/google-authentication.module';
 import { KlarnaPaymentModule } from '../modules/klarna-payment/klarna-payment.module';
 import { ProductBrandModule } from '../modules/product-brand/product-brand.module';
@@ -26,6 +27,7 @@ export type MyContext = {
 @Module({
   imports: [
     UserModule,
+    EmailModule,
     DatabaseModule,
     ProductCategoryModule,
     ProductModule,
