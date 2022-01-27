@@ -1,7 +1,8 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { createTransport } from 'nodemailer';
 import Mail from 'nodemailer/lib/mailer';
+import { SendEmailInput } from './dto/send-email.input';
 
 @Injectable()
 export class EmailService {
@@ -9,6 +10,7 @@ export class EmailService {
 
   constructor(private readonly configService: ConfigService) {
     this.nodemailerTransport = createTransport({
+      name: 'smtp.gmail.com',
       service: configService.get('EMAIL_SERVICE'),
       auth: {
         user: configService.get('EMAIL_USER'),
@@ -17,7 +19,18 @@ export class EmailService {
     });
   }
 
-  sendMail(options: Mail.Options) {
-    return this.nodemailerTransport.sendMail(options);
+  async sendMail(input: SendEmailInput, options?: Mail.Options) {
+    try {
+      await this.nodemailerTransport.sendMail({
+        to: input.to,
+        text: input.text,
+        subject: input.subject,
+        ...options,
+      });
+      return true;
+    } catch (err) {
+      console.log(err);
+      throw new InternalServerErrorException("Couldn't send email");
+    }
   }
 }

@@ -193,6 +193,7 @@ enum BRAND_SORT_BY {
 }
 
 type Mutation {
+  sendEmail(input: SendEmailInput!): Boolean!
   createProduct(input: CreateProductInput!): Product!
   createProductReview(input: CreateProductReviewInput!): ProductReview!
   publishReview(id: Float!): ProductReview!
@@ -202,6 +203,12 @@ type Mutation {
   login(input: LoginUserDto!): UserWithTokensDto!
   logout: Boolean!
   authenticateWithGoogle(googleAuthToken: String!): UserWithTokensDto!
+}
+
+input SendEmailInput {
+  to: String!
+  text: String!
+  subject: String!
 }
 
 input CreateProductInput {
