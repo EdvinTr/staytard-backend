@@ -10,7 +10,7 @@ import { Product } from './product.entity';
 export class ProductAttribute {
   @Field()
   @Column()
-  sku: string;
+  sku: string; // TODO: should be unique
 
   @Field()
   @Column()
