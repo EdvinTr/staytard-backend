@@ -15,7 +15,9 @@ export class FindProductsInput {
   limit: number;
 
   @Field()
-  @Matches(/\//, { message: 'Category path must contain a slash' })
+  @Matches(/\//, {
+    message: 'Category path must contain a slash',
+  })
   @Transform(({ value }) => value.toLowerCase())
   categoryPath: string;
 

@@ -160,6 +160,7 @@ type Query {
   getOneCategory(path: String!): ProductCategory!
   products(input: FindProductsInput!): QueryProductsOutput!
   product(id: Float!): Product!
+  productsBySku(input: FindProductsBySkusInput!): QueryProductsOutput!
   customerOrders: [CustomerOrder!]!
   productBrands(input: GetProductBrandsInput!): [ProductBrand!]!
 }
@@ -181,6 +182,12 @@ enum PRODUCT_SORT_BY {
 enum SORT_DIRECTION {
   DESC
   ASC
+}
+
+input FindProductsBySkusInput {
+  skus: [String!]!
+  offset: Float!
+  limit: Float!
 }
 
 input GetProductBrandsInput {

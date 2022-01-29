@@ -4,6 +4,7 @@ import { FindOneOptions, Like, Repository } from 'typeorm';
 import { generateSku } from '../../utils/generate-sku.util';
 import { getOffset, paginate } from '../../utils/paginate.util';
 import { CreateProductInput } from './dto/create-product.input';
+import { FindProductsBySkusInput } from './dto/find-products-by-skus.input';
 import { FindProductsDto } from './dto/find-products.dto';
 import { FindProductsInput } from './dto/find-products.input';
 import { QueryProductsOutput } from './dto/query-products.output';
@@ -25,6 +26,36 @@ export class ProductService {
 
   public async findByIds(ids: number[]) {
     return this.productRepository.findByIds(ids);
+  }
+
+  public async findBySkus({
+    limit,
+    offset,
+    skus,
+  }: FindProductsBySkusInput): Promise<QueryProductsOutput> {
+    const queryBuilder = this.productRepository.createQueryBuilder('product');
+    try {
+      const [product, totalCount] = await queryBuilder
+        .innerJoinAndSelect('product.brand', 'brand')
+        .innerJoinAndSelect('product.images', 'images')
+        .innerJoinAndSelect('product.attributes', 'attributes')
+        .innerJoinAndSelect('attributes.color', 'color')
+        .innerJoinAndSelect('attributes.size', 'size')
+        .where('attributes.sku IN (:...skus)', { skus })
+        .take(limit)
+        .skip(offset)
+        .getManyAndCount();
+      return {
+        items: product,
+        totalCount,
+        hasMore: totalCount - offset > limit,
+      };
+    } catch (err) {
+      console.log(err);
+      throw new InternalServerErrorException(
+        'Something went wrong when loading products with these skus',
+      );
+    }
   }
 
   public async restFindAll({

@@ -10,6 +10,7 @@ import {
 import Permission from '../../lib/permission/permission.type';
 import PermissionGuard from '../authentication/guards/permission.guard';
 import { CreateProductInput } from './dto/create-product.input';
+import { FindProductsBySkusInput } from './dto/find-products-by-skus.input';
 import { FindProductsInput } from './dto/find-products.input';
 import { QueryProductsOutput } from './dto/query-products.output';
 import { Product } from './entities/product.entity';
@@ -36,6 +37,11 @@ export class ProductResolver {
     return this.productService.findOne(id, {
       relations: ['category', 'brand'],
     });
+  }
+
+  @Query(() => QueryProductsOutput)
+  public async productsBySku(@Args('input') input: FindProductsBySkusInput) {
+    return this.productService.findBySkus(input);
   }
 
   @UseGuards(PermissionGuard(Permission.CREATE_PRODUCT))
