@@ -8,6 +8,7 @@ import { ProductColor } from '../modules/product/entities/product-color.entity';
 import { ProductSize } from '../modules/product/entities/product-size.entity';
 import { Product } from '../modules/product/entities/product.entity';
 import { generateSku } from '../utils/generate-sku.util';
+import { translateFromSvToEn } from '../utils/translate-from-sv-to-en';
 
 export interface StayhardResponse {
   category: PurpleCategory;
@@ -209,12 +210,12 @@ const shoeSizes = ['40', '41', '42', '43', '44', '45'];
 const oneSize = 'ONE SIZE';
 
 const clothesSubCategories: Record<string, string> = {
-  byxor: 'Pants',
+  /*   byxor: 'Pants',
   jackor: 'Jackets',
   'kavaj-kostym': 'Jacket & suit',
   shorts: 'Shorts',
   trojor: 'Sweaters',
-  't-shirts-pikeer': 'T-shirts',
+  't-shirts-pikeer': 'T-shirts', */
   jeans: 'Jeans',
   'strumpor-underklader': 'Socks & underwear',
   skjortor: 'Shirts',
@@ -287,7 +288,7 @@ const generateProducts = async (input: GenerateProductsInput) => {
     }
     const products: GeneratedProduct[] = [];
     for (const article of data.articles) {
-      // const translatedName = await translateFromSvToEn(article.name);
+      const translatedName = await translateFromSvToEn(article.name);
       const imageUrls = [
         article.imageFront.detail,
         article.imageAlternative.detail,
@@ -296,7 +297,7 @@ const generateProducts = async (input: GenerateProductsInput) => {
         ),
       ];
       const generatedProduct = {
-        name: article.name,
+        name: translatedName,
         originalPrice: Math.floor(article.originalPrice / 10), // EUR conversion
         currentPrice: Math.floor(article.currentPrice / 10), // EUR conversion
         images: imageUrls,
@@ -305,7 +306,7 @@ const generateProducts = async (input: GenerateProductsInput) => {
         attributes: [
           ...generateAttributes(
             imageUrls.length,
-            article.name, // TODO: should use translated name
+            translatedName,
             input.subCategory,
           ),
         ],
@@ -327,7 +328,7 @@ const generateProducts = async (input: GenerateProductsInput) => {
     ];
     await writeFile(filePath, JSON.stringify(mergedData));
 
-    // await generateProducts({ ...input, pageNumber: input.pageNumber + 1 }); //! recursive
+    await generateProducts({ ...input, pageNumber: input.pageNumber + 1 }); //! recursive
   } catch (err) {
     console.error(err);
   }
