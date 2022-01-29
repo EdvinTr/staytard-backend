@@ -38,7 +38,11 @@ export class Product extends BaseEntity {
 
   @Field()
   @Column()
-  unitPrice: number;
+  originalPrice: number;
+
+  @Field()
+  @Column()
+  currentPrice: number;
 
   @Field()
   @Column({ default: false })

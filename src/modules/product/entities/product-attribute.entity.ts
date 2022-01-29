@@ -6,11 +6,11 @@ import { Product } from './product.entity';
 
 @ObjectType()
 @Entity()
-@Unique(['size', 'color'])
+@Unique(['sku', 'size', 'color'])
 export class ProductAttribute {
   @Field()
-  @Column()
-  sku: string; // TODO: should be unique
+  @Column({ unique: true })
+  sku: string;
 
   @Field()
   @Column()

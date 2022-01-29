@@ -7,7 +7,7 @@ export enum BRAND_SORT_BY {
 export enum PRODUCT_SORT_BY {
   ID = 'id',
   NAME = 'name',
-  UNIT_PRICE = 'unitPrice',
+  CURRENT_PRICE = 'currentPrice',
 }
 export enum SORT_DIRECTION {
   DESC = 'DESC',

@@ -1,10 +1,16 @@
 import { Field, ObjectType } from '@nestjs/graphql';
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  BaseEntity,
+  Column,
+  Entity,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { Product } from './product.entity';
 
 @ObjectType()
 @Entity()
-export class ProductImage {
+export class ProductImage extends BaseEntity {
   @Field()
   @PrimaryGeneratedColumn()
   id: number;

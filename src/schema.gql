@@ -65,7 +65,8 @@ type Product {
   id: Float!
   name: String!
   description: String!
-  unitPrice: Float!
+  originalPrice: Float!
+  currentPrice: Float!
   isDiscontinued: Boolean!
   brandId: Float!
   brand: ProductBrand!
@@ -75,7 +76,7 @@ type Product {
   categoryId: Float!
   createdAt: DateTime!
   updatedAt: DateTime!
-  priceLabel: String!
+  currentPriceLabel: String!
 }
 
 type CustomerOrder {
@@ -174,7 +175,7 @@ input FindProductsInput {
 enum PRODUCT_SORT_BY {
   ID
   NAME
-  UNIT_PRICE
+  CURRENT_PRICE
 }
 
 enum SORT_DIRECTION {

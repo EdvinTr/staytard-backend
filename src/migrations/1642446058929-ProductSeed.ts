@@ -5,7 +5,9 @@ import { MigrationInterface, QueryRunner } from 'typeorm';
 import { GeneratedProduct } from '../migration-utils/product-seed.script';
 import { ProductBrand } from '../modules/product-brand/entities/product-brand.entity';
 import { ProductCategory } from '../modules/product-category/entities/product-category.entity';
+import { ProductColor } from '../modules/product/entities/product-color.entity';
 import { ProductImage } from '../modules/product/entities/product-image.entity';
+import { ProductSize } from '../modules/product/entities/product-size.entity';
 import { Product } from '../modules/product/entities/product.entity';
 
 export class ProductSeed1642446058929 implements MigrationInterface {
@@ -41,7 +43,7 @@ export class ProductSeed1642446058929 implements MigrationInterface {
             where: { name: item.brandName },
           });
           if (!brand) {
-            brand = allBrands[casual.integer(0, allBrands.length - 1)];
+            brand = allBrands[casual.integer(0, allBrands.length - 1)]; // select a random brand if it was not found in DB
           }
 
           let actualCategory = category;
@@ -53,29 +55,52 @@ export class ProductSeed1642446058929 implements MigrationInterface {
               ];
             actualCategory = randomCategory;
           }
+          // images currently stored in DB
+          const storedImages = (await ProductImage.find({})).map(
+            (img) => img.imageUrl,
+          );
+          // images to save before filtering
+          const productImages = [
+            ...item.images.map((url) => {
+              const image = new ProductImage();
+              image.imageUrl = url;
+              return image;
+            }),
+          ];
+          // filter duplicates if we have them in the DB
+          const imagesToSave = productImages.filter(
+            (img) => !storedImages.includes(img.imageUrl),
+          );
           const product = Product.create({
             name: item.name,
             description: item.description,
-            unitPrice: item.unitPrice,
+            currentPrice: item.currentPrice,
+            originalPrice: item.originalPrice,
             brand,
             category: actualCategory,
-            images: [
-              ...item.images.map((url) => {
-                const image = new ProductImage();
-                image.imageUrl = url;
-                return image;
-              }),
-            ],
+            images: [...imagesToSave],
           });
+          // fetch the color/size to avoid storing duplicates
+          const availableSizes = await ProductSize.find({});
+          const availableColors = await ProductColor.find({});
           product.attributes = [
-            ...item.attributes.map((attr) => {
+            ...item.attributes.map((attr, idx) => {
+              const storedSize = availableSizes.find(
+                (size) => size.value === attr.size.value,
+              );
+              const storedColor = availableColors.find(
+                (color) => color.value === attr.color.value,
+              );
               return {
-                ...attr,
                 product: product,
+                quantity: attr.quantity,
+                color: storedColor || attr.color,
+                size: storedSize || attr.size,
+                sku: attr.sku + idx,
               };
             }),
           ];
-          await Product.save(product).catch((err) => console.log(err)); // catching error here to avoid crash on unique constraint failure
+          await Product.save(product).catch((err) => console.log(err)); // catching error here to avoid crash on unique constraint failure...great solution.
         }
       }
     } catch (err) {

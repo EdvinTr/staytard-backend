@@ -1,10 +1,16 @@
 import { Field, ObjectType } from '@nestjs/graphql';
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  BaseEntity,
+  Column,
+  Entity,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { ProductAttribute } from './product-attribute.entity';
 
 @ObjectType()
 @Entity()
-export class ProductSize {
+export class ProductSize extends BaseEntity {
   @Field()
   @PrimaryGeneratedColumn()
   id: number;

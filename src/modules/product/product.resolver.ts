@@ -20,8 +20,8 @@ export class ProductResolver {
   constructor(private readonly productService: ProductService) {}
 
   @ResolveField(() => String)
-  public async priceLabel(@Parent() product: Product) {
-    return `${product.unitPrice} EUR`;
+  public async currentPriceLabel(@Parent() product: Product) {
+    return `${product.currentPrice} EUR`;
   }
 
   @Query(() => QueryProductsOutput)

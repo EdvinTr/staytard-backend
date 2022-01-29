@@ -8,7 +8,6 @@ import { ProductColor } from '../modules/product/entities/product-color.entity';
 import { ProductSize } from '../modules/product/entities/product-size.entity';
 import { Product } from '../modules/product/entities/product.entity';
 import { generateSku } from '../utils/generate-sku.util';
-import { translateFromSvToEn } from '../utils/translate-from-sv-to-en';
 
 export interface StayhardResponse {
   category: PurpleCategory;
@@ -194,71 +193,47 @@ export interface Sort {
 }
 const colors = [
   'Red',
-  'Green',
   'Blue',
   'Black',
   'White',
-  'Orange',
-  'Yellow',
+  'Black',
+  'White',
   'Gray',
-  'Silver',
   'Navy',
-  'Pink',
-  'Purple',
   'Brown',
-  'Beige',
-  'Cream',
-  'Gold',
-  'Copper',
-  'Coral',
-  'Crimson',
-  'Cyan',
-  'Emerald',
-  'Indigo',
-  'Lime',
-  'Magenta',
-  'Maroon',
-  'Mauve',
-  'Olive',
-  'Olive Green',
-  'Orange',
-  'Pink',
-  'Purple',
-  'Red',
-  'Silver',
-  'Teal',
-  'Turquoise',
-  'Violet',
-  'Yellow',
 ];
-const sizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
+const clotheSizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
 
-const clothesSubCategories = {
-  /*   byxor: 'Pants',
+const shoeSizes = ['40', '41', '42', '43', '44', '45'];
+
+const oneSize = 'ONE SIZE';
+
+const clothesSubCategories: Record<string, string> = {
+  byxor: 'Pants',
   jackor: 'Jackets',
   'kavaj-kostym': 'Jacket & suit',
   shorts: 'Shorts',
   trojor: 'Sweaters',
-  't-shirts-pikeer': 'T-shirts', */
+  't-shirts-pikeer': 'T-shirts',
   jeans: 'Jeans',
   'strumpor-underklader': 'Socks & underwear',
   skjortor: 'Shirts',
 };
 
-const shoesSubCategories = {
+const shoesSubCategories: Record<string, string> = {
   'sneakers-textilskor': 'Sneakers & fabric shoes',
   'boots-kangor': 'Boots',
   'flip-flops-sandaler': 'Flip flops & sandals',
 };
 
-const accessoriesSubCategories = {
+const accessoriesSubCategories: Record<string, string> = {
   'mossor-kepsar-hattar': 'Hats & Caps',
   solglasogon: 'Sunglasses',
   'vaskor-planbocker': 'Bags & wallets',
   klockor: 'Watches',
 };
 
-const lifestyleSubCategories = {
+const lifestyleSubCategories: Record<string, string> = {
   'face-body': 'Face & Body',
 };
 
@@ -283,7 +258,7 @@ type AttributeWithoutProduct = Pick<
 >;
 export type GeneratedProduct = Pick<
   Product,
-  'name' | 'description' | 'unitPrice'
+  'name' | 'description' | 'originalPrice' | 'currentPrice'
 > & {
   images: string[];
   brandName: string;
@@ -293,17 +268,17 @@ export type GeneratedProduct = Pick<
 interface GenerateProductsInput {
   baseCategory: string;
   pageNumber: number;
-  category: string;
+  subCategory: string;
   categoryInEnglish: string;
 }
 
 const generateProducts = async (input: GenerateProductsInput) => {
   try {
     console.log(
-      `Calling StayHard API with page number ${input.pageNumber}. Base category is ${input.baseCategory} and sub category: ${input.category}`,
+      `Calling StayHard API with page number ${input.pageNumber}. Base category is ${input.baseCategory} and sub category: ${input.subCategory}`,
     );
     const response = await axios.get<StayhardResponse>(
-      `https://www.stayhard.se/api/articles/?path=%2F${input.baseCategory}%2F${input.category}&page=${input.pageNumber}`,
+      `https://www.stayhard.se/api/articles/?path=%2F${input.baseCategory}%2F${input.subCategory}&page=${input.pageNumber}`,
     );
     const { data } = response;
     if (data.articles.length === 0) {
@@ -312,23 +287,30 @@ const generateProducts = async (input: GenerateProductsInput) => {
     }
     const products: GeneratedProduct[] = [];
     for (const article of data.articles) {
-      const translatedName = await translateFromSvToEn(article.name);
+      // const translatedName = await translateFromSvToEn(article.name);
       const imageUrls = [
         article.imageFront.detail,
         article.imageAlternative.detail,
-        ...article?.relatedArticles?.map(
+        ...article.relatedArticles?.map(
           (relatedArticle) => relatedArticle.image.detail,
         ),
       ];
-      const prod = {
-        name: translatedName,
-        unitPrice: Math.floor(article.originalPrice / 10),
+      const generatedProduct = {
+        name: article.name,
+        originalPrice: Math.floor(article.originalPrice / 10), // EUR conversion
+        currentPrice: Math.floor(article.currentPrice / 10), // EUR conversion
         images: imageUrls,
         brandName: article.subBrand,
         description: casual.sentences(casual.integer(3, 8)),
-        attributes: [...generateAttributes(imageUrls.length, translatedName)],
+        attributes: [
+          ...generateAttributes(
+            imageUrls.length,
+            article.name, // TODO: should use translated name
+            input.subCategory,
+          ),
+        ],
       };
-      products.push(prod);
+      products.push(generatedProduct);
     }
     const filePath = path.join(
       process.cwd(),
@@ -345,27 +327,46 @@ const generateProducts = async (input: GenerateProductsInput) => {
     ];
     await writeFile(filePath, JSON.stringify(mergedData));
 
-    await generateProducts({ ...input, pageNumber: input.pageNumber + 1 }); //! recursive
+    // await generateProducts({ ...input, pageNumber: input.pageNumber + 1 }); //! recursive
   } catch (err) {
     console.error(err);
   }
 };
 
-const generateAttributes = (length: number, productName: string) => {
-  const attributes = [];
-  for (let i = 0; i < length; i++) {
-    const color = new ProductColor();
-    color.value = colors[casual.integer(0, colors.length - 1)];
+const generateAttributes = (
+  numberOfAttributes: number, // the same amount as length of images
+  productName: string,
+  subCategory: string,
+) => {
+  const attributes: any[] = [];
+  for (let i = 0; i < numberOfAttributes; i++) {
+    // randomly generate between 1 and 3 attributes for the product
+    for (let j = 0; j < casual.integer(1, 3); j++) {
+      const size = new ProductSize();
+      if (clothesSubCategories[subCategory]) {
+        size.value = clotheSizes[casual.integer(0, clotheSizes.length - 1)]; // take clothe size
+      } else if (shoesSubCategories[subCategory]) {
+        size.value = shoeSizes[casual.integer(0, shoeSizes.length - 1)]; // take random shoe size
+      } else if (accessoriesSubCategories[subCategory]) {
+        size.value = oneSize;
+      } else if (lifestyleSubCategories[subCategory]) {
+        size.value = oneSize;
+      }
+      const color = new ProductColor();
+      color.value = colors[casual.integer(0, colors.length - 1)];
 
-    const size = new ProductSize();
-    size.value = sizes[casual.integer(0, sizes.length - 1)];
-
-    attributes.push({
-      size,
-      color,
-      quantity: casual.integer(1, 100),
-      sku: generateSku(productName, color.value, size.value),
-    });
+      const sku = generateSku(productName, color.value, size.value);
+      const skuAlreadyExists = attributes.find((a) => a.sku === sku);
+      if (skuAlreadyExists) {
+        continue; // skip this attribute
+      }
+      attributes.push({
+        size,
+        color,
+        quantity: casual.integer(1, 100),
+        sku,
+      });
+    }
   }
   return attributes;
 };
@@ -381,7 +382,7 @@ const main = async () => {
       await generateProducts({
         pageNumber: 1,
         baseCategory,
-        category: swedishCategoryName,
+        subCategory: swedishCategoryName,
         categoryInEnglish: englishCategoryName,
       });
   }

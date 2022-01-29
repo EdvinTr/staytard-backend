@@ -1,5 +1,6 @@
 import { Field, ObjectType } from '@nestjs/graphql';
 import {
+  BaseEntity,
   BeforeInsert,
   Column,
   Entity,
@@ -10,7 +11,7 @@ import { ProductAttribute } from './product-attribute.entity';
 
 @ObjectType()
 @Entity()
-export class ProductColor {
+export class ProductColor extends BaseEntity {
   @Field()
   @PrimaryGeneratedColumn()
   id: number;
