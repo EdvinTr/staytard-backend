@@ -1,6 +1,6 @@
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { FindOneOptions, Like, Repository } from 'typeorm';
+import { createQueryBuilder, FindOneOptions, Like, Repository } from 'typeorm';
 import { generateSku } from '../../utils/generate-sku.util';
 import { getOffset, paginate } from '../../utils/paginate.util';
 import { CreateProductInput } from './dto/create-product.input';
@@ -33,27 +33,36 @@ export class ProductService {
     offset,
     skus,
   }: FindProductsBySkusInput): Promise<QueryProductsOutput> {
-    const queryBuilder = this.productRepository.createQueryBuilder('product');
     try {
-      const [product, totalCount] = await queryBuilder
+      const attributeQueryBuilder = createQueryBuilder(
+        'product_attribute',
+        'attribute',
+      );
+      const attributes = (await attributeQueryBuilder
+        .innerJoinAndSelect('attribute.product', 'product')
         .innerJoinAndSelect('product.brand', 'brand')
         .innerJoinAndSelect('product.images', 'images')
-        .innerJoinAndSelect('product.attributes', 'attributes')
-        .innerJoinAndSelect('attributes.color', 'color')
-        .innerJoinAndSelect('attributes.size', 'size')
-        .where('attributes.sku IN (:...skus)', { skus })
+        .innerJoinAndSelect('attribute.color', 'color')
+        .innerJoinAndSelect('attribute.size', 'size')
+        .where('attribute.sku IN (:...skus)', { skus })
         .take(limit)
         .skip(offset)
-        .getManyAndCount();
+        .getMany()) as ProductAttribute[]; // Joining from product_attribute to enable TypeORM to fetch multiple of the same product where only attributes differ
+      const products = attributes.map(({ product, ...attribute }) => {
+        return {
+          ...product,
+          attributes: [attribute],
+        };
+      }) as Product[];
       return {
-        items: product,
-        totalCount,
-        hasMore: totalCount - offset > limit,
+        items: products,
+        totalCount: products.length,
+        hasMore: products.length - offset > limit,
       };
     } catch (err) {
       console.log(err);
       throw new InternalServerErrorException(
-        'Something went wrong when loading products with these skus',
+        'Something went wrong when loading products',
       );
     }
   }
