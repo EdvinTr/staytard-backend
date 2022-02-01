@@ -27,18 +27,24 @@ export class CustomerOrderService {
     { orderItems, ...rest }: CreateCustomerOrderInput,
     userId: string,
   ) {
-    const inputProductIds = orderItems.map((item) => item.productId);
+    const productSkus = orderItems.map((item) => item.sku);
     try {
       // find all the associated products
-      const products = await this.productService.findByIds(inputProductIds);
-      if (products.length !== inputProductIds.length) {
-        const dbProductIds = products.map((product) => product.id);
-        const idsNotFound = inputProductIds.filter(
-          (productId) => !dbProductIds.includes(productId),
+      const { items: products } = await this.productService.findBySkus({
+        limit: 50,
+        offset: 0,
+        skus: productSkus,
+      });
+      if (products.length !== productSkus.length) {
+        const dbProductSkus = products.map(
+          (product) => product.attributes[0].sku,
+        );
+        const skusNotfound = productSkus.filter(
+          (sku) => !dbProductSkus.includes(sku),
         );
         // send back error response with the product ids that were not found
         throw new NotFoundException(
-          `Product(s) with id(s): [${idsNotFound}] was not found`,
+          `SKU(s) with value(s): [${skusNotfound}] was not found`,
         );
       }
 

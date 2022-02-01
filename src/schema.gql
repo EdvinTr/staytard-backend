@@ -263,18 +263,19 @@ input OrderLineInput {
   product_url: String!
   productId: Float!
   image_url: String!
+  sku: String!
 }
 
 input BillingAddressInput {
-  given_name: String!
-  family_name: String!
-  email: String!
+  given_name: String
+  family_name: String
+  email: String
   title: String
   street_address: String!
   postal_code: String!
   city: String!
   region: String
-  phone: String!
+  phone: String
   country: String
 }
 

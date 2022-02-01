@@ -39,6 +39,7 @@ export class CreateCustomerOrderInput {
 export class OrderItemInput {
   productId: number;
   quantity: number;
+  sku: string;
 }
 export class CreateCustomerOrderInput {
   deliveryAddress: string;

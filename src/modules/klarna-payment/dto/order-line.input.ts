@@ -31,4 +31,7 @@ export class OrderLineInput {
 
   @Field()
   image_url: string;
+
+  @Field()
+  sku: string;
 }

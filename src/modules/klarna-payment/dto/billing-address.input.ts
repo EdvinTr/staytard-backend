@@ -2,13 +2,13 @@ import { Field, InputType } from '@nestjs/graphql';
 
 @InputType()
 export class BillingAddressInput {
-  @Field()
+  @Field({ nullable: true })
   given_name: string;
 
-  @Field()
+  @Field({ nullable: true })
   family_name: string;
 
-  @Field()
+  @Field({ nullable: true })
   email: string;
 
   @Field({ nullable: true })
@@ -26,7 +26,7 @@ export class BillingAddressInput {
   @Field({ nullable: true })
   region: string;
 
-  @Field()
+  @Field({ nullable: true })
   phone: string;
 
   @Field({ nullable: true })

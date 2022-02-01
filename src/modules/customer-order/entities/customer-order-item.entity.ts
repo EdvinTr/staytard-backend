@@ -12,7 +12,7 @@ import { CustomerOrder } from './customer-order.entity';
 
 @ObjectType()
 @Entity()
-@Unique(['orderId', 'productId'])
+@Unique(['orderId', 'productId', 'sku'])
 export class CustomerOrderItem extends BaseEntity {
   @PrimaryColumn()
   @Field()
@@ -21,6 +21,10 @@ export class CustomerOrderItem extends BaseEntity {
   @PrimaryColumn()
   @Field()
   productId: number;
+
+  @PrimaryColumn()
+  @Field()
+  sku: string;
 
   @Field()
   @Column()

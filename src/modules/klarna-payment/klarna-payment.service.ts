@@ -67,6 +67,7 @@ export class KlarnaPaymentService {
             ...order_lines.map((line) => ({
               productId: line.productId,
               quantity: line.quantity,
+              sku: line.sku,
             })),
           ],
           totalAmount: order_amount + order_tax_amount, // Klarna calculates the total amount correctly based on the order lines
