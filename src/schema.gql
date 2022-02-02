@@ -96,13 +96,6 @@ type CustomerOrder {
   updatedAt: DateTime!
 }
 
-type UserAddress {
-  id: Float!
-  city: String!
-  street: String!
-  postalCode: String!
-}
-
 type User {
   id: String!
   firstName: String!
@@ -123,6 +116,13 @@ enum Permission {
   UPDATE_PRODUCT
   DELETE_PRODUCT
   PUBLISH_REVIEW
+}
+
+type UserAddress {
+  id: Float!
+  city: String!
+  street: String!
+  postalCode: String!
 }
 
 type UserWithTokensDto {
@@ -201,6 +201,7 @@ enum BRAND_SORT_BY {
 }
 
 type Mutation {
+  updateUserAddress(input: UpdateUserAddressInput!): User!
   createProduct(input: CreateProductInput!): Product!
   createProductReview(input: CreateProductReviewInput!): ProductReview!
   publishReview(id: Float!): ProductReview!
@@ -210,6 +211,12 @@ type Mutation {
   login(input: LoginUserDto!): UserWithTokensDto!
   logout: Boolean!
   authenticateWithGoogle(googleAuthToken: String!): UserWithTokensDto!
+}
+
+input UpdateUserAddressInput {
+  city: String!
+  street: String!
+  postalCode: String!
 }
 
 input CreateProductInput {

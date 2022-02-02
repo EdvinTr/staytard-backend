@@ -6,6 +6,7 @@ import { Auth } from 'googleapis';
 import mockedConfigService from '../../../utils/mocks/config.service';
 import mockedJwtService from '../../../utils/mocks/jwt.service';
 import { AuthenticationService } from '../../authentication/authentication.service';
+import { UserAddress } from '../../user/entities/user-address.entity';
 import { User } from '../../user/entities/user.entity';
 import { UserService } from '../../user/user.service';
 import { GoogleAuthenticationService } from '../google-authentication.service';
@@ -44,6 +45,10 @@ describe('Google Authentication', () => {
         },
         {
           provide: getRepositoryToken(User),
+          useValue: {},
+        },
+        {
+          provide: getRepositoryToken(UserAddress),
           useValue: {},
         },
       ],

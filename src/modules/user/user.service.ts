@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import * as bcrypt from 'bcrypt';
 import {
@@ -9,12 +9,16 @@ import {
 } from 'typeorm';
 import { RegisterUserDto } from '../authentication/dto/register-user.dto';
 import { RegisterWithGoogleDto } from '../google-authentication/dto/register-with-google-dto';
+import { UpdateUserAddressInput } from './dto/update-user-address.input';
+import { UserAddress } from './entities/user-address.entity';
 import { User } from './entities/user.entity';
 
 @Injectable()
 export class UserService {
   constructor(
     @InjectRepository(User) private readonly userRepository: Repository<User>,
+    @InjectRepository(UserAddress)
+    private readonly addressRepository: Repository<UserAddress>,
   ) {}
 
   async findByEmail(email: string): Promise<User | undefined> {
@@ -29,6 +33,39 @@ export class UserService {
     options?: FindOneOptions<User>,
   ): Promise<User | undefined> {
     return await this.userRepository.findOne(id, { ...options });
+  }
+
+  async updateAddress(
+    userId: string,
+    address: UpdateUserAddressInput,
+  ): Promise<User> {
+    try {
+      const user = await this.findById(userId, { relations: ['address'] });
+      if (!user) {
+        throw new NotFoundException('User not found');
+      }
+      if (user.address) {
+        await this.addressRepository.update(
+          {
+            id: user.address.id, // update where id is equal to user.address.id
+          },
+          {
+            ...address,
+          },
+        );
+        return user;
+      } else {
+        const userWithAddress = {
+          ...user,
+          address: {
+            ...address,
+          },
+        };
+        return await this.userRepository.save(userWithAddress);
+      }
+    } catch (error) {
+      throw error;
+    }
   }
 
   async create(createUserData: RegisterUserDto): Promise<User> {

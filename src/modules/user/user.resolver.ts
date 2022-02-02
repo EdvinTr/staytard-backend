@@ -1,9 +1,10 @@
 import { UseGuards } from '@nestjs/common';
-import { Context, Query, Resolver } from '@nestjs/graphql';
+import { Args, Context, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { GraphqlJwtAuthGuard } from '../authentication/guards/graphql-jwt-auth.guard';
 import RequestWithUser from '../authentication/interfaces/request-with-user.interface';
 import { User } from '../user/entities/user.entity';
 import { UserService } from '../user/user.service';
+import { UpdateUserAddressInput } from './dto/update-user-address.input';
 
 @Resolver(User)
 export class UserResolver {
@@ -20,5 +21,14 @@ export class UserResolver {
     ];
     await this.userService.save(user); */
     return context.req.user;
+  }
+
+  @UseGuards(GraphqlJwtAuthGuard)
+  @Mutation(() => User)
+  async updateUserAddress(
+    @Context() { req }: { req: RequestWithUser },
+    @Args('input') input: UpdateUserAddressInput,
+  ): Promise<User> {
+    return this.userService.updateAddress(req.user.id, input);
   }
 }

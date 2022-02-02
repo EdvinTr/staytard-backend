@@ -7,6 +7,7 @@ import { getRepositoryToken } from '@nestjs/typeorm';
 import * as bcrypt from 'bcrypt';
 import mockedConfigService from '../../../utils/mocks/config.service';
 import mockedJwtService from '../../../utils/mocks/jwt.service';
+import { UserAddress } from '../../user/entities/user-address.entity';
 import { User } from '../../user/entities/user.entity';
 import { UserService } from '../../user/user.service';
 import { AuthenticationService } from '../authentication.service';
@@ -44,6 +45,10 @@ describe('AuthenticationService', () => {
         {
           provide: getRepositoryToken(User),
           useValue: mockUserRepository,
+        },
+        {
+          provide: getRepositoryToken(UserAddress),
+          useValue: {},
         },
       ],
     }).compile();

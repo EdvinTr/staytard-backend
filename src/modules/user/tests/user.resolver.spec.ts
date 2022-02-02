@@ -2,6 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { User } from '../../user/entities/user.entity';
 import { UserService } from '../../user/user.service';
+import { UserAddress } from '../entities/user-address.entity';
 import { UserResolver } from '../user.resolver';
 describe('UserResolver', () => {
   let userService: UserService;
@@ -13,6 +14,10 @@ describe('UserResolver', () => {
         UserService,
         {
           provide: getRepositoryToken(User),
+          useValue: {},
+        },
+        {
+          provide: getRepositoryToken(UserAddress),
           useValue: {},
         },
       ],
