@@ -1,11 +1,11 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { In, Repository } from 'typeorm';
+import { ProductAttributeService } from '../product/product-attribute.service';
 import { ProductService } from '../product/product.service';
 import { CreateCustomerOrderInput } from './dto/create-customer-order.input';
 import { CustomerOrderStatus } from './entities/customer-order-status.entity';
 import { CustomerOrder } from './entities/customer-order.entity';
-import { ORDER_STATUS } from './typings/order-status.enum';
 
 @Injectable()
 export class CustomerOrderService {
@@ -15,6 +15,7 @@ export class CustomerOrderService {
     @InjectRepository(CustomerOrderStatus)
     private readonly orderStatusRepository: Repository<CustomerOrderStatus>,
     private readonly productService: ProductService,
+    private readonly productAttributeService: ProductAttributeService,
   ) {}
 
   public async findAll(userId: string) {
@@ -24,6 +25,28 @@ export class CustomerOrderService {
   }
 
   public async create(
+    { orderItems, ...rest }: CreateCustomerOrderInput,
+    userId: string,
+  ) {
+    try {
+      const productSkus = orderItems.map((item) => item.sku);
+      const storedProductAttributes = await this.productAttributeService.find({
+        where: {
+          sku: In(productSkus),
+        },
+      });
+
+      if (productSkus.length !== storedProductAttributes.length) {
+        throw new NotFoundException('One or more products could not be found');
+      }
+    } catch (err) {
+      throw err;
+    }
+
+    return;
+  }
+
+  /*   public async create(
     { orderItems, ...rest }: CreateCustomerOrderInput,
     userId: string,
   ) {
@@ -47,7 +70,8 @@ export class CustomerOrderService {
           `SKU(s) with value(s): [${skusNotfound}] was not found`,
         );
       }
-
+      // TODO:
+      // 1. For each product sku, check the quantity in the database minus the requested amount in the order, if it is less than 0, throw an error that the product is out of stock
       const pendingOrderStatus = await this.orderStatusRepository.findOne({
         where: { status: ORDER_STATUS.PENDING },
       });
@@ -64,5 +88,5 @@ export class CustomerOrderService {
       console.log(error);
       throw error;
     }
-  }
+  } */
 }
