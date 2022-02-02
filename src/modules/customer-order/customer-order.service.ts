@@ -4,12 +4,13 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { In, MoreThan, Repository } from 'typeorm';
+import { In, Repository } from 'typeorm';
 import { ProductAttributeService } from '../product/product-attribute.service';
 import { ProductService } from '../product/product.service';
 import { CreateCustomerOrderInput } from './dto/create-customer-order.input';
 import { CustomerOrderStatus } from './entities/customer-order-status.entity';
 import { CustomerOrder } from './entities/customer-order.entity';
+import { ORDER_STATUS } from './typings/order-status.enum';
 
 @Injectable()
 export class CustomerOrderService {
@@ -37,16 +38,13 @@ export class CustomerOrderService {
       const storedProductAttributes = await this.productAttributeService.find({
         where: {
           sku: In(orderItemSKUs),
-          quantity: MoreThan(0),
         },
       });
       if (orderItemSKUs.length !== storedProductAttributes.length) {
-        throw new NotFoundException(
-          'One or more products could not be found or it is out of stock',
-        );
+        throw new NotFoundException('One or more products could not be found'); // TODO: should return an array of SKUs that could not be found
       }
-      // check if all products are in stock compared to the orderItems
-      const isProductsInStock = storedProductAttributes.every(
+      // check if all products are in stock compared to the requested amount in each order item
+      const isProductsInStock: boolean = storedProductAttributes.every(
         (productAttribute) => {
           const orderItem = orderItems.find(
             (item) => item.sku === productAttribute.sku,
@@ -58,13 +56,23 @@ export class CustomerOrderService {
         },
       );
       if (!isProductsInStock) {
-        throw new BadRequestException('Not all products are in stock');
+        throw new BadRequestException('Not all products are in stock'); // TODO: should return an array of product SKUs that are not available
       }
+
+      const pendingOrderStatus = await this.orderStatusRepository.findOne({
+        where: { status: ORDER_STATUS.PENDING },
+      });
+      const customerOrder = this.customerOrderRepository.create({
+        ...rest,
+        userId,
+        shippingCost: 5,
+        orderStatus: pendingOrderStatus,
+        orderItems: orderItems.map((item) => ({ ...item })),
+      });
+      return this.customerOrderRepository.save(customerOrder);
     } catch (err) {
       throw err;
     }
-
-    return;
   }
 
   /*   public async create(

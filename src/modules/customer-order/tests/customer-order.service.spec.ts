@@ -6,16 +6,26 @@ import { ProductService } from '../../product/product.service';
 import { CustomerOrderService } from '../customer-order.service';
 import { CustomerOrderStatus } from '../entities/customer-order-status.entity';
 import { CustomerOrder } from '../entities/customer-order.entity';
+import { ORDER_STATUS } from '../typings/order-status.enum';
 import { mockCustomerOrder } from './mock-customer-order.mock';
 describe('CustomerOrderService', () => {
   let customerOrderService: CustomerOrderService;
   let productService: ProductService;
-  let mockOrderRepository = {};
+  let mockCustomerOrderRepository = {
+    create: jest.fn().mockImplementation((args) => ({ ...args })),
+    save: jest.fn().mockResolvedValue({
+      id: Math.floor(Math.random() * 100),
+      ...mockCustomerOrder,
+    }),
+  };
   let mockProductAttributeService = {
     find: jest.fn(),
   };
+  let mockOrderStatusRepository = {
+    findOne: jest.fn().mockResolvedValue({ status: ORDER_STATUS.PENDING }),
+  };
   beforeEach(async () => {
-    jest.resetAllMocks();
+    jest.restoreAllMocks();
     const module: TestingModule = await Test.createTestingModule({
       providers: [
         CustomerOrderService,
@@ -23,11 +33,11 @@ describe('CustomerOrderService', () => {
         ProductAttributeService,
         {
           provide: getRepositoryToken(CustomerOrder),
-          useValue: mockOrderRepository,
+          useValue: mockCustomerOrderRepository,
         },
         {
           provide: getRepositoryToken(CustomerOrderStatus),
-          useValue: {},
+          useValue: mockOrderStatusRepository,
         },
         {
           provide: getRepositoryToken(Product),
@@ -45,11 +55,9 @@ describe('CustomerOrderService', () => {
   });
 
   // TODO: Testing:
-  // 2. Test that error is thrown when attempting to place an order with a product that is out of stock (e.g., quantity = 0).
   // 3. Test that it is possible to create an order when products are in stock.
   // 4. Test that when payment type is "SEK" that the total price of the order is multiplied by 10..
   // 5. Test that the order status of a newly created order is "PENDING".
-  // 6. Test that when creating an order it should return it along side the id of the order.
   // 7. Test that when an order is created, an email is sent through the email service.
   describe('when creating a customer order', () => {
     describe('and not all SKUs can be found', () => {
@@ -92,15 +100,17 @@ describe('CustomerOrderService', () => {
           { productId: 487, sku: 'JSHJ-WHI-S5', quantity: 100 },
         ]);
       });
-      it('should work', async () => {
-        await expect(
-          customerOrderService.create(
-            {
-              ...mockCustomerOrder,
-            },
-            'userUUID',
-          ),
-        ).resolves; // TODO: Check that it returns the order or something
+      it('create an order and return it', async () => {
+        const customerOrder = await customerOrderService.create(
+          {
+            ...mockCustomerOrder,
+          },
+          'userUUID',
+        );
+        expect(customerOrder).toEqual({
+          id: expect.any(Number),
+          ...mockCustomerOrder,
+        });
       });
     });
   });
