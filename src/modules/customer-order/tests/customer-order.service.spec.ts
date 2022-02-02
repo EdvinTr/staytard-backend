@@ -45,7 +45,6 @@ describe('CustomerOrderService', () => {
   });
 
   // TODO: Testing:
-  // 1. Test that an error is thrown when one of the SKUs are not found.
   // 2. Test that error is thrown when attempting to place an order with a product that is out of stock (e.g., quantity = 0).
   // 3. Test that it is possible to create an order when products are in stock.
   // 4. Test that when payment type is "SEK" that the total price of the order is multiplied by 10..
@@ -66,6 +65,42 @@ describe('CustomerOrderService', () => {
             'userUUID',
           ),
         ).rejects.toThrowError();
+      });
+    });
+    describe('and products are not in stock', () => {
+      beforeEach(() => {
+        mockProductAttributeService.find = jest.fn().mockResolvedValue([
+          { productId: 823, sku: 'PAPN-WHI-L4', quantity: 0 },
+          { productId: 487, sku: 'JSHJ-WHI-S5', quantity: 1 },
+        ]);
+      });
+      it('should throw an error', async () => {
+        await expect(
+          customerOrderService.create(
+            {
+              ...mockCustomerOrder,
+            },
+            'userUUID',
+          ),
+        ).rejects.toThrowError();
+      });
+    });
+    describe('and products are available in stock', () => {
+      beforeEach(() => {
+        mockProductAttributeService.find = jest.fn().mockResolvedValue([
+          { productId: 823, sku: 'PAPN-WHI-L4', quantity: 100 },
+          { productId: 487, sku: 'JSHJ-WHI-S5', quantity: 100 },
+        ]);
+      });
+      it('should work', async () => {
+        await expect(
+          customerOrderService.create(
+            {
+              ...mockCustomerOrder,
+            },
+            'userUUID',
+          ),
+        ).resolves; // TODO: Check that it returns the order or something
       });
     });
   });

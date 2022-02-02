@@ -1,6 +1,10 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { In, Repository } from 'typeorm';
+import { In, MoreThan, Repository } from 'typeorm';
 import { ProductAttributeService } from '../product/product-attribute.service';
 import { ProductService } from '../product/product.service';
 import { CreateCustomerOrderInput } from './dto/create-customer-order.input';
@@ -29,15 +33,32 @@ export class CustomerOrderService {
     userId: string,
   ) {
     try {
-      const productSkus = orderItems.map((item) => item.sku);
+      const orderItemSKUs = orderItems.map((item) => item.sku);
       const storedProductAttributes = await this.productAttributeService.find({
         where: {
-          sku: In(productSkus),
+          sku: In(orderItemSKUs),
+          quantity: MoreThan(0),
         },
       });
-
-      if (productSkus.length !== storedProductAttributes.length) {
-        throw new NotFoundException('One or more products could not be found');
+      if (orderItemSKUs.length !== storedProductAttributes.length) {
+        throw new NotFoundException(
+          'One or more products could not be found or it is out of stock',
+        );
+      }
+      // check if all products are in stock compared to the orderItems
+      const isProductsInStock = storedProductAttributes.every(
+        (productAttribute) => {
+          const orderItem = orderItems.find(
+            (item) => item.sku === productAttribute.sku,
+          );
+          if (!orderItem) {
+            return false;
+          }
+          return productAttribute.quantity - orderItem.quantity >= 0;
+        },
+      );
+      if (!isProductsInStock) {
+        throw new BadRequestException('Not all products are in stock');
       }
     } catch (err) {
       throw err;
