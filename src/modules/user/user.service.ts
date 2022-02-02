@@ -40,7 +40,9 @@ export class UserService {
     address: UpdateUserAddressInput,
   ): Promise<User> {
     try {
-      const user = await this.findById(userId, { relations: ['address'] });
+      const user = await this.userRepository.findOne(userId, {
+        relations: ['address'],
+      });
       if (!user) {
         throw new NotFoundException('User not found');
       }
@@ -53,8 +55,13 @@ export class UserService {
             ...address,
           },
         );
-        return user;
+        const savedUser = await this.userRepository.findOne(user.id);
+        if (!savedUser) {
+          throw new NotFoundException(); // Add this because of TS
+        }
+        return savedUser;
       } else {
+        // user doesn't have an address so we create and save a new one
         const userWithAddress = {
           ...user,
           address: {
