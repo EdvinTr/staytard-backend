@@ -55,7 +55,6 @@ describe('CustomerOrderService', () => {
   });
 
   // TODO: Testing:
-  // 3. Test that it is possible to create an order when products are in stock.
   // 4. Test that when payment type is "SEK" that the total price of the order is multiplied by 10..
   // 5. Test that the order status of a newly created order is "PENDING".
   // 7. Test that when an order is created, an email is sent through the email service.

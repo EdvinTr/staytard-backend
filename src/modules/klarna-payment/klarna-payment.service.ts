@@ -5,6 +5,7 @@ import {
   InternalServerErrorException,
 } from '@nestjs/common';
 import { CustomerOrderService } from '../customer-order/customer-order.service';
+import { CustomerOrder } from '../customer-order/entities/customer-order.entity';
 import { InitKlarnaSessionInput } from './dto/init-klarna-session.input';
 import { AuthorizeKlarnaResponse } from './typings/authorize-klarna-response';
 import { KlarnaSessionResponse } from './typings/klarna-session-response';
@@ -20,7 +21,7 @@ export class KlarnaPaymentService {
     input: InitKlarnaSessionInput,
     authorizationToken: string,
     userId: string,
-  ) {
+  ): Promise<CustomerOrder> {
     try {
       // TODO: before even attempting this, check if the productIds are available, check stock on them as well
       const response = await this.httpService
