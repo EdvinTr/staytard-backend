@@ -202,6 +202,7 @@ enum BRAND_SORT_BY {
 
 type Mutation {
   updateUserAddress(input: UpdateUserAddressInput!): User!
+  updatePassword(input: UpdateUserPasswordInput!): Boolean!
   createProduct(input: CreateProductInput!): Product!
   createProductReview(input: CreateProductReviewInput!): ProductReview!
   publishReview(id: Float!): ProductReview!
@@ -217,6 +218,11 @@ input UpdateUserAddressInput {
   city: String!
   street: String!
   postalCode: String!
+}
+
+input UpdateUserPasswordInput {
+  oldPassword: String
+  newPassword: String!
 }
 
 input CreateProductInput {

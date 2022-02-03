@@ -1,9 +1,9 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
+import * as bcrypt from 'bcrypt';
 import { UserAddress } from '../entities/user-address.entity';
 import { User } from '../entities/user.entity';
 import { UserService } from '../user.service';
-
 const mockUserWithoutAddress = {
   id: 'uuid2bsajhsdasdk',
 };
@@ -17,10 +17,13 @@ const mockUserWithAddress = {
   },
 };
 describe('UserService', () => {
+  let bcryptHash: jest.Mock;
+  let bcryptCompare: jest.Mock;
   let userService: UserService;
   let mockUserRepository = {
-    save: jest.fn(),
-    findOne: jest.fn(),
+    save: jest.fn().mockResolvedValue(mockUserWithAddress),
+    findOne: jest.fn().mockResolvedValue(mockUserWithAddress),
+    update: jest.fn(),
   };
   let mockAddressRepository = {
     update: jest.fn(),
@@ -29,10 +32,16 @@ describe('UserService', () => {
     mockUserRepository = {
       save: jest.fn().mockResolvedValue(mockUserWithAddress),
       findOne: jest.fn().mockResolvedValue(mockUserWithAddress),
+      update: jest.fn(),
     };
     mockAddressRepository = {
       update: jest.fn(),
     };
+    bcryptHash = jest.fn().mockReturnValue((value: string) => value);
+    (bcrypt.hash as jest.Mock) = bcryptHash;
+
+    bcryptCompare = jest.fn().mockReturnValue(true);
+    (bcrypt.compare as jest.Mock) = bcryptCompare;
     const module: TestingModule = await Test.createTestingModule({
       providers: [
         UserService,
@@ -48,6 +57,55 @@ describe('UserService', () => {
     }).compile();
 
     userService = module.get<UserService>(UserService);
+  });
+
+  describe('when updating password', () => {
+    beforeEach(() => {
+      mockUserRepository.findOne.mockResolvedValue({
+        id: 'someUuid',
+        password: '123',
+      });
+    });
+    describe('and old password is invalid', () => {
+      beforeEach(() => {
+        bcryptCompare.mockReturnValue(false);
+      });
+      it('should throw an error', async () => {
+        await expect(
+          userService.updatePassword('uuid', {
+            oldPassword: 'wrongPassword',
+            newPassword: 'newPassword',
+          }),
+        ).rejects.toThrow();
+      });
+    });
+    describe('and old password is valid', () => {
+      beforeEach(() => {
+        bcryptCompare.mockReturnValue(true);
+      });
+      it('should update the users password', async () => {
+        await expect(
+          userService.updatePassword('uuid', {
+            oldPassword: 'oldPassword',
+            newPassword: 'newPassword',
+          }),
+        ).resolves.toBe(true);
+      });
+    });
+    describe('and the users password is null in database', () => {
+      beforeEach(() => {
+        mockUserRepository.findOne.mockResolvedValue({
+          id: 'someUuid',
+        });
+      });
+      it('should save the new password', async () => {
+        await expect(
+          userService.updatePassword('uuid', {
+            newPassword: 'newPassword',
+          }),
+        ).resolves.toBe(true);
+      });
+    });
   });
 
   describe('when updating a users address', () => {

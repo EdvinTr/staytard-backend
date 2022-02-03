@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import * as bcrypt from 'bcrypt';
 import {
@@ -10,6 +14,7 @@ import {
 import { RegisterUserDto } from '../authentication/dto/register-user.dto';
 import { RegisterWithGoogleDto } from '../google-authentication/dto/register-with-google-dto';
 import { UpdateUserAddressInput } from './dto/update-user-address.input';
+import { UpdateUserPasswordInput } from './dto/update-user-password.input';
 import { UserAddress } from './entities/user-address.entity';
 import { User } from './entities/user.entity';
 
@@ -32,7 +37,7 @@ export class UserService {
     id: string,
     options?: FindOneOptions<User>,
   ): Promise<User | undefined> {
-    return await this.userRepository.findOne(id, { ...options });
+    return await this.userRepository.findOne(id, { ...options, cache: 10000 });
   }
 
   async updateAddress(
@@ -86,6 +91,42 @@ export class UserService {
       },
     });
     return await this.userRepository.save(user);
+  }
+
+  async updatePassword(
+    userId: string,
+    { oldPassword, newPassword }: UpdateUserPasswordInput,
+  ) {
+    try {
+      const user = await this.userRepository.findOne(userId);
+      if (!user) {
+        throw new NotFoundException('User not found');
+      }
+      if (!user.password || !oldPassword) {
+        // set a new password since user must have signed up through OAuth provider and doesn't yet have a password in database
+        const hashedPassword = await bcrypt.hash(newPassword, 10);
+        await this.userRepository.update(userId, {
+          password: hashedPassword,
+        });
+        return true;
+      }
+      // compare old password provided against the one stored in database
+      const isPasswordMatching = await bcrypt.compare(
+        oldPassword,
+        user.password,
+      );
+      if (!isPasswordMatching) {
+        throw new BadRequestException('Invalid old password');
+      }
+      // hash new password and update password column
+      const hashedPassword = await bcrypt.hash(newPassword, 10);
+      await this.userRepository.update(userId, {
+        password: hashedPassword,
+      });
+      return true;
+    } catch (error) {
+      throw error;
+    }
   }
 
   async deleteById(userId: string): Promise<DeleteResult> {
