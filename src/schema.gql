@@ -203,7 +203,6 @@ enum BRAND_SORT_BY {
 type Mutation {
   updateUserAddress(input: UpdateUserAddressInput!): User!
   createProduct(input: CreateProductInput!): Product!
-  testCreateCustomerOrder: String!
   createProductReview(input: CreateProductReviewInput!): ProductReview!
   publishReview(id: Float!): ProductReview!
   initializeKlarnaSession(input: InitKlarnaSessionInput!): KlarnaSessionResponse!
