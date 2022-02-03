@@ -1,5 +1,4 @@
 import { Field, InputType } from '@nestjs/graphql';
-import { Transform } from 'class-transformer';
 import {
   IsAlpha,
   IsEmail,
@@ -10,6 +9,7 @@ import {
   MaxLength,
   MinLength,
 } from 'class-validator';
+import IsValidPassword from '../../../utils/validation/is-valid-password.decorator';
 
 @InputType()
 export class RegisterUserDto {
@@ -51,12 +51,7 @@ export class RegisterUserDto {
   @Field()
   mobilePhoneNumber: string;
 
-  @MinLength(8, {
-    message: `Password must be longer than or equal to $constraint1 characters`,
-  })
-  @MaxLength(20, {
-    message: `Password must be shorter than or equal to $constraint1 characters`,
-  })
+  @IsValidPassword('password')
   @Field()
   password: string;
 
@@ -70,10 +65,6 @@ export class RegisterUserDto {
   @Field()
   @MinLength(1)
   @MaxLength(36)
-  @Transform(
-    ({ value }) =>
-      value.substring(0, 1).toUpperCase() + value.substring(1).toLowerCase(),
-  )
   street: string;
 
   @IsPostalCode('SE', {
