@@ -24,8 +24,8 @@ export class CustomerOrderResolver {
         city: 'test',
         deliveryAddress: 'test',
         orderItems: [
-          { productId: 823, sku: 'PAPN-WHI-L4', quantity: 3 },
-          { productId: 487, sku: 'JSHJ-WHI-S5', quantity: 22 },
+          { productId: 823, sku: 'PAPN-WHI-L4', quantity: 1 },
+          { productId: 487, sku: 'JSHJ-WHI-S5', quantity: 1 },
         ],
         orderNumber: 'test',
         paymentType: 'card',

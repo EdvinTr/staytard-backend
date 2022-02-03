@@ -11,17 +11,18 @@ import { mockCustomerOrder } from './mock-customer-order.mock';
 describe('CustomerOrderService', () => {
   let customerOrderService: CustomerOrderService;
   let productService: ProductService;
-  let mockCustomerOrderRepository = {
+  const mockCustomerOrderRepository = {
     create: jest.fn().mockImplementation((args) => ({ ...args })),
     save: jest.fn().mockResolvedValue({
       id: Math.floor(Math.random() * 100),
       ...mockCustomerOrder,
     }),
   };
-  let mockProductAttributeService = {
+  const mockProductAttributeService = {
     find: jest.fn(),
+    update: jest.fn().mockImplementation(() => {}),
   };
-  let mockOrderStatusRepository = {
+  const mockOrderStatusRepository = {
     findOne: jest.fn().mockResolvedValue({ status: ORDER_STATUS.PENDING }),
   };
   beforeEach(async () => {

@@ -1,6 +1,7 @@
 import {
   BadRequestException,
   Injectable,
+  InternalServerErrorException,
   NotFoundException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -66,13 +67,36 @@ export class CustomerOrderService {
         orderStatus: pendingOrderStatus,
         orderItems: orderItems.map((item) => ({ ...item })),
       });
-      return this.customerOrderRepository.save(customerOrder);
+      const savedOrder = await this.customerOrderRepository.save(customerOrder);
+      if (!savedOrder) {
+        throw new InternalServerErrorException(
+          'Something went wrong trying to save order',
+        );
+      }
+      // update quantity of products in stock
+      for (let i = 0; i < orderItems.length; i++) {
+        const productAttribute = storedProductAttributes.find(
+          (attr) => attr.sku === orderItems[i].sku,
+        );
+        await this.productAttributeService.update(
+          {
+            sku: orderItems[i].sku,
+          },
+          {
+            // productAttribute will always be defined because we already checked for that earlier
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+            quantity: productAttribute!.quantity - orderItems[i].quantity,
+          },
+        );
+      }
 
+      return savedOrder;
       // TODO: should send email to customer with id: userId
     } catch (err) {
       throw err;
     }
   }
+
   /**
    * Compare product quantity from Database against the requested amount in each order item
    *  */
@@ -87,7 +111,7 @@ export class CustomerOrderService {
       if (!orderItem) {
         return false;
       }
-      return productAttribute.quantity - orderItem.quantity >= 0;
+      return productAttribute.quantity - orderItem.quantity >= 0; // check if there is enough stock
     });
   }
 }
