@@ -16,7 +16,7 @@ export class CustomerOrderResolver {
   async customerOrders(
     @Context() { req }: { req: RequestWithUser },
     @Args('input') input: FindCustomerOrdersInput,
-  ): Promise<CustomerOrder[]> {
-    return this.customerOrderService.findAll(req.user.id);
+  ): Promise<PaginatedCustomerOrdersOutput> {
+    return this.customerOrderService.findAll(req.user.id, input);
   }
 }

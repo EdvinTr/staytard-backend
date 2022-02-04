@@ -13,6 +13,8 @@ import {
   CreateCustomerOrderInput,
   OrderItemInput,
 } from './dto/create-customer-order.input';
+import { FindCustomerOrdersInput } from './dto/find-customer-orders.input';
+import { PaginatedCustomerOrdersOutput } from './dto/paginated-customer-orders.output';
 import { CustomerOrderStatus } from './entities/customer-order-status.entity';
 import { CustomerOrder } from './entities/customer-order.entity';
 import { ORDER_STATUS } from './typings/order-status.enum';
@@ -28,10 +30,22 @@ export class CustomerOrderService {
     private readonly productAttributeService: ProductAttributeService,
   ) {}
 
-  public async findAll(userId: string) {
-    return this.customerOrderRepository.find({
-      where: { userId },
-    });
+  public async findAll(
+    userId: string,
+    { limit, offset }: FindCustomerOrdersInput,
+  ): Promise<PaginatedCustomerOrdersOutput> {
+    const [customerOrders, totalCount] =
+      await this.customerOrderRepository.findAndCount({
+        where: { userId },
+        take: limit,
+        skip: offset,
+        relations: ['orderItems', 'orderStatus'],
+      });
+    return {
+      items: customerOrders,
+      totalCount,
+      hasMore: totalCount - offset > limit,
+    };
   }
 
   public async create(

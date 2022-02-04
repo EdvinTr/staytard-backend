@@ -79,6 +79,18 @@ type Product {
   currentPriceLabel: String!
 }
 
+type CustomerOrderItem {
+  orderId: Float!
+  productId: Float!
+  sku: String!
+  quantity: Float!
+}
+
+type CustomerOrderStatus {
+  id: Float!
+  status: String!
+}
+
 type CustomerOrder {
   id: Float!
   orderNumber: String!
@@ -92,6 +104,8 @@ type CustomerOrder {
   paymentType: String!
   userId: String!
   orderStatusId: Float!
+  orderStatus: CustomerOrderStatus!
+  orderItems: [CustomerOrderItem!]!
   createdAt: DateTime!
   updatedAt: DateTime!
 }
