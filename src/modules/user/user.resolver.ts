@@ -41,4 +41,12 @@ export class UserResolver {
   ): Promise<boolean> {
     return this.userService.updatePassword(req.user.id, input);
   }
+
+  @UseGuards(GraphqlJwtAuthGuard)
+  @Query(() => Boolean)
+  async hasPassword(
+    @Context() { req }: { req: RequestWithUser },
+  ): Promise<boolean> {
+    return this.userService.hasPassword(req.user.id); // check if user has a password field in database
+  }
 }

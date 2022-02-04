@@ -40,6 +40,14 @@ export class UserService {
     return await this.userRepository.findOne(id, { ...options, cache: 10000 });
   }
 
+  async hasPassword(userId: string): Promise<boolean> {
+    const user = await this.userRepository.findOne(userId);
+    if (!user || !user.password) {
+      return false;
+    }
+    return true;
+  }
+
   async updateAddress(
     userId: string,
     address: UpdateUserAddressInput,

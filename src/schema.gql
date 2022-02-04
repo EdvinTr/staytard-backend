@@ -156,6 +156,7 @@ type KlarnaSessionResponse {
 
 type Query {
   me: User!
+  hasPassword: Boolean!
   categories: [ProductCategory!]!
   getOneCategory(path: String!): ProductCategory!
   products(input: FindProductsInput!): QueryProductsOutput!
