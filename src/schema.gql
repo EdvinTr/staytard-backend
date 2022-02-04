@@ -137,6 +137,12 @@ type QueryProductsOutput {
   hasMore: Boolean!
 }
 
+type PaginatedCustomerOrdersOutput {
+  items: [CustomerOrder!]!
+  totalCount: Float!
+  hasMore: Boolean!
+}
+
 type AssetUrl {
   descriptive: String!
   standard: String!
@@ -162,7 +168,7 @@ type Query {
   products(input: FindProductsInput!): QueryProductsOutput!
   product(id: Float!): Product!
   productsBySku(input: FindProductsBySkusInput!): QueryProductsOutput!
-  customerOrders: [CustomerOrder!]!
+  customerOrders(input: FindCustomerOrdersInput!): PaginatedCustomerOrdersOutput!
   productBrands(input: GetProductBrandsInput!): [ProductBrand!]!
 }
 
@@ -187,6 +193,11 @@ enum SORT_DIRECTION {
 
 input FindProductsBySkusInput {
   skus: [String!]!
+  offset: Float!
+  limit: Float!
+}
+
+input FindCustomerOrdersInput {
   offset: Float!
   limit: Float!
 }
