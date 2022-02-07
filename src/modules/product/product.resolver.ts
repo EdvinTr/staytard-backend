@@ -13,6 +13,7 @@ import { CreateProductInput } from './dto/create-product.input';
 import { FindProductsBySkusInput } from './dto/find-products-by-skus.input';
 import { FindProductsInput } from './dto/find-products.input';
 import { QueryProductsOutput } from './dto/query-products.output';
+import { SearchProductsInput } from './dto/search-products.input';
 import { Product } from './entities/product.entity';
 import { ProductService } from './product.service';
 
@@ -23,6 +24,11 @@ export class ProductResolver {
   @ResolveField(() => String)
   public async currentPriceLabel(@Parent() product: Product) {
     return `${product.currentPrice} EUR`;
+  }
+
+  @Query(() => [Product])
+  public async searchProducts(@Args('input') input: SearchProductsInput) {
+    return this.productService.searchByNameOrCategory(input);
   }
 
   @Query(() => QueryProductsOutput)

@@ -179,11 +179,17 @@ type Query {
   hasPassword: Boolean!
   categories: [ProductCategory!]!
   getOneCategory(path: String!): ProductCategory!
+  searchProducts(input: SearchProductsInput!): [Product!]!
   products(input: FindProductsInput!): QueryProductsOutput!
   product(id: Float!): Product!
   productsBySku(input: FindProductsBySkusInput!): QueryProductsOutput!
   customerOrders(input: FindCustomerOrdersInput!): PaginatedCustomerOrdersOutput!
   productBrands(input: GetProductBrandsInput!): [ProductBrand!]!
+}
+
+input SearchProductsInput {
+  resultLimit: Float!
+  searchTerm: String!
 }
 
 input FindProductsInput {

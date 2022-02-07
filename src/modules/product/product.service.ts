@@ -8,6 +8,7 @@ import { FindProductsBySkusInput } from './dto/find-products-by-skus.input';
 import { FindProductsDto } from './dto/find-products.dto';
 import { FindProductsInput } from './dto/find-products.input';
 import { QueryProductsOutput } from './dto/query-products.output';
+import { SearchProductsInput } from './dto/search-products.input';
 import { ProductAttribute } from './entities/product-attribute.entity';
 import { ProductColor } from './entities/product-color.entity';
 import { ProductSize } from './entities/product-size.entity';
@@ -65,6 +66,25 @@ export class ProductService {
         'Something went wrong when loading products',
       );
     }
+  }
+
+  public async searchByNameOrCategory({
+    resultLimit,
+    searchTerm,
+  }: SearchProductsInput): Promise<Product[]> {
+    const formattedSearchTerm = `%${searchTerm.toLowerCase()}%`;
+    const queryBuilder = this.productRepository.createQueryBuilder('product');
+    const result = await queryBuilder
+      .innerJoinAndSelect('product.category', 'category')
+      .where('LOWER(product.name) LIKE :searchTerm', {
+        searchTerm: formattedSearchTerm,
+      })
+      .orWhere('LOWER(category.name) LIKE :searchTerm', {
+        searchTerm: formattedSearchTerm,
+      })
+      .take(resultLimit)
+      .getMany();
+    return result;
   }
 
   public async restFindAll({
