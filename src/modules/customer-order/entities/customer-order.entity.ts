@@ -78,7 +78,7 @@ export class CustomerOrder extends BaseEntity {
   @Field(() => [CustomerOrderItem])
   orderItems: CustomerOrderItem[];
 
-  @Field()
+  @Field(() => Date)
   @CreateDateColumn()
   createdAt: Date;
 

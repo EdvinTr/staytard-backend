@@ -39,7 +39,7 @@ export class CustomerOrderService {
         where: { userId },
         take: limit,
         skip: offset,
-        relations: ['orderItems', 'orderStatus'],
+        relations: ['orderStatus'],
       });
     return {
       items: customerOrders,
