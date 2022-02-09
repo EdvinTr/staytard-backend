@@ -75,11 +75,7 @@ export class ProductService {
     const formattedSearchTerm = `%${searchTerm.toLowerCase()}%`;
     const queryBuilder = this.productRepository.createQueryBuilder('product');
     const result = await queryBuilder
-      .innerJoinAndSelect('product.category', 'category')
       .where('LOWER(product.name) LIKE :searchTerm', {
-        searchTerm: formattedSearchTerm,
-      })
-      .orWhere('LOWER(category.name) LIKE :searchTerm', {
         searchTerm: formattedSearchTerm,
       })
       .take(resultLimit)
