@@ -73,7 +73,6 @@ export class Product extends BaseEntity {
   })
   images: ProductImage[];
 
-  @Field(() => [ProductReview])
   @OneToMany(() => ProductReview, (reviews) => reviews.product, {
     cascade: true,
   })

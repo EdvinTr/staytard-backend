@@ -2,6 +2,8 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateProductReviewInput } from './dto/create-product-review.input';
+import { FindProductReviewsInput } from './dto/find-product-reviews.input';
+import { QueryProductReviewsOutput } from './dto/query-product-reviews.output';
 import { ProductReview } from './entities/product-review.entity';
 
 @Injectable()
@@ -15,6 +17,37 @@ export class ProductReviewService {
     return this.productReviewRepository.save(review);
   }
 
+  private async getAverageRating(productId: number): Promise<number> {
+    const avg: { avg: string }[] = await this.productReviewRepository.query(
+      `
+    SELECT AVG(rating) as avg
+    FROM product_review
+    WHERE product_id = $1
+    `,
+      [productId],
+    );
+    return avg[0]?.avg ? parseFloat(avg[0].avg) : 0;
+  }
+
+  async find({
+    productId,
+    limit,
+    offset,
+  }: FindProductReviewsInput): Promise<QueryProductReviewsOutput> {
+    const [reviews, totalCount] =
+      await this.productReviewRepository.findAndCount({
+        where: { productId },
+        take: limit,
+        skip: offset,
+      });
+    return {
+      items: reviews,
+      totalCount: totalCount,
+      hasMore: totalCount - offset > limit,
+      averageRating: await this.getAverageRating(productId),
+    };
+  }
+
   async publish(id: number) {
     try {
       const review = await this.productReviewRepository.findOne({
@@ -26,7 +59,7 @@ export class ProductReviewService {
       return this.productReviewRepository.save({
         ...review, // existing fields
         isPublished: true,
-        published: new Date(),
+        publishedAt: new Date(),
       });
     } catch (error) {
       throw error;

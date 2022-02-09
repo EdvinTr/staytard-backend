@@ -1,4 +1,5 @@
 import { Field, ObjectType } from '@nestjs/graphql';
+import { Exclude } from 'class-transformer';
 import {
   Column,
   CreateDateColumn,
@@ -20,7 +21,7 @@ export interface ProductReviewInterface {
   isPublished: boolean;
   productId: number;
   product: Product;
-  published: Date;
+  publishedAt: Date;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -51,7 +52,7 @@ export class ProductReview implements ProductReviewInterface {
   @Column()
   submittedByAlias: string;
 
-  @Field()
+  @Exclude()
   @Column()
   email: string;
 
@@ -67,7 +68,8 @@ export class ProductReview implements ProductReviewInterface {
   product: Product;
 
   @Column('timestamp', { nullable: true })
-  published: Date;
+  @Field({ nullable: true })
+  publishedAt: Date;
 
   @CreateDateColumn()
   @Field()

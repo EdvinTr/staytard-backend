@@ -32,9 +32,9 @@ type ProductReview {
   wouldRecommend: Boolean!
   rating: Float!
   submittedByAlias: String!
-  email: String!
   isPublished: Boolean!
   productId: Float!
+  publishedAt: DateTime
   createdAt: DateTime!
   updatedAt: DateTime!
 }
@@ -71,7 +71,6 @@ type Product {
   brandId: Float!
   brand: ProductBrand!
   images: [ProductImage!]!
-  reviews: [ProductReview!]!
   attributes: [ProductAttribute!]!
   categoryId: Float!
   createdAt: DateTime!
@@ -174,6 +173,13 @@ type KlarnaSessionResponse {
   payment_method_categories: [PaymentMethodCategory!]!
 }
 
+type QueryProductReviewsOutput {
+  items: [ProductReview!]!
+  totalCount: Float!
+  hasMore: Boolean!
+  averageRating: Float!
+}
+
 type Query {
   me: User!
   hasPassword: Boolean!
@@ -185,6 +191,7 @@ type Query {
   productsBySku(input: FindProductsBySkusInput!): QueryProductsOutput!
   customerOrders(input: FindCustomerOrdersInput!): PaginatedCustomerOrdersOutput!
   productBrands(input: GetProductBrandsInput!): [ProductBrand!]!
+  productReviews(input: FindProductReviewsInput!): QueryProductReviewsOutput!
 }
 
 input SearchProductsInput {
@@ -230,6 +237,12 @@ input GetProductBrandsInput {
 enum BRAND_SORT_BY {
   ID
   NAME
+}
+
+input FindProductReviewsInput {
+  productId: Float!
+  offset: Float!
+  limit: Float!
 }
 
 type Mutation {

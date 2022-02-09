@@ -10,7 +10,7 @@ export const mockProductReview: MockProductReviewType = {
   content: 'content',
   rating: 1,
   isPublished: true,
-  published: new Date(),
+  publishedAt: new Date(),
   createdAt: new Date(),
   updatedAt: new Date(),
   email: 'submitter@gmail.com',
