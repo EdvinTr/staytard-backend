@@ -7,7 +7,6 @@ import { FindProductReviewsInput } from './dto/find-product-reviews.input';
 import { QueryProductReviewsOutput } from './dto/query-product-reviews.output';
 import { ProductReview } from './entities/product-review.entity';
 import { ProductReviewService } from './product-review.service';
-
 @Resolver(() => ProductReview)
 export class ProductReviewResolver {
   constructor(private readonly productReviewService: ProductReviewService) {}
