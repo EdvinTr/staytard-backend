@@ -17,7 +17,7 @@ export interface ProductReviewInterface {
   content: string;
   wouldRecommend: boolean;
   rating: number;
-  submittedByAlias: string;
+  nickname: string;
   email: string;
   isPublished: boolean;
   productId: number;
@@ -51,7 +51,7 @@ export class ProductReview extends BaseEntity {
 
   @Field()
   @Column()
-  submittedByAlias: string;
+  nickname: string;
 
   @Exclude()
   @Column()

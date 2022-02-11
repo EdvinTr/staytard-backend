@@ -23,7 +23,7 @@ export class SeedProductReviews1644490503552 implements MigrationInterface {
       review.content = casual.sentences(casual.integer(3, 8));
       review.wouldRecommend = casual.boolean;
       review.rating = casual.integer(1, 5);
-      review.submittedByAlias = casual.username;
+      review.nickname = casual.username;
       review.email = casual.email;
       review.publishedAt = isPublished ? new Date() : undefined;
       await ProductReview.save(review);

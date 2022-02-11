@@ -14,6 +14,6 @@ export const mockProductReview: MockProductReviewType = {
   createdAt: new Date(),
   updatedAt: new Date(),
   email: 'submitter@gmail.com',
-  submittedByAlias: 'SomePerson',
+  nickname: 'SomePerson',
   wouldRecommend: true,
 };

@@ -31,7 +31,7 @@ type ProductReview {
   content: String!
   wouldRecommend: Boolean!
   rating: Float!
-  submittedByAlias: String!
+  nickname: String!
   isPublished: Boolean!
   productId: Float!
   publishedAt: DateTime
@@ -295,7 +295,7 @@ input CreateProductReviewInput {
   content: String!
   wouldRecommend: Boolean!
   rating: Float!
-  submittedByAlias: String!
+  nickname: String!
   email: String!
   productId: Float!
 }

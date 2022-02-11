@@ -29,7 +29,7 @@ export class CreateProductReviewInput {
 
   @Length(1, 50)
   @Field()
-  submittedByAlias: string;
+  nickname: string;
 
   @IsEmail()
   @Field()
