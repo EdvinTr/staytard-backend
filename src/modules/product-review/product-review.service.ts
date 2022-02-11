@@ -42,7 +42,10 @@ export class ProductReviewService {
     }
     const [reviews, totalCount] =
       await this.productReviewRepository.findAndCount({
-        where: { productId },
+        where: {
+          productId,
+          isPublished: true, // only return published reviews (probably check if calling user has privilege or not)
+        },
         take: limit,
         skip: offset,
         order: {
