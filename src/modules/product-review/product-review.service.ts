@@ -33,12 +33,21 @@ export class ProductReviewService {
     productId,
     limit,
     offset,
+    sortBy,
+    sortDirection,
   }: FindProductReviewsInput): Promise<QueryProductReviewsOutput> {
+    const order: Record<string, string> = {};
+    if (sortBy && sortDirection) {
+      order[sortBy] = sortDirection;
+    }
     const [reviews, totalCount] =
       await this.productReviewRepository.findAndCount({
         where: { productId },
         take: limit,
         skip: offset,
+        order: {
+          ...order,
+        },
       });
     return {
       items: reviews,

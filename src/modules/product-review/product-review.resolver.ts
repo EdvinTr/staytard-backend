@@ -1,6 +1,7 @@
 import { UseGuards } from '@nestjs/common';
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import Permission from '../../lib/permission/permission.type';
+import { setDelay } from '../../utils/set-delay.util';
 import PermissionGuard from '../authentication/guards/permission.guard';
 import { CreateProductReviewInput } from './dto/create-product-review.input';
 import { FindProductReviewsInput } from './dto/find-product-reviews.input';
@@ -12,7 +13,8 @@ export class ProductReviewResolver {
   constructor(private readonly productReviewService: ProductReviewService) {}
 
   @Mutation(() => ProductReview)
-  createProductReview(@Args('input') input: CreateProductReviewInput) {
+  async createProductReview(@Args('input') input: CreateProductReviewInput) {
+    await setDelay(2000);
     return this.productReviewService.create(input);
   }
 

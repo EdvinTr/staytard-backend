@@ -243,6 +243,13 @@ input FindProductReviewsInput {
   productId: Float!
   offset: Float!
   limit: Float!
+  sortBy: PRODUCT_REVIEW_SORT_BY
+  sortDirection: SORT_DIRECTION
+}
+
+enum PRODUCT_REVIEW_SORT_BY {
+  ID
+  CREATED_AT
 }
 
 type Mutation {
