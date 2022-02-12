@@ -4,6 +4,7 @@ import { EmailService } from '../../email/email.service';
 import { Product } from '../../product/entities/product.entity';
 import { ProductAttributeService } from '../../product/product-attribute.service';
 import { ProductService } from '../../product/product.service';
+import { UserService } from '../../user/user.service';
 import { CustomerOrderService } from '../customer-order.service';
 import { CustomerOrderStatus } from '../entities/customer-order-status.entity';
 import { CustomerOrder } from '../entities/customer-order.entity';
@@ -26,6 +27,9 @@ describe('CustomerOrderService', () => {
   const mockOrderStatusRepository = {
     findOne: jest.fn().mockResolvedValue({ status: ORDER_STATUS.PENDING }),
   };
+  const mockEmailService = {
+    sendProductOrderConfirmationEmail: jest.fn(),
+  };
   beforeEach(async () => {
     jest.restoreAllMocks();
     const module: TestingModule = await Test.createTestingModule({
@@ -45,7 +49,8 @@ describe('CustomerOrderService', () => {
           provide: getRepositoryToken(Product),
           useValue: {},
         },
-        { provide: EmailService, useValue: {} },
+        { provide: EmailService, useValue: mockEmailService },
+        { provide: UserService, useValue: {} },
         {
           provide: ProductAttributeService,
           useValue: mockProductAttributeService,
@@ -103,6 +108,7 @@ describe('CustomerOrderService', () => {
         ]);
       });
       it('create an order and return it', async () => {
+        productService.findBySkus = jest.fn().mockResolvedValue([]); // add this to avoid crashing the test (find by skus is only related to emails)
         const customerOrder = await customerOrderService.create(
           {
             ...mockCustomerOrder,

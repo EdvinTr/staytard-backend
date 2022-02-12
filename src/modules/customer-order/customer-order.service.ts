@@ -105,9 +105,19 @@ export class CustomerOrderService {
           },
         );
       }
+      const productsForEmail = await this.productService.findBySkus({
+        limit: orderItemSKUs.length,
+        offset: 0,
+        skus: orderItemSKUs,
+      });
+      this.emailService.sendProductOrderConfirmationEmail(
+        userId,
+        customerOrder.orderItems,
+        customerOrder,
+        productsForEmail.items,
+      ); //! No await since we don't need to wait for the email to be sent before returning from this function
 
       return savedOrder;
-      // TODO: should send email to customer with id: userId
     } catch (err) {
       throw err;
     }
