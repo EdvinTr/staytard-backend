@@ -6,6 +6,7 @@ import {
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { In, Repository } from 'typeorm';
+import { EmailService } from '../email/email.service';
 import { ProductAttribute } from '../product/entities/product-attribute.entity';
 import { ProductAttributeService } from '../product/product-attribute.service';
 import { ProductService } from '../product/product.service';
@@ -28,6 +29,7 @@ export class CustomerOrderService {
     private readonly orderStatusRepository: Repository<CustomerOrderStatus>,
     private readonly productService: ProductService,
     private readonly productAttributeService: ProductAttributeService,
+    private readonly emailService: EmailService,
   ) {}
 
   public async findAll(

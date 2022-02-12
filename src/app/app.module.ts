@@ -7,6 +7,7 @@ import { join } from 'path';
 import { AuthenticationModule } from '../modules/authentication/authentication.module';
 import { CustomerOrderModule } from '../modules/customer-order/customer-order.module';
 import { DatabaseModule } from '../modules/database/database.module';
+import { EmailModule } from '../modules/email/email.module';
 import { GoogleAuthenticationModule } from '../modules/google-authentication/google-authentication.module';
 import { KlarnaPaymentModule } from '../modules/klarna-payment/klarna-payment.module';
 import { ProductBrandModule } from '../modules/product-brand/product-brand.module';
@@ -26,6 +27,7 @@ export type MyContext = {
 @Module({
   imports: [
     UserModule,
+    EmailModule,
     DatabaseModule,
     ProductCategoryModule,
     ProductModule,
@@ -52,6 +54,11 @@ export type MyContext = {
         GOOGLE_AUTH_CLIENT_SECRET: Joi.string().required(),
         FRONTEND_URL: Joi.string().required(),
         GRAPHQL_PLAYGROUND: Joi.boolean().required(),
+        KLARNA_API_USERNAME: Joi.string().required(),
+        KLARNA_API_PASSWORD: Joi.string().required(),
+        EMAIL_USER: Joi.string().required(),
+        EMAIL_PASSWORD: Joi.string().required(),
+        EMAIL_SERVICE: Joi.string().required(),
       }),
     }),
     GraphQLModule.forRootAsync({
