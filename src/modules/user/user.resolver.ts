@@ -20,6 +20,7 @@ export class UserResolver {
       ProductPermission.CREATE_PRODUCT,
       ProductPermission.DELETE_PRODUCT,
     ];
+    user.isAdmin = true;
     await this.userService.save(user); */
     return context.req.user;
   }
