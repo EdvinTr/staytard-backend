@@ -117,6 +117,7 @@ type User {
   email: String!
   isEmailConfirmed: Boolean!
   isRegisteredWithGoogle: Boolean!
+  isAdmin: Boolean!
   permissions: [Permission!]!
   address: UserAddress
   createdAt: DateTime!

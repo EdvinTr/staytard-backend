@@ -66,6 +66,10 @@ export class User implements UserInterface {
   @Field()
   public isRegisteredWithGoogle: boolean;
 
+  @Column({ default: false })
+  @Field()
+  isAdmin: boolean;
+
   @Column({
     nullable: true,
   })
