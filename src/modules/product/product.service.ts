@@ -1,7 +1,6 @@
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { createQueryBuilder, FindOneOptions, Like, Repository } from 'typeorm';
-import { generateSku } from '../../utils/generate-sku.util';
 import { getOffset, paginate } from '../../utils/paginate.util';
 import { CreateProductInput } from './dto/create-product.input';
 import { FindProductsBySkusInput } from './dto/find-products-by-skus.input';
@@ -10,14 +9,14 @@ import { FindProductsInput } from './dto/find-products.input';
 import { QueryProductsOutput } from './dto/query-products.output';
 import { SearchProductsInput } from './dto/search-products.input';
 import { ProductAttribute } from './entities/product-attribute.entity';
-import { ProductColor } from './entities/product-color.entity';
-import { ProductSize } from './entities/product-size.entity';
 import { Product } from './entities/product.entity';
+import { ProductAttributeService } from './product-attribute.service';
 @Injectable()
 export class ProductService {
   constructor(
     @InjectRepository(Product)
     private readonly productRepository: Repository<Product>,
+    private readonly attributeService: ProductAttributeService,
   ) {}
 
   public async findOne(id: number, options?: FindOneOptions<Product>) {
@@ -183,21 +182,14 @@ export class ProductService {
           id: input.brandId,
         },
       });
-      const attrs: ProductAttribute[] = attributes.map((attribute) => {
-        const color = new ProductColor();
-        const size = new ProductSize();
-        color.value = attribute.color.value;
-        size.value = attribute.size.value;
-        return {
-          color: color,
-          quantity: attribute.quantity,
-          size: size,
-          sku: generateSku(product.name, color.value, size.value),
-          product: product,
-        };
-      });
-      product.attributes = attrs;
+      const attributeObjects = await this.attributeService.create(
+        attributes,
+        product,
+      );
+      product.attributes = attributeObjects;
       return this.productRepository.save(product);
-    } catch (err) {}
+    } catch (err) {
+      console.log(err);
+    }
   }
 }

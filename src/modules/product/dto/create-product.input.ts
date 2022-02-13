@@ -23,7 +23,12 @@ export class CreateProductInput {
   @Field()
   @IsNumber()
   @IsPositive()
-  unitPrice: number;
+  originalPrice: number;
+
+  @Field()
+  @IsNumber()
+  @IsPositive()
+  currentPrice: number;
 
   @IsString({ each: true })
   @Field(() => [String])

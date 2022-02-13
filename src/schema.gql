@@ -280,7 +280,8 @@ input UpdateUserPasswordInput {
 input CreateProductInput {
   name: String!
   description: String!
-  unitPrice: Float!
+  originalPrice: Float!
+  currentPrice: Float!
   imageUrls: [String!]!
   categoryId: Float!
   brandId: Float!
