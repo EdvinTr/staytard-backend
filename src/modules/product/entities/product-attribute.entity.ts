@@ -16,7 +16,10 @@ export class ProductAttribute {
   @Column()
   quantity: number;
 
-  @ManyToOne(() => Product, (product) => product.attributes, { primary: true })
+  @ManyToOne(() => Product, (product) => product.attributes, {
+    primary: true,
+    onDelete: 'CASCADE',
+  })
   product: Product;
 
   @Field(() => ProductSize)

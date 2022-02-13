@@ -55,4 +55,10 @@ export class ProductResolver {
   public async createProduct(@Args('input') input: CreateProductInput) {
     return this.productService.create(input);
   }
+
+  @UseGuards(PermissionGuard(Permission.DELETE_PRODUCT))
+  @Mutation(() => Boolean)
+  public async deleteProduct(@Args('id') id: number): Promise<boolean> {
+    return this.productService.delete(id);
+  }
 }

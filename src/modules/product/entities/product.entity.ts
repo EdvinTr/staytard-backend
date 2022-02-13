@@ -60,8 +60,6 @@ export class Product extends BaseEntity {
       .join(' ');
   }
 
-  // TODO: should have two @Field (NOT columns) for originalPrice & currentPrice. CurrentPrice is calculated on the fly using the discount table for the product.
-
   @Field(() => ProductBrand)
   @ManyToOne(() => ProductBrand, (productBrand) => productBrand.products)
   brand: ProductBrand;

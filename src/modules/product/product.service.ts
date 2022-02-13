@@ -28,6 +28,20 @@ export class ProductService {
     return this.productRepository.findByIds(ids);
   }
 
+  public async delete(id: number) {
+    try {
+      const deletedAttributes = await this.attributeService.deleteByProductId(
+        id,
+      );
+      const deletedProduct = await this.productRepository.delete(id);
+
+      return true;
+    } catch (err) {
+      console.log(err);
+      throw err;
+    }
+  }
+
   public async findBySkus({
     limit,
     offset,

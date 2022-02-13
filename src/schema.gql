@@ -256,6 +256,7 @@ type Mutation {
   updateUserAddress(input: UpdateUserAddressInput!): User!
   updatePassword(input: UpdateUserPasswordInput!): Boolean!
   createProduct(input: CreateProductInput!): Product!
+  deleteProduct(id: Float!): Boolean!
   createProductReview(input: CreateProductReviewInput!): ProductReview!
   publishReview(id: Float!): ProductReview!
   initializeKlarnaSession(input: InitKlarnaSessionInput!): KlarnaSessionResponse!

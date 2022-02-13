@@ -32,11 +32,15 @@ export class ProductAttributeService {
     return this.productAttributeRepository.update(criteria, partialEntity);
   }
 
+  public async deleteByProductId(id: number) {
+    return this.productAttributeRepository.delete({ product: { id } });
+  }
+
   public async create(
     attributes: CreateProductAttributeInput[],
     product: Product,
   ) {
-    const createdAttributes: ProductAttribute[] = [];
+    const createdAttributes: any[] = [];
     for (let i = 0; i < attributes.length; i++) {
       const attribute = attributes[i];
       const dbColor = await this.colorRepository.findOne({

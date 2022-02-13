@@ -65,7 +65,9 @@ export class ProductReview extends BaseEntity {
   @Column()
   productId: number;
 
-  @ManyToOne((type) => Product, (product) => product.reviews)
+  @ManyToOne((type) => Product, (product) => product.reviews, {
+    onDelete: 'CASCADE',
+  })
   product: Product;
 
   @Column('timestamp', { nullable: true })
