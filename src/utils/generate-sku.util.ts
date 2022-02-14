@@ -4,5 +4,5 @@ export function generateSku(productName: string, color: string, size: string) {
     .map((w) => w[0].toUpperCase())
     .join('')}-${color.substring(0, 3).toUpperCase()}-${size
     .substring(0, 3)
-    .toUpperCase()}`;
+    .toUpperCase()}-${Math.floor(Math.random() * 100)}`;
 }

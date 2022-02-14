@@ -179,9 +179,11 @@ export class ProductService {
   }
   public async create(input: CreateProductInput) {
     try {
-      const { attributes, ...rest } = input;
+      const { attributes, price, ...rest } = input;
       const product = this.productRepository.create({
         ...rest,
+        originalPrice: price,
+        currentPrice: price,
         images: [
           ...input.imageUrls.map((url) => {
             return {

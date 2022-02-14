@@ -44,7 +44,7 @@ export class ProductAttributeService {
     for (let i = 0; i < attributes.length; i++) {
       const attribute = attributes[i];
       const dbColor = await this.colorRepository.findOne({
-        where: { value: attribute.color.value },
+        where: { value: attribute.color.value }, // TODO: lower case
       });
       let color = new ProductColor();
       if (dbColor) {

@@ -3,7 +3,6 @@ import { IsNull, Not } from 'typeorm';
 import { BasicCategory } from './dto/basic-category';
 import { ProductCategory } from './entities/product-category.entity';
 import { ProductCategoryService } from './product-category.service';
-
 @Resolver(ProductCategory)
 export class ProductCategoryResolver {
   constructor(

@@ -2,6 +2,7 @@ import { Field, InputType } from '@nestjs/graphql';
 import { Type } from 'class-transformer';
 import {
   ArrayNotEmpty,
+  IsNotEmpty,
   IsNumber,
   IsPositive,
   IsString,
@@ -23,14 +24,10 @@ export class CreateProductInput {
   @Field()
   @IsNumber()
   @IsPositive()
-  originalPrice: number;
-
-  @Field()
-  @IsNumber()
-  @IsPositive()
-  currentPrice: number;
+  price: number;
 
   @IsString({ each: true })
+  @IsNotEmpty({ each: true })
   @Field(() => [String])
   imageUrls: string[];
 
