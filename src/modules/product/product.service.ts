@@ -151,22 +151,24 @@ export class ProductService {
     }
   }
 
-  public async update(input: UpdateProductInput) {
-    const {
-      attributes,
-      currentPrice,
-      description,
-      imageUrls,
-      isDiscontinued,
-      name,
-      productId,
-    } = input;
+  public async update({
+    attributes,
+    currentPrice,
+    description,
+    imageUrls,
+    isDiscontinued,
+    name,
+    productId,
+  }: UpdateProductInput) {
     try {
-      const queryBuilder = await this.productRepository.createQueryBuilder(
-        'product',
-      );
-
-      const productUpdateResult = await queryBuilder
+      const product = await this.productRepository.findOne(productId);
+      if (!product) {
+        throw new NotFoundException(
+          'Product could not be updated because it could not be found',
+        );
+      }
+      const productUpdateResult = await this.productRepository
+        .createQueryBuilder('product')
         .update()
         .set({
           name,
@@ -175,34 +177,24 @@ export class ProductService {
           currentPrice,
         })
         .where('product.id = :id', { id: productId })
-        .returning('*')
         .execute();
       if (productUpdateResult.affected === 0) {
         throw new InternalServerErrorException('Product could not be updated');
       }
       await this.imageRepository.delete({ product: { id: productId } }); // delete all old images
-      await this.imageRepository.insert([
-        ...imageUrls.map((url) => ({
-          imageUrl: url,
-          product: { id: productId },
-        })),
-      ]); // insert new images
-
-      const product = await this.productRepository.findOne(productId);
-      if (!product) {
-        throw new NotFoundException(
-          'Product could not be updated because it could not be found',
-        );
-      }
-
       await this.attributeService.deleteByProductId(productId); // delete all old attributes
-      // update attributes
+
+      // create new attributes
       const newAttributes = await this.attributeService.create(
         [...attributes],
         product,
       );
-      await this.attributeService.save(newAttributes);
-      return product;
+      // resave product
+      return await this.productRepository.save({
+        ...product,
+        attributes: newAttributes,
+        images: [...imageUrls.map((url) => ({ imageUrl: url, product }))],
+      });
     } catch (err) {
       throw err;
     }
