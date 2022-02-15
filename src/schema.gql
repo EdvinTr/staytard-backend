@@ -263,6 +263,7 @@ type Mutation {
   updateUserAddress(input: UpdateUserAddressInput!): User!
   updatePassword(input: UpdateUserPasswordInput!): Boolean!
   createProduct(input: CreateProductInput!): Product!
+  updateProduct(input: UpdateProductInput!): Product!
   deleteProduct(id: Float!): Boolean!
   createProductReview(input: CreateProductReviewInput!): ProductReview!
   publishReview(id: Float!): ProductReview!
@@ -303,6 +304,16 @@ input CreateProductAttributeInput {
 
 input AttributeValueType {
   value: String!
+}
+
+input UpdateProductInput {
+  productId: Float!
+  name: String!
+  description: String!
+  currentPrice: Float!
+  isDiscontinued: Boolean!
+  imageUrls: [String!]!
+  attributes: [CreateProductAttributeInput!]!
 }
 
 input CreateProductReviewInput {

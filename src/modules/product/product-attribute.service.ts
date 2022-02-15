@@ -35,6 +35,9 @@ export class ProductAttributeService {
   public async deleteByProductId(id: number) {
     return this.productAttributeRepository.delete({ product: { id } });
   }
+  public async save(attributes: ProductAttribute[]) {
+    return this.productAttributeRepository.save(attributes);
+  }
 
   public async create(
     attributes: CreateProductAttributeInput[],

@@ -14,6 +14,7 @@ import { FindProductsBySkusInput } from './dto/find-products-by-skus.input';
 import { FindProductsInput } from './dto/find-products.input';
 import { QueryProductsOutput } from './dto/query-products.output';
 import { SearchProductsInput } from './dto/search-products.input';
+import { UpdateProductInput } from './dto/update-product.input';
 import { Product } from './entities/product.entity';
 import { ProductService } from './product.service';
 
@@ -54,6 +55,12 @@ export class ProductResolver {
   @Mutation(() => Product)
   public async createProduct(@Args('input') input: CreateProductInput) {
     return this.productService.create(input);
+  }
+
+  @UseGuards(PermissionGuard(Permission.UPDATE_PRODUCT))
+  @Mutation(() => Product)
+  public async updateProduct(@Args('input') input: UpdateProductInput) {
+    return this.productService.update(input);
   }
 
   @UseGuards(PermissionGuard(Permission.DELETE_PRODUCT))

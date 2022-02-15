@@ -1,5 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
+import { ProductImage } from '../entities/product-image.entity';
 import { Product } from '../entities/product.entity';
 import { ProductAttributeService } from '../product-attribute.service';
 import { ProductService } from '../product.service';
@@ -16,6 +17,10 @@ describe('ProductService', () => {
         {
           provide: getRepositoryToken(Product),
           useValue: mockProductRepository,
+        },
+        {
+          provide: getRepositoryToken(ProductImage),
+          useValue: {},
         },
         { provide: ProductAttributeService, useValue: {} },
       ],

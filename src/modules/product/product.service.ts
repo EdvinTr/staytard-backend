@@ -1,4 +1,8 @@
-import { Injectable, InternalServerErrorException } from '@nestjs/common';
+import {
+  Injectable,
+  InternalServerErrorException,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { createQueryBuilder, FindOneOptions, Like, Repository } from 'typeorm';
 import { getOffset, paginate } from '../../utils/paginate.util';
@@ -8,7 +12,9 @@ import { FindProductsDto } from './dto/find-products.dto';
 import { FindProductsInput } from './dto/find-products.input';
 import { QueryProductsOutput } from './dto/query-products.output';
 import { SearchProductsInput } from './dto/search-products.input';
+import { UpdateProductInput } from './dto/update-product.input';
 import { ProductAttribute } from './entities/product-attribute.entity';
+import { ProductImage } from './entities/product-image.entity';
 import { Product } from './entities/product.entity';
 import { ProductAttributeService } from './product-attribute.service';
 @Injectable()
@@ -16,6 +22,8 @@ export class ProductService {
   constructor(
     @InjectRepository(Product)
     private readonly productRepository: Repository<Product>,
+    @InjectRepository(ProductImage)
+    private readonly imageRepository: Repository<ProductImage>,
     private readonly attributeService: ProductAttributeService,
   ) {}
 
@@ -140,6 +148,63 @@ export class ProductService {
       throw new InternalServerErrorException(
         'Something went wrong when loading products',
       );
+    }
+  }
+
+  public async update(input: UpdateProductInput) {
+    const {
+      attributes,
+      currentPrice,
+      description,
+      imageUrls,
+      isDiscontinued,
+      name,
+      productId,
+    } = input;
+    try {
+      const queryBuilder = await this.productRepository.createQueryBuilder(
+        'product',
+      );
+
+      const productUpdateResult = await queryBuilder
+        .update()
+        .set({
+          name,
+          description,
+          isDiscontinued,
+          currentPrice,
+        })
+        .where('product.id = :id', { id: productId })
+        .returning('*')
+        .execute();
+      if (productUpdateResult.affected === 0) {
+        throw new InternalServerErrorException('Product could not be updated');
+      }
+      await this.imageRepository.delete({ product: { id: productId } }); // delete all old images
+      await this.imageRepository.insert([
+        ...imageUrls.map((url) => ({
+          imageUrl: url,
+          product: { id: productId },
+        })),
+      ]); // insert new images
+
+      const product = await this.productRepository.findOne(productId);
+      if (!product) {
+        throw new NotFoundException(
+          'Product could not be updated because it could not be found',
+        );
+      }
+
+      await this.attributeService.deleteByProductId(productId); // delete all old attributes
+      // update attributes
+      const newAttributes = await this.attributeService.create(
+        [...attributes],
+        product,
+      );
+      await this.attributeService.save(newAttributes);
+      return product;
+    } catch (err) {
+      throw err;
     }
   }
 

@@ -23,7 +23,6 @@ export class KlarnaPaymentService {
     userId: string,
   ): Promise<CustomerOrder> {
     try {
-      // TODO: before even attempting this, check if the productIds are available, check stock on them as well
       const response = await this.httpService
         .post<AuthorizeKlarnaResponse>(
           `https://api.playground.klarna.com/payments/v1/authorizations/${authorizationToken}/order`,
