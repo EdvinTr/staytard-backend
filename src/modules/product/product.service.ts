@@ -38,11 +38,8 @@ export class ProductService {
 
   public async delete(id: number) {
     try {
-      const deletedAttributes = await this.attributeService.deleteByProductId(
-        id,
-      );
-      const deletedProduct = await this.productRepository.delete(id);
-
+      await this.attributeService.deleteByProductId(id); // delete attributes
+      await this.productRepository.delete(id); // delete product
       return true;
     } catch (err) {
       console.log(err);
@@ -167,20 +164,6 @@ export class ProductService {
           'Product could not be updated because it could not be found',
         );
       }
-      const productUpdateResult = await this.productRepository
-        .createQueryBuilder('product')
-        .update()
-        .set({
-          name,
-          description,
-          isDiscontinued,
-          currentPrice,
-        })
-        .where('product.id = :id', { id: productId })
-        .execute();
-      if (productUpdateResult.affected === 0) {
-        throw new InternalServerErrorException('Product could not be updated');
-      }
       await this.imageRepository.delete({ product: { id: productId } }); // delete all old images
       await this.attributeService.deleteByProductId(productId); // delete all old attributes
 
@@ -190,11 +173,17 @@ export class ProductService {
         product,
       );
       // resave product
-      return await this.productRepository.save({
+      await this.productRepository.save({
         ...product,
+        name,
+        description,
+        isDiscontinued,
+        currentPrice,
         attributes: newAttributes,
         images: [...imageUrls.map((url) => ({ imageUrl: url, product }))],
       });
+
+      return this.findOne(productId, { relations: ['brand'] });
     } catch (err) {
       throw err;
     }
