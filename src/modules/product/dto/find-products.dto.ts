@@ -1,5 +1,12 @@
 import { Transform } from 'class-transformer';
-import { IsEnum, IsOptional, Matches, Max, Min } from 'class-validator';
+import {
+  IsEnum,
+  IsOptional,
+  IsString,
+  Matches,
+  Max,
+  Min,
+} from 'class-validator';
 import { PRODUCT_SORT_BY, SORT_DIRECTION } from '../../../lib/gql-enums';
 
 export class FindProductsDto {
@@ -15,6 +22,10 @@ export class FindProductsDto {
   @Matches(/\//, { message: 'Category path must contain a slash' })
   @Transform(({ value }) => value.toLowerCase())
   categoryPath: string;
+
+  @IsOptional()
+  @IsString()
+  q: string;
 
   @IsOptional()
   @IsEnum(PRODUCT_SORT_BY, {

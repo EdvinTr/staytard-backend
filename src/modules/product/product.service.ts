@@ -107,6 +107,7 @@ export class ProductService {
     categoryPath,
     sortBy,
     sortDirection,
+    q,
   }: FindProductsDto) {
     const queryBuilder = this.productRepository.createQueryBuilder('product');
     try {
@@ -120,7 +121,8 @@ export class ProductService {
         .innerJoinAndSelect('attributes.size', 'size')
         .take(limit)
         .skip(offset)
-        .where('category.path like :path', { path: `%${categoryPath}%` })
+        .where('category.path LIKE :path', { path: `%${categoryPath}%` })
+        .andWhere(q ? `LOWER(product.name) LIKE %${q.toLowerCase}%` : '1=1')
         .select([
           'product.id',
           'product.name',
@@ -142,6 +144,7 @@ export class ProductService {
         products,
       };
     } catch (err) {
+      console.log(err);
       throw new InternalServerErrorException(
         'Something went wrong when loading products',
       );

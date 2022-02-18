@@ -23,6 +23,11 @@ export class UserResolver {
     ];
     user.isAdmin = true;
     await this.userService.save(user); */
+
+    /*   const user = context.req.user;
+    user.permissions = [];
+    user.isAdmin = true;
+    await this.userService.save(user); */
     return context.req.user;
   }
 
