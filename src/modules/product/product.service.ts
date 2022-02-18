@@ -112,7 +112,7 @@ export class ProductService {
     const queryBuilder = this.productRepository.createQueryBuilder('product');
     try {
       const offset = getOffset(page, limit); // get offset for pagination
-      const [products, totalCount] = await queryBuilder
+      let query = queryBuilder
         .innerJoin('product.category', 'category')
         .innerJoinAndSelect('product.brand', 'brand')
         .innerJoinAndSelect('product.images', 'images')
@@ -121,8 +121,13 @@ export class ProductService {
         .innerJoinAndSelect('attributes.size', 'size')
         .take(limit)
         .skip(offset)
-        .where('category.path LIKE :path', { path: `%${categoryPath}%` })
-        .andWhere(q ? `LOWER(product.name) LIKE %${q.toLowerCase}%` : '1=1')
+        .where('category.path LIKE :path', { path: `%${categoryPath}%` });
+      if (q) {
+        query = query.andWhere(`LOWER(product.name) LIKE :q`, {
+          q: `%${q.toLowerCase()}%`,
+        });
+      }
+      const [products, totalCount] = await query
         .select([
           'product.id',
           'product.name',
