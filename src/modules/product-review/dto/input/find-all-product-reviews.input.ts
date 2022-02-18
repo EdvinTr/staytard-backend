@@ -1,20 +1,19 @@
 import { Field, InputType } from '@nestjs/graphql';
-import { IsPositive, Max, Min } from 'class-validator';
-import { PRODUCT_REVIEW_SORT_BY, SORT_DIRECTION } from '../../../lib/gql-enums';
+import { Max, Min } from 'class-validator';
+import {
+  PRODUCT_REVIEW_SORT_BY,
+  SORT_DIRECTION,
+} from '../../../../lib/gql-enums';
 
 @InputType()
-export class FindProductReviewsInput {
-  @Field()
-  @IsPositive()
-  productId: number;
-
+export class FindAllProductReviewsInput {
   @Field()
   @Min(0)
   offset: number;
 
   @Field()
   @Min(1)
-  @Max(20)
+  @Max(50)
   limit: number;
 
   @Field(() => PRODUCT_REVIEW_SORT_BY, { nullable: true })

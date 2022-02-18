@@ -1,9 +1,10 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { CreateProductReviewInput } from './dto/create-product-review.input';
-import { FindProductReviewsInput } from './dto/find-product-reviews.input';
-import { QueryProductReviewsOutput } from './dto/query-product-reviews.output';
+import { CreateProductReviewInput } from './dto/input/create-product-review.input';
+import { FindAllProductReviewsInput } from './dto/input/find-all-product-reviews.input';
+import { FindPublishedProductReviewsInput } from './dto/input/find-published-product-reviews.input';
+import { PublishedProductReviewsOutput } from './dto/output/published-product-reviews.output';
 import { ProductReview } from './entities/product-review.entity';
 
 @Injectable()
@@ -15,6 +16,31 @@ export class ProductReviewService {
   create(input: CreateProductReviewInput) {
     const review = this.productReviewRepository.create(input);
     return this.productReviewRepository.save(review);
+  }
+
+  async findAll({
+    limit,
+    offset,
+    sortBy,
+    sortDirection,
+  }: FindAllProductReviewsInput) {
+    const order: Record<string, string> = {};
+    if (sortBy && sortDirection) {
+      order[sortBy] = sortDirection;
+    }
+    const [reviews, totalCount] =
+      await this.productReviewRepository.findAndCount({
+        take: limit,
+        skip: offset,
+        order: {
+          ...order,
+        },
+      });
+    return {
+      items: reviews,
+      totalCount: totalCount,
+      hasMore: totalCount - offset > limit,
+    };
   }
 
   private async getAverageRating(productId: number): Promise<number> {
@@ -35,7 +61,7 @@ export class ProductReviewService {
     offset,
     sortBy,
     sortDirection,
-  }: FindProductReviewsInput): Promise<QueryProductReviewsOutput> {
+  }: FindPublishedProductReviewsInput): Promise<PublishedProductReviewsOutput> {
     const order: Record<string, string> = {};
     if (sortBy && sortDirection) {
       order[sortBy] = sortDirection;

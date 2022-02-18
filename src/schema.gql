@@ -179,7 +179,7 @@ type BasicCategory {
   name: String!
 }
 
-type QueryProductReviewsOutput {
+type PublishedProductReviewsOutput {
   items: [ProductReview!]!
   totalCount: Float!
   hasMore: Boolean!
@@ -198,7 +198,7 @@ type Query {
   productsBySku(input: FindProductsBySkusInput!): QueryProductsOutput!
   customerOrders(input: FindCustomerOrdersInput!): PaginatedCustomerOrdersOutput!
   productBrands(input: GetProductBrandsInput!): [ProductBrand!]!
-  productReviews(input: FindProductReviewsInput!): QueryProductReviewsOutput!
+  publishedProductReviews(input: FindPublishedProductReviewsInput!): PublishedProductReviewsOutput!
 }
 
 input SearchProductsInput {
@@ -246,7 +246,7 @@ enum BRAND_SORT_BY {
   NAME
 }
 
-input FindProductReviewsInput {
+input FindPublishedProductReviewsInput {
   productId: Float!
   offset: Float!
   limit: Float!
