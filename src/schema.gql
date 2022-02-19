@@ -130,6 +130,9 @@ enum Permission {
   UPDATE_PRODUCT
   DELETE_PRODUCT
   PUBLISH_REVIEW
+  UPDATE_PRODUCT_REVIEW
+  DELETE_PRODUCT_REVIEW
+  READ_PRODUCT_REVIEW
 }
 
 type UserAddress {
@@ -186,6 +189,12 @@ type PublishedProductReviewsOutput {
   averageRating: Float!
 }
 
+type QueryAllProductReviewsOutput {
+  items: [ProductReview!]!
+  totalCount: Float!
+  hasMore: Boolean!
+}
+
 type Query {
   me: User!
   hasPassword: Boolean!
@@ -199,6 +208,7 @@ type Query {
   customerOrders(input: FindCustomerOrdersInput!): PaginatedCustomerOrdersOutput!
   productBrands(input: GetProductBrandsInput!): [ProductBrand!]!
   publishedProductReviews(input: FindPublishedProductReviewsInput!): PublishedProductReviewsOutput!
+  allProductReviews(input: FindAllProductReviewsInput!): QueryAllProductReviewsOutput!
 }
 
 input SearchProductsInput {
@@ -257,6 +267,13 @@ input FindPublishedProductReviewsInput {
 enum PRODUCT_REVIEW_SORT_BY {
   ID
   CREATED_AT
+}
+
+input FindAllProductReviewsInput {
+  offset: Float!
+  limit: Float!
+  sortBy: PRODUCT_REVIEW_SORT_BY
+  sortDirection: SORT_DIRECTION
 }
 
 type Mutation {

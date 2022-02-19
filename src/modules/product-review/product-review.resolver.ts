@@ -6,6 +6,7 @@ import { CreateProductReviewInput } from './dto/input/create-product-review.inpu
 import { FindAllProductReviewsInput } from './dto/input/find-all-product-reviews.input';
 import { FindPublishedProductReviewsInput } from './dto/input/find-published-product-reviews.input';
 import { PublishedProductReviewsOutput as PublishedProductReviewsOutput } from './dto/output/published-product-reviews.output';
+import { QueryAllProductReviewsOutput } from './dto/output/query-all-product-reviews.output';
 import { ProductReview } from './entities/product-review.entity';
 import { ProductReviewService } from './product-review.service';
 @Resolver(() => ProductReview)
@@ -24,7 +25,8 @@ export class ProductReviewResolver {
     return this.productReviewService.find(input); // only gets published reviews
   }
 
-  @UseGuards(PermissionGuard(Permission.PUBLISH_REVIEW))
+  @UseGuards(PermissionGuard(Permission.READ_PRODUCT_REVIEW))
+  @Query(() => QueryAllProductReviewsOutput)
   async allProductReviews(@Args('input') input: FindAllProductReviewsInput) {
     return this.productReviewService.findAll(input); // protected by permission guard. Gets all reviews
   }
