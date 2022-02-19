@@ -28,8 +28,13 @@ export class ProductReviewResolver {
   @UseGuards(PermissionGuard(Permission.READ_PRODUCT_REVIEW))
   @Query(() => QueryAllProductReviewsOutput)
   async allProductReviews(@Args('input') input: FindAllProductReviewsInput) {
-    // await setDelay(2000);
-    return this.productReviewService.findAll(input); // protected by permission guard. Gets all reviews
+    return this.productReviewService.findAll(input); // Gets all reviews
+  }
+
+  @UseGuards(PermissionGuard(Permission.DELETE_PRODUCT_REVIEW))
+  @Mutation(() => Boolean)
+  async deleteProductReview(@Args('id') id: number) {
+    return this.productReviewService.deleteById(id);
   }
 
   @UseGuards(PermissionGuard(Permission.READ_PRODUCT_REVIEW))

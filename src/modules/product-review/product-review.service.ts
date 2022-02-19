@@ -18,6 +18,14 @@ export class ProductReviewService {
     return this.productReviewRepository.save(review);
   }
 
+  async deleteById(id: number) {
+    const { affected } = await this.productReviewRepository.delete(id);
+    if (affected === 0) {
+      throw new NotFoundException(`Review with id ${id} was not found`);
+    }
+    return true;
+  }
+
   async findOne(id: number) {
     return this.productReviewRepository.findOne({
       where: { id },
