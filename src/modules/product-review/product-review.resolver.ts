@@ -5,6 +5,7 @@ import PermissionGuard from '../authentication/guards/permission.guard';
 import { CreateProductReviewInput } from './dto/input/create-product-review.input';
 import { FindAllProductReviewsInput } from './dto/input/find-all-product-reviews.input';
 import { FindPublishedProductReviewsInput } from './dto/input/find-published-product-reviews.input';
+import { UpdateProductReviewInput } from './dto/input/update-product-review.input';
 import { PublishedProductReviewsOutput as PublishedProductReviewsOutput } from './dto/output/published-product-reviews.output';
 import { QueryAllProductReviewsOutput } from './dto/output/query-all-product-reviews.output';
 import { ProductReview } from './entities/product-review.entity';
@@ -43,9 +44,9 @@ export class ProductReviewResolver {
     return this.productReviewService.findOne(id);
   }
 
-  @UseGuards(PermissionGuard(Permission.PUBLISH_REVIEW))
+  @UseGuards(PermissionGuard(Permission.UPDATE_PRODUCT_REVIEW))
   @Mutation(() => ProductReview)
-  publishReview(@Args('id') id: number) {
-    return this.productReviewService.publish(id);
+  updateProductReview(@Args('input') input: UpdateProductReviewInput) {
+    return this.productReviewService.update(input);
   }
 }

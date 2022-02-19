@@ -47,17 +47,4 @@ describe('ProductReviewService', () => {
       });
     });
   });
-
-  describe('when publishing a product review', () => {
-    describe('and the review cannot be found in database', () => {
-      beforeEach(() => {
-        mockProductReviewRepository.findOne = jest
-          .fn()
-          .mockImplementation(() => undefined);
-      });
-      it('should throw an error', async () => {
-        await expect(service.publish(1)).rejects.toThrow();
-      });
-    });
-  });
 });

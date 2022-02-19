@@ -4,6 +4,7 @@ import { Repository } from 'typeorm';
 import { CreateProductReviewInput } from './dto/input/create-product-review.input';
 import { FindAllProductReviewsInput } from './dto/input/find-all-product-reviews.input';
 import { FindPublishedProductReviewsInput } from './dto/input/find-published-product-reviews.input';
+import { UpdateProductReviewInput } from './dto/input/update-product-review.input';
 import { PublishedProductReviewsOutput } from './dto/output/published-product-reviews.output';
 import { ProductReview } from './entities/product-review.entity';
 
@@ -100,21 +101,14 @@ export class ProductReviewService {
     };
   }
 
-  async publish(id: number) {
-    try {
-      const review = await this.productReviewRepository.findOne({
-        where: { id },
-      });
-      if (!review) {
-        throw new NotFoundException(`Review with id ${id} was not found`);
-      }
-      return this.productReviewRepository.save({
-        ...review, // existing fields
-        isPublished: true,
-        publishedAt: new Date(),
-      });
-    } catch (error) {
-      throw error;
+  async update({ reviewId, ...rest }: UpdateProductReviewInput) {
+    const review = await this.findOne(reviewId);
+    if (!review) {
+      throw new NotFoundException(`Review with id ${reviewId} was not found`);
     }
+    return this.productReviewRepository.save({
+      ...review,
+      ...rest,
+    });
   }
 }

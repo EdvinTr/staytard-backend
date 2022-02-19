@@ -285,7 +285,7 @@ type Mutation {
   deleteProduct(id: Float!): Boolean!
   createProductReview(input: CreateProductReviewInput!): ProductReview!
   deleteProductReview(id: Float!): Boolean!
-  publishReview(id: Float!): ProductReview!
+  updateProductReview(input: UpdateProductReviewInput!): ProductReview!
   initializeKlarnaSession(input: InitKlarnaSessionInput!): KlarnaSessionResponse!
   createOrderWithKlarna(authorizationToken: String!, input: InitKlarnaSessionInput!): CustomerOrder!
   registerUser(input: RegisterUserDto!): UserWithTokensDto!
@@ -343,6 +343,13 @@ input CreateProductReviewInput {
   nickname: String!
   email: String!
   productId: Float!
+}
+
+input UpdateProductReviewInput {
+  title: String!
+  content: String!
+  isPublished: Boolean!
+  reviewId: Float!
 }
 
 input InitKlarnaSessionInput {
