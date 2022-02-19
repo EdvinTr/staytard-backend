@@ -1,4 +1,5 @@
 import { Field, InputType } from '@nestjs/graphql';
+import { Transform } from 'class-transformer';
 import {
   IsBoolean,
   IsEmail,
@@ -11,9 +12,12 @@ import {
 @InputType()
 export class CreateProductReviewInput {
   @Length(1, 100)
+  @Transform(({ value }) => value.trim())
   @Field()
   title: string;
+
   @Length(1, 1000)
+  @Transform(({ value }) => value.trim())
   @Field()
   content: string;
 

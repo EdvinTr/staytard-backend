@@ -18,6 +18,12 @@ export class ProductReviewService {
     return this.productReviewRepository.save(review);
   }
 
+  async findOne(id: number) {
+    return this.productReviewRepository.findOne({
+      where: { id },
+    });
+  }
+
   async findAll({
     limit,
     offset,

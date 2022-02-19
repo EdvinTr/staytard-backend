@@ -209,6 +209,7 @@ type Query {
   productBrands(input: GetProductBrandsInput!): [ProductBrand!]!
   publishedProductReviews(input: FindPublishedProductReviewsInput!): PublishedProductReviewsOutput!
   allProductReviews(input: FindAllProductReviewsInput!): QueryAllProductReviewsOutput!
+  oneProductReview(id: Float!): ProductReview!
 }
 
 input SearchProductsInput {
