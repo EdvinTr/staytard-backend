@@ -70,9 +70,9 @@ export class ProductReview extends BaseEntity {
   })
   product: Product;
 
-  @Column('timestamp', { nullable: true })
-  @Field({ nullable: true })
-  publishedAt?: Date;
+  @Column({ type: 'timestamp', nullable: true })
+  @Field(() => Date, { nullable: true })
+  publishedAt: Date | null;
 
   @CreateDateColumn()
   @Field()

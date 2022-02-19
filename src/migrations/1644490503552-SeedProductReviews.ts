@@ -25,7 +25,7 @@ export class SeedProductReviews1644490503552 implements MigrationInterface {
       review.rating = casual.integer(1, 5);
       review.nickname = casual.username;
       review.email = casual.email;
-      review.publishedAt = isPublished ? new Date() : undefined;
+      review.publishedAt = isPublished ? new Date() : null;
       await ProductReview.save(review);
     }
   }

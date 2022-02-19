@@ -101,14 +101,22 @@ export class ProductReviewService {
     };
   }
 
-  async update({ reviewId, ...rest }: UpdateProductReviewInput) {
+  async update({
+    reviewId,
+    content,
+    isPublished,
+    title,
+  }: UpdateProductReviewInput) {
     const review = await this.findOne(reviewId);
     if (!review) {
       throw new NotFoundException(`Review with id ${reviewId} was not found`);
     }
     return this.productReviewRepository.save({
       ...review,
-      ...rest,
+      content,
+      title,
+      isPublished: isPublished,
+      publishedAt: isPublished ? new Date() : null,
     });
   }
 }
