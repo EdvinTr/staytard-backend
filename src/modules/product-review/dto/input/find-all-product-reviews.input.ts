@@ -1,5 +1,5 @@
 import { Field, InputType } from '@nestjs/graphql';
-import { Max, Min } from 'class-validator';
+import { IsOptional, IsString, Max, Min } from 'class-validator';
 import {
   PRODUCT_REVIEW_SORT_BY,
   SORT_DIRECTION,
@@ -15,6 +15,11 @@ export class FindAllProductReviewsInput {
   @Min(1)
   @Max(50)
   limit: number;
+
+  @IsOptional()
+  @IsString()
+  @Field()
+  q: string;
 
   @Field(() => PRODUCT_REVIEW_SORT_BY, { nullable: true })
   sortBy?: PRODUCT_REVIEW_SORT_BY;

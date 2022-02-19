@@ -23,7 +23,7 @@ export class ProductReviewResolver {
   async publishedProductReviews(
     @Args('input') input: FindPublishedProductReviewsInput,
   ): Promise<PublishedProductReviewsOutput> {
-    return this.productReviewService.find(input); // only gets published reviews
+    return this.productReviewService.findAllPublished(input); // only gets published reviews
   }
 
   @UseGuards(PermissionGuard(Permission.READ_PRODUCT_REVIEW))

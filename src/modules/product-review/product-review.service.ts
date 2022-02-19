@@ -70,7 +70,7 @@ export class ProductReviewService {
     return avg[0]?.avg ? parseFloat(avg[0].avg) : 0;
   }
 
-  async find({
+  async findAllPublished({
     productId,
     limit,
     offset,
@@ -85,7 +85,7 @@ export class ProductReviewService {
       await this.productReviewRepository.findAndCount({
         where: {
           productId,
-          isPublished: true, // only return published reviews (probably check if calling user has privilege or not)
+          isPublished: true, // only return published reviews
         },
         take: limit,
         skip: offset,
