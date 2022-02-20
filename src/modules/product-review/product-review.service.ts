@@ -37,6 +37,7 @@ export class ProductReviewService {
     offset,
     sortBy,
     sortDirection,
+    filter,
     q,
   }: FindAllProductReviewsInput) {
     const order: Record<string, string> = {};
@@ -53,6 +54,9 @@ export class ProductReviewService {
         { id: parsedValue },
       );
     }
+    if (filter) {
+      where.push({ [filter.type]: filter.applied });
+    }
     const [reviews, totalCount] =
       await this.productReviewRepository.findAndCount({
         take: limit,
@@ -61,6 +65,7 @@ export class ProductReviewService {
           ...order,
         },
         where: [...where],
+        cache: 10000,
       });
     return {
       items: reviews,

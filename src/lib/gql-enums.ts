@@ -13,10 +13,16 @@ export enum PRODUCT_REVIEW_SORT_BY {
   ID = 'id',
   CREATED_AT = 'createdAt',
 }
+export enum PRODUCT_REVIEW_FILTER {
+  IS_PUBLISHED = 'isPublished',
+}
 export enum SORT_DIRECTION {
   DESC = 'DESC',
   ASC = 'ASC',
 }
+registerEnumType(PRODUCT_REVIEW_FILTER, {
+  name: 'PRODUCT_REVIEW_FILTER',
+});
 registerEnumType(SORT_DIRECTION, {
   name: 'SORT_DIRECTION',
 });

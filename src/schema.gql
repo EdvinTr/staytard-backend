@@ -274,8 +274,18 @@ input FindAllProductReviewsInput {
   offset: Float!
   limit: Float!
   q: String
+  filter: ProductReviewsFilterInput
   sortBy: PRODUCT_REVIEW_SORT_BY
   sortDirection: SORT_DIRECTION
+}
+
+input ProductReviewsFilterInput {
+  type: PRODUCT_REVIEW_FILTER!
+  applied: Boolean!
+}
+
+enum PRODUCT_REVIEW_FILTER {
+  IS_PUBLISHED
 }
 
 type Mutation {
