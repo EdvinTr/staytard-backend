@@ -14,16 +14,18 @@ export class UserResolver {
   @UseGuards(GraphqlJwtAuthGuard)
   @Query(() => User)
   async me(@Context() context: { req: RequestWithUser }): Promise<User> {
-    const user = context.req.user;
-    /*     user.permissions = [
+    /*     const user = context.req.user;
+    user.permissions = [
       //...user.permissions,
       ProductPermission.CREATE_PRODUCT,
       ProductPermission.DELETE_PRODUCT,
       ProductPermission.UPDATE_PRODUCT,
-      ProductReviewPermission.PUBLISH_REVIEW,
       ProductReviewPermission.UPDATE_PRODUCT_REVIEW,
       ProductReviewPermission.DELETE_PRODUCT_REVIEW,
       ProductReviewPermission.READ_PRODUCT_REVIEW,
+      UserPermission.READ_USER,
+      UserPermission.UPDATE_USER,
+      UserPermission.DELETE_USER,
     ];
     user.isAdmin = true;
     await this.userService.save(user); */
