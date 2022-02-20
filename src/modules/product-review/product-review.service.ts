@@ -1,13 +1,12 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { FindConditions, ILike, Repository } from 'typeorm';
 import { CreateProductReviewInput } from './dto/input/create-product-review.input';
 import { FindAllProductReviewsInput } from './dto/input/find-all-product-reviews.input';
 import { FindPublishedProductReviewsInput } from './dto/input/find-published-product-reviews.input';
 import { UpdateProductReviewInput } from './dto/input/update-product-review.input';
 import { PublishedProductReviewsOutput } from './dto/output/published-product-reviews.output';
 import { ProductReview } from './entities/product-review.entity';
-
 @Injectable()
 export class ProductReviewService {
   constructor(
@@ -38,10 +37,20 @@ export class ProductReviewService {
     offset,
     sortBy,
     sortDirection,
+    q,
   }: FindAllProductReviewsInput) {
     const order: Record<string, string> = {};
     if (sortBy && sortDirection) {
       order[sortBy] = sortDirection;
+    }
+    const where: FindConditions<ProductReview>[] = [];
+    if (q) {
+      where.push(
+        { nickname: ILike(`%${q}%`) },
+        { title: ILike(`%${q}%`) },
+        { productId: +q },
+        { id: +q },
+      );
     }
     const [reviews, totalCount] =
       await this.productReviewRepository.findAndCount({
@@ -50,6 +59,7 @@ export class ProductReviewService {
         order: {
           ...order,
         },
+        where: [...where],
       });
     return {
       items: reviews,

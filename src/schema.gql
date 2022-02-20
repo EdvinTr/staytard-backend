@@ -273,7 +273,7 @@ enum PRODUCT_REVIEW_SORT_BY {
 input FindAllProductReviewsInput {
   offset: Float!
   limit: Float!
-  q: String!
+  q: String
   sortBy: PRODUCT_REVIEW_SORT_BY
   sortDirection: SORT_DIRECTION
 }

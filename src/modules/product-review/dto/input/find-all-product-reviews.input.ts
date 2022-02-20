@@ -18,7 +18,7 @@ export class FindAllProductReviewsInput {
 
   @IsOptional()
   @IsString()
-  @Field()
+  @Field({ nullable: true })
   q: string;
 
   @Field(() => PRODUCT_REVIEW_SORT_BY, { nullable: true })
