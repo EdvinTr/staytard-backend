@@ -43,6 +43,11 @@ export class UserResolver {
   ): Promise<PaginatedUsersOutput> {
     return this.userService.findAll(input);
   }
+  @UseGuards(PermissionGuard(Permission.READ_USER))
+  @Query(() => User)
+  async user(@Args('id') id: string): Promise<User | undefined> {
+    return this.userService.findById(id);
+  }
 
   @UseGuards(GraphqlJwtAuthGuard)
   @Mutation(() => User)

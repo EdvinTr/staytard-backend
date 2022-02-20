@@ -206,6 +206,7 @@ type QueryAllProductReviewsOutput {
 type Query {
   me: User!
   users(input: FindAllUsersInput!): PaginatedUsersOutput!
+  user(id: String!): User!
   hasPassword: Boolean!
   categories: [ProductCategory!]!
   basicCategories: [BasicCategory!]!
