@@ -45,11 +45,12 @@ export class ProductReviewService {
     }
     const where: FindConditions<ProductReview>[] = [];
     if (q) {
+      const parsedValue = isNaN(parseInt(q)) ? 0 : +q;
       where.push(
         { nickname: ILike(`%${q}%`) },
         { title: ILike(`%${q}%`) },
-        { productId: +q },
-        { id: +q },
+        { productId: parsedValue },
+        { id: parsedValue },
       );
     }
     const [reviews, totalCount] =
