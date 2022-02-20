@@ -24,6 +24,7 @@ describe('UserService', () => {
     save: jest.fn().mockResolvedValue(mockUserWithAddress),
     findOne: jest.fn().mockResolvedValue(mockUserWithAddress),
     update: jest.fn(),
+    findAndCount: jest.fn(),
   };
   let mockAddressRepository = {
     update: jest.fn(),
@@ -33,6 +34,7 @@ describe('UserService', () => {
       save: jest.fn().mockResolvedValue(mockUserWithAddress),
       findOne: jest.fn().mockResolvedValue(mockUserWithAddress),
       update: jest.fn(),
+      findAndCount: jest.fn().mockResolvedValue([[mockUserWithAddress], 1]),
     };
     mockAddressRepository = {
       update: jest.fn(),
@@ -104,6 +106,15 @@ describe('UserService', () => {
             newPassword: 'newPassword',
           }),
         ).resolves.toBe(true);
+      });
+    });
+  });
+
+  describe('when fetching all users', () => {
+    it('should return all users', async () => {
+      const data = await userService.findAll({ limit: 10, offset: 0 });
+      expect(data).toMatchObject({
+        items: [mockUserWithAddress],
       });
     });
   });
