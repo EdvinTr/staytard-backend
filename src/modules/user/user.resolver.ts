@@ -1,9 +1,13 @@
 import { UseGuards } from '@nestjs/common';
 import { Args, Context, Mutation, Query, Resolver } from '@nestjs/graphql';
+import Permission from '../../lib/permission/permission.type';
 import { GraphqlJwtAuthGuard } from '../authentication/guards/graphql-jwt-auth.guard';
+import PermissionGuard from '../authentication/guards/permission.guard';
 import RequestWithUser from '../authentication/interfaces/request-with-user.interface';
 import { User } from '../user/entities/user.entity';
 import { UserService } from '../user/user.service';
+import { FindAllUsersInput } from './dto/find-all-users.input';
+import { PaginatedUsersOutput } from './dto/output/PaginatedUsers.output';
 import { UpdateUserAddressInput } from './dto/update-user-address.input';
 import { UpdateUserPasswordInput } from './dto/update-user-password.input';
 
@@ -30,6 +34,14 @@ export class UserResolver {
     user.isAdmin = true;
     await this.userService.save(user); */
     return context.req.user;
+  }
+
+  @UseGuards(PermissionGuard(Permission.READ_USER))
+  @Query(() => PaginatedUsersOutput)
+  async users(
+    @Args('input') input: FindAllUsersInput,
+  ): Promise<PaginatedUsersOutput> {
+    return this.userService.findAll(input);
   }
 
   @UseGuards(GraphqlJwtAuthGuard)

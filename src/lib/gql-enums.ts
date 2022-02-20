@@ -20,6 +20,14 @@ export enum SORT_DIRECTION {
   DESC = 'DESC',
   ASC = 'ASC',
 }
+
+export enum USER_SORT_BY {
+  ID = 'id',
+  IS_ADMIN = 'isAdmin',
+}
+registerEnumType(USER_SORT_BY, {
+  name: 'USER_SORT_BY',
+});
 registerEnumType(PRODUCT_REVIEW_FILTER, {
   name: 'PRODUCT_REVIEW_FILTER',
 });

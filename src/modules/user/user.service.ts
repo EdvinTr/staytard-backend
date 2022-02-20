@@ -7,17 +7,21 @@ import { InjectRepository } from '@nestjs/typeorm';
 import * as bcrypt from 'bcrypt';
 import {
   DeleteResult,
+  FindConditions,
   FindOneOptions,
+  ILike,
   Repository,
   UpdateResult,
 } from 'typeorm';
+import { validate as validateUUID } from 'uuid';
 import { RegisterUserDto } from '../authentication/dto/register-user.dto';
 import { RegisterWithGoogleDto } from '../google-authentication/dto/register-with-google-dto';
+import { FindAllUsersInput } from './dto/find-all-users.input';
+import { PaginatedUsersOutput } from './dto/output/PaginatedUsers.output';
 import { UpdateUserAddressInput } from './dto/update-user-address.input';
 import { UpdateUserPasswordInput } from './dto/update-user-password.input';
 import { UserAddress } from './entities/user-address.entity';
 import { User } from './entities/user.entity';
-
 @Injectable()
 export class UserService {
   constructor(
@@ -31,6 +35,51 @@ export class UserService {
   }
   async save(user: User) {
     return await this.userRepository.save(user);
+  }
+
+  async findAll({
+    limit,
+    offset,
+    sortBy,
+    sortDirection,
+    q,
+  }: FindAllUsersInput): Promise<PaginatedUsersOutput> {
+    const order: Record<string, string> = {};
+    if (sortBy && sortDirection) {
+      order[sortBy] = sortDirection;
+    }
+    const where: FindConditions<User>[] = [];
+    if (q) {
+      const caseInsensitiveQuery = ILike(`%${q}%`);
+      where.push(
+        { firstName: caseInsensitiveQuery },
+        { lastName: caseInsensitiveQuery },
+        { email: caseInsensitiveQuery },
+        { mobilePhoneNumber: caseInsensitiveQuery },
+        { address: { city: caseInsensitiveQuery } },
+        { address: { postalCode: caseInsensitiveQuery } },
+        { address: { street: caseInsensitiveQuery } },
+      );
+      const isValidUUID = validateUUID(q);
+      if (isValidUUID) {
+        where.push({ id: q });
+      }
+    }
+    const [users, totalCount] = await this.userRepository.findAndCount({
+      take: limit,
+      skip: offset,
+      cache: 10000,
+      order: {
+        ...order,
+      },
+      where: [...where],
+      relations: ['address'],
+    });
+    return {
+      totalCount,
+      items: users,
+      hasMore: totalCount - offset > limit,
+    };
   }
 
   async findById(
@@ -139,9 +188,6 @@ export class UserService {
 
   async deleteById(userId: string): Promise<DeleteResult> {
     return await this.userRepository.delete(userId);
-  }
-  async findAll(relations?: string[]): Promise<User[]> {
-    return await this.userRepository.find({ relations: relations || [] });
   }
 
   async createWithGoogle(

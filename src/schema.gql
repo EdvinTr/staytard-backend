@@ -144,6 +144,12 @@ type UserAddress {
   postalCode: String!
 }
 
+type PaginatedUsersOutput {
+  items: [User!]!
+  totalCount: Float!
+  hasMore: Boolean!
+}
+
 type UserWithTokensDto {
   user: User!
   accessToken: String!
@@ -199,6 +205,7 @@ type QueryAllProductReviewsOutput {
 
 type Query {
   me: User!
+  users(input: FindAllUsersInput!): PaginatedUsersOutput!
   hasPassword: Boolean!
   categories: [ProductCategory!]!
   basicCategories: [BasicCategory!]!
@@ -212,6 +219,24 @@ type Query {
   publishedProductReviews(input: FindPublishedProductReviewsInput!): PublishedProductReviewsOutput!
   allProductReviews(input: FindAllProductReviewsInput!): QueryAllProductReviewsOutput!
   oneProductReview(id: Float!): ProductReview!
+}
+
+input FindAllUsersInput {
+  offset: Float!
+  limit: Float!
+  q: String
+  sortBy: USER_SORT_BY
+  sortDirection: SORT_DIRECTION
+}
+
+enum USER_SORT_BY {
+  ID
+  IS_ADMIN
+}
+
+enum SORT_DIRECTION {
+  DESC
+  ASC
 }
 
 input SearchProductsInput {
@@ -231,11 +256,6 @@ enum PRODUCT_SORT_BY {
   ID
   NAME
   CURRENT_PRICE
-}
-
-enum SORT_DIRECTION {
-  DESC
-  ASC
 }
 
 input FindProductsBySkusInput {

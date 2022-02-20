@@ -58,7 +58,8 @@
     "rimraf": "^3.0.2",
     "rxjs": "^7.2.0",
     "typeorm": "^0.2.41",
-    "typeorm-naming-strategies": "^2.0.0"
+    "typeorm-naming-strategies": "^2.0.0",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@golevelup/ts-jest": "^0.3.2",
@@ -75,6 +76,7 @@
     "@types/passport-local": "^1.0.34",
     "@types/supertest": "^2.0.11",
     "@types/tunnel": "^0.0.3",
+    "@types/uuid": "^8.3.4",
     "@typescript-eslint/eslint-plugin": "^4.28.2",
     "@typescript-eslint/parser": "^4.28.2",
     "@vitalets/google-translate-api": "^7.0.0",
