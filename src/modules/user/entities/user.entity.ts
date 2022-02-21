@@ -3,10 +3,10 @@ import { Exclude } from 'class-transformer';
 import { capitalize } from 'lodash';
 import {
   BeforeInsert,
+  BeforeUpdate,
   Column,
   CreateDateColumn,
   Entity,
-  JoinColumn,
   OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
@@ -25,7 +25,7 @@ export interface UserInterface {
   mobilePhoneNumber?: string;
   isEmailConfirmed: boolean;
   permissions: Permission[];
-  address: UserAddressInterface;
+  address?: UserAddressInterface;
   currentHashedRefreshToken?: string;
   password?: string;
   createdAt: Date;
@@ -89,16 +89,20 @@ export class User implements UserInterface {
   public permissions: Permission[];
 
   @Field(() => UserAddress, { nullable: true })
-  @OneToOne(() => UserAddress, {
+  @OneToOne(() => UserAddress, (address) => address.user, {
     cascade: true,
     eager: true,
   })
-  @JoinColumn()
-  public address: UserAddress;
+  public address?: UserAddress;
 
-  // TODO: should use @BeforeUpdate as well, test that it works as well
   @BeforeInsert()
   private capitalizeBeforeInsert() {
+    this.firstName = capitalize(this.firstName);
+    this.lastName = capitalize(this.lastName);
+  }
+
+  @BeforeUpdate()
+  private capitalizeBeforeUpdate() {
     this.firstName = capitalize(this.firstName);
     this.lastName = capitalize(this.lastName);
   }
