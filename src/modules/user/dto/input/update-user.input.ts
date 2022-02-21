@@ -8,10 +8,9 @@ import {
   IsString,
   IsUUID,
   Length,
-  Matches,
 } from 'class-validator';
 import { CapitalizeAndTrimTransform } from '../../../../utils/transform/capitalize-and-trim.transformer';
-import { isAlphanumericWithSpaces } from '../../../../utils/validation/is-alphanumeric-with-spaces.regex';
+import IsAlphanumericWithSpaces from '../../../../utils/validation/is-alphanumeric-with-spaces.decorator';
 import IsValidName from '../../../../utils/validation/is-valid-name.decorator';
 
 interface UpdateUserInterface {
@@ -67,9 +66,7 @@ export class UpdateUserInput implements UpdateUserInterface {
   city: string;
 
   @IsNotEmpty()
-  @Matches(isAlphanumericWithSpaces(1, 36), {
-    message: '$property must only consist of letters and numbers',
-  })
+  @IsAlphanumericWithSpaces('street', 1, 36)
   @Field()
   @CapitalizeAndTrimTransform()
   street: string;
