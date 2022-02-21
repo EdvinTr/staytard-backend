@@ -45,6 +45,15 @@ export class UserResolver {
     return this.userService.update(context.req.user.id, input);
   }
 
+  @UseGuards(PermissionGuard(Permission.DELETE_USER))
+  @Mutation(() => Boolean)
+  async deleteUser(
+    @Context() context: { req: RequestWithUser },
+    @Args('userId') userId: string,
+  ) {
+    return this.userService.softDelete(userId);
+  }
+
   @UseGuards(PermissionGuard(Permission.READ_USER))
   @Query(() => PaginatedUsersOutput)
   async users(

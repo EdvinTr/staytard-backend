@@ -3,6 +3,7 @@ import { getRepositoryToken } from '@nestjs/typeorm';
 import * as bcrypt from 'bcrypt';
 import { UserAddress } from '../entities/user-address.entity';
 import { User } from '../entities/user.entity';
+import UserNotFoundException from '../exceptions/user-not-found.exception';
 import { UserService } from '../user.service';
 const mockUserWithoutAddress = {
   id: 'uuid2bsajhsdasdk',
@@ -154,7 +155,7 @@ describe('UserService', () => {
           userService.updateAddress('someUUID', {
             ...mockUserWithAddress.address,
           }),
-        ).rejects.toThrowError('User not found');
+        ).rejects.toThrowError(new UserNotFoundException('someUUID'));
       });
     });
   });

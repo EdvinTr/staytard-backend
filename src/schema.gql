@@ -120,6 +120,7 @@ type User {
   isAdmin: Boolean!
   permissions: [Permission!]!
   address: UserAddress
+  deletedAt: DateTime!
   createdAt: DateTime!
   updatedAt: DateTime!
 }
@@ -313,6 +314,7 @@ enum PRODUCT_REVIEW_FILTER {
 
 type Mutation {
   updateUser(input: UpdateUserInput!): User!
+  deleteUser(userId: String!): Boolean!
   updateUserAddress(input: UpdateUserAddressInput!): User!
   updatePassword(input: UpdateUserPasswordInput!): Boolean!
   createProduct(input: CreateProductInput!): Product!

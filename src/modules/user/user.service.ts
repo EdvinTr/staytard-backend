@@ -4,7 +4,6 @@ import {
   HttpException,
   HttpStatus,
   Injectable,
-  NotFoundException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import * as bcrypt from 'bcrypt';
@@ -27,6 +26,7 @@ import { UpdateUserInput } from './dto/input/update-user.input';
 import { PaginatedUsersOutput } from './dto/output/PaginatedUsers.output';
 import { UserAddress } from './entities/user-address.entity';
 import { User } from './entities/user.entity';
+import UserNotFoundException from './exceptions/user-not-found.exception';
 @Injectable()
 export class UserService {
   constructor(
@@ -42,6 +42,14 @@ export class UserService {
     return await this.userRepository.save(user);
   }
 
+  async softDelete(userId: string) {
+    const deleteResponse = await this.userRepository.softDelete(userId);
+    if (!deleteResponse.affected) {
+      throw new UserNotFoundException(userId);
+    }
+    return true;
+  }
+
   async update(
     userIdFromRequest: string,
     { userId, city, postalCode, street, ...rest }: UpdateUserInput,
@@ -49,7 +57,7 @@ export class UserService {
     try {
       const foundUser = await this.findById(userId);
       if (!foundUser) {
-        throw new NotFoundException(`User with id ${userId} was not found`);
+        throw new UserNotFoundException(userId);
       }
       if (this.isUpdatingAnotherAdminsAccount(foundUser, userIdFromRequest)) {
         throw new ForbiddenException(
@@ -147,7 +155,7 @@ export class UserService {
         relations: ['address'],
       });
       if (!user) {
-        throw new NotFoundException('User not found');
+        throw new UserNotFoundException(userId);
       }
       if (user.address) {
         await this.addressRepository.update(
@@ -160,7 +168,7 @@ export class UserService {
         );
         const savedUser = await this.userRepository.findOne(user.id);
         if (!savedUser) {
-          throw new NotFoundException(); // Add this because of TS
+          throw new UserNotFoundException(user.id); // Add this because of TS
         }
         return savedUser;
       } else {
@@ -198,7 +206,7 @@ export class UserService {
     try {
       const user = await this.userRepository.findOne(userId);
       if (!user) {
-        throw new NotFoundException('User not found');
+        throw new UserNotFoundException('User not found');
       }
       if (!user.password || !oldPassword) {
         // set a new password since user must have signed up through OAuth provider and doesn't yet have a password in database

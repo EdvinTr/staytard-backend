@@ -5,6 +5,7 @@ import {
   BeforeInsert,
   Column,
   CreateDateColumn,
+  DeleteDateColumn,
   Entity,
   OneToMany,
   OneToOne,
@@ -101,6 +102,10 @@ export class User implements UserInterface {
     this.mobilePhoneNumber = this.mobilePhoneNumber?.trim();
     this.email = this.email.trim();
   }
+
+  @DeleteDateColumn()
+  @Field()
+  public deletedAt: Date;
 
   @CreateDateColumn()
   @Field()
