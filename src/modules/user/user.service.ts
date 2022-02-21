@@ -1,5 +1,7 @@
 import {
   BadRequestException,
+  HttpException,
+  HttpStatus,
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
@@ -15,6 +17,7 @@ import {
 } from 'typeorm';
 import { validate as validateUUID } from 'uuid';
 import { RegisterUserDto } from '../authentication/dto/register-user.dto';
+import PostgresErrorCode from '../database/postgres-error-code.enum';
 import { RegisterWithGoogleDto } from '../google-authentication/dto/register-with-google-dto';
 import { FindAllUsersInput } from './dto/input/find-all-users.input';
 import { UpdateUserAddressInput } from './dto/input/update-user-address.input';
@@ -38,7 +41,29 @@ export class UserService {
     return await this.userRepository.save(user);
   }
 
-  async update(input: UpdateUserInput) {}
+  async update({ userId, city, postalCode, street, ...rest }: UpdateUserInput) {
+    try {
+      const foundUser = await this.findById(userId);
+      if (!foundUser) {
+        throw new NotFoundException(`User with id ${userId} was not found`);
+      }
+      await this.userRepository.update({ id: userId }, { ...rest }); // update user
+      await this.updateAddress(userId, {
+        city,
+        postalCode,
+        street,
+      });
+      return await this.findById(userId); // returned update version of user
+    } catch (error: any) {
+      if (error?.code === PostgresErrorCode.UniqueViolation) {
+        throw new HttpException(
+          'User with that email already exists',
+          HttpStatus.BAD_REQUEST,
+        );
+      }
+      throw error;
+    }
+  }
 
   async findAll({
     limit,

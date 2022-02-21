@@ -3,7 +3,6 @@ import { Exclude } from 'class-transformer';
 import { capitalize } from 'lodash';
 import {
   BeforeInsert,
-  BeforeUpdate,
   Column,
   CreateDateColumn,
   Entity,
@@ -97,14 +96,6 @@ export class User implements UserInterface {
 
   @BeforeInsert()
   private capitalizeBeforeInsert() {
-    this.firstName = capitalize(this.firstName.trim());
-    this.lastName = capitalize(this.lastName.trim());
-    this.mobilePhoneNumber = this.mobilePhoneNumber?.trim();
-    this.email = this.email.trim();
-  }
-
-  @BeforeUpdate()
-  private capitalizeBeforeUpdate() {
     this.firstName = capitalize(this.firstName.trim());
     this.lastName = capitalize(this.lastName.trim());
     this.mobilePhoneNumber = this.mobilePhoneNumber?.trim();

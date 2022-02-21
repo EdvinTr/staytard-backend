@@ -2,7 +2,6 @@ import { Field, ObjectType } from '@nestjs/graphql';
 import { capitalize } from 'lodash';
 import {
   BeforeInsert,
-  BeforeUpdate,
   Column,
   Entity,
   JoinColumn,
@@ -39,18 +38,8 @@ export class UserAddress implements UserAddressInterface {
 
   @BeforeInsert()
   private capitalizeBeforeInsert() {
-    this.city = this.city.trim();
-    this.city = capitalize(this.city);
-    this.street = this.street.trim();
-    this.street = capitalize(this.street);
-  }
-
-  @BeforeUpdate()
-  private capitalizeBeforeUpdate() {
-    this.city = this.city.trim();
-    this.city = capitalize(this.city);
-    this.street = this.street.trim();
-    this.street = capitalize(this.street);
+    this.city = capitalize(this.city.trim());
+    this.street = capitalize(this.street.trim());
   }
 
   @OneToOne(() => User, (user) => user.address)

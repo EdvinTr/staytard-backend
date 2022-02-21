@@ -6,7 +6,9 @@ import {
   IsNotEmpty,
   IsPostalCode,
   IsString,
+  IsUUID,
 } from 'class-validator';
+import { CapitalizeAndTrim } from '../../../../utils/transform/capitalize-and-trim.transformer';
 import IsValidName from '../../../../utils/validation/is-valid-name.decorator';
 import IsValidStreetAddress from '../../../../utils/validation/is-valid-street-address.decorator';
 import { RegisterUserDto } from '../../../authentication/dto/register-user.dto';
@@ -14,6 +16,10 @@ import { RegisterUserDto } from '../../../authentication/dto/register-user.dto';
 interface UpdateUserInterface extends Omit<RegisterUserDto, 'password'> {}
 @InputType()
 export class UpdateUserInput implements UpdateUserInterface {
+  @IsUUID()
+  @Field()
+  userId: string;
+
   @IsEmail({}, { message: 'Email address is invalid' })
   @Field()
   email: string;
@@ -22,6 +28,7 @@ export class UpdateUserInput implements UpdateUserInterface {
     message: 'First name must only contain letters (a-öA-Ö)',
   })
   @IsValidName('firstName')
+  @CapitalizeAndTrim()
   @Field()
   firstName: string;
 
@@ -29,6 +36,7 @@ export class UpdateUserInput implements UpdateUserInterface {
     message: 'Last name must only contain letters (a-öA-Ö)',
   })
   @IsValidName('lastName')
+  @CapitalizeAndTrim()
   @Field()
   lastName: string;
 
@@ -42,12 +50,14 @@ export class UpdateUserInput implements UpdateUserInterface {
 
   @IsString()
   @IsNotEmpty()
+  @CapitalizeAndTrim()
   @Field()
   city: string;
 
   @IsNotEmpty()
   @Field()
   @IsValidStreetAddress('street')
+  @CapitalizeAndTrim()
   street: string;
 
   @IsPostalCode('SE', {

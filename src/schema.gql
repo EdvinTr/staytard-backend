@@ -330,6 +330,7 @@ type Mutation {
 }
 
 input UpdateUserInput {
+  userId: String!
   email: String!
   firstName: String!
   lastName: String!
