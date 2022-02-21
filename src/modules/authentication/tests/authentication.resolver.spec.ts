@@ -78,9 +78,9 @@ describe('AuthenticationResolver', () => {
             mobilePhoneNumber: userData.mobilePhoneNumber!,
             email: userData.email,
             password: userData.password!,
-            city: userData.address.city,
-            postalCode: userData.address.postalCode,
-            street: userData.address.street,
+            city: userData.address!.city,
+            postalCode: userData.address!.postalCode,
+            street: userData.address!.street,
           },
           mockExecutionContext,
         );

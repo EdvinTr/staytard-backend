@@ -39,14 +39,14 @@ export class UserAddress implements UserAddressInterface {
 
   @BeforeInsert()
   private capitalizeBeforeInsert() {
-    this.city = capitalize(this.city);
-    this.street = capitalize(this.street);
+    this.city = capitalize(this.city).trim();
+    this.street = capitalize(this.street).trim();
   }
 
   @BeforeUpdate()
   private capitalizeBeforeUpdate() {
-    this.city = capitalize(this.city);
-    this.street = capitalize(this.street);
+    this.city = capitalize(this.city).trim();
+    this.street = capitalize(this.street).trim();
   }
 
   @OneToOne(() => User, (user) => user.address)

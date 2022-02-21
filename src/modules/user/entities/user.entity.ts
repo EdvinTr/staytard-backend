@@ -97,14 +97,18 @@ export class User implements UserInterface {
 
   @BeforeInsert()
   private capitalizeBeforeInsert() {
-    this.firstName = capitalize(this.firstName);
-    this.lastName = capitalize(this.lastName);
+    this.firstName = capitalize(this.firstName).trim();
+    this.lastName = capitalize(this.lastName).trim();
+    this.mobilePhoneNumber = this.mobilePhoneNumber?.trim();
+    this.email = this.email.trim();
   }
 
   @BeforeUpdate()
   private capitalizeBeforeUpdate() {
-    this.firstName = capitalize(this.firstName);
-    this.lastName = capitalize(this.lastName);
+    this.firstName = capitalize(this.firstName).trim();
+    this.lastName = capitalize(this.lastName).trim();
+    this.mobilePhoneNumber = this.mobilePhoneNumber?.trim();
+    this.email = this.email.trim();
   }
 
   @CreateDateColumn()
