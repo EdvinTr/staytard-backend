@@ -4,11 +4,11 @@ import {
   IsEmail,
   IsMobilePhone,
   IsNotEmpty,
-  IsOptional,
   IsPostalCode,
   IsString,
   IsUUID,
   Length,
+  Matches,
 } from 'class-validator';
 import { CapitalizeAndTrimTransform } from '../../../../utils/transform/capitalize-and-trim.transformer';
 import IsValidName from '../../../../utils/validation/is-valid-name.decorator';
@@ -56,17 +56,20 @@ export class UpdateUserInput implements UpdateUserInterface {
     { message: 'Please enter a valid phone number (e.g, 0707123123)' },
   )
   @Field()
-  @IsOptional()
   mobilePhoneNumber: string;
 
   @IsString()
   @IsNotEmpty()
+  @IsAlpha('sv-SE')
   @CapitalizeAndTrimTransform()
   @Length(1, 100)
   @Field()
   city: string;
 
   @IsNotEmpty()
+  @Matches(new RegExp(/^[a-zA-ZåäöæøÅÄÖÆØ0-9\s]$/), {
+    message: '$property must only consist of letters and numbers',
+  })
   @Field()
   @IsValidStreetAddress('street')
   @CapitalizeAndTrimTransform()
