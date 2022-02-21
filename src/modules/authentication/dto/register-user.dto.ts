@@ -6,14 +6,25 @@ import {
   IsNotEmpty,
   IsPostalCode,
   IsString,
-  MaxLength,
-  MinLength,
+  Max,
+  Min,
 } from 'class-validator';
+import IsValidName from '../../../utils/validation/is-valid-name.decorator';
 import IsValidPassword from '../../../utils/validation/is-valid-password.decorator';
 import IsValidStreetAddress from '../../../utils/validation/is-valid-street-address.decorator';
 
+export interface RegisterUserInterface {
+  email: string;
+  firstName: string;
+  lastName: string;
+  password: string;
+  street: string;
+  city: string;
+  postalCode: string;
+  mobilePhoneNumber: string;
+}
 @InputType()
-export class RegisterUserDto {
+export class RegisterUserDto implements RegisterUserInterface {
   @IsEmail({}, { message: 'Email address is invalid' })
   @Field()
   email: string;
@@ -21,26 +32,14 @@ export class RegisterUserDto {
   @IsAlpha('sv-SE', {
     message: 'First name must only contain letters (a-öA-Ö)',
   })
-  @MinLength(2, {
-    message: 'First name must be at least $constraint1 characters long',
-  })
-  @MaxLength(100, {
-    message:
-      'First name must be less than or equal to $constraint1 characters long',
-  })
+  @IsValidName('firstName')
   @Field()
   firstName: string;
 
   @IsAlpha('sv-SE', {
     message: 'Last name must only contain letters (a-öA-Ö)',
   })
-  @MinLength(2, {
-    message: 'Last name must be at least $constraint1 characters long',
-  })
-  @MaxLength(100, {
-    message:
-      'Last name must be less than or equal to $constraint1 characters long',
-  })
+  @IsValidName('lastName')
   @Field()
   lastName: string;
 
@@ -56,8 +55,9 @@ export class RegisterUserDto {
   @Field()
   password: string;
 
-  // address validation
   @IsString()
+  @Min(2)
+  @Max(100)
   @IsNotEmpty()
   @Field()
   city: string;

@@ -330,6 +330,10 @@ type Mutation {
 }
 
 input UpdateUserInput {
+  email: String!
+  firstName: String!
+  lastName: String!
+  mobilePhoneNumber: String!
   city: String!
   street: String!
   postalCode: String!
