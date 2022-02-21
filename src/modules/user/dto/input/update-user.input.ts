@@ -4,16 +4,26 @@ import {
   IsEmail,
   IsMobilePhone,
   IsNotEmpty,
+  IsOptional,
   IsPostalCode,
   IsString,
   IsUUID,
+  Length,
 } from 'class-validator';
-import { CapitalizeAndTrim } from '../../../../utils/transform/capitalize-and-trim.transformer';
+import { CapitalizeAndTrimTransform } from '../../../../utils/transform/capitalize-and-trim.transformer';
 import IsValidName from '../../../../utils/validation/is-valid-name.decorator';
 import IsValidStreetAddress from '../../../../utils/validation/is-valid-street-address.decorator';
-import { RegisterUserDto } from '../../../authentication/dto/register-user.dto';
 
-interface UpdateUserInterface extends Omit<RegisterUserDto, 'password'> {}
+interface UpdateUserInterface {
+  userId: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  street: string;
+  city: string;
+  postalCode: string;
+  mobilePhoneNumber: string;
+}
 @InputType()
 export class UpdateUserInput implements UpdateUserInterface {
   @IsUUID()
@@ -28,7 +38,7 @@ export class UpdateUserInput implements UpdateUserInterface {
     message: 'First name must only contain letters (a-öA-Ö)',
   })
   @IsValidName('firstName')
-  @CapitalizeAndTrim()
+  @CapitalizeAndTrimTransform()
   @Field()
   firstName: string;
 
@@ -36,7 +46,7 @@ export class UpdateUserInput implements UpdateUserInterface {
     message: 'Last name must only contain letters (a-öA-Ö)',
   })
   @IsValidName('lastName')
-  @CapitalizeAndTrim()
+  @CapitalizeAndTrimTransform()
   @Field()
   lastName: string;
 
@@ -46,18 +56,20 @@ export class UpdateUserInput implements UpdateUserInterface {
     { message: 'Please enter a valid phone number (e.g, 0707123123)' },
   )
   @Field()
+  @IsOptional()
   mobilePhoneNumber: string;
 
   @IsString()
   @IsNotEmpty()
-  @CapitalizeAndTrim()
+  @CapitalizeAndTrimTransform()
+  @Length(1, 100)
   @Field()
   city: string;
 
   @IsNotEmpty()
   @Field()
   @IsValidStreetAddress('street')
-  @CapitalizeAndTrim()
+  @CapitalizeAndTrimTransform()
   street: string;
 
   @IsPostalCode('SE', {

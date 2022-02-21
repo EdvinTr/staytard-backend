@@ -1,5 +1,6 @@
 import {
   BadRequestException,
+  ForbiddenException,
   HttpException,
   HttpStatus,
   Injectable,
@@ -41,19 +42,27 @@ export class UserService {
     return await this.userRepository.save(user);
   }
 
-  async update({ userId, city, postalCode, street, ...rest }: UpdateUserInput) {
+  async update(
+    userIdFromRequest: string,
+    { userId, city, postalCode, street, ...rest }: UpdateUserInput,
+  ) {
     try {
       const foundUser = await this.findById(userId);
       if (!foundUser) {
         throw new NotFoundException(`User with id ${userId} was not found`);
       }
+      if (this.isUpdatingAnotherAdminsAccount(foundUser, userIdFromRequest)) {
+        throw new ForbiddenException(
+          "You are not allowed to update another admin's account",
+        );
+      }
       await this.userRepository.update({ id: userId }, { ...rest }); // update user
-      await this.updateAddress(userId, {
+      const updatedUser = await this.updateAddress(userId, {
         city,
         postalCode,
         street,
       });
-      return await this.findById(userId); // returned update version of user
+      return updatedUser;
     } catch (error: any) {
       if (error?.code === PostgresErrorCode.UniqueViolation) {
         throw new HttpException(
@@ -63,6 +72,13 @@ export class UserService {
       }
       throw error;
     }
+  }
+
+  private isUpdatingAnotherAdminsAccount(user: User, userId: string) {
+    if (!user.isAdmin || userId === user.id) {
+      return false;
+    }
+    return true;
   }
 
   async findAll({

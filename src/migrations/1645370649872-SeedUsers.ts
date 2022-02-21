@@ -7,6 +7,9 @@ export class SeedUsers1645370649872 implements MigrationInterface {
   public async up(): Promise<void> {
     const userRepo = getRepository(User);
     for (let i = 0; i < 5000; i++) {
+      const mobilePhoneNumber = `070${[...Array(7)]
+        .map(() => casual.integer(1, 9))
+        .join('')}`;
       const user = userRepo.create({
         firstName: casual.first_name,
         lastName: casual.last_name,
@@ -19,7 +22,7 @@ export class SeedUsers1645370649872 implements MigrationInterface {
         isEmailConfirmed: false,
         isRegisteredWithGoogle: false,
         password: await bcrypt.hash('123123123a', 10),
-        mobilePhoneNumber: casual.phone,
+        mobilePhoneNumber: mobilePhoneNumber,
         permissions: [],
       });
       userRepo.save(user);

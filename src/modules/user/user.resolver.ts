@@ -19,7 +19,7 @@ export class UserResolver {
   @UseGuards(GraphqlJwtAuthGuard)
   @Query(() => User)
   async me(@Context() context: { req: RequestWithUser }): Promise<User> {
-    /* const user = context.req.user;
+    /*  const user = context.req.user;
     user.permissions = [
       ProductPermission.CREATE_PRODUCT,
       ProductPermission.DELETE_PRODUCT,
@@ -38,8 +38,11 @@ export class UserResolver {
 
   @UseGuards(PermissionGuard(Permission.UPDATE_USER))
   @Mutation(() => User)
-  async updateUser(@Args('input') input: UpdateUserInput) {
-    return this.userService.update(input);
+  async updateUser(
+    @Context() context: { req: RequestWithUser },
+    @Args('input') input: UpdateUserInput,
+  ) {
+    return this.userService.update(context.req.user.id, input);
   }
 
   @UseGuards(PermissionGuard(Permission.READ_USER))

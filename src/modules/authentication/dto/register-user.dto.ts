@@ -6,8 +6,7 @@ import {
   IsNotEmpty,
   IsPostalCode,
   IsString,
-  Max,
-  Min,
+  Length,
 } from 'class-validator';
 import IsValidName from '../../../utils/validation/is-valid-name.decorator';
 import IsValidPassword from '../../../utils/validation/is-valid-password.decorator';
@@ -56,8 +55,7 @@ export class RegisterUserDto implements RegisterUserInterface {
   password: string;
 
   @IsString()
-  @Min(2)
-  @Max(100)
+  @Length(1, 100)
   @IsNotEmpty()
   @Field()
   city: string;

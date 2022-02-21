@@ -6,13 +6,13 @@ import {
   MaxLength,
   MinLength,
 } from 'class-validator';
-import { CapitalizeAndTrim } from '../../../../utils/transform/capitalize-and-trim.transformer';
+import { CapitalizeAndTrimTransform } from '../../../../utils/transform/capitalize-and-trim.transformer';
 
 @InputType()
 export class UpdateUserAddressInput {
   @IsString()
   @IsNotEmpty()
-  @CapitalizeAndTrim()
+  @CapitalizeAndTrimTransform()
   @Field()
   city: string;
 
@@ -20,7 +20,7 @@ export class UpdateUserAddressInput {
   @Field()
   @MinLength(1)
   @MaxLength(36)
-  @CapitalizeAndTrim()
+  @CapitalizeAndTrimTransform()
   street: string;
 
   @IsPostalCode('SE', {
