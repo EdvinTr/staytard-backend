@@ -56,9 +56,6 @@ export class UserService {
         { lastName: caseInsensitiveQuery },
         { email: caseInsensitiveQuery },
         { mobilePhoneNumber: caseInsensitiveQuery },
-        { address: { city: caseInsensitiveQuery } },
-        { address: { postalCode: caseInsensitiveQuery } },
-        { address: { street: caseInsensitiveQuery } },
       );
       const isValidUUID = validateUUID(q);
       if (isValidUUID) {
