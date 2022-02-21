@@ -1,6 +1,6 @@
 import { Field, InputType } from '@nestjs/graphql';
 import { IsEnum, IsOptional, IsString, Max, Min } from 'class-validator';
-import { SORT_DIRECTION, USER_SORT_BY } from '../../../lib/gql-enums';
+import { SORT_DIRECTION, USER_SORT_BY } from '../../../../lib/gql-enums';
 
 @InputType()
 export class FindAllUsersInput {

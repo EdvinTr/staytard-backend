@@ -6,10 +6,11 @@ import PermissionGuard from '../authentication/guards/permission.guard';
 import RequestWithUser from '../authentication/interfaces/request-with-user.interface';
 import { User } from '../user/entities/user.entity';
 import { UserService } from '../user/user.service';
-import { FindAllUsersInput } from './dto/find-all-users.input';
+import { FindAllUsersInput } from './dto/input/find-all-users.input';
+import { UpdateUserAddressInput } from './dto/input/update-user-address.input';
+import { UpdateUserPasswordInput } from './dto/input/update-user-password.input';
+import { UpdateUserInput } from './dto/input/update-user.input';
 import { PaginatedUsersOutput } from './dto/output/PaginatedUsers.output';
-import { UpdateUserAddressInput } from './dto/update-user-address.input';
-import { UpdateUserPasswordInput } from './dto/update-user-password.input';
 
 @Resolver(User)
 export class UserResolver {
@@ -33,6 +34,12 @@ export class UserResolver {
     user.isAdmin = true;
     await this.userService.save(user); */
     return context.req.user;
+  }
+
+  @UseGuards(PermissionGuard(Permission.UPDATE_USER))
+  @Mutation(() => User)
+  async updateUser(@Args('input') input: UpdateUserInput) {
+    return this.userService.update(input);
   }
 
   @UseGuards(PermissionGuard(Permission.READ_USER))

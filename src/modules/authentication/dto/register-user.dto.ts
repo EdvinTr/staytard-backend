@@ -10,6 +10,7 @@ import {
   MinLength,
 } from 'class-validator';
 import IsValidPassword from '../../../utils/validation/is-valid-password.decorator';
+import IsValidStreetAddress from '../../../utils/validation/is-valid-street-address.decorator';
 
 @InputType()
 export class RegisterUserDto {
@@ -63,8 +64,7 @@ export class RegisterUserDto {
 
   @IsNotEmpty()
   @Field()
-  @MinLength(1)
-  @MaxLength(36)
+  @IsValidStreetAddress('street')
   street: string;
 
   @IsPostalCode('SE', {

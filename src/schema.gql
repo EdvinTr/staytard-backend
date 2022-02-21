@@ -312,6 +312,7 @@ enum PRODUCT_REVIEW_FILTER {
 }
 
 type Mutation {
+  updateUser(input: UpdateUserInput!): User!
   updateUserAddress(input: UpdateUserAddressInput!): User!
   updatePassword(input: UpdateUserPasswordInput!): Boolean!
   createProduct(input: CreateProductInput!): Product!
@@ -326,6 +327,12 @@ type Mutation {
   login(input: LoginUserDto!): UserWithTokensDto!
   logout: Boolean!
   authenticateWithGoogle(googleAuthToken: String!): UserWithTokensDto!
+}
+
+input UpdateUserInput {
+  city: String!
+  street: String!
+  postalCode: String!
 }
 
 input UpdateUserAddressInput {

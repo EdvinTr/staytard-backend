@@ -16,10 +16,11 @@ import {
 import { validate as validateUUID } from 'uuid';
 import { RegisterUserDto } from '../authentication/dto/register-user.dto';
 import { RegisterWithGoogleDto } from '../google-authentication/dto/register-with-google-dto';
-import { FindAllUsersInput } from './dto/find-all-users.input';
+import { FindAllUsersInput } from './dto/input/find-all-users.input';
+import { UpdateUserAddressInput } from './dto/input/update-user-address.input';
+import { UpdateUserPasswordInput } from './dto/input/update-user-password.input';
+import { UpdateUserInput } from './dto/input/update-user.input';
 import { PaginatedUsersOutput } from './dto/output/PaginatedUsers.output';
-import { UpdateUserAddressInput } from './dto/update-user-address.input';
-import { UpdateUserPasswordInput } from './dto/update-user-password.input';
 import { UserAddress } from './entities/user-address.entity';
 import { User } from './entities/user.entity';
 @Injectable()
@@ -36,6 +37,8 @@ export class UserService {
   async save(user: User) {
     return await this.userRepository.save(user);
   }
+
+  async update(input: UpdateUserInput) {}
 
   async findAll({
     limit,
