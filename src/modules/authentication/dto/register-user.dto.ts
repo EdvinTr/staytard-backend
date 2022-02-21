@@ -10,9 +10,9 @@ import {
   Matches,
 } from 'class-validator';
 import { CapitalizeAndTrimTransform } from '../../../utils/transform/capitalize-and-trim.transformer';
+import { isAlphanumericWithSpaces } from '../../../utils/validation/is-alphanumeric-with-spaces.regex';
 import IsValidName from '../../../utils/validation/is-valid-name.decorator';
 import IsValidPassword from '../../../utils/validation/is-valid-password.decorator';
-import IsValidStreetAddress from '../../../utils/validation/is-valid-street-address.decorator';
 
 export interface RegisterUserInterface {
   email: string;
@@ -65,11 +65,10 @@ export class RegisterUserDto implements RegisterUserInterface {
   city: string;
 
   @IsNotEmpty()
-  @Matches(new RegExp(/^[a-zA-ZåäöæøÅÄÖÆØ0-9\s]$/), {
-    message: '$property may only consist of letters and numbers',
+  @Matches(isAlphanumericWithSpaces(1, 36), {
+    message: '$property must only consist of letters and numbers',
   })
   @Field()
-  @IsValidStreetAddress('street')
   @CapitalizeAndTrimTransform()
   street: string;
 
