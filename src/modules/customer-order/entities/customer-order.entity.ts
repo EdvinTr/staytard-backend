@@ -21,7 +21,7 @@ export class CustomerOrder extends BaseEntity {
   id: number;
 
   @Field()
-  @Column()
+  @Column({ unique: true })
   orderNumber: string;
 
   @Field()
