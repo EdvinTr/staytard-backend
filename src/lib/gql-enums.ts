@@ -1,4 +1,5 @@
 import { registerEnumType } from '@nestjs/graphql';
+import { ORDER_STATUS } from '../modules/customer-order/typings/order-status.enum';
 
 export enum BRAND_SORT_BY {
   ID = 'id',
@@ -34,6 +35,10 @@ export enum CUSTOMER_ORDER_SORT_BY {
 export enum CUSTOMER_ORDER_FILTER {
   ORDER_STATUS = 'orderStatus',
 }
+
+registerEnumType(ORDER_STATUS, {
+  name: 'CUSTOMER_ORDER_STATUS',
+});
 
 registerEnumType(CUSTOMER_ORDER_FILTER, {
   name: 'CUSTOMER_ORDER_FILTER',

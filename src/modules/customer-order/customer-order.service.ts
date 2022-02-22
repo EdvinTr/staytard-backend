@@ -37,7 +37,7 @@ export class CustomerOrderService {
   public async findAll({
     limit,
     offset,
-    filter,
+    filters,
     q,
     sortBy,
     sortDirection,
@@ -46,12 +46,21 @@ export class CustomerOrderService {
     const order: Record<string, string> = {};
 
     if (q) {
+      where.push({ orderNumber: ILike(`%${q}%`) }); // search by orderNumber
       if (parseInt(q) > 0) {
-        where.push({ id: +q });
+        where.push({ id: +q }); // search by ID
       }
-      where.push({ orderNumber: ILike(`%${q}%`) });
       if (isValidUUID(q)) {
-        where.push({ userId: q });
+        where.push({ userId: q }); // search by userId
+      }
+    }
+    if (filters) {
+      if (filters.orderStatusFilter && filters.orderStatusFilter.length > 0) {
+        where.push({
+          orderStatus: {
+            status: In(filters.orderStatusFilter),
+          },
+        });
       }
     }
     if (sortBy && sortDirection) {
@@ -66,6 +75,7 @@ export class CustomerOrderService {
           ...order,
         },
         where: [...where],
+        cache: 10000,
       });
     return {
       items: customerOrders,

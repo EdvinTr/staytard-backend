@@ -1,10 +1,21 @@
 import { Field, InputType } from '@nestjs/graphql';
 import { IsEnum, IsOptional, IsString, Max, Min } from 'class-validator';
 import {
-  CUSTOMER_ORDER_FILTER,
   CUSTOMER_ORDER_SORT_BY,
   SORT_DIRECTION,
 } from '../../../../lib/gql-enums';
+import { ORDER_STATUS } from '../../typings/order-status.enum';
+
+@InputType()
+export class CustomerOrderFilter {
+  @IsEnum(ORDER_STATUS, {
+    message: `Status filter can only be one of the following: ${Object.values(
+      ORDER_STATUS,
+    ).join(', ')}`,
+  })
+  @Field(() => [ORDER_STATUS], { nullable: true })
+  orderStatusFilter?: ORDER_STATUS[];
+}
 
 @InputType()
 export class FindAllCustomerOrdersInput {
@@ -22,14 +33,8 @@ export class FindAllCustomerOrdersInput {
   @IsString()
   q?: string;
 
-  @Field(() => CUSTOMER_ORDER_FILTER, { nullable: true })
-  @IsOptional()
-  @IsEnum(CUSTOMER_ORDER_FILTER, {
-    message: `Filter can only be one of the following: ${Object.values(
-      CUSTOMER_ORDER_FILTER,
-    ).join(', ')}`,
-  })
-  filter?: CUSTOMER_ORDER_FILTER;
+  @Field(() => CustomerOrderFilter, { nullable: true })
+  filters?: CustomerOrderFilter;
 
   @Field(() => CUSTOMER_ORDER_SORT_BY, { nullable: true })
   @IsOptional()
