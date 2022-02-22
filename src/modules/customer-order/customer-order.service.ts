@@ -5,7 +5,8 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { In, Repository } from 'typeorm';
+import { FindConditions, ILike, In, Repository } from 'typeorm';
+import { validate as isValidUUID } from 'uuid';
 import { EmailService } from '../email/email.service';
 import { ProductAttribute } from '../product/entities/product-attribute.entity';
 import { ProductAttributeService } from '../product/product-attribute.service';
@@ -41,9 +42,18 @@ export class CustomerOrderService {
     sortBy,
     sortDirection,
   }: FindAllCustomerOrdersInput) {
-    const where: Record<string, string> = {};
+    const where: FindConditions<CustomerOrder>[] = [];
     const order: Record<string, string> = {};
 
+    if (q) {
+      if (parseInt(q) > 0) {
+        where.push({ id: +q });
+      }
+      where.push({ orderNumber: ILike(`%${q}%`) });
+      if (isValidUUID(q)) {
+        where.push({ userId: q });
+      }
+    }
     if (sortBy && sortDirection) {
       order[sortBy] = sortDirection;
     }
@@ -51,10 +61,11 @@ export class CustomerOrderService {
       await this.customerOrderRepository.findAndCount({
         take: limit,
         skip: offset,
-        relations: ['orderStatus'],
+        relations: ['orderStatus', 'orderItems'],
         order: {
           ...order,
         },
+        where: [...where],
       });
     return {
       items: customerOrders,
