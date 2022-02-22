@@ -58,7 +58,6 @@ describe('UserService', () => {
         },
       ],
     }).compile();
-
     userService = module.get<UserService>(UserService);
   });
 

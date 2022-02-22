@@ -19,6 +19,7 @@ import { validate as validateUUID } from 'uuid';
 import { RegisterUserDto } from '../authentication/dto/register-user.dto';
 import PostgresErrorCode from '../database/postgres-error-code.enum';
 import { RegisterWithGoogleDto } from '../google-authentication/dto/register-with-google-dto';
+import { DeleteUserInput } from './dto/input/delete-user.input';
 import { FindAllUsersInput } from './dto/input/find-all-users.input';
 import { UpdateUserAddressInput } from './dto/input/update-user-address.input';
 import { UpdateUserPasswordInput } from './dto/input/update-user-password.input';
@@ -42,24 +43,51 @@ export class UserService {
     return await this.userRepository.save(user);
   }
 
-  async softDelete(userId: string) {
-    const deleteResponse = await this.userRepository.softDelete(userId);
+  async softDelete(userIdFromRequest: string, input: DeleteUserInput) {
+    const userToDelete = await this.findById(input.userId);
+    const userWhoInitiatedRequest = await this.findById(userIdFromRequest);
+    if (!userWhoInitiatedRequest) {
+      throw new UserNotFoundException(userIdFromRequest);
+    }
+    // compare password
+    const isPasswordCorrect = await bcrypt.compare(
+      input.password,
+      userWhoInitiatedRequest.password || '',
+    );
+    if (!isPasswordCorrect) {
+      throw new BadRequestException('Invalid password');
+    }
+    if (!userToDelete) {
+      throw new UserNotFoundException(userIdFromRequest);
+    }
+    if (this.isUpdatingAnotherAdminsAccount(userToDelete, userIdFromRequest)) {
+      throw new ForbiddenException(
+        "You are not allowed to delete another admin's account",
+      );
+    }
+    const deleteResponse = await this.userRepository.softDelete(input.userId);
     if (!deleteResponse.affected) {
-      throw new UserNotFoundException(userId);
+      throw new UserNotFoundException(input.userId);
     }
     return true;
   }
 
+  /**
+   * @param userIdFromRequest - The ID of the user who initialized the request.
+   * @param input - Input containing fields and values to update.
+   *  */
   async update(
     userIdFromRequest: string,
     { userId, city, postalCode, street, ...rest }: UpdateUserInput,
   ) {
     try {
-      const foundUser = await this.findById(userId);
-      if (!foundUser) {
+      const userToUpdate = await this.findById(userId); // user to be updated
+      if (!userToUpdate) {
         throw new UserNotFoundException(userId);
       }
-      if (this.isUpdatingAnotherAdminsAccount(foundUser, userIdFromRequest)) {
+      if (
+        this.isUpdatingAnotherAdminsAccount(userToUpdate, userIdFromRequest)
+      ) {
         throw new ForbiddenException(
           "You are not allowed to update another admin's account",
         );
@@ -82,8 +110,11 @@ export class UserService {
     }
   }
 
-  private isUpdatingAnotherAdminsAccount(user: User, userId: string) {
-    if (!user.isAdmin || userId === user.id) {
+  /**
+   * @description Checks if the requesting user is trying to update an admin account. If user is not an admin it returns false. If the user to update has the same ID as the requesting user it returns false because the user should be able to update his own account.
+   *  */
+  private isUpdatingAnotherAdminsAccount(userToUpdate: User, userId: string) {
+    if (!userToUpdate.isAdmin || userId === userToUpdate.id) {
       return false;
     }
     return true;
@@ -138,6 +169,9 @@ export class UserService {
     return await this.userRepository.findOne(id, { ...options, cache: 10000 });
   }
 
+  /**
+   * @description Checks if the user has a password. If the user does not have a password it returns false else it returns true.
+   */
   async hasPassword(userId: string): Promise<boolean> {
     const user = await this.userRepository.findOne(userId);
     if (!user || !user.password) {

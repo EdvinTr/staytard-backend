@@ -7,9 +7,9 @@ import {
   IsPostalCode,
   IsString,
   IsUUID,
-  Length,
 } from 'class-validator';
 import { CapitalizeAndTrimTransform } from '../../../../utils/transform/capitalize-and-trim.transformer';
+import IsAlphaWithSpaces from '../../../../utils/validation/is-alpha-with-spaces.decorator';
 import IsAlphanumericWithSpaces from '../../../../utils/validation/is-alphanumeric-with-spaces.decorator';
 import IsValidName from '../../../../utils/validation/is-valid-name.decorator';
 
@@ -59,9 +59,8 @@ export class UpdateUserInput implements UpdateUserInterface {
 
   @IsString()
   @IsNotEmpty()
-  @IsAlpha('sv-SE')
   @CapitalizeAndTrimTransform()
-  @Length(1, 100)
+  @IsAlphaWithSpaces('city', 1, 100)
   @Field()
   city: string;
 

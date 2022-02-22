@@ -6,6 +6,7 @@ import PermissionGuard from '../authentication/guards/permission.guard';
 import RequestWithUser from '../authentication/interfaces/request-with-user.interface';
 import { User } from '../user/entities/user.entity';
 import { UserService } from '../user/user.service';
+import { DeleteUserInput } from './dto/input/delete-user.input';
 import { FindAllUsersInput } from './dto/input/find-all-users.input';
 import { UpdateUserAddressInput } from './dto/input/update-user-address.input';
 import { UpdateUserPasswordInput } from './dto/input/update-user-password.input';
@@ -49,9 +50,10 @@ export class UserResolver {
   @Mutation(() => Boolean)
   async deleteUser(
     @Context() context: { req: RequestWithUser },
-    @Args('userId') userId: string,
+    @Args('input') input: DeleteUserInput,
   ) {
-    return this.userService.softDelete(userId);
+    const userIdFromRequest = context.req.user.id;
+    return this.userService.softDelete(userIdFromRequest, input);
   }
 
   @UseGuards(PermissionGuard(Permission.READ_USER))
