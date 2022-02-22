@@ -13,7 +13,7 @@ export class CustomerOrderResolver {
 
   @UseGuards(GraphqlJwtAuthGuard)
   @Query(() => PaginatedCustomerOrdersOutput)
-  async customerOrders(
+  async myOrders(
     @Context() { req }: { req: RequestWithUser },
     @Args('input') input: FindCustomerOrdersInput,
   ): Promise<PaginatedCustomerOrdersOutput> {

@@ -216,7 +216,7 @@ type Query {
   products(input: FindProductsInput!): QueryProductsOutput!
   product(id: Float!): Product!
   productsBySku(input: FindProductsBySkusInput!): QueryProductsOutput!
-  customerOrders(input: FindCustomerOrdersInput!): PaginatedCustomerOrdersOutput!
+  myOrders(input: FindCustomerOrdersInput!): PaginatedCustomerOrdersOutput!
   productBrands(input: GetProductBrandsInput!): [ProductBrand!]!
   publishedProductReviews(input: FindPublishedProductReviewsInput!): PublishedProductReviewsOutput!
   allProductReviews(input: FindAllProductReviewsInput!): QueryAllProductReviewsOutput!
