@@ -1,4 +1,4 @@
-import { CreateCustomerOrderInput } from '../dto/create-customer-order.input';
+import { CreateCustomerOrderInput } from '../dto/input/create-customer-order.input';
 
 export const mockCustomerOrder: CreateCustomerOrderInput = {
   city: 'Stockholm',

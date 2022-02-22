@@ -1,10 +1,13 @@
 import { UseGuards } from '@nestjs/common';
 import { Args, Context, Query, Resolver } from '@nestjs/graphql';
+import Permission from '../../lib/permission/permission.type';
 import { GraphqlJwtAuthGuard } from '../authentication/guards/graphql-jwt-auth.guard';
+import PermissionGuard from '../authentication/guards/permission.guard';
 import RequestWithUser from '../authentication/interfaces/request-with-user.interface';
 import { CustomerOrderService } from './customer-order.service';
-import { FindCustomerOrdersInput } from './dto/find-customer-orders.input';
-import { PaginatedCustomerOrdersOutput } from './dto/paginated-customer-orders.output';
+import { FindAllCustomerOrdersInput } from './dto/input/find-all-customer-orders.input';
+import { FindMyCustomerOrdersInput } from './dto/input/find-my-customer-orders.input';
+import { PaginatedCustomerOrdersOutput } from './dto/output/paginated-customer-orders.output';
 import { CustomerOrder } from './entities/customer-order.entity';
 
 @Resolver(() => CustomerOrder)
@@ -15,8 +18,16 @@ export class CustomerOrderResolver {
   @Query(() => PaginatedCustomerOrdersOutput)
   async myOrders(
     @Context() { req }: { req: RequestWithUser },
-    @Args('input') input: FindCustomerOrdersInput,
+    @Args('input') input: FindMyCustomerOrdersInput,
   ): Promise<PaginatedCustomerOrdersOutput> {
-    return this.customerOrderService.findAll(req.user.id, input);
+    return this.customerOrderService.findMyCustomerOrders(req.user.id, input);
+  }
+
+  @UseGuards(PermissionGuard(Permission.READ_CUSTOMER_ORDER))
+  @Query(() => PaginatedCustomerOrdersOutput)
+  async customerOrders(
+    @Args('input') input: FindAllCustomerOrdersInput,
+  ): Promise<PaginatedCustomerOrdersOutput> {
+    return this.customerOrderService.findAll(input);
   }
 }

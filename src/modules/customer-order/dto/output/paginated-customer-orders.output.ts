@@ -1,6 +1,6 @@
 import { Field, ObjectType } from '@nestjs/graphql';
-import { IPagination } from '../../../lib/typings/IPagination.interface';
-import { CustomerOrder } from '../entities/customer-order.entity';
+import { IPagination } from '../../../../lib/typings/IPagination.interface';
+import { CustomerOrder } from '../../entities/customer-order.entity';
 
 @ObjectType()
 export class PaginatedCustomerOrdersOutput

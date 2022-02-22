@@ -136,6 +136,8 @@ enum Permission {
   READ_USER
   UPDATE_USER
   DELETE_USER
+  UPDATE_CUSTOMER_ORDER
+  READ_CUSTOMER_ORDER
 }
 
 type UserAddress {
@@ -216,7 +218,8 @@ type Query {
   products(input: FindProductsInput!): QueryProductsOutput!
   product(id: Float!): Product!
   productsBySku(input: FindProductsBySkusInput!): QueryProductsOutput!
-  myOrders(input: FindCustomerOrdersInput!): PaginatedCustomerOrdersOutput!
+  myOrders(input: FindMyCustomerOrdersInput!): PaginatedCustomerOrdersOutput!
+  customerOrders(input: FindAllCustomerOrdersInput!): PaginatedCustomerOrdersOutput!
   productBrands(input: GetProductBrandsInput!): [ProductBrand!]!
   publishedProductReviews(input: FindPublishedProductReviewsInput!): PublishedProductReviewsOutput!
   allProductReviews(input: FindAllProductReviewsInput!): QueryAllProductReviewsOutput!
@@ -266,9 +269,28 @@ input FindProductsBySkusInput {
   limit: Float!
 }
 
-input FindCustomerOrdersInput {
+input FindMyCustomerOrdersInput {
   offset: Float!
   limit: Float!
+}
+
+input FindAllCustomerOrdersInput {
+  offset: Float!
+  limit: Float!
+  q: String
+  filter: CUSTOMER_ORDER_FILTER
+  sortBy: CUSTOMER_ORDER_SORT_BY
+  sortDirection: SORT_DIRECTION
+}
+
+enum CUSTOMER_ORDER_FILTER {
+  ORDER_STATUS
+}
+
+enum CUSTOMER_ORDER_SORT_BY {
+  ID
+  CREATED_AT
+  GRAND_TOTAL
 }
 
 input GetProductBrandsInput {

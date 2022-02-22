@@ -2,7 +2,7 @@ import { Field, InputType } from '@nestjs/graphql';
 import { Max, Min } from 'class-validator';
 
 @InputType()
-export class FindCustomerOrdersInput {
+export class FindMyCustomerOrdersInput {
   @Min(0)
   @Field()
   offset: number;

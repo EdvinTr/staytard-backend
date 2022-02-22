@@ -20,11 +20,29 @@ export enum SORT_DIRECTION {
   DESC = 'DESC',
   ASC = 'ASC',
 }
-
 export enum USER_SORT_BY {
   ID = 'id',
   IS_ADMIN = 'isAdmin',
 }
+
+export enum CUSTOMER_ORDER_SORT_BY {
+  ID = 'id',
+  CREATED_AT = 'createdAt',
+  GRAND_TOTAL = 'grandTotal',
+}
+
+export enum CUSTOMER_ORDER_FILTER {
+  ORDER_STATUS = 'orderStatus',
+}
+
+registerEnumType(CUSTOMER_ORDER_FILTER, {
+  name: 'CUSTOMER_ORDER_FILTER',
+});
+
+registerEnumType(CUSTOMER_ORDER_SORT_BY, {
+  name: 'CUSTOMER_ORDER_SORT_BY',
+});
+
 registerEnumType(USER_SORT_BY, {
   name: 'USER_SORT_BY',
 });
