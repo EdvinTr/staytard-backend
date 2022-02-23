@@ -40,7 +40,12 @@ export class CustomerOrderService {
 
   public async findOne(id: number): Promise<FindOneCustomerOrderOutput> {
     const order = await this.customerOrderRepository.findOne(id, {
-      relations: ['orderStatus', 'orderItems', 'orderItems.product'],
+      relations: [
+        'orderStatus',
+        'orderItems',
+        'orderItems.product',
+        'orderItems.product.brand',
+      ],
     });
     if (!order) {
       throw new CustomerOrderNotFoundException(id);

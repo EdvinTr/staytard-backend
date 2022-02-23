@@ -121,7 +121,7 @@ type User {
   isAdmin: Boolean!
   permissions: [Permission!]!
   address: UserAddress
-  deletedAt: DateTime!
+  deletedAt: DateTime
   createdAt: DateTime!
   updatedAt: DateTime!
 }

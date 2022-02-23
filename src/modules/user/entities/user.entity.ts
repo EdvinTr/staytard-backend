@@ -104,7 +104,7 @@ export class User implements UserInterface {
   }
 
   @DeleteDateColumn()
-  @Field()
+  @Field(() => Date, { nullable: true })
   public deletedAt: Date;
 
   @CreateDateColumn()
