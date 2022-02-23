@@ -57,7 +57,7 @@ export class CustomerOrderService {
     if (filters) {
       if (filters.orderStatusFilter && filters.orderStatusFilter.length > 0) {
         query.andWhere(`orderStatus.status IN (:...orderStatusFilter)`, {
-          orderStatusFilter: filters.orderStatusFilter,
+          orderStatusFilter: filters.orderStatusFilter, // filter on statuses of orders
         });
       }
     }
@@ -66,6 +66,8 @@ export class CustomerOrderService {
     }
     const [customerOrders, totalCount] = await query
       .cache(10000)
+      .take(limit)
+      .skip(offset)
       .getManyAndCount();
     return {
       items: customerOrders,
