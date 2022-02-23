@@ -5,7 +5,7 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { FindConditions, ILike, In, Repository } from 'typeorm';
+import { In, Repository } from 'typeorm';
 import { validate as isValidUUID } from 'uuid';
 import { EmailService } from '../email/email.service';
 import { ProductAttribute } from '../product/entities/product-attribute.entity';
@@ -42,41 +42,31 @@ export class CustomerOrderService {
     sortBy,
     sortDirection,
   }: FindAllCustomerOrdersInput) {
-    const where: FindConditions<CustomerOrder>[] = [];
-    const order: Record<string, string> = {};
-
+    let query = this.customerOrderRepository
+      .createQueryBuilder('order')
+      .innerJoinAndSelect('order.orderStatus', 'orderStatus')
+      .innerJoinAndSelect('order.orderItems', 'orderItems');
     if (q) {
-      where.push({ orderNumber: ILike(`%${q}%`) }); // search by orderNumber
-      if (parseInt(q) > 0) {
-        where.push({ id: +q }); // search by ID
-      }
+      query.where('order.orderNumber = :orderNumber', { orderNumber: q }); // search by order number
       if (isValidUUID(q)) {
-        where.push({ userId: q }); // search by userId
+        query.orWhere('order.userId = :userId', { userId: q }); // search by user ID
+      } else if (!isNaN(+q)) {
+        query.orWhere('order.id = :orderId', { orderId: +q }); // search by order ID
       }
     }
     if (filters) {
       if (filters.orderStatusFilter && filters.orderStatusFilter.length > 0) {
-        where.push({
-          orderStatus: {
-            status: In(filters.orderStatusFilter),
-          },
+        query.andWhere(`orderStatus.status IN (:...orderStatusFilter)`, {
+          orderStatusFilter: filters.orderStatusFilter,
         });
       }
     }
     if (sortBy && sortDirection) {
-      order[sortBy] = sortDirection;
+      query.orderBy(`order.${sortBy}`, sortDirection);
     }
-    const [customerOrders, totalCount] =
-      await this.customerOrderRepository.findAndCount({
-        take: limit,
-        skip: offset,
-        relations: ['orderStatus', 'orderItems'],
-        order: {
-          ...order,
-        },
-        where: [...where],
-        cache: 10000,
-      });
+    const [customerOrders, totalCount] = await query
+      .cache(10000)
+      .getManyAndCount();
     return {
       items: customerOrders,
       totalCount,

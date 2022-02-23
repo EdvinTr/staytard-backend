@@ -7,7 +7,7 @@ import { CustomerOrder } from '../modules/customer-order/entities/customer-order
 import { Product } from '../modules/product/entities/product.entity';
 import { User } from '../modules/user/entities/user.entity';
 export class SeedCustomerOrders1645528563159 implements MigrationInterface {
-  public async up(queryRunner: QueryRunner): Promise<void> {
+  public async up(): Promise<void> {
     const users = await getRepository(User).find();
     const products = await getRepository(Product).find({
       relations: ['attributes'],
