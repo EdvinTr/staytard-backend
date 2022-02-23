@@ -7,10 +7,10 @@ import RequestWithUser from '../authentication/interfaces/request-with-user.inte
 import { CustomerOrderService } from './customer-order.service';
 import { FindAllCustomerOrdersInput } from './dto/input/find-all-customer-orders.input';
 import { FindMyCustomerOrdersInput } from './dto/input/find-my-customer-orders.input';
+import { FindOneCustomerOrderOutput } from './dto/output/find-one-customer-order.output';
 import { PaginatedCustomerOrdersOutput } from './dto/output/paginated-customer-orders.output';
-import { CustomerOrder } from './entities/customer-order.entity';
 
-@Resolver(() => CustomerOrder)
+@Resolver(() => FindOneCustomerOrderOutput)
 export class CustomerOrderResolver {
   constructor(private readonly customerOrderService: CustomerOrderService) {}
 
@@ -29,5 +29,14 @@ export class CustomerOrderResolver {
     @Args('input') input: FindAllCustomerOrdersInput,
   ): Promise<PaginatedCustomerOrdersOutput> {
     return this.customerOrderService.findAll(input);
+  }
+
+  @UseGuards(PermissionGuard(Permission.READ_CUSTOMER_ORDER))
+  @UseGuards(PermissionGuard(Permission.READ_USER))
+  @Query(() => FindOneCustomerOrderOutput)
+  async oneCustomerOrder(
+    @Args('id') id: number,
+  ): Promise<FindOneCustomerOrderOutput> {
+    return this.customerOrderService.findOne(id);
   }
 }

@@ -83,6 +83,7 @@ type CustomerOrderItem {
   productId: Float!
   sku: String!
   quantity: Float!
+  product: Product!
 }
 
 type CustomerOrderStatus {
@@ -165,6 +166,11 @@ type QueryProductsOutput {
   hasMore: Boolean!
 }
 
+type FindOneCustomerOrderOutput {
+  order: CustomerOrder!
+  user: User
+}
+
 type PaginatedCustomerOrdersOutput {
   items: [CustomerOrder!]!
   totalCount: Float!
@@ -220,6 +226,7 @@ type Query {
   productsBySku(input: FindProductsBySkusInput!): QueryProductsOutput!
   myOrders(input: FindMyCustomerOrdersInput!): PaginatedCustomerOrdersOutput!
   customerOrders(input: FindAllCustomerOrdersInput!): PaginatedCustomerOrdersOutput!
+  oneCustomerOrder(id: Float!): FindOneCustomerOrderOutput!
   productBrands(input: GetProductBrandsInput!): [ProductBrand!]!
   publishedProductReviews(input: FindPublishedProductReviewsInput!): PublishedProductReviewsOutput!
   allProductReviews(input: FindAllProductReviewsInput!): QueryAllProductReviewsOutput!

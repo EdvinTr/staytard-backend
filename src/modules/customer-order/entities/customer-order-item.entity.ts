@@ -34,5 +34,6 @@ export class CustomerOrderItem extends BaseEntity {
   order: CustomerOrder;
 
   @ManyToOne(() => Product, (product) => product.orderItems)
+  @Field(() => Product)
   product: Product;
 }

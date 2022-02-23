@@ -11,15 +11,18 @@ import { EmailService } from '../email/email.service';
 import { ProductAttribute } from '../product/entities/product-attribute.entity';
 import { ProductAttributeService } from '../product/product-attribute.service';
 import { ProductService } from '../product/product.service';
+import { UserService } from '../user/user.service';
 import {
   CreateCustomerOrderInput,
   OrderItemInput,
 } from './dto/input/create-customer-order.input';
 import { FindAllCustomerOrdersInput } from './dto/input/find-all-customer-orders.input';
 import { FindMyCustomerOrdersInput } from './dto/input/find-my-customer-orders.input';
+import { FindOneCustomerOrderOutput } from './dto/output/find-one-customer-order.output';
 import { PaginatedCustomerOrdersOutput } from './dto/output/paginated-customer-orders.output';
 import { CustomerOrderStatus } from './entities/customer-order-status.entity';
 import { CustomerOrder } from './entities/customer-order.entity';
+import { CustomerOrderNotFoundException } from './exceptions/order-not-found.exception';
 import { ORDER_STATUS } from './typings/order-status.enum';
 
 @Injectable()
@@ -32,7 +35,24 @@ export class CustomerOrderService {
     private readonly productService: ProductService,
     private readonly productAttributeService: ProductAttributeService,
     private readonly emailService: EmailService,
+    private readonly userService: UserService,
   ) {}
+
+  public async findOne(id: number): Promise<FindOneCustomerOrderOutput> {
+    const order = await this.customerOrderRepository.findOne(id, {
+      relations: ['orderStatus', 'orderItems', 'orderItems.product'],
+    });
+    if (!order) {
+      throw new CustomerOrderNotFoundException(id);
+    }
+    const user = await this.userService.findById(order.userId, {
+      withDeleted: true,
+    });
+    return {
+      order,
+      user,
+    };
+  }
 
   public async findAll({
     limit,
