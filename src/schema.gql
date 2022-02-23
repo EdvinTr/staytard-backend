@@ -169,6 +169,7 @@ type QueryProductsOutput {
 type FindOneCustomerOrderOutput {
   order: CustomerOrder!
   user: User
+  isEditable: Boolean!
 }
 
 type PaginatedCustomerOrdersOutput {

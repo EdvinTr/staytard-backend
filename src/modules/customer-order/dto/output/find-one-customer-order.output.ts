@@ -9,4 +9,7 @@ export class FindOneCustomerOrderOutput {
 
   @Field(() => User, { nullable: true })
   user?: User;
+
+  @Field(() => Boolean)
+  isEditable: boolean;
 }

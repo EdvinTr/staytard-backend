@@ -103,6 +103,9 @@ export class CustomerOrderService {
     return {
       order,
       user,
+      isEditable: !unUpdatableOrderStatuses.includes(
+        order.orderStatus.status as ORDER_STATUS,
+      ),
     };
   }
 
