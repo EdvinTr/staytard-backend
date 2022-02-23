@@ -70,7 +70,9 @@ export class CustomerOrder extends BaseEntity {
   @Column({ nullable: false })
   orderStatusId: number;
 
-  @ManyToOne(() => CustomerOrderStatus, (status) => status.orders)
+  @ManyToOne(() => CustomerOrderStatus, (status) => status.orders, {
+    onUpdate: 'CASCADE',
+  })
   @Field(() => CustomerOrderStatus)
   orderStatus: CustomerOrderStatus;
 

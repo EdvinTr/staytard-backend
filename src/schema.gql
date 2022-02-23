@@ -360,6 +360,7 @@ type Mutation {
   createProduct(input: CreateProductInput!): Product!
   updateProduct(input: UpdateProductInput!): Product!
   deleteProduct(id: Float!): Boolean!
+  updateCustomerOrder(input: UpdateCustomerOrderInput!): Boolean!
   createProductReview(input: CreateProductReviewInput!): ProductReview!
   deleteProductReview(id: Float!): Boolean!
   updateProductReview(input: UpdateProductReviewInput!): ProductReview!
@@ -426,6 +427,14 @@ input UpdateProductInput {
   isDiscontinued: Boolean!
   imageUrls: [String!]!
   attributes: [CreateProductAttributeInput!]!
+}
+
+input UpdateCustomerOrderInput {
+  orderId: Float!
+  city: String!
+  deliveryAddress: String!
+  postalCode: String!
+  orderStatus: CUSTOMER_ORDER_STATUS!
 }
 
 input CreateProductReviewInput {

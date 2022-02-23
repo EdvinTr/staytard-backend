@@ -19,6 +19,10 @@ export class CustomerOrderStatus extends BaseEntity {
   @Column({ unique: true, length: 40 })
   status: string;
 
-  @OneToMany(() => CustomerOrder, (customerOrder) => customerOrder.orderStatus)
+  @OneToMany(
+    () => CustomerOrder,
+    (customerOrder) => customerOrder.orderStatus,
+    { onUpdate: 'CASCADE' },
+  )
   orders: CustomerOrder[];
 }

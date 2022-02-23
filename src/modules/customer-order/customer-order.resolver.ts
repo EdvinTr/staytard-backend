@@ -1,5 +1,5 @@
 import { UseGuards } from '@nestjs/common';
-import { Args, Context, Query, Resolver } from '@nestjs/graphql';
+import { Args, Context, Mutation, Query, Resolver } from '@nestjs/graphql';
 import Permission from '../../lib/permission/permission.type';
 import { GraphqlJwtAuthGuard } from '../authentication/guards/graphql-jwt-auth.guard';
 import PermissionGuard from '../authentication/guards/permission.guard';
@@ -7,6 +7,7 @@ import RequestWithUser from '../authentication/interfaces/request-with-user.inte
 import { CustomerOrderService } from './customer-order.service';
 import { FindAllCustomerOrdersInput } from './dto/input/find-all-customer-orders.input';
 import { FindMyCustomerOrdersInput } from './dto/input/find-my-customer-orders.input';
+import { UpdateCustomerOrderInput } from './dto/input/update-customer-order.input';
 import { FindOneCustomerOrderOutput } from './dto/output/find-one-customer-order.output';
 import { PaginatedCustomerOrdersOutput } from './dto/output/paginated-customer-orders.output';
 
@@ -29,6 +30,14 @@ export class CustomerOrderResolver {
     @Args('input') input: FindAllCustomerOrdersInput,
   ): Promise<PaginatedCustomerOrdersOutput> {
     return this.customerOrderService.findAll(input);
+  }
+
+  @UseGuards(PermissionGuard(Permission.UPDATE_CUSTOMER_ORDER))
+  @Mutation(() => Boolean)
+  async updateCustomerOrder(
+    @Args('input') input: UpdateCustomerOrderInput,
+  ): Promise<boolean> {
+    return this.customerOrderService.update(input);
   }
 
   @UseGuards(PermissionGuard(Permission.READ_CUSTOMER_ORDER))

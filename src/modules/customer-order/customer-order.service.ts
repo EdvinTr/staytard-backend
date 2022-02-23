@@ -18,6 +18,7 @@ import {
 } from './dto/input/create-customer-order.input';
 import { FindAllCustomerOrdersInput } from './dto/input/find-all-customer-orders.input';
 import { FindMyCustomerOrdersInput } from './dto/input/find-my-customer-orders.input';
+import { UpdateCustomerOrderInput } from './dto/input/update-customer-order.input';
 import { FindOneCustomerOrderOutput } from './dto/output/find-one-customer-order.output';
 import { PaginatedCustomerOrdersOutput } from './dto/output/paginated-customer-orders.output';
 import { CustomerOrderStatus } from './entities/customer-order-status.entity';
@@ -25,6 +26,11 @@ import { CustomerOrder } from './entities/customer-order.entity';
 import { CustomerOrderNotFoundException } from './exceptions/order-not-found.exception';
 import { ORDER_STATUS } from './typings/order-status.enum';
 
+const unUpdatableOrderStatuses = [
+  ORDER_STATUS.CANCELLED,
+  ORDER_STATUS.COMPLETED,
+  ORDER_STATUS.REFUNDED,
+];
 @Injectable()
 export class CustomerOrderService {
   constructor(
@@ -37,6 +43,47 @@ export class CustomerOrderService {
     private readonly emailService: EmailService,
     private readonly userService: UserService,
   ) {}
+
+  public async update({
+    orderId,
+    orderStatus,
+    city,
+    postalCode,
+    deliveryAddress,
+  }: UpdateCustomerOrderInput): Promise<boolean> {
+    const order = await this.customerOrderRepository.findOne(orderId, {
+      relations: ['orderStatus'],
+    });
+    if (!order) {
+      throw new CustomerOrderNotFoundException(orderId);
+    }
+    if (
+      unUpdatableOrderStatuses.includes(
+        order.orderStatus.status as ORDER_STATUS,
+      )
+    ) {
+      throw new BadRequestException(
+        `Cannot update an order which currently has status ${order.orderStatus.status}`,
+      );
+    }
+
+    const foundOrderStatus = await this.orderStatusRepository.findOne({
+      status: orderStatus,
+    });
+    if (!foundOrderStatus) {
+      throw new NotFoundException(`Could not find order status ${orderStatus}`);
+    }
+    const updateResult = await this.customerOrderRepository.update(orderId, {
+      city,
+      deliveryAddress,
+      postalCode,
+      orderStatus: foundOrderStatus,
+    });
+    if (updateResult.affected === 0) {
+      throw new InternalServerErrorException('Could not update the order');
+    }
+    return true;
+  }
 
   public async findOne(id: number): Promise<FindOneCustomerOrderOutput> {
     const order = await this.customerOrderRepository.findOne(id, {
