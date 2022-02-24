@@ -14,6 +14,7 @@ import { ProductBrandModule } from '../modules/product-brand/product-brand.modul
 import { ProductCategoryModule } from '../modules/product-category/product-category.module';
 import { ProductReviewModule } from '../modules/product-review/product-review.module';
 import { ProductModule } from '../modules/product/product.module';
+import { StripePaymentModule } from '../modules/stripe-payment/stripe-payment.module';
 import { UserModule } from '../modules/user/user.module';
 
 export type JwtPayload = {
@@ -35,6 +36,7 @@ export type MyContext = {
     ProductBrandModule,
     ProductReviewModule,
     KlarnaPaymentModule,
+    StripePaymentModule,
     AuthenticationModule,
     GoogleAuthenticationModule,
     ConfigModule.forRoot({

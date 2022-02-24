@@ -19,5 +19,6 @@ namespace NodeJS {
     EMAIL_USER: string;
     EMAIL_PASSWORD: string;
     EMAIL_SERVICE: string;
+    STRIPE_SECRET_KEY: string;
   }
 }
