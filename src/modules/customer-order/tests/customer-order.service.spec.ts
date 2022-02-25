@@ -1,3 +1,4 @@
+import { BadRequestException } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { EmailService } from '../../email/email.service';
@@ -84,7 +85,7 @@ describe('CustomerOrderService', () => {
             },
             'userUUID',
           ),
-        ).rejects.toThrowError();
+        ).rejects.toThrow(BadRequestException);
       });
     });
     describe('and products are not in stock', () => {
@@ -102,7 +103,7 @@ describe('CustomerOrderService', () => {
             },
             'userUUID',
           ),
-        ).rejects.toThrowError();
+        ).rejects.toThrow(BadRequestException);
       });
     });
     describe('and products are available in stock', () => {

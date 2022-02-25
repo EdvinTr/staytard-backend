@@ -254,7 +254,7 @@ export class CustomerOrderService {
       },
     });
     if (orderItemSKUs.length !== attributes.length) {
-      throw new NotFoundException('One or more products could not be found'); // TODO: should return an array of SKUs that could not be found
+      return false; // TODO: should return an array of SKUs that could not be found
     }
     return attributes.every((productAttribute) => {
       const orderItem = orderItems.find(

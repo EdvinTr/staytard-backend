@@ -179,23 +179,6 @@ type PaginatedCustomerOrdersOutput {
   hasMore: Boolean!
 }
 
-type AssetUrl {
-  descriptive: String!
-  standard: String!
-}
-
-type PaymentMethodCategory {
-  identifier: String!
-  name: String!
-  asset_urls: AssetUrl!
-}
-
-type KlarnaSessionResponse {
-  session_id: String!
-  client_token: String!
-  payment_method_categories: [PaymentMethodCategory!]!
-}
-
 type BasicCategory {
   id: Float!
   name: String!
@@ -372,8 +355,6 @@ type Mutation {
   createProductReview(input: CreateProductReviewInput!): ProductReview!
   deleteProductReview(id: Float!): Boolean!
   updateProductReview(input: UpdateProductReviewInput!): ProductReview!
-  initializeKlarnaSession(input: InitKlarnaSessionInput!): KlarnaSessionResponse!
-  createOrderWithKlarna(authorizationToken: String!, input: InitKlarnaSessionInput!): CustomerOrder!
   createOrGetCustomerOrderWithStripe(stripeSessionId: String!): CreateOrGetOrderWithStripeOutput!
   registerUser(input: RegisterUserDto!): UserWithTokensDto!
   login(input: LoginUserDto!): UserWithTokensDto!
@@ -461,43 +442,6 @@ input UpdateProductReviewInput {
   content: String!
   isPublished: Boolean!
   reviewId: Float!
-}
-
-input InitKlarnaSessionInput {
-  purchase_country: String!
-  purchase_currency: String!
-  locale: String!
-  order_amount: Float!
-  order_tax_amount: Float!
-  order_lines: [OrderLineInput!]!
-  billing_address: BillingAddressInput!
-}
-
-input OrderLineInput {
-  name: String!
-  quantity: Float!
-  unit_price: Float!
-  tax_rate: Float!
-  total_amount: Float!
-  total_discount_amount: Float!
-  total_tax_amount: Float!
-  product_url: String!
-  productId: Float!
-  image_url: String!
-  sku: String!
-}
-
-input BillingAddressInput {
-  given_name: String
-  family_name: String
-  email: String
-  title: String
-  street_address: String!
-  postal_code: String!
-  city: String!
-  region: String
-  phone: String
-  country: String
 }
 
 input RegisterUserDto {
