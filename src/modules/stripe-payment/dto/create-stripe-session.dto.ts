@@ -1,3 +1,5 @@
+import Stripe from 'stripe';
+
 export class CreateStripeSessionDto {
   orderLines: StripeOrderLine[];
 }
@@ -11,6 +13,12 @@ export class StripeOrderLine {
       name: string;
       description: string;
       images: string[];
+      metadata: StripeOrderLineMetadata;
     };
   };
+}
+
+interface StripeOrderLineMetadata extends Stripe.MetadataParam {
+  sku: string;
+  productId: number;
 }

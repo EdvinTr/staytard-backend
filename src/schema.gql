@@ -103,6 +103,7 @@ type CustomerOrder {
   purchaseCurrency: String!
   paymentType: String!
   userId: String!
+  stripeSessionId: String
   orderStatusId: Float!
   orderStatus: CustomerOrderStatus!
   orderItems: [CustomerOrderItem!]!
@@ -232,6 +233,7 @@ type Query {
   publishedProductReviews(input: FindPublishedProductReviewsInput!): PublishedProductReviewsOutput!
   allProductReviews(input: FindAllProductReviewsInput!): QueryAllProductReviewsOutput!
   oneProductReview(id: Float!): ProductReview!
+  findCustomerOrderByStripeId(stripeSessionId: String!): CustomerOrder!
 }
 
 input FindAllUsersInput {
@@ -367,6 +369,7 @@ type Mutation {
   updateProductReview(input: UpdateProductReviewInput!): ProductReview!
   initializeKlarnaSession(input: InitKlarnaSessionInput!): KlarnaSessionResponse!
   createOrderWithKlarna(authorizationToken: String!, input: InitKlarnaSessionInput!): CustomerOrder!
+  createCustomerOrderWithStripe(stripeSessionId: String!): CustomerOrder!
   registerUser(input: RegisterUserDto!): UserWithTokensDto!
   login(input: LoginUserDto!): UserWithTokensDto!
   logout: Boolean!

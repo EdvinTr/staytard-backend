@@ -50,4 +50,5 @@ export class CreateCustomerOrderInput {
   paymentType: string;
   orderNumber: string;
   purchaseCurrency: string;
+  stripeSessionId?: string;
 }

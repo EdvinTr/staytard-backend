@@ -1,6 +1,8 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import Stripe from 'stripe';
+import { v4 } from 'uuid';
 import { CustomerOrderService } from '../customer-order/customer-order.service';
+import { OrderItemInput } from '../customer-order/dto/input/create-customer-order.input';
 import { CreateStripeSessionDto } from './dto/create-stripe-session.dto';
 @Injectable()
 export class StripePaymentService {
@@ -10,7 +12,24 @@ export class StripePaymentService {
       apiVersion: '2020-08-27',
     });
   }
+  // TODO:
+  // Should have function createOrderFromSession
+  // Should check in database if the order is already created
+  // If it is, just throw an error saying it has already been created or return the order and display in frontend (check calling user has privilege or is admin)
+  // else create the order and save it to the database
 
+  async findOne(stripeSessionId: string) {
+    return await this.customerOrderService.findOneWithArgs({
+      where: {
+        stripeSessionId,
+      },
+      relations: [
+        'orderItems',
+        'orderItems.product',
+        'orderItems.product.brand',
+      ],
+    });
+  }
   async retrieveSessionDetails(sessionId: string) {
     const session = await this.stripe.checkout.sessions.retrieve(sessionId);
     if (!session || !session.customer) {
@@ -24,83 +43,122 @@ export class StripePaymentService {
     );
     const prods = await this.stripe.products.retrieve(
       lineItems.data[0].price?.product as string,
-    );
+    ); // TODO: grab all skus and add to order and save
     console.log(lineItems);
     return {
-      prods,
       session,
-      lineItems,
     };
   }
-  async test() {
-    return this.stripe.orders.retrieve('');
-  }
-  // TODO: should receive input from frontend cart with products
-  async createSession(data: CreateStripeSessionDto) {
-    return await this.stripe.checkout.sessions.create({
-      line_items: [...data.orderLines],
-
-      payment_method_types: ['card'],
-      mode: 'payment',
-      shipping_address_collection: {
-        allowed_countries: ['SE'],
-      },
-      cancel_url: process.env.FRONTEND_URL + '/checkout',
-      success_url:
-        process.env.FRONTEND_URL +
-        '/order/success?session_id={CHECKOUT_SESSION_ID}',
-    });
-  }
-  /*   async pay({ paymentIntentId, paymentMethodId }: PayWithStripeInput) {
+  async createOrGetCustomerOrder(sessionId: string, userId: string) {
     try {
-      let intent: Stripe.PaymentIntent | null = null;
-      if (paymentMethodId) {
-        intent = await this.stripe.paymentIntents.create({
-          payment_method: paymentMethodId,
-          amount: 1000,
-          currency: 'usd',
-          confirmation_method: 'manual',
-          confirm: true,
-          receipt_email: 'edvin.tronnberg@gmail.com',
+      const session = await this.stripe.checkout.sessions.retrieve(sessionId);
+      if (!session) {
+        throw new BadRequestException('Stripe session ID is invalid');
+      }
+      const customerOrder = await this.customerOrderService.findOneWithArgs({
+        where: {
+          stripeSessionId: session.id,
+        },
+        relations: [
+          'orderItems',
+          'orderItems.product',
+          'orderItems.product.brand',
+        ],
+      });
+      if (customerOrder) {
+        return customerOrder;
+      }
+      const shippingDetails = session.shipping?.address;
+      if (
+        !shippingDetails ||
+        !shippingDetails.line1 ||
+        !shippingDetails.city ||
+        !shippingDetails.country ||
+        !shippingDetails.postal_code
+      ) {
+        throw new BadRequestException(
+          "Stripe session doesn't have shipping details",
+        );
+      }
+      const lineItems = await this.stripe.checkout.sessions.listLineItems(
+        session.id,
+      );
+
+      const products = [];
+      for (let i = 0; i < lineItems.data.length; i++) {
+        const line = lineItems.data[i];
+        const item = line.price?.product;
+        const quantity = line.quantity;
+        if (!item || !quantity) {
+          throw new BadRequestException(
+            'Stripe session has invalid line items',
+          );
+        }
+        const product = await this.stripe.products.retrieve(item as string);
+        products.push({
+          product,
+          quantity,
         });
-      } else if (paymentIntentId) {
-        intent = await this.stripe.paymentIntents.confirm(paymentIntentId);
       }
-      if (!intent) {
-        throw new Error();
-      }
-      const res = await this.generateResponse(intent);
-      return res;
+      const order = await this.customerOrderService.create(
+        {
+          orderNumber: v4(),
+          city: shippingDetails.city,
+          stripeSessionId: session.id,
+          deliveryAddress: shippingDetails.line1,
+          postalCode: shippingDetails.postal_code,
+          paymentType: session.payment_method_types[0],
+          purchaseCurrency: session.currency || 'EUR',
+          totalAmount: session.amount_total ? session.amount_total / 100 : 0, // Should be some smarter logic for currency conversion but this will suffice for the project :)
+          orderItems: [
+            ...products.map((prod) => {
+              return {
+                productId: +prod.product.metadata.productId,
+                sku: prod.product.metadata.sku,
+                quantity: prod.quantity,
+              };
+            }),
+          ],
+        },
+        userId,
+      );
+      return await this.customerOrderService.findOne(order.id);
     } catch (err) {
       console.log(err);
       throw err;
     }
   }
-  async generateResponse(
-    intent: Stripe.PaymentIntent,
-  ): Promise<PayWithStripeResponseOutput> {
-    // Note that if your API version is before 2019-02-11, 'requires_action'
-    // appears as 'requires_source_action'.
-    if (
-      intent.status === 'requires_action' &&
-      intent.next_action?.type === 'use_stripe_sdk'
-    ) {
-      // Tell the client to handle the action
-      return {
-        requires_action: true,
-        payment_intent_client_secret: intent.client_secret || undefined,
-      };
-    } else if (intent.status === 'succeeded') {
-      // The payment didn’t need any additional actions and completed!
-      // Handle post-payment fulfillment
-      return {
-        success: true,
-      };
-    } else {
-      // Invalid status
-      return {
-        error: 'Invalid PaymentIntent status',
-      };
+
+  async createSession(data: CreateStripeSessionDto) {
+    const isInStock = await this.customerOrderService.checkStockAvailability([
+      ...data.orderLines.map((line): OrderItemInput => {
+        const { productId, sku } = line.price_data.product_data.metadata;
+        return {
+          productId,
+          sku,
+          quantity: line.quantity,
+        };
+      }),
+    ]);
+    if (!isInStock) {
+      throw new BadRequestException(
+        'Not enough stock available for one or more items',
+      );
     }
-  } */
+    return await this.stripe.checkout.sessions.create({
+      line_items: [...data.orderLines],
+      payment_method_types: ['card'],
+      mode: 'payment',
+      shipping_address_collection: {
+        allowed_countries: ['SE'],
+      },
+      metadata: {
+        // ? add userId to metadata?
+      },
+      cancel_url: process.env.FRONTEND_URL + '/checkout',
+      success_url:
+        process.env.FRONTEND_URL +
+        '/order/stripe/success?session_id={CHECKOUT_SESSION_ID}',
+    });
+  }
 }

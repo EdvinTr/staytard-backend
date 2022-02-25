@@ -5,10 +5,9 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { In, Repository } from 'typeorm';
+import { FindOneOptions, In, Repository } from 'typeorm';
 import { validate as isValidUUID } from 'uuid';
 import { EmailService } from '../email/email.service';
-import { ProductAttribute } from '../product/entities/product-attribute.entity';
 import { ProductAttributeService } from '../product/product-attribute.service';
 import { ProductService } from '../product/product.service';
 import { UserService } from '../user/user.service';
@@ -85,14 +84,21 @@ export class CustomerOrderService {
     return true;
   }
 
-  public async findOne(id: number): Promise<FindOneCustomerOrderOutput> {
+  public async findOneWithArgs(options: FindOneOptions<CustomerOrder>) {
+    return this.customerOrderRepository.findOne(options);
+  }
+
+  public async findOne(
+    id: number,
+    options?: FindOneOptions<CustomerOrder>,
+  ): Promise<FindOneCustomerOrderOutput> {
     const order = await this.customerOrderRepository.findOne(id, {
       relations: [
-        'orderStatus',
         'orderItems',
         'orderItems.product',
         'orderItems.product.brand',
       ],
+      ...options,
     });
     if (!order) {
       throw new CustomerOrderNotFoundException(id);
@@ -174,26 +180,19 @@ export class CustomerOrderService {
     userId: string,
   ) {
     try {
+      // check if all products are in stock compared to the requested amount in each order item
+      const isAvailableInStock = await this.checkStockAvailability(orderItems);
+      if (!isAvailableInStock) {
+        throw new BadRequestException('Not all products are in stock'); // TODO: should return an array of product SKUs that are not available
+      }
+      const pendingOrderStatus = await this.orderStatusRepository.findOne({
+        where: { status: ORDER_STATUS.PENDING },
+      });
       const orderItemSKUs = orderItems.map((item) => item.sku);
       const storedProductAttributes = await this.productAttributeService.find({
         where: {
           sku: In(orderItemSKUs),
         },
-      });
-      if (orderItemSKUs.length !== storedProductAttributes.length) {
-        throw new NotFoundException('One or more products could not be found'); // TODO: should return an array of SKUs that could not be found
-      }
-      // check if all products are in stock compared to the requested amount in each order item
-      const isAvailableInStock = this.checkStockAvailability(
-        storedProductAttributes,
-        orderItems,
-      );
-      if (!isAvailableInStock) {
-        throw new BadRequestException('Not all products are in stock'); // TODO: should return an array of product SKUs that are not available
-      }
-
-      const pendingOrderStatus = await this.orderStatusRepository.findOne({
-        where: { status: ORDER_STATUS.PENDING },
       });
       const customerOrder = this.customerOrderRepository.create({
         ...rest,
@@ -238,6 +237,7 @@ export class CustomerOrderService {
 
       return savedOrder;
     } catch (err) {
+      console.log(err);
       throw err;
     }
   }
@@ -245,11 +245,17 @@ export class CustomerOrderService {
   /**
    * Compare product quantity from Database against the requested amount in each order item
    *  */
-  private checkStockAvailability(
-    dbAttributes: ProductAttribute[],
-    orderItems: OrderItemInput[],
-  ): boolean {
-    return dbAttributes.every((productAttribute) => {
+  async checkStockAvailability(orderItems: OrderItemInput[]): Promise<boolean> {
+    const orderItemSKUs = orderItems.map((item) => item.sku);
+    const attributes = await this.productAttributeService.find({
+      where: {
+        sku: In(orderItemSKUs), // fetch attributes for each SKU
+      },
+    });
+    if (orderItemSKUs.length !== attributes.length) {
+      throw new NotFoundException('One or more products could not be found'); // TODO: should return an array of SKUs that could not be found
+    }
+    return attributes.every((productAttribute) => {
       const orderItem = orderItems.find(
         (item) => item.sku === productAttribute.sku,
       );

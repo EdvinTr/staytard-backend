@@ -1,6 +1,8 @@
 import { Field, ObjectType } from '@nestjs/graphql';
+import { capitalize } from 'lodash';
 import {
   BaseEntity,
+  BeforeInsert,
   Column,
   CreateDateColumn,
   Entity,
@@ -51,6 +53,11 @@ export class CustomerOrder extends BaseEntity {
   })
   grandTotal: number;
 
+  @BeforeInsert()
+  private capitalizeCurrency() {
+    this.purchaseCurrency = capitalize(this.purchaseCurrency);
+  }
+
   @Field()
   @Column({ length: 20 })
   purchaseCurrency: string;
@@ -66,12 +73,17 @@ export class CustomerOrder extends BaseEntity {
   @ManyToOne(() => User, (user) => user.orders)
   user: User;
 
+  @Field({ nullable: true })
+  @Column({ nullable: true, default: null })
+  stripeSessionId?: string;
+
   @Field()
   @Column({ nullable: false })
   orderStatusId: number;
 
   @ManyToOne(() => CustomerOrderStatus, (status) => status.orders, {
     onUpdate: 'CASCADE',
+    eager: true,
   })
   @Field(() => CustomerOrderStatus)
   orderStatus: CustomerOrderStatus;
