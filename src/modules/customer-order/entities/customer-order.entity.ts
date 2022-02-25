@@ -74,7 +74,7 @@ export class CustomerOrder extends BaseEntity {
   user: User;
 
   @Field({ nullable: true })
-  @Column({ nullable: true, default: null })
+  @Column({ nullable: true, default: null, unique: true })
   stripeSessionId?: string;
 
   @Field()

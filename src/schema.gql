@@ -214,6 +214,11 @@ type QueryAllProductReviewsOutput {
   hasMore: Boolean!
 }
 
+type CreateOrGetOrderWithStripeOutput {
+  wasCreated: Boolean!
+  order: CustomerOrder!
+}
+
 type Query {
   me: User!
   users(input: FindAllUsersInput!): PaginatedUsersOutput!
@@ -368,7 +373,7 @@ type Mutation {
   updateProductReview(input: UpdateProductReviewInput!): ProductReview!
   initializeKlarnaSession(input: InitKlarnaSessionInput!): KlarnaSessionResponse!
   createOrderWithKlarna(authorizationToken: String!, input: InitKlarnaSessionInput!): CustomerOrder!
-  createCustomerOrderWithStripe(stripeSessionId: String!): CustomerOrder!
+  createOrGetCustomerOrderWithStripe(stripeSessionId: String!): CreateOrGetOrderWithStripeOutput!
   registerUser(input: RegisterUserDto!): UserWithTokensDto!
   login(input: LoginUserDto!): UserWithTokensDto!
   logout: Boolean!

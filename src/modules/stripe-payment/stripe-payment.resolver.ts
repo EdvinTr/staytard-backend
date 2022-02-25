@@ -2,19 +2,21 @@ import { UseGuards } from '@nestjs/common';
 import { Args, Context, Mutation, Resolver } from '@nestjs/graphql';
 import { GraphqlJwtAuthGuard } from '../authentication/guards/graphql-jwt-auth.guard';
 import RequestWithUser from '../authentication/interfaces/request-with-user.interface';
-import { CustomerOrder } from '../customer-order/entities/customer-order.entity';
+import { CreateOrGetOrderWithStripeOutput } from './dto/output/create-order-with-stripe.output';
 import { StripePaymentService } from './stripe-payment.service';
 
 @Resolver()
 export class StripePaymentResolver {
   constructor(private readonly stripePaymentService: StripePaymentService) {}
 
+  // TODO: should return an object like: { wasCreated: true/false, customerOrder: order }
+  // TODO: also rename the resolver to createOrGetCustomerOrderWithStripe
   @UseGuards(GraphqlJwtAuthGuard)
-  @Mutation(() => CustomerOrder)
-  async createCustomerOrderWithStripe(
+  @Mutation(() => CreateOrGetOrderWithStripeOutput)
+  async createOrGetCustomerOrderWithStripe(
     @Args('stripeSessionId') stripeSessionId: string,
     @Context() { req }: { req: RequestWithUser },
-  ): Promise<CustomerOrder> {
+  ): Promise<CreateOrGetOrderWithStripeOutput> {
     return await this.stripePaymentService.createOrGetCustomerOrder(
       stripeSessionId,
       req.user.id,

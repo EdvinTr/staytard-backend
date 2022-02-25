@@ -7,8 +7,8 @@ import Stripe from 'stripe';
 import { v4 } from 'uuid';
 import { CustomerOrderService } from '../customer-order/customer-order.service';
 import { OrderItemInput } from '../customer-order/dto/input/create-customer-order.input';
-import { CustomerOrder } from '../customer-order/entities/customer-order.entity';
 import { CreateStripeSessionDto } from './dto/create-stripe-session.dto';
+import { CreateOrGetOrderWithStripeOutput } from './dto/output/create-order-with-stripe.output';
 @Injectable()
 export class StripePaymentService {
   public stripe;
@@ -45,7 +45,7 @@ export class StripePaymentService {
   async createOrGetCustomerOrder(
     sessionId: string,
     userId: string,
-  ): Promise<CustomerOrder> {
+  ): Promise<CreateOrGetOrderWithStripeOutput> {
     try {
       const session = await this.stripe.checkout.sessions.retrieve(sessionId);
       if (!session) {
@@ -61,13 +61,16 @@ export class StripePaymentService {
           'orderItems.product.brand',
         ],
       });
-      if (customerOrder?.userId !== userId) {
-        throw new ForbiddenException(
-          "You are not allowed to view other user's orders",
-        );
-      }
       if (customerOrder) {
-        return customerOrder;
+        if (customerOrder.userId !== userId) {
+          throw new ForbiddenException(
+            "You are not allowed to view other user's orders",
+          );
+        }
+        return {
+          wasCreated: false,
+          order: customerOrder,
+        };
       }
       const shippingDetails = session.shipping?.address;
       if (
@@ -125,7 +128,10 @@ export class StripePaymentService {
       );
       const { order: savedCustomerOrder } =
         await this.customerOrderService.findOne(order.id);
-      return savedCustomerOrder;
+      return {
+        wasCreated: true,
+        order: savedCustomerOrder,
+      };
     } catch (err) {
       console.log(err);
       throw err;
