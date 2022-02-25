@@ -59,6 +59,7 @@ export class StripePaymentService {
           'orderItems',
           'orderItems.product',
           'orderItems.product.brand',
+          'user',
         ],
       });
       if (customerOrder) {
@@ -69,6 +70,7 @@ export class StripePaymentService {
         }
         return {
           wasCreated: false,
+          user: customerOrder.user,
           order: customerOrder,
         };
       }
@@ -126,11 +128,12 @@ export class StripePaymentService {
         },
         userId,
       );
-      const { order: savedCustomerOrder } =
+      const { order: savedCustomerOrder, user } =
         await this.customerOrderService.findOne(order.id);
       return {
         wasCreated: true,
         order: savedCustomerOrder,
+        user,
       };
     } catch (err) {
       console.log(err);

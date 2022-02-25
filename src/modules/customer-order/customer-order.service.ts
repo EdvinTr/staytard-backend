@@ -97,6 +97,7 @@ export class CustomerOrderService {
         'orderItems',
         'orderItems.product',
         'orderItems.product.brand',
+        'user',
       ],
       ...options,
     });

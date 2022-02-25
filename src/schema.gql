@@ -217,6 +217,7 @@ type QueryAllProductReviewsOutput {
 type CreateOrGetOrderWithStripeOutput {
   wasCreated: Boolean!
   order: CustomerOrder!
+  user: User
 }
 
 type Query {
