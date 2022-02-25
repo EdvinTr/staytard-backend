@@ -1,8 +1,13 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  ForbiddenException,
+  Injectable,
+} from '@nestjs/common';
 import Stripe from 'stripe';
 import { v4 } from 'uuid';
 import { CustomerOrderService } from '../customer-order/customer-order.service';
 import { OrderItemInput } from '../customer-order/dto/input/create-customer-order.input';
+import { CustomerOrder } from '../customer-order/entities/customer-order.entity';
 import { CreateStripeSessionDto } from './dto/create-stripe-session.dto';
 @Injectable()
 export class StripePaymentService {
@@ -18,18 +23,6 @@ export class StripePaymentService {
   // If it is, just throw an error saying it has already been created or return the order and display in frontend (check calling user has privilege or is admin)
   // else create the order and save it to the database
 
-  async findOne(stripeSessionId: string) {
-    return await this.customerOrderService.findOneWithArgs({
-      where: {
-        stripeSessionId,
-      },
-      relations: [
-        'orderItems',
-        'orderItems.product',
-        'orderItems.product.brand',
-      ],
-    });
-  }
   async retrieveSessionDetails(sessionId: string) {
     const session = await this.stripe.checkout.sessions.retrieve(sessionId);
     if (!session || !session.customer) {
@@ -49,7 +42,10 @@ export class StripePaymentService {
       session,
     };
   }
-  async createOrGetCustomerOrder(sessionId: string, userId: string) {
+  async createOrGetCustomerOrder(
+    sessionId: string,
+    userId: string,
+  ): Promise<CustomerOrder> {
     try {
       const session = await this.stripe.checkout.sessions.retrieve(sessionId);
       if (!session) {
@@ -65,6 +61,11 @@ export class StripePaymentService {
           'orderItems.product.brand',
         ],
       });
+      if (customerOrder?.userId !== userId) {
+        throw new ForbiddenException(
+          "You are not allowed to view other user's orders",
+        );
+      }
       if (customerOrder) {
         return customerOrder;
       }
@@ -122,7 +123,9 @@ export class StripePaymentService {
         },
         userId,
       );
-      return await this.customerOrderService.findOne(order.id);
+      const { order: savedCustomerOrder } =
+        await this.customerOrderService.findOne(order.id);
+      return savedCustomerOrder;
     } catch (err) {
       console.log(err);
       throw err;

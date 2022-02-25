@@ -233,7 +233,6 @@ type Query {
   publishedProductReviews(input: FindPublishedProductReviewsInput!): PublishedProductReviewsOutput!
   allProductReviews(input: FindAllProductReviewsInput!): QueryAllProductReviewsOutput!
   oneProductReview(id: Float!): ProductReview!
-  findCustomerOrderByStripeId(stripeSessionId: String!): CustomerOrder!
 }
 
 input FindAllUsersInput {
