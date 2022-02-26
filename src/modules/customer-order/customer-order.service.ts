@@ -130,6 +130,9 @@ export class CustomerOrderService {
       .innerJoinAndSelect('order.orderItems', 'orderItems');
     if (q) {
       query.where('order.orderNumber = :orderNumber', { orderNumber: q }); // search by order number
+      query.orWhere('order.stripeSessionId = :stripeSessionId', {
+        stripeSessionId: q,
+      }); // search by stripe session id
       if (isValidUUID(q)) {
         query.orWhere('order.userId = :userId', { userId: q }); // search by user ID
       } else if (!isNaN(+q)) {
