@@ -9,8 +9,6 @@ import { StripePaymentService } from './stripe-payment.service';
 export class StripePaymentResolver {
   constructor(private readonly stripePaymentService: StripePaymentService) {}
 
-  // TODO: should return an object like: { wasCreated: true/false, customerOrder: order }
-  // TODO: also rename the resolver to createOrGetCustomerOrderWithStripe
   @UseGuards(GraphqlJwtAuthGuard)
   @Mutation(() => CreateOrGetOrderWithStripeOutput)
   async createOrGetCustomerOrderWithStripe(
