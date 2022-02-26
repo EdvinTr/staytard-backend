@@ -58,7 +58,7 @@ export class EmailService {
       'utf8',
     );
     // Create email generator
-    const template = Handlebars.compile(source);
+    const template = Handlebars.compile(source, {});
     const user = await this.userService.findById(userId);
     if (!user) {
       throw new NotFoundException('User not found'); // User should always be defined though if called from order service.
@@ -66,6 +66,7 @@ export class EmailService {
     await this.nodemailerTransport.sendMail({
       to: user.email,
       subject: 'Thanks for your order!',
+
       text: '',
       html: template({
         userFirstName: user.firstName,
