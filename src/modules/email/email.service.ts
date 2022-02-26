@@ -66,10 +66,9 @@ export class EmailService {
     await this.nodemailerTransport.sendMail({
       to: user.email,
       subject: 'Thanks for your order!',
-
-      text: '',
       html: template({
-        userFirstName: user.firstName,
+        user,
+        frontEndUrl: process.env.FRONTEND_URL,
       }),
     });
   }

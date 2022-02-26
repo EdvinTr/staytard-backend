@@ -2,37 +2,51 @@
   <head>
     <meta charset='UTF-8' />
     <meta name='viewport' content='width=device-width, initial-scale=1.0' />
-    <link
-      href='https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap'
-      rel='stylesheet'
-    />
     <title>Staytard Receipt</title>
-    <script src='https://cdn.tailwindcss.com'></script>
-    <script type='javascript'>
-      tailwind.config = { theme: { extend: { fontFamily: { sans: 'Montserrat,
-      Arial, sans-serif', }, colors: { 'staytard-dark': '#282828',
-      'staytard-light-gray': '#f3f3f3', 'staytard-medium-gray': '#767676', }, },
-      }, };
-    </script>
   </head>
-  <body class='bg-staytard-light-gray text-staytard-dark'>
-    <div class='max-w-[690px] mx-auto px-6'>
+  <body
+    style='
+      font-family: Arial, sans-serif;
+      background-color: #f3f3f3;
+      color: #282828;
+    '
+  >
+    <div style='max-width: 690px; margin: 0 auto; padding: 0 1rem'>
       <div>
-        <h1
-          class='text-5xl py-6 text-center text-staytard-dark uppercase font-bold'
-        >
-          Staytard
-        </h1>
-        <div class='space-y-7'>
+        <a rel='noopener' href={{frontEndUrl}} style='text-decoration: none'>
+          <h1
+            style='
+              color: #282828;
+              text-align: center;
+              text-transform: uppercase;
+              font-weight: bold;
+              padding: 1rem;
+              margin: 0;
+              font-size: 3rem;
+            '
+          >
+            Staytard
+          </h1>
+        </a>
+        <div>
           <!-- card -->
           <div
-            class='bg-white text-center py-8 md:py-10 px-8 md:px-14 space-y-4'
+            style='
+              background-color: white;
+              text-align: center;
+              padding: 2rem;
+              margin: 0 0 1.5rem 0;
+            '
           >
             <div>
-              <span>Hi {{userFirstName}}</span>
-              <h2 class='text-xl font-medium'>Thanks for your order!</h2>
+              <span>Hi Edvin</span>
+              <h2
+                style='font-size: 1.25rem; font-weight: 500; margin: 0.5rem 0'
+              >
+                Thanks for your order!
+              </h2>
             </div>
-            <p class='text-sm pt-2 pb-6 leading-6'>
+            <p style='padding: 0.5rem 2rem; line-height: 1.5rem'>
               We understand that you are eager for your new purchase and as soon
               as it is packed and ready to be sent, you will receive a delivery
               note from us. Your order is delivered with climate-compensated
@@ -41,46 +55,143 @@
           </div>
           <!-- card -->
           <div
-            class='bg-white text-center py-8 md:py-10 px-8 md:px-14 space-y-4'
+            style='
+              background-color: white;
+              text-align: center;
+              padding: 2rem;
+              margin: 0 0 1.5rem 0;
+            '
           >
-            <div class='f'>
+            <div>
               <img
                 src='https://s3-eu-west-1.amazonaws.com/ellosgroupassets/stayhard/icons/icon-package.png'
                 alt='Order package'
-                class='w-12 h-12 mx-auto'
+                style='margin: 0 auto; width: 4rem; height: 4rem'
               />
               <h3 class='font-bold pt-4'>Your order</h3>
             </div>
             <!-- order details -->
-            <div class='border-t py-6 space-y-3'>
+            <div
+              style='
+                border-top: 1px solid rgba(0, 0, 0, 0.1);
+                padding: 1.5rem 0;
+              '
+            >
               <!-- order number -->
-              <div class='flex justify-between text-sm'>
-                <div class='text-staytard-medium-gray'>Order number</div>
-                <div>65aeb5ff-cff7-1f77-80ae-d23a0b0aef67</div>
-              </div>
-              <!-- order date -->
-              <div class='flex justify-between text-sm'>
-                <div class='text-staytard-medium-gray'>Order date</div>
-                <div>2022-01-26</div>
-              </div>
-              <!-- payment method -->
-              <div class='flex justify-between text-sm'>
-                <div class='text-staytard-medium-gray'>Payment method</div>
-                <div>Card</div>
-              </div>
+              <table style='padding: 0; margin: 0; width: 100%'>
+                <tbody>
+                  <tr>
+                    <td
+                      align='left'
+                      style='
+                        margin: 0;
+                        padding: 0;
+                        font-size: 0.875rem;
+                        line-height: 1.7rem;
+                        color: #767676;
+                      '
+                    >
+                      Order number:
+                    </td>
+                    <td
+                      align='right'
+                      style='
+                        margin: 0;
+                        padding: 0;
+                        font-size: 0.875rem;
+                        line-height: 1.7rem;
+                      '
+                    >
+                      65aeb5ff-cff7-1f77-80ae-d23a0b0aef67
+                    </td>
+                  </tr>
+                  <tr>
+                    <td
+                      align='left'
+                      style='
+                        margin: 0;
+                        padding: 0;
+                        font-size: 0.875rem;
+                        line-height: 1.7rem;
+                        color: #767676;
+                      '
+                    >
+                      Order date:
+                    </td>
+                    <td
+                      align='right'
+                      style='
+                        margin: 0;
+                        padding: 0;
+                        font-size: 0.875rem;
+                        line-height: 1.7rem;
+                      '
+                    >
+                      2022-01-26
+                    </td>
+                  </tr>
+                  <tr>
+                    <td
+                      align='left'
+                      style='
+                        margin: 0;
+                        padding: 0;
+                        font-size: 0.875rem;
+                        line-height: 1.7rem;
+                        color: #767676;
+                      '
+                    >
+                      Payment method:
+                    </td>
+                    <td
+                      align='right'
+                      style='
+                        margin: 0;
+                        padding: 0;
+                        font-size: 0.875rem;
+                        line-height: 1.7rem;
+                      '
+                    >
+                      Card
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
             <!-- order status link -->
-            <a href='#' rel='noopener' target='_blank'>
+            <a
+              href='#'
+              rel='noopener'
+              target='_blank'
+              style='text-decoration: none'
+            >
               <div
-                class='w-full uppercase tracking-[0.15em] bg-black text-white text-sm font-bold w-full py-5'
+                style='
+                  width: 100%;
+                  text-transform: uppercase;
+                  background-color: black;
+                  color: white;
+                  padding: 1.25rem 0;
+                  font-size: 0.875rem;
+                  font-weight: bold;
+                  letter-spacing: 0.15em;
+                '
               >
                 See order status
               </div>
             </a>
             <!-- billing address -->
-            <div class='border text-left p-3 text-sm'>
-              <div class='font-bold'>Billing address</div>
-              <div class='leading-6 pt-3'>
+            <div
+              style='
+                padding: 0.75rem;
+                margin-top: 1.5rem;
+                text-align: left;
+                font-size: 0.875rem;
+                border: 1px solid rgba(0, 0, 0, 0.1);
+              '
+            >
+              <div style='font-weight: bold'>Billing address</div>
+              <div style='line-height: 1.5rem; padding-top: 0.75rem'>
                 <div>Edvin Trönnberg</div>
                 <div>Vasagatan 12 B lgh 1101</div>
                 <div>78432 Borlänge</div>
@@ -89,130 +200,298 @@
           </div>
           <!-- order items -->
           <div
-            class='bg-white text-center py-8 md:py-10 px-8 md:px-14 space-y-4'
+            style='
+              background-color: white;
+              text-align: center;
+              padding: 2rem;
+              margin: 0 0 1.5rem 0;
+            '
           >
-            <div class='text-left'>
-              <h4 class='font-bold'>The order contains</h4>
-              <div class=''>
+            <div style='text-align: left'>
+              <h4 style='font-weight: bold; margin: 0; font-size: 1rem'>
+                The order contains
+              </h4>
+              <div>
                 <!-- order item -->
-                <div class='flex space-x-6 text-sm w-full border-b py-5'>
+                <div
+                  style='
+                    font-size: 0.875rem;
+                    display: flex;
+                    width: 100%;
+                    padding: 1.25rem 0;
+                    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+                  '
+                >
                   <img
-                    class='w-[93px] h-[145px] object-contain'
+                    style='width: 93px; height: 145px; object-fit: contain'
                     alt='product name'
                     src='https://assets.ellosgroup.com/i/ellos/b?$eg$&$em$&$ep$&$el$&n=sth_7010043-04_Fm_M0034817&mw=186'
                   />
-                  <div class='w-full'>
-                    <div
-                      class='tracking-[0.15em] uppercase text-[11px] font-semibold text-[#666666]'
+                  <div style='width: 100%; margin-left: 2rem'>
+                    <div style='line-height: 1.2rem'>
+                      <div
+                        style='
+                          letter-spacing: 0.15em;
+                          text-transform: uppercase;
+                          font-size: 11px;
+                          font-weight: 600;
+                          color: #666666;
+                        '
+                      >
+                        William Baxter
+                      </div>
+                      <div style='font-weight: bold'>
+                        Trousers Everyday Trousers
+                      </div>
+                      <div>M | Navy</div>
+                    </div>
+
+                    <!-- //! quantity and price  -->
+                    <table
+                      style='width: 100%; margin: 0.5rem 0 0 0; padding: 0'
                     >
-                      William Baxter
-                    </div>
-                    <div class='font-bold'>Trousers Everyday Trousers</div>
-                    <div>M | Navy</div>
-                    <!-- quantity and price  -->
-                    <div class='flex justify-between items-center mt-8 w-full'>
-                      <!-- quantity -->
-                      <div class=''>
-                        <span class='font-bold mr-1'>Number:</span>
-                        <span class='font-medium'>1</span>
-                      </div>
-                      <div class='flex flex-col relative'>
-                        <del class='absolute bottom-5'>59 EUR</del>
-                        <span class='text-red-600 font-bold'>24 EUR</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- order item -->
-                <div class='flex space-x-6 text-sm w-full py-5'>
-                  <img
-                    class='w-[93px] h-[145px] object-contain'
-                    alt='product name'
-                    src='https://assets.ellosgroup.com/i/ellos/b?$eg$&$em$&$ep$&$el$&n=sth_7010043-04_Fm_M0034817&mw=186'
-                  />
-                  <div class='w-full'>
-                    <div
-                      class='tracking-[0.15em] uppercase text-[11px] font-semibold text-[#666666]'
-                    >
-                      William Baxter
-                    </div>
-                    <div class='font-bold'>Trousers Everyday Trousers</div>
-                    <div>M | Navy</div>
-                    <!-- quantity and price  -->
-                    <div class='flex justify-between items-center mt-8 w-full'>
-                      <!-- quantity -->
-                      <div class=''>
-                        <span class='font-bold mr-1'>Number:</span>
-                        <span class='font-medium'>1</span>
-                      </div>
-                      <div class='flex flex-col relative'>
-                        <del class='absolute bottom-5'>59 EUR</del>
-                        <span class='text-red-600 font-bold'>24 EUR</span>
-                      </div>
-                    </div>
+                      <tbody style='margin: 0; padding: 0'>
+                        <tr style='margin: 0; padding: 0'>
+                          <td
+                            valign='bottom'
+                            align='left'
+                            style='font-weight: bold; margin: 0; padding: 0'
+                          >
+                            Number:
+                            <span style='font-weight: 500'>1</span>
+                          </td>
+                          <td align='right'>
+                            <del>59 EUR</del>
+                            <span
+                              style='
+                                display: block;
+                                color: #dc2626;
+                                font-weight: bold;
+                              '
+                            >24 EUR</span>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                    <!-- //! quantity and price  END -->
                   </div>
                 </div>
               </div>
             </div>
           </div>
           <!-- total costs -->
+
           <div
-            class='bg-white text-center py-8 md:py-10 px-8 md:px-14 space-y-4'
+            style='
+              background-color: white;
+              text-align: center;
+              padding: 2rem;
+              margin: 0 0 1.5rem 0;
+            '
           >
-            <div class='text-left space-y-2'>
-              <div class='flex justify-between text-sm'>
-                <div class='text-staytard-medium-gray'>Products</div>
+            <table style='padding: 0; margin: 0; width: 100%'>
+              <tbody>
+                <tr>
+                  <td
+                    align='left'
+                    style='
+                      margin: 0;
+                      padding: 0;
+                      font-size: 0.875rem;
+                      line-height: 1.7rem;
+                      color: #767676;
+                    '
+                  >
+                    Products
+                  </td>
+                  <td
+                    align='right'
+                    style='
+                      margin: 0;
+                      padding: 0;
+                      font-size: 0.875rem;
+                      line-height: 1.7rem;
+                    '
+                  >
+                    53 EUR
+                  </td>
+                </tr>
+                <tr>
+                  <td
+                    align='left'
+                    style='
+                      margin: 0;
+                      padding: 0;
+                      font-size: 0.875rem;
+                      line-height: 1.7rem;
+                      color: #767676;
+                    '
+                  >
+                    Shipping cost
+                  </td>
+                  <td
+                    align='right'
+                    style='
+                      margin: 0;
+                      padding: 0;
+                      font-size: 0.875rem;
+                      line-height: 1.7rem;
+                    '
+                  >
+                    5 EUR
+                  </td>
+                </tr>
+                <tr>
+                  <td
+                    align='left'
+                    style='
+                      margin: 0;
+                      padding: 0;
+                      font-size: 18px;
+                      line-height: 1.7rem;
+                      font-weight: bold;
+                    '
+                  >
+                    Total amount
+                  </td>
+                  <td
+                    align='right'
+                    style='
+                      margin: 0;
+                      padding: 0;
+                      font-size: 18px;
+                      line-height: 1.7rem;
+                      font-weight: bold;
+                    '
+                  >
+                    58 EUR
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <!-- <div style="text-align: left">
+              <div
+                style="
+                  font-size: 0.875rem;
+                  display: flex;
+                  justify-content: space-between;
+                  line-height: 1.7rem;
+                "
+              >
+                <div style="color: #767676">Products</div>
                 <div>53 EUR</div>
               </div>
-              <div class='flex justify-between text-sm'>
-                <div class='text-staytard-medium-gray'>Shipping cost</div>
+              <div
+                style="
+                  font-size: 0.875rem;
+                  display: flex;
+                  justify-content: space-between;
+                  line-height: 1.7rem;
+                "
+              >
+                <div style="color: #767676">Shipping cost</div>
                 <div>5 EUR</div>
               </div>
-              <div class='flex justify-between text-lg font-bold'>
-                <div class=''>Total amount</div>
+              <div
+                style="
+                  font-weight: bold;
+                  font-size: 18px;
+                  display: flex;
+                  justify-content: space-between;
+                  line-height: 1.7rem;
+                "
+              >
+                <div>Total amount</div>
                 <div>58 EUR</div>
               </div>
-            </div>
+            </div> -->
           </div>
           <!-- customer service -->
           <div
-            class='bg-white text-center py-8 md:py-10 px-8 md:px-14 space-y-4'
+            style='
+              background-color: white;
+              text-align: center;
+              padding: 2rem;
+              margin: 0 0 1.5rem 0;
+            '
           >
-            <div class='space-y-2'>
+            <div>
               <img
                 src='https://s3-eu-west-1.amazonaws.com/ellosgroupassets/stayhard/icons/icon-question-mark.png'
                 alt='Black question mark with a circle around it'
-                class='w-12 h-12 mx-auto'
+                style='width: 3rem; height: 3rem; object-fit: contain'
               />
-              <h5 class='font-bold pt-1'>Do you have questions?</h5>
-              <p class='text-sm pt-3 pb-6'>
+              <h5
+                style='
+                  font-weight: bold;
+                  padding-top: 0.25rem;
+                  font-size: 1rem;
+                  margin: 0.5rem 0 1rem 0;
+                '
+              >
+                Do you have questions?
+              </h5>
+              <p
+                style='
+                  padding-top: 0.75rem;
+                  padding-bottom: 1.5rem;
+                  font-size: 0.875rem;
+                '
+              >
                 In our FAQ you will find the answers to the most common
                 questions. Here is also information on how you can most easily
                 contact us.
               </p>
-              <div class='pt-6 border-t text-sm'>
+              <div
+                style='
+                  padding-top: 1.5rem;
+                  border-top: 1px solid rgba(0, 0, 0, 0.1);
+                  font-size: 0.875rem;
+                '
+              >
                 <a
-                  href='#'
+                  href={{frontEndUrl}}
                   target='_blank'
                   rel='noopener'
-                  class='flex justify-center items-center'
+                  style='
+                    text-align: center;
+                    text-decoration: none;
+                    color: #282828;
+                  '
                 >
-                  <span> Customer service </span>
+                  <span>Customer service</span>
                   <img
                     src='https://s3-eu-west-1.amazonaws.com/ellosgroupassets/stayhard/icons/icon-arrow.png'
                     alt='Arrow right'
-                    class='w-3 h-3 mx-2'
+                    style='width: 0.8rem; height: 0.8rem; margin: 0 0.2rem'
                   />
                 </a>
               </div>
             </div>
           </div>
           <!-- footer -->
-          <div class='text-center text-sm'>
-            <a href='#' target='_blank' rel='noopener' class='block pb-6'>
+          <div style='text-align: center; font-size: 0.875rem'>
+            <a
+              href='{{frontEndUrl}}/my-orders'
+              target='_blank'
+              rel='noopener'
+              style='
+                display: block;
+                padding-bottom: 1.5rem;
+                padding-top: 0.5rem;
+                text-decoration: none;
+                color: #282828;
+              '
+            >
               My orders</a>
             <div
-              class='text-[12px] text-center border-t border-black border-opacity-10 py-8'
+              style='
+                font-size: 12px;
+                text-align: center;
+                border-top: 1px solid rgba(0, 0, 0, 0.1);
+                padding: 2rem 0;
+              '
             >
               <div>Staytard AB, 501 86 Milky Way, org. no: 556713-1337</div>
             </div>
