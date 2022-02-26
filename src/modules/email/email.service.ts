@@ -4,14 +4,16 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
+import * as fs from 'fs';
+import Handlebars from 'handlebars';
 import { createTransport } from 'nodemailer';
 import Mail from 'nodemailer/lib/mailer';
+import * as path from 'path';
 import { CustomerOrderItem } from '../customer-order/entities/customer-order-item.entity';
 import { CustomerOrder } from '../customer-order/entities/customer-order.entity';
 import { Product } from '../product/entities/product.entity';
 import { UserService } from '../user/user.service';
 import { SendEmailDto } from './dto/send-email.dto';
-
 @Injectable()
 export class EmailService {
   private nodemailerTransport: Mail;
@@ -45,6 +47,32 @@ export class EmailService {
     }
   }
 
+  async sendTestMail(userId: string) {
+    const source = fs.readFileSync(
+      path.join(
+        process.cwd(),
+        'src',
+        'templates',
+        'customer-order-receipt-template.hbs',
+      ),
+      'utf8',
+    );
+    // Create email generator
+    const template = Handlebars.compile(source);
+    const user = await this.userService.findById(userId);
+    if (!user) {
+      throw new NotFoundException('User not found'); // User should always be defined though if called from order service.
+    }
+    await this.nodemailerTransport.sendMail({
+      to: user.email,
+      subject: 'Thanks for your order!',
+      text: '',
+      html: template({
+        userFirstName: user.firstName,
+      }),
+    });
+  }
+
   async sendProductOrderConfirmationEmail(
     userId: string,
     orderItems: CustomerOrderItem[],
@@ -56,6 +84,7 @@ export class EmailService {
       if (!user) {
         throw new NotFoundException('User not found'); // User should always be defined though if called from order service.
       }
+
       await this.sendMail(
         {
           to: user.email,
