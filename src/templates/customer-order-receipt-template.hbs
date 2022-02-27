@@ -39,14 +39,16 @@
             '
           >
             <div>
-              <span>Hi Edvin</span>
+              <span style='color: #282828;'>Hi {{user.firstName}}</span>
               <h2
-                style='font-size: 1.25rem; font-weight: 500; margin: 0.5rem 0'
+                style='font-size: 1.25rem; font-weight: 500; margin: 0.5rem 0; color: #282828;'
               >
                 Thanks for your order!
               </h2>
             </div>
-            <p style='padding: 0.5rem 2rem; line-height: 1.5rem'>
+            <p
+              style='padding: 0.5rem 2rem; line-height: 1.5rem; color: #282828;'
+            >
               We understand that you are eager for your new purchase and as soon
               as it is packed and ready to be sent, you will receive a delivery
               note from us. Your order is delivered with climate-compensated
@@ -68,7 +70,9 @@
                 alt='Order package'
                 style='margin: 0 auto; width: 4rem; height: 4rem'
               />
-              <h3 class='font-bold pt-4'>Your order</h3>
+              <h3
+                style='font-weight: bold; padding-top: 1rem; color: #282828;'
+              >Your order</h3>
             </div>
             <!-- order details -->
             <div
@@ -102,7 +106,7 @@
                         line-height: 1.7rem;
                       '
                     >
-                      65aeb5ff-cff7-1f77-80ae-d23a0b0aef67
+                      {{order.orderNumber}}
                     </td>
                   </tr>
                   <tr>
@@ -127,7 +131,7 @@
                         line-height: 1.7rem;
                       '
                     >
-                      2022-01-26
+                      {{orderCreationDate}}
                     </td>
                   </tr>
                   <tr>
@@ -152,7 +156,7 @@
                         line-height: 1.7rem;
                       '
                     >
-                      Card
+                      {{paymentMethod}}
                     </td>
                   </tr>
                 </tbody>
@@ -160,7 +164,7 @@
             </div>
             <!-- order status link -->
             <a
-              href='#'
+              href='{{frontEndUrl}}/my-orders'
               rel='noopener'
               target='_blank'
               style='text-decoration: none'
@@ -188,13 +192,17 @@
                 text-align: left;
                 font-size: 0.875rem;
                 border: 1px solid rgba(0, 0, 0, 0.1);
+                color: #282828;
+                
               '
             >
               <div style='font-weight: bold'>Billing address</div>
-              <div style='line-height: 1.5rem; padding-top: 0.75rem'>
-                <div>Edvin Trönnberg</div>
-                <div>Vasagatan 12 B lgh 1101</div>
-                <div>78432 Borlänge</div>
+              <div
+                style='line-height: 1.5rem; padding-top: 0.75rem; color:#282828'
+              >
+                <div>{{user.firstName}} {{user.lastName}}</div>
+                <div>{{order.deliveryAddress}}</div>
+                <div>{{order.postalCode}} {{order.city}}</div>
               </div>
             </div>
           </div>
@@ -208,80 +216,102 @@
             '
           >
             <div style='text-align: left'>
-              <h4 style='font-weight: bold; margin: 0; font-size: 1rem'>
+              <h4
+                style='font-weight: bold; margin: 0; font-size: 1rem; color:#282828'
+              >
                 The order contains
               </h4>
-              <div>
+              <div style='color: #282828;'>
                 <!-- order item -->
-                <div
-                  style='
+                {{#each orderLines}}
+                  <div
+                    style='
                     font-size: 0.875rem;
                     display: flex;
                     width: 100%;
                     padding: 1.25rem 0;
                     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
                   '
-                >
-                  <img
-                    style='width: 93px; height: 145px; object-fit: contain'
-                    alt='product name'
-                    src='https://assets.ellosgroup.com/i/ellos/b?$eg$&$em$&$ep$&$el$&n=sth_7010043-04_Fm_M0034817&mw=186'
-                  />
-                  <div style='width: 100%; margin-left: 2rem'>
-                    <div style='line-height: 1.2rem'>
-                      <div
-                        style='
+                  >
+                    <img
+                      style='width: 93px; height: 145px; object-fit: contain'
+                      alt='{{this.brandName}} - {{this.name}}'
+                      src='{{this.imageUrl}}'
+                    />
+                    <div style='width: 100%; margin-left: 2rem'>
+                      <div style='line-height: 1.2rem'>
+                        <div
+                          style='
                           letter-spacing: 0.15em;
                           text-transform: uppercase;
                           font-size: 11px;
                           font-weight: 600;
                           color: #666666;
                         '
-                      >
-                        William Baxter
+                        >
+                          {{this.brandName}}
+                        </div>
+                        <a href="{{../frontEndUrl}}/product/{{this.productId}}" target="_blank" rel="noopener" style='font-weight: bold; color: #282828; text-decoration: none;'>
+                          {{this.name}}
+                        </a>
+                        <div style='color: #282828;'>{{this.size}}
+                          |
+                          {{this.color}}</div>
                       </div>
-                      <div style='font-weight: bold'>
-                        Trousers Everyday Trousers
-                      </div>
-                      <div>M | Navy</div>
-                    </div>
 
-                    <!-- //! quantity and price  -->
-                    <table
-                      style='width: 100%; margin: 0.5rem 0 0 0; padding: 0'
-                    >
-                      <tbody style='margin: 0; padding: 0'>
-                        <tr style='margin: 0; padding: 0'>
-                          <td
-                            valign='bottom'
-                            align='left'
-                            style='font-weight: bold; margin: 0; padding: 0'
-                          >
-                            Number:
-                            <span style='font-weight: 500'>1</span>
-                          </td>
-                          <td align='right'>
-                            <del>59 EUR</del>
-                            <span
-                              style='
+                      <!-- //! quantity and price  -->
+                      <table
+                        style='width: 100%; margin: 0.5rem 0 0 0; padding: 0'
+                      >
+                        <tbody style='margin: 0; padding: 0'>
+                          <tr style='margin: 0; padding: 0'>
+                            <td
+                              valign='bottom'
+                              align='left'
+                              style='font-weight: bold; margin: 0; padding: 0; color: #282828;'
+                            >
+                              Number:
+                              <span
+                                style='font-weight: 500; color: #282828;'
+                              >{{this.quantity}}</span>
+                            </td>
+                            <td align='right'>
+                              {{#if this.hasDiscount}}
+                                <del
+                                  style='color: #282828;'
+                                >{{this.originalPrice}}
+                                  {{../purchaseCurrency}}</del>
+                                <span
+                                  style='
                                 display: block;
                                 color: #dc2626;
                                 font-weight: bold;
                               '
-                            >24 EUR</span>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
+                                >{{this.currentPrice}}
+                                  {{../purchaseCurrency}}</span>
+                              {{/if}}
+                              {{#unless this.hasDiscount}}
+                              <span
+                                style='
+                                display: block;
+                                color:#282828;
+                                font-weight: bold;
+                              '
+                              >{{this.currentPrice}}
+                                {{../purchaseCurrency}}</span>
+                              {{/unless}}
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
 
-                    <!-- //! quantity and price  END -->
+                    </div>
                   </div>
-                </div>
+                {{/each}}
               </div>
             </div>
           </div>
           <!-- total costs -->
-
           <div
             style='
               background-color: white;
@@ -312,9 +342,11 @@
                       padding: 0;
                       font-size: 0.875rem;
                       line-height: 1.7rem;
+                      color: #282828;
                     '
                   >
-                    53 EUR
+                    {{order.totalAmount}}
+                    {{purchaseCurrency}}
                   </td>
                 </tr>
                 <tr>
@@ -337,9 +369,11 @@
                       padding: 0;
                       font-size: 0.875rem;
                       line-height: 1.7rem;
+                      color: #282828;
                     '
                   >
-                    5 EUR
+                    {{order.shippingCost}}
+                    {{purchaseCurrency}}
                   </td>
                 </tr>
                 <tr>
@@ -351,6 +385,7 @@
                       font-size: 18px;
                       line-height: 1.7rem;
                       font-weight: bold;
+                      color: #282828;
                     '
                   >
                     Total amount
@@ -363,49 +398,16 @@
                       font-size: 18px;
                       line-height: 1.7rem;
                       font-weight: bold;
+                      color: #282828;
                     '
                   >
-                    58 EUR
+                    {{grandTotal}}
+                    {{purchaseCurrency}}
                   </td>
                 </tr>
               </tbody>
             </table>
-            <!-- <div style="text-align: left">
-              <div
-                style="
-                  font-size: 0.875rem;
-                  display: flex;
-                  justify-content: space-between;
-                  line-height: 1.7rem;
-                "
-              >
-                <div style="color: #767676">Products</div>
-                <div>53 EUR</div>
-              </div>
-              <div
-                style="
-                  font-size: 0.875rem;
-                  display: flex;
-                  justify-content: space-between;
-                  line-height: 1.7rem;
-                "
-              >
-                <div style="color: #767676">Shipping cost</div>
-                <div>5 EUR</div>
-              </div>
-              <div
-                style="
-                  font-weight: bold;
-                  font-size: 18px;
-                  display: flex;
-                  justify-content: space-between;
-                  line-height: 1.7rem;
-                "
-              >
-                <div>Total amount</div>
-                <div>58 EUR</div>
-              </div>
-            </div> -->
+
           </div>
           <!-- customer service -->
           <div
@@ -428,6 +430,8 @@
                   padding-top: 0.25rem;
                   font-size: 1rem;
                   margin: 0.5rem 0 1rem 0;
+                      color: #282828;
+
                 '
               >
                 Do you have questions?
@@ -437,6 +441,8 @@
                   padding-top: 0.75rem;
                   padding-bottom: 1.5rem;
                   font-size: 0.875rem;
+                      color: #282828;
+
                 '
               >
                 In our FAQ you will find the answers to the most common
@@ -493,7 +499,12 @@
                 padding: 2rem 0;
               '
             >
-              <div>Staytard AB, 501 86 Milky Way, org. no: 556713-1337</div>
+              <div
+                style='
+                      color: #282828;
+
+              '
+              >Staytard AB, 501 86 Milky Way, org. no: 556713-1337</div>
             </div>
           </div>
         </div>

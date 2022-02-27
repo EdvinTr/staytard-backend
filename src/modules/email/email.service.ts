@@ -6,6 +6,7 @@ import {
 import { ConfigService } from '@nestjs/config';
 import * as fs from 'fs';
 import Handlebars from 'handlebars';
+import { capitalize } from 'lodash';
 import { createTransport } from 'nodemailer';
 import Mail from 'nodemailer/lib/mailer';
 import * as path from 'path';
@@ -14,6 +15,19 @@ import { CustomerOrder } from '../customer-order/entities/customer-order.entity'
 import { Product } from '../product/entities/product.entity';
 import { UserService } from '../user/user.service';
 import { SendEmailDto } from './dto/send-email.dto';
+
+interface ReceiptOrderLine {
+  name: string;
+  currentPrice: number;
+  originalPrice: number;
+  quantity: number;
+  color: string;
+  size: string;
+  imageUrl: string;
+  brandName: string;
+  productId: number;
+  hasDiscount: boolean;
+}
 @Injectable()
 export class EmailService {
   private nodemailerTransport: Mail;
@@ -58,7 +72,7 @@ export class EmailService {
       'utf8',
     );
     // Create email generator
-    const template = Handlebars.compile(source, {});
+    const template = Handlebars.compile(source);
     const user = await this.userService.findById(userId);
     if (!user) {
       throw new NotFoundException('User not found'); // User should always be defined though if called from order service.
@@ -82,32 +96,54 @@ export class EmailService {
     try {
       const user = await this.userService.findById(userId);
       if (!user) {
-        throw new NotFoundException('User not found'); // User should always be defined though if called from order service.
+        throw new NotFoundException('User not found');
       }
-
-      await this.sendMail(
-        {
-          to: user.email,
-          subject: 'Thanks for your order!',
-          text: '',
-        },
-        {
-          html: `
-        <div style={text-align: center;}>
-          ${orderItems.map((item) => {
-            return `<div>
-                <h2>${item.quantity} x ${
-              products.find((product) => product.id === item.productId)?.name
-            }</h2>
-              </div>`;
-          })}
-            <h3>Total: ${
-              customerOrder.shippingCost + customerOrder.totalAmount
-            } EUR</h3>
-        </div>
-      `,
-        },
+      const source = fs.readFileSync(
+        path.join(
+          process.cwd(),
+          'src',
+          'templates',
+          'customer-order-receipt-template.hbs',
+        ),
+        'utf8',
       );
+      // Create email generator
+      const template = Handlebars.compile(source);
+
+      // Order line content
+      const receiptOrderLines: ReceiptOrderLine[] = products.map((product) => {
+        return {
+          quantity:
+            orderItems.find((item) => item.productId === product.id)
+              ?.quantity || 0,
+          name: product.name,
+          currentPrice: product.currentPrice,
+          originalPrice: product.originalPrice,
+          color: product.attributes[0].color.value,
+          size: product.attributes[0].size.value,
+          brandName: product.brand.name,
+          imageUrl: product.images[0].imageUrl.replace('{size}', '186'),
+          productId: product.id,
+          hasDiscount: product.currentPrice !== product.originalPrice,
+          // TODO: last item should not apply border bottom on order line
+        };
+      });
+      await this.nodemailerTransport.sendMail({
+        to: user.email,
+        subject: 'Thanks for your order!',
+        html: template({
+          user,
+          frontEndUrl: process.env.FRONTEND_URL,
+          orderLines: receiptOrderLines,
+          order: customerOrder,
+          paymentMethod: capitalize(customerOrder.paymentType),
+          grandTotal: customerOrder.totalAmount + customerOrder.shippingCost,
+          purchaseCurrency: customerOrder.purchaseCurrency.toUpperCase(),
+          orderCreationDate: new Date(customerOrder.createdAt)
+            .toString()
+            .split('T')[0],
+        }),
+      });
     } catch (err) {
       throw err;
     }
