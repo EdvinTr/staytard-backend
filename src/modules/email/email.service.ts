@@ -60,33 +60,6 @@ export class EmailService {
       throw new InternalServerErrorException("Couldn't send email");
     }
   }
-
-  async sendTestMail(userId: string) {
-    const source = fs.readFileSync(
-      path.join(
-        process.cwd(),
-        'src',
-        'templates',
-        'customer-order-receipt-template.hbs',
-      ),
-      'utf8',
-    );
-    // Create email generator
-    const template = Handlebars.compile(source);
-    const user = await this.userService.findById(userId);
-    if (!user) {
-      throw new NotFoundException('User not found'); // User should always be defined though if called from order service.
-    }
-    await this.nodemailerTransport.sendMail({
-      to: user.email,
-      subject: 'Thanks for your order!',
-      html: template({
-        user,
-        frontEndUrl: process.env.FRONTEND_URL,
-      }),
-    });
-  }
-
   async sendProductOrderConfirmationEmail(
     userId: string,
     orderItems: CustomerOrderItem[],
