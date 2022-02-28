@@ -16,6 +16,7 @@ export class ProductCategoryResolver {
       where: {
         parent: null,
       },
+      cache: 60000, // 1min
     });
   }
 
@@ -34,6 +35,7 @@ export class ProductCategoryResolver {
         name: 'ASC',
       },
       select: ['id', 'name'],
+      cache: 60000, // 1min
     });
   }
 
