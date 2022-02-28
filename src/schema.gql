@@ -270,6 +270,15 @@ input FindProductsBySkusInput {
 input FindMyCustomerOrdersInput {
   offset: Float!
   limit: Float!
+  sortBy: CUSTOMER_ORDER_SORT_BY
+  sortDirection: SORT_DIRECTION
+}
+
+enum CUSTOMER_ORDER_SORT_BY {
+  ID
+  CREATED_AT
+  GRAND_TOTAL
+  STATUS
 }
 
 input FindAllCustomerOrdersInput {
@@ -294,12 +303,6 @@ enum CUSTOMER_ORDER_STATUS {
   REFUNDED
   FAILED
   ON_HOLD
-}
-
-enum CUSTOMER_ORDER_SORT_BY {
-  ID
-  CREATED_AT
-  GRAND_TOTAL
 }
 
 input GetProductBrandsInput {

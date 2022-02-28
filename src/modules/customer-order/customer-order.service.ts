@@ -7,6 +7,7 @@ import {
 import { InjectRepository } from '@nestjs/typeorm';
 import { FindOneOptions, In, Repository } from 'typeorm';
 import { validate as isValidUUID } from 'uuid';
+import { CUSTOMER_ORDER_SORT_BY } from '../../lib/gql-enums';
 import { EmailService } from '../email/email.service';
 import { ProductAttributeService } from '../product/product-attribute.service';
 import { ProductService } from '../product/product.service';
@@ -163,15 +164,23 @@ export class CustomerOrderService {
 
   public async findMyCustomerOrders(
     userId: string,
-    { limit, offset }: FindMyCustomerOrdersInput,
+    { limit, offset, sortBy, sortDirection }: FindMyCustomerOrdersInput,
   ): Promise<PaginatedCustomerOrdersOutput> {
-    const [customerOrders, totalCount] =
-      await this.customerOrderRepository.findAndCount({
-        where: { userId },
-        take: limit,
-        skip: offset,
-        relations: ['orderStatus'],
-      });
+    const query = this.customerOrderRepository
+      .createQueryBuilder('order')
+      .innerJoinAndSelect('order.orderStatus', 'orderStatus')
+      .where('order.userId = :userId', { userId })
+      .take(limit)
+      .skip(offset);
+
+    if (sortBy && sortDirection) {
+      if (sortBy === CUSTOMER_ORDER_SORT_BY.STATUS) {
+        query.orderBy(`orderStatus.status`, sortDirection);
+      } else {
+        query.orderBy(`order.${sortBy}`, sortDirection);
+      }
+    }
+    const [customerOrders, totalCount] = await query.getManyAndCount();
     return {
       items: customerOrders,
       totalCount,

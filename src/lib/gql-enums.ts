@@ -30,6 +30,7 @@ export enum CUSTOMER_ORDER_SORT_BY {
   ID = 'id',
   CREATED_AT = 'createdAt',
   GRAND_TOTAL = 'grandTotal',
+  STATUS = 'status',
 }
 
 export enum CUSTOMER_ORDER_FILTER {
