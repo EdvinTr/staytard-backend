@@ -17,31 +17,6 @@ export class StripePaymentService {
       apiVersion: '2020-08-27',
     });
   }
-  // TODO:
-  // Should have function createOrderFromSession
-  // Should check in database if the order is already created
-  // If it is, just throw an error saying it has already been created or return the order and display in frontend (check calling user has privilege or is admin)
-  // else create the order and save it to the database
-
-  async retrieveSessionDetails(sessionId: string) {
-    const session = await this.stripe.checkout.sessions.retrieve(sessionId);
-    if (!session || !session.customer) {
-      return null;
-    }
-    const customer = await this.stripe.customers.retrieve(
-      session.customer as string,
-    );
-    const lineItems = await this.stripe.checkout.sessions.listLineItems(
-      session.id,
-    );
-    const prods = await this.stripe.products.retrieve(
-      lineItems.data[0].price?.product as string,
-    ); // TODO: grab all skus and add to order and save
-    console.log(lineItems);
-    return {
-      session,
-    };
-  }
   async createOrGetCustomerOrder(
     sessionId: string,
     userId: string,
@@ -170,7 +145,7 @@ export class StripePaymentService {
       cancel_url: process.env.FRONTEND_URL + '/checkout',
       success_url:
         process.env.FRONTEND_URL +
-        '/order/stripe/success?session_id={CHECKOUT_SESSION_ID}',
+        '/checkout/stripe/success?session_id={CHECKOUT_SESSION_ID}',
     });
   }
 }
