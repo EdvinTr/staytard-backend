@@ -112,9 +112,7 @@ export class EmailService {
           paymentMethod: capitalize(customerOrder.paymentType),
           grandTotal: customerOrder.totalAmount + customerOrder.shippingCost,
           purchaseCurrency: customerOrder.purchaseCurrency.toUpperCase(),
-          orderCreationDate: new Date(customerOrder.createdAt)
-            .toString()
-            .split('T')[0],
+          orderCreationDate: new Date(customerOrder.createdAt).toLocaleString(),
         }),
       });
     } catch (err) {
