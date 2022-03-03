@@ -240,25 +240,31 @@ export class UserService {
     try {
       const user = await this.userRepository.findOne(userId);
       if (!user) {
-        throw new UserNotFoundException('User not found');
+        throw new UserNotFoundException(userId);
       }
-      if (!user.password || !oldPassword) {
-        // set a new password since user must have signed up through OAuth provider and doesn't yet have a password in database
+      if (user.password && !oldPassword) {
+        // Check if the user has a password and if the old password is provided
+        throw new BadRequestException(
+          "You can't update your password without entering your old password.",
+        );
+      }
+      if (user.password && oldPassword) {
+        // compare old password provided against the one stored in database
+        const isPasswordMatching = await bcrypt.compare(
+          oldPassword,
+          user.password,
+        );
+        if (!isPasswordMatching) {
+          throw new BadRequestException('Invalid old password');
+        }
+        // hash new password and update password column
         const hashedPassword = await bcrypt.hash(newPassword, 10);
         await this.userRepository.update(userId, {
           password: hashedPassword,
         });
         return true;
       }
-      // compare old password provided against the one stored in database
-      const isPasswordMatching = await bcrypt.compare(
-        oldPassword,
-        user.password,
-      );
-      if (!isPasswordMatching) {
-        throw new BadRequestException('Invalid old password');
-      }
-      // hash new password and update password column
+      // set a new password since user must have signed up through OAuth provider and doesn't yet have a password in database
       const hashedPassword = await bcrypt.hash(newPassword, 10);
       await this.userRepository.update(userId, {
         password: hashedPassword,
