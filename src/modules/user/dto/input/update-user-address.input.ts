@@ -1,4 +1,5 @@
 import { Field, InputType } from '@nestjs/graphql';
+import { Transform } from 'class-transformer';
 import {
   IsNotEmpty,
   IsPostalCode,
@@ -26,6 +27,7 @@ export class UpdateUserAddressInput {
   @IsPostalCode('SE', {
     message: 'Enter a postal code with 5 digits (e.g., 44233)',
   })
+  @Transform(({ value }) => value.split(' ').join(''))
   @Field()
   postalCode: string;
 }

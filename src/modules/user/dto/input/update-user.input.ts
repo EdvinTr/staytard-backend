@@ -1,4 +1,5 @@
 import { Field, InputType } from '@nestjs/graphql';
+import { Transform } from 'class-transformer';
 import {
   IsAlpha,
   IsEmail,
@@ -12,7 +13,6 @@ import { CapitalizeAndTrimTransform } from '../../../../utils/transform/capitali
 import IsAlphaWithSpaces from '../../../../utils/validation/is-alpha-with-spaces.decorator';
 import IsAlphanumericWithSpaces from '../../../../utils/validation/is-alphanumeric-with-spaces.decorator';
 import IsValidName from '../../../../utils/validation/is-valid-name.decorator';
-
 interface UpdateUserInterface {
   userId: string;
   email: string;
@@ -73,6 +73,7 @@ export class UpdateUserInput implements UpdateUserInterface {
   @IsPostalCode('SE', {
     message: 'Enter a postal code with 5 digits (e.g., 44233)',
   })
+  @Transform(({ value }) => value.split(' ').join(''))
   @Field()
   postalCode: string;
 }
