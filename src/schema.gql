@@ -218,7 +218,6 @@ type Query {
   myOrders(input: FindMyCustomerOrdersInput!): PaginatedCustomerOrdersOutput!
   customerOrders(input: FindAllCustomerOrdersInput!): PaginatedCustomerOrdersOutput!
   oneCustomerOrder(id: Float!): FindOneCustomerOrderOutput!
-  productBrands(input: GetProductBrandsInput!): [ProductBrand!]!
   publishedProductReviews(input: FindPublishedProductReviewsInput!): PublishedProductReviewsOutput!
   allProductReviews(input: FindAllProductReviewsInput!): QueryAllProductReviewsOutput!
   oneProductReview(id: Float!): ProductReview!
@@ -303,16 +302,6 @@ enum CUSTOMER_ORDER_STATUS {
   REFUNDED
   FAILED
   ON_HOLD
-}
-
-input GetProductBrandsInput {
-  sortBy: BRAND_SORT_BY
-  sortDirection: SORT_DIRECTION
-}
-
-enum BRAND_SORT_BY {
-  ID
-  NAME
 }
 
 input FindPublishedProductReviewsInput {
