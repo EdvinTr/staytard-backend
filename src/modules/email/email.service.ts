@@ -103,6 +103,7 @@ export class EmailService {
       });
       await this.nodemailerTransport.sendMail({
         to: user.email,
+        from: process.env.EMAIL_USER,
         subject: 'Thanks for your order!',
         html: template({
           user,
