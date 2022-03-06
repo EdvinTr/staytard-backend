@@ -12,6 +12,7 @@ const {
   POSTGRES_PASSWORD,
   POSTGRES_PORT,
   POSTGRES_USER,
+  DATABASE_LOGGING,
 } = process.env;
 
 // have to use exclamation mark because TS goes ballista if you try to use typeorm migration:revert command
@@ -32,7 +33,7 @@ const postgresConfig: ConnectionOptions = {
 
   migrationsRun: true,
   cli: { migrationsDir: 'src/migrations' },
-  logging: __isProduction__ ? false : true,
+  logging: Boolean(DATABASE_LOGGING),
   namingStrategy: new SnakeNamingStrategy(),
 };
 

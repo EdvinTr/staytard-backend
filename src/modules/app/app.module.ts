@@ -4,17 +4,17 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { GraphQLModule } from '@nestjs/graphql';
 import { Request, Response } from 'express';
 import { join } from 'path';
-import { AuthenticationModule } from '../modules/authentication/authentication.module';
-import { CustomerOrderModule } from '../modules/customer-order/customer-order.module';
-import { DatabaseModule } from '../modules/database/database.module';
-import { EmailModule } from '../modules/email/email.module';
-import { GoogleAuthenticationModule } from '../modules/google-authentication/google-authentication.module';
-import { ProductBrandModule } from '../modules/product-brand/product-brand.module';
-import { ProductCategoryModule } from '../modules/product-category/product-category.module';
-import { ProductReviewModule } from '../modules/product-review/product-review.module';
-import { ProductModule } from '../modules/product/product.module';
-import { StripePaymentModule } from '../modules/stripe-payment/stripe-payment.module';
-import { UserModule } from '../modules/user/user.module';
+import { AuthenticationModule } from '../authentication/authentication.module';
+import { CustomerOrderModule } from '../customer-order/customer-order.module';
+import { DatabaseModule } from '../database/database.module';
+import { EmailModule } from '../email/email.module';
+import { GoogleAuthenticationModule } from '../google-authentication/google-authentication.module';
+import { ProductBrandModule } from '../product-brand/product-brand.module';
+import { ProductCategoryModule } from '../product-category/product-category.module';
+import { ProductReviewModule } from '../product-review/product-review.module';
+import { ProductModule } from '../product/product.module';
+import { StripePaymentModule } from '../stripe-payment/stripe-payment.module';
+import { UserModule } from '../user/user.module';
 
 export type JwtPayload = {
   sub: string;
@@ -57,6 +57,7 @@ export type MyContext = {
         EMAIL_USER: Joi.string().required(),
         EMAIL_PASSWORD: Joi.string().required(),
         EMAIL_SERVICE: Joi.string().required(),
+        DATABASE_LOGGING: Joi.string().required(),
       }),
     }),
     GraphQLModule.forRootAsync({

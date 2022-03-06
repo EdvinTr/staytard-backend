@@ -1,5 +1,5 @@
 import { Args, Context, Mutation, Resolver } from '@nestjs/graphql';
-import { MyContext } from '../../app/app.module';
+import { MyContext } from '../app/app.module';
 import { UserWithTokensDto } from '../authentication/dto/user-with-tokens.dto';
 import { setAuthCookies } from '../authentication/utils/auth-cookies';
 import { GoogleAuthenticationService } from './google-authentication.service';

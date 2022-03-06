@@ -1,7 +1,7 @@
 import { UseGuards } from '@nestjs/common';
 import { Args, Context, Mutation, Resolver } from '@nestjs/graphql';
 import { Response } from 'express';
-import { MyContext } from '../../app/app.module';
+import { MyContext } from '../app/app.module';
 import { UserService } from '../user/user.service';
 import { AuthenticationService } from './authentication.service';
 import { LoginUserDto } from './dto/login-user.dto';
