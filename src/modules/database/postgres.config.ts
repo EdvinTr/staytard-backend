@@ -24,7 +24,6 @@ const postgresConfig: ConnectionOptions = {
   password: POSTGRES_PASSWORD!,
   database: POSTGRES_DB!,
   entities: [__dirname + '/../**/*.entity{.ts,.js}'],
-  synchronize: __isProduction__ ? false : true,
   migrations: [
     __isProduction__
       ? __dirname + '/../../../dist/prod-migrations/**/*{.ts,.js}'
@@ -39,10 +38,12 @@ const postgresConfig: ConnectionOptions = {
 
 export const developmentConfig = {
   ...postgresConfig,
+  synchronize: true,
 };
 
 export const productionConfig = {
   ...postgresConfig,
+  synchronize: true,
   ssl: {
     rejectUnauthorized: false,
   },
