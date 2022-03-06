@@ -31,7 +31,7 @@ export class ProductSeed1642446058929 implements MigrationInterface {
       for (const {
         categoryName,
         products: generatedProducts,
-      } of jsonData.slice(0, 100)) {
+      } of jsonData.slice(0, 10)) {
         const category = await categoryRepository.findOne({
           relations: ['children'],
           where: {
@@ -41,7 +41,7 @@ export class ProductSeed1642446058929 implements MigrationInterface {
         if (!category) {
           continue;
         }
-        for (const item of generatedProducts) {
+        for (const item of generatedProducts.slice(0, 100)) {
           let brand = await brandRepository.findOne({
             where: { name: item.brandName },
           });
