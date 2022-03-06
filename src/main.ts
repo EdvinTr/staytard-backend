@@ -18,11 +18,7 @@ async function bootstrap() {
   app.use(cookieParser());
   app.enableCors({
     credentials: true,
-    origin: [
-      configService.get('FRONTEND_URL') || '',
-      'http://localhost:3000',
-      'https://staytard-frontend.vercel.app',
-    ],
+    origin: [configService.get('FRONTEND_URL') || ''],
   });
   await app.listen(process.env.PORT || 4000);
 }
