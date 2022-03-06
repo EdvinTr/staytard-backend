@@ -24,7 +24,11 @@ const postgresConfig: ConnectionOptions = {
   database: POSTGRES_DB!,
   entities: [__dirname + '/../**/*.entity{.ts,.js}'],
   synchronize: __isProduction__ ? false : true,
-  migrations: [__dirname + '/../../../dist/migrations/**/*{.ts,.js}'],
+  migrations: [
+    __isProduction__
+      ? __dirname + '/../../../dist/prod-migrations/**/*{.ts,.js}'
+      : __dirname + '/../../../dist/migrations/**/*{.ts,.js}',
+  ],
 
   migrationsRun: true,
   cli: { migrationsDir: 'src/migrations' },
