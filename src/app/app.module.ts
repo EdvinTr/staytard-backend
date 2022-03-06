@@ -54,8 +54,6 @@ export type MyContext = {
         GOOGLE_AUTH_CLIENT_SECRET: Joi.string().required(),
         FRONTEND_URL: Joi.string().required(),
         GRAPHQL_PLAYGROUND: Joi.boolean().required(),
-        KLARNA_API_USERNAME: Joi.string().required(),
-        KLARNA_API_PASSWORD: Joi.string().required(),
         EMAIL_USER: Joi.string().required(),
         EMAIL_PASSWORD: Joi.string().required(),
         EMAIL_SERVICE: Joi.string().required(),

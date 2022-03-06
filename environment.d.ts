@@ -14,8 +14,6 @@ namespace NodeJS {
     JWT_REFRESH_TOKEN_COOKIE_NAME: string;
     GOOGLE_AUTH_CLIENT_ID: string;
     GOOGLE_AUTH_CLIENT_SECRET: string;
-    KLARNA_API_USERNAME: string;
-    KLARNA_API_PASSWORD: string;
     EMAIL_USER: string;
     EMAIL_PASSWORD: string;
     EMAIL_SERVICE: string;
