@@ -6,12 +6,14 @@ export const setAuthCookies = (
   refreshToken: string,
 ) => {
   res.cookie(process.env.JWT_ACCESS_TOKEN_COOKIE_NAME, accessToken, {
-    sameSite: 'lax',
+    sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
     maxAge: +process.env.JWT_ACCESS_TOKEN_EXPIRATION_TIME,
+    secure: process.env.NODE_ENV === 'production' ? true : false,
   });
   res.cookie(process.env.JWT_REFRESH_TOKEN_COOKIE_NAME, refreshToken, {
-    sameSite: 'lax',
+    sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
     maxAge: +process.env.JWT_REFRESH_TOKEN_EXPIRATION_TIME,
+    secure: process.env.NODE_ENV === 'production' ? true : false,
   });
 };
 
