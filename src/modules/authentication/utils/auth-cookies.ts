@@ -11,11 +11,13 @@ export const setAuthCookies = (
     maxAge: +process.env.JWT_ACCESS_TOKEN_EXPIRATION_TIME,
     sameSite,
     secure,
+    domain: 'staytard-frontend.vercel.app',
   });
   res.cookie(process.env.JWT_REFRESH_TOKEN_COOKIE_NAME, refreshToken, {
     maxAge: +process.env.JWT_REFRESH_TOKEN_EXPIRATION_TIME,
     sameSite,
     secure,
+    domain: 'staytard-frontend.vercel.app',
   });
 };
 
@@ -23,9 +25,11 @@ export const removeAuthCookies = (res: Response) => {
   res.clearCookie(process.env.JWT_ACCESS_TOKEN_COOKIE_NAME, {
     sameSite,
     secure,
+    domain: 'staytard-frontend.vercel.app',
   });
   res.clearCookie(process.env.JWT_REFRESH_TOKEN_COOKIE_NAME, {
     sameSite,
     secure,
+    domain: 'staytard-frontend.vercel.app',
   });
 };
