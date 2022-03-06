@@ -30,7 +30,7 @@ const postgresConfig: ConnectionOptions = {
       ? __dirname + '/../../../dist/prod-migrations/**/*{.ts,.js}'
       : __dirname + '/../../../dist/migrations/**/*{.ts,.js}',
   ],
-
+  ssl: __isProduction__ ? true : false,
   migrationsRun: true,
   cli: { migrationsDir: 'src/migrations' },
   logging: Boolean(DATABASE_LOGGING),
