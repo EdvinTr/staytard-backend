@@ -1,12 +1,13 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import postgresConfig from './postgres.config';
+import { __isProduction__ } from '../../constants';
+import { developmentConfig, productionConfig } from './postgres.config';
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot({
-      ...postgresConfig,
-    }),
+    TypeOrmModule.forRoot(
+      __isProduction__ ? productionConfig : developmentConfig,
+    ),
   ],
 })
 export class DatabaseModule {}
