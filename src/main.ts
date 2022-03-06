@@ -20,6 +20,6 @@ async function bootstrap() {
     credentials: true,
     origin: [configService.get('FRONTEND_URL') || ''],
   });
-  await app.listen(configService.get('SERVER_PORT') || 4000);
+  await app.listen(process.env.PORT || 4000);
 }
 bootstrap();
