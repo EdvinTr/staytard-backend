@@ -7,6 +7,6 @@ export class ProductBrandController {
 
   @Get()
   async findAll() {
-    return await this.productBrandService.findAll();
+    return await this.productBrandService.findAllGroupedByFirstCharacter();
   }
 }

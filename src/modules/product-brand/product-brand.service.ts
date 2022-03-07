@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { FindProductBrandsInput } from './dto/find-product-brands.input';
 import {
   GetProductBrandsDto,
   SortedBrandKey,
@@ -14,7 +15,19 @@ export class ProductBrandService {
     private readonly productBrandRepository: Repository<ProductBrand>,
   ) {}
 
-  async findAll(): Promise<GetProductBrandsDto> {
+  async findAll(input: FindProductBrandsInput): Promise<ProductBrand[]> {
+    return await this.productBrandRepository.find({
+      order: {
+        [input.sortBy || 'id']: input.sortDirection || 'ASC',
+      },
+      cache: {
+        id: 'product-brands',
+        milliseconds: 300000, // 5 minutes
+      },
+    });
+  }
+
+  async findAllGroupedByFirstCharacter(): Promise<GetProductBrandsDto> {
     const [brands, count] = await this.productBrandRepository.findAndCount({
       cache: 300000, // 5min
     });
