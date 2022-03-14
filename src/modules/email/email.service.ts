@@ -117,7 +117,7 @@ export class EmailService {
         }),
       });
     } catch (err) {
-      throw err;
+      console.log(err);
     }
   }
 }
