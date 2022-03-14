@@ -39,6 +39,7 @@ export class EmailService {
     this.nodemailerTransport = createTransport({
       name: 'smtp.gmail.com',
       service: configService.get('EMAIL_SERVICE'),
+      secure: true,
       auth: {
         user: configService.get('EMAIL_USER'),
         pass: configService.get('EMAIL_PASSWORD'),
@@ -105,6 +106,7 @@ export class EmailService {
         to: user.email,
         from: process.env.EMAIL_USER,
         subject: 'Thanks for your order!',
+
         html: template({
           user,
           frontEndUrl: process.env.FRONTEND_URL,
