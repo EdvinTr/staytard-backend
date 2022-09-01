@@ -37,3 +37,6 @@ $ yarn start:prod
 * stripe
 * class-validator
 * jwt
+
+## Database Model
+![](https://i.gyazo.com/8eefd80449db76a987a925c720406772.png)
