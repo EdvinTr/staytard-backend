@@ -64,7 +64,7 @@ export class ProductService {
         .innerJoinAndSelect('attribute.color', 'color')
         .innerJoinAndSelect('attribute.size', 'size')
         .where('attribute.sku IN (:...skus)', { skus })
-        .take(limit)
+        .take(limit + 1)
         .skip(offset)
         .getMany()) as ProductAttribute[]; // Joining from product_attribute to enable TypeORM to fetch multiple of the same product where only attributes differ
       const products = attributes.map(({ product, ...attribute }) => {
@@ -73,6 +73,7 @@ export class ProductService {
           attributes: [attribute],
         };
       }) as Product[];
+      const hasMore = products.pop();
       return {
         items: products,
         totalCount: products.length,

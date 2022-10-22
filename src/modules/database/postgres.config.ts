@@ -6,31 +6,29 @@ import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
 import { __isProduction__ } from '../../constants';
 dotenv.config();
 
-const {
-  POSTGRES_DB,
-  POSTGRES_HOST,
-  POSTGRES_PASSWORD,
-  POSTGRES_PORT,
-  POSTGRES_USER,
-  DATABASE_LOGGING,
-} = process.env;
+const { DATABASE_LOGGING } = process.env;
 
 // have to use exclamation mark because TS goes ballista if you try to use typeorm migration:revert command
 const postgresConfig: ConnectionOptions = {
   type: 'postgres',
-  host: POSTGRES_HOST!,
+  url: process.env.DATABASE_URL,
+  /*   host: POSTGRES_HOST!,
   port: +POSTGRES_PORT!,
   username: POSTGRES_USER!,
   password: POSTGRES_PASSWORD!,
-  database: POSTGRES_DB!,
+  database: POSTGRES_DB!, */
   entities: [__dirname + '/../**/*.entity{.ts,.js}'],
   migrations: [
     __isProduction__
       ? __dirname + '/../../../dist/prod-migrations/**/*{.ts,.js}'
       : __dirname + '/../../../dist/migrations/**/*{.ts,.js}',
   ],
-
+  ssl: {
+    rejectUnauthorized: true,
+  },
   migrationsRun: true,
+  synchronize: true,
+
   cli: { migrationsDir: 'src/migrations' },
   logging: Boolean(DATABASE_LOGGING),
   namingStrategy: new SnakeNamingStrategy(),
@@ -38,13 +36,11 @@ const postgresConfig: ConnectionOptions = {
 
 export const developmentConfig = {
   ...postgresConfig,
-  synchronize: true,
 };
 
 export const productionConfig = {
   ...postgresConfig,
-  synchronize: true,
-  ssl: {
+  /*  ssl: {
     rejectUnauthorized: false,
-  },
+  }, */
 };
