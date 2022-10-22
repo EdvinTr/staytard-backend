@@ -12,7 +12,7 @@ export class SeedProductReviews1644490503552 implements MigrationInterface {
       0,
       Math.floor(shuffledProducts.length / 6),
     );
-    for (let i = 0; i < 15000; i++) {
+    for (let i = 0; i < 50; i++) {
       const productId =
         slicedProducts[casual.integer(0, slicedProducts.length - 1)].id;
       const isPublished = casual.boolean;

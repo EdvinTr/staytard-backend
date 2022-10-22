@@ -19,7 +19,7 @@ export class SeedCustomerOrders1645528563159 implements MigrationInterface {
     const slicedUsers = users.slice(0, Math.floor(users.length / 6));
     const slicedProducts = products.slice(0, Math.floor(products.length / 6));
 
-    for (let i = 0; i < 5000; i++) {
+    for (let i = 0; i < 100; i++) {
       const orderItems: CustomerOrderItem[] = [];
       // create order items
       for (let j = 0; j < casual.integer(1, 5); j++) {

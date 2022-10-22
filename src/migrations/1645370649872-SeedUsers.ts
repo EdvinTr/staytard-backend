@@ -6,7 +6,7 @@ import { User } from '../modules/user/entities/user.entity';
 export class SeedUsers1645370649872 implements MigrationInterface {
   public async up(): Promise<void> {
     const userRepo = getRepository(User);
-    for (let i = 0; i < 5000; i++) {
+    for (let i = 0; i < 100; i++) {
       const mobilePhoneNumber = `070${[...Array(7)]
         .map(() => casual.integer(1, 9))
         .join('')}`;
